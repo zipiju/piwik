@@ -254,9 +254,9 @@ class Tracker
 
         // if nothing found in _GET/_POST and we're doing a POST, assume bulk request. in which case,
         // we have to bypass authentication
-        if (empty($args) && $requestMethod == 'POST') {
-            TrackerConfig::setConfigValue('tracking_requests_require_authentication', 0);
-        }
+        //if (empty($args) && $requestMethod == 'POST') {
+        //    TrackerConfig::setConfigValue('tracking_requests_require_authentication', 0);
+        //}
 
         // Tests can force the use of 3rd party cookie for ID visitor
         if (Common::getRequestVar('forceEnableFingerprintingAcrossWebsites', false, null, $args) == 1) {
