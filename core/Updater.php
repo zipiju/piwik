@@ -71,11 +71,7 @@ class Updater
      */
     public function markComponentSuccessfullyUpdated($name, $version)
     {
-        try {
-            Option::set(self::getNameInOptionTable($name), $version, $autoLoad = 1);
-        } catch (\Exception $e) {
-            // case when the option table is not yet created (before 0.2.10)
-        }
+        Option::set(self::getNameInOptionTable($name), $version, $autoLoad = 1);
     }
 
     /**
