@@ -15,6 +15,7 @@ use Piwik\Cache\Backend\File;
 use Piwik\Cache as PiwikCache;
 use Piwik\Common;
 use Piwik\Config;
+use Piwik\Container\StaticContainer;
 use Piwik\DataAccess\ArchiveTableCreator;
 use Piwik\DataTable\Manager as DataTableManager;
 use Piwik\Date;
@@ -889,7 +890,7 @@ class Fixture extends \PHPUnit_Framework_Assert
             Option::set('version_core', '0.0');
         }
 
-        $updater = Updater::getInstance();
+        $updater = StaticContainer::getContainer()->make('Piwik\\Updater'); // TODO: required because Updater service has state. that can change. it shouldn't.
         $componentsWithUpdateFile = $updater->getComponentUpdates();
         if (empty($componentsWithUpdateFile)) {
             return false;
