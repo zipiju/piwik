@@ -758,4 +758,22 @@ class Db
         $semanticVersion = strstr($version, '-', $beforeNeedle = true);
         return version_compare($semanticVersion, '10.1.1', '>=');
     }
+
+    /**
+     * Returns whether an exception is a DB error with a code in the $errorCodesToIgnore list.
+     *
+     * @param int $error
+     * @param int|int[] $errorCodesToIgnore
+     * @return boolean
+     */
+    public static function isDbErrorOneOf($error, $errorCodesToIgnore)
+    {
+        $errorCodesToIgnore = is_array($errorCodesToIgnore) ? $errorCodesToIgnore : array($errorCodesToIgnore);
+        foreach ($errorCodesToIgnore as $code) {
+            if (Db::get()->isErrNo($error, $code)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

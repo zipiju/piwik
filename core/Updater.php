@@ -113,7 +113,7 @@ class Updater
      *                                    Example: `array('core' => '2.11.0')`
      * @return array( componentName => array( file1 => version1, [...]), [...])
      */
-    public function getComponentsWithUpdateFile($componentsToCheck)
+    private function getComponentsWithUpdateFile($componentsToCheck)
     {
         $this->componentsWithNewVersion = $this->getComponentsWithNewVersion($componentsToCheck);
         $this->componentsWithUpdateFile = $this->loadComponentsWithUpdateFile();
@@ -202,7 +202,7 @@ class Updater
      * @throws \Exception|UpdaterErrorException
      * @return array of warning strings if applicable
      */
-    public function update($componentName)
+    private function updateComponent($componentName)
     {
         $warningMessages = array();
 
@@ -386,7 +386,7 @@ class Updater
             // if no error or warning, success message + CONTINUE
             foreach ($componentsWithUpdateFile as $name => $filenames) {
                 try {
-                    $warnings = array_merge($warnings, $this->update($name));
+                    $warnings = array_merge($warnings, $this->updateComponent($name));
                 } catch (UpdaterErrorException $e) {
                     $errors[] = $e->getMessage();
                     if ($name == 'core') {
@@ -501,10 +501,10 @@ class Updater
      * @param string $file The path to the Updates file.
      * @throws \Exception
      */
-    public function handleUpdateQueryError(\Exception $e, $updateSql, $errorToIgnore, $file)
+    private function handleUpdateQueryError(\Exception $e, $updateSql, $errorToIgnore, $file)
     {
         if (($errorToIgnore === false)
-            || !self::isDbErrorOneOf($e, $errorToIgnore)
+            || !Db::isDbErrorOneOf($e, $errorToIgnore)
         ) {
             $message = $file . ":\nError trying to execute the query '" . $updateSql . "'.\nThe error was: " . $e->getMessage();
             throw new UpdaterErrorException($message);
@@ -592,24 +592,6 @@ class Updater
     public static function getCurrentRecordedComponentVersion($name)
     {
         return self::getInstance()->getCurrentComponentVersion($name);
-    }
-
-    /**
-     * Returns whether an exception is a DB error with a code in the $errorCodesToIgnore list.
-     *
-     * @param int $error
-     * @param int|int[] $errorCodesToIgnore
-     * @return boolean
-     */
-    public static function isDbErrorOneOf($error, $errorCodesToIgnore)
-    {
-        $errorCodesToIgnore = is_array($errorCodesToIgnore) ? $errorCodesToIgnore : array($errorCodesToIgnore);
-        foreach ($errorCodesToIgnore as $code) {
-            if (Db::get()->isErrNo($error, $code)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
