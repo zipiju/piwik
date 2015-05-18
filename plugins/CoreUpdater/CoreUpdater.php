@@ -56,7 +56,7 @@ class CoreUpdater extends \Piwik\Plugin
         $module = Common::getRequestVar('module', '', 'string');
         $action = Common::getRequestVar('action', '', 'string');
 
-        $updater = new PiwikCoreUpdater();
+        $updater = PiwikCoreUpdater::getInstance();
         $updates = $updater->getComponentsWithNewVersion(array('core' => Version::VERSION));
         if (!empty($updates)) {
             Filesystem::deleteAllCacheOnUpdate();

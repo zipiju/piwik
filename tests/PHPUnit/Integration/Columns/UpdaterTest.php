@@ -212,7 +212,12 @@ class UpdaterTest extends IntegrationTestCase
 
     private function getMockUpdater($hasNewVersion = true)
     {
-        $result = $this->getMock("Piwik\\Updater", array('hasNewVersion'));
+        $constructorArgs = array(
+            PIWIK_INCLUDE_PATH . '/tests/resources/Updater/core/',
+            PIWIK_INCLUDE_PATH . '/tests/resources/Updater/%s/',
+            new ColumnsUpdater()
+        );
+        $result = $this->getMock("Piwik\\Updater", array('hasNewVersion'), $constructorArgs);
 
         $result->expects($this->any())->method('hasNewVersion')->will($this->returnCallback(function () use ($hasNewVersion) {
             return $hasNewVersion;
