@@ -11,6 +11,7 @@ namespace Piwik\Tests\Integration;
 use Piwik\Tests\Framework\TestCase\IntegrationTestCase;
 use Piwik\Updater;
 use Piwik\Tests\Framework\Fixture;
+use Piwik\Columns\Updater as ColumnsUpdater;
 
 /**
  * @group Core
@@ -19,7 +20,7 @@ class UpdaterTest extends IntegrationTestCase
 {
     public function testUpdaterChecksCoreVersionAndDetectsUpdateFile()
     {
-        $updater = new Updater(PIWIK_INCLUDE_PATH . '/tests/resources/Updater/core/');
+        $updater = new Updater(PIWIK_INCLUDE_PATH . '/tests/resources/Updater/core/', PIWIK_INCLUDE_PATH . '/plugins/%s/Updates/', new ColumnsUpdater());
         $updater->markComponentSuccessfullyUpdated('core', '0.1');
         $componentsWithUpdateFile = $updater->getComponentsWithUpdateFile(array('core' => '0.3'));
         $this->assertEquals(1, count($componentsWithUpdateFile));
@@ -27,7 +28,7 @@ class UpdaterTest extends IntegrationTestCase
 
     public function testUpdaterChecksGivenPluginVersionAndDetectsMultipleUpdateFileInOrder()
     {
-        $updater = new Updater($pathToCoreUpdates = null, PIWIK_INCLUDE_PATH . '/tests/resources/Updater/%s/');
+        $updater = new Updater(PIWIK_INCLUDE_PATH . '/tests/resources/Updater/core/', PIWIK_INCLUDE_PATH . '/tests/resources/Updater/%s/', new ColumnsUpdater());
         $updater->markComponentSuccessfullyUpdated('testpluginUpdates', '0.1beta');
         $componentsWithUpdateFile = $updater->getComponentsWithUpdateFile(array('testpluginUpdates' => '0.1'));
 
@@ -47,7 +48,8 @@ class UpdaterTest extends IntegrationTestCase
     {
         $updater = new Updater(
             PIWIK_INCLUDE_PATH . '/tests/resources/Updater/core/',
-            PIWIK_INCLUDE_PATH . '/tests/resources/Updater/%s/'
+            PIWIK_INCLUDE_PATH . '/tests/resources/Updater/%s/',
+            new ColumnsUpdater()
         );
 
         $updater->markComponentSuccessfullyUpdated('testpluginUpdates', '0.1beta');

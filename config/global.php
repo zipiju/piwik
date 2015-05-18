@@ -62,4 +62,11 @@ return array(
     'Piwik\Translation\Loader\LoaderInterface' => DI\object('Piwik\Translation\Loader\LoaderCache')
         ->constructor(DI\get('Piwik\Translation\Loader\JsonFileLoader')),
 
+    'updates.core.path' => PIWIK_INCLUDE_PATH . '/core/Updates/',
+
+    'updates.plugins.path' => PIWIK_INCLUDE_PATH . '/plugins/%s/Updates/',
+
+    'Piwik\Updater' => DI\object()
+        ->constructorParameter('pathUpdateFileCore', DI\get('updates.core.path'))
+        ->constructorParameter('pathUpdateFilePlugins', DI\get('updates.plugins.path'))
 );

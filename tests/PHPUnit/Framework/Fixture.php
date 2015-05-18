@@ -889,7 +889,7 @@ class Fixture extends \PHPUnit_Framework_Assert
             Option::set('version_core', '0.0');
         }
 
-        $updater = new Updater();
+        $updater = Updater::getInstance();
         $componentsWithUpdateFile = $updater->getComponentUpdates();
         if (empty($componentsWithUpdateFile)) {
             return false;

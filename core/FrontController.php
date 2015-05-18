@@ -534,7 +534,7 @@ class FrontController extends Singleton
             return;
         }
 
-        $updater = new Updater();
+        $updater = Updater::getInstance();
 
         $dbSchemaVersion = $updater->getCurrentComponentVersion('core');
         $current = Version::VERSION;

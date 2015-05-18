@@ -705,7 +705,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         Access::getInstance();
 
         return Access::doAsSuperUser(function () {
-            $updater = new Updater();
+            $updater = Updater::getInstance();
             $componentsWithUpdateFile = $updater->getComponentUpdates();
 
             if (empty($componentsWithUpdateFile)) {

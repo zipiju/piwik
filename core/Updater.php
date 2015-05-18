@@ -10,7 +10,6 @@ namespace Piwik;
 
 use Piwik\Columns\Updater as ColumnUpdater;
 use Piwik\Container\StaticContainer;
-use Piwik\Exception\DatabaseSchemaIsNewerThanCodebaseException;
 use Piwik\Updater\UpdateObserver;
 use Zend_Db_Exception;
 
@@ -22,6 +21,14 @@ class Updater
 {
     const INDEX_CURRENT_VERSION = 0;
     const INDEX_NEW_VERSION = 1;
+
+    /**
+     * @return Updater
+     */
+    public static function getInstance()
+    {
+        return StaticContainer::get('Piwik\Updater');
+    }
 
     private $pathUpdateFileCore;
     private $pathUpdateFilePlugins;
@@ -41,14 +48,6 @@ class Updater
     private $columnsUpdater;
 
     /**
-     * Currently used Updater instance, set on construction. This instance is used to provide backwards
-     * compatibility w/ old code that may use the deprecated static methods in Updates.
-     *
-     * @var Updater
-     */
-    private static $activeInstance;
-
-    /**
      * Constructor.
      *
      * @param string|null $pathUpdateFileCore The path to core Update files.
@@ -56,23 +55,11 @@ class Updater
      *                                           for the plugin name.
      * @param Columns\Updater|null $columnsUpdater The dimensions updater instance.
      */
-    public function __construct($pathUpdateFileCore = null, $pathUpdateFilePlugins = null, Columns\Updater $columnsUpdater = null)
+    public function __construct($pathUpdateFileCore, $pathUpdateFilePlugins, Columns\Updater $columnsUpdater)
     {
-        $this->pathUpdateFileCore = $pathUpdateFileCore ?: PIWIK_INCLUDE_PATH . '/core/Updates/';
-        $this->pathUpdateFilePlugins = $pathUpdateFilePlugins ?: PIWIK_INCLUDE_PATH . '/plugins/%s/Updates/';
-        $this->columnsUpdater = $columnsUpdater ?: new Columns\Updater();
-
-        self::$activeInstance = $this;
-    }
-
-    /**
-     * Adds an UpdateObserver to the internal list of listeners.
-     *
-     * @param UpdateObserver $listener
-     */
-    public function addUpdateObserver(UpdateObserver $listener)
-    {
-        $this->updateObservers[] = $listener;
+        $this->pathUpdateFileCore = $pathUpdateFileCore;
+        $this->pathUpdateFilePlugins = $pathUpdateFilePlugins;
+        $this->columnsUpdater = $columnsUpdater;
     }
 
     /**
@@ -367,6 +354,7 @@ class Updater
      *
      * @param string[] $componentsWithUpdateFile Component names mapped with arrays of update files. Same structure
      *                                           as the result of `getComponentsWithUpdateFile()`.
+     * @param UpdateObserver[] $updateObservers
      * @return array Information about the update process, including:
      *
      *               * **warnings**: The list of warnings that occurred during the update process.
@@ -375,8 +363,10 @@ class Updater
      *               * **deactivatedPlugins**: The list of plugins that were deactivated due to an error in the
      *                                         update process.
      */
-    public function updateComponents($componentsWithUpdateFile)
+    public function updateComponents($componentsWithUpdateFile, array $updateObservers = array())
     {
+        $this->updateObservers = $updateObservers; // TODO: should unset before exiting this method
+
         $warnings = array();
         $errors   = array();
         $deactivatedPlugins = array();
@@ -553,7 +543,7 @@ class Updater
      */
     static function updateDatabase($file, $sqlarray)
     {
-        self::$activeInstance->executeMigrationQueries($file, $sqlarray);
+        self::getInstance()->executeMigrationQueries($file, $sqlarray);
     }
 
     /**
@@ -565,7 +555,7 @@ class Updater
      */
     public static function executeMigrationQuery($updateSql, $errorToIgnore, $file)
     {
-        self::$activeInstance->executeSingleMigrationQuery($updateSql, $errorToIgnore, $file);
+        self::getInstance()->executeSingleMigrationQuery($updateSql, $errorToIgnore, $file);
     }
 
     /**
@@ -579,7 +569,7 @@ class Updater
      */
     public static function handleQueryError($e, $updateSql, $errorToIgnore, $file)
     {
-        self::$activeInstance->handleQueryError($e, $updateSql, $errorToIgnore, $file);
+        self::getInstance()->handleQueryError($e, $updateSql, $errorToIgnore, $file);
     }
 
     /**
@@ -590,7 +580,7 @@ class Updater
      */
     public static function recordComponentSuccessfullyUpdated($name, $version)
     {
-        self::$activeInstance->markComponentSuccessfullyUpdated($name, $version);
+        self::getInstance()->markComponentSuccessfullyUpdated($name, $version);
     }
 
     /**
@@ -601,7 +591,7 @@ class Updater
      */
     public static function getCurrentRecordedComponentVersion($name)
     {
-        return self::$activeInstance->getCurrentComponentVersion($name);
+        return self::getInstance()->getCurrentComponentVersion($name);
     }
 
     /**

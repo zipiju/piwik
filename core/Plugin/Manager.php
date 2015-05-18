@@ -1083,7 +1083,7 @@ class Manager
             $this->executePluginInstall($plugin);
             $pluginsInstalled[] = $pluginName;
             $this->updatePluginsInstalledConfig($pluginsInstalled);
-            $updater = new Updater();
+            $updater = Updater::getInstance(); // TODO: store as property
             $updater->markComponentSuccessfullyUpdated($plugin->getPluginName(), $plugin->getVersion());
             $saveConfig = true;
         }

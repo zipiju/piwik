@@ -91,7 +91,7 @@ class Update extends ConsoleCommand
     {
         $this->checkAllRequiredOptionsAreNotEmpty($input);
 
-        $updater = $this->makeUpdaterInstance($output);
+        $updater = Updater::getInstance();
 
         $componentsWithUpdateFile = $updater->getComponentUpdates();
         if (empty($componentsWithUpdateFile)) {
@@ -166,7 +166,10 @@ class Update extends ConsoleCommand
     {
         $output->writeln(array("    " . Piwik::translate('CoreUpdater_TheUpgradeProcessMayTakeAWhilePleaseBePatient'), ""));
 
-        $updaterResult = $updater->updateComponents($componentsWithUpdateFile);
+        $migrationQueryCount = count($this->getMigrationQueriesToExecute($updater));
+        $cliObserver = new CliUpdateObserver($output, $migrationQueryCount);
+
+        $updaterResult = $updater->updateComponents($componentsWithUpdateFile, array($cliObserver));
 
         if (@$updaterResult['coreError']) {
             $this->handleCoreError($output, $updaterResult['errors'], $includeDiyHelp = true);
@@ -321,15 +324,5 @@ class Update extends ConsoleCommand
             $this->migrationQueries = $updater->getSqlQueriesToExecute();
         }
         return $this->migrationQueries;
-    }
-
-    private function makeUpdaterInstance(OutputInterface $output)
-    {
-        $updater = new Updater();
-
-        $migrationQueryCount = count($this->getMigrationQueriesToExecute($updater));
-        $updater->addUpdateObserver(new CliUpdateObserver($output, $migrationQueryCount));
-
-        return $updater;
     }
 }

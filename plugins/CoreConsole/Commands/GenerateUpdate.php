@@ -51,7 +51,7 @@ class GenerateUpdate extends GeneratePluginBase
 
     private function getUpdateClassName($component, $version)
     {
-        $updater   = new Updater();
+        $updater   = Updater::getInstance();
         $className = $updater->getUpdateClassName($component, $version);
         $parts     = explode('\\', $className);
 
@@ -77,7 +77,7 @@ class GenerateUpdate extends GeneratePluginBase
 
     private function getNamespace($component)
     {
-        $updater   = new Updater();
+        $updater   = Updater::getInstance();
         $className = $updater->getUpdateClassName($component, 'xx');
         $className = str_replace('Updates_xx', '', $className);
         $className = trim($className, '\\');
