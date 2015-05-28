@@ -42,6 +42,13 @@ function getPageLogsString(pageLogs, indent) {
     return result;
 }
 
+function logErrorMessage(message, indent) {
+    var indent = "     ";
+    console.log("\n\n" + indent + 'This message usually belongs to the next test');
+    message = message.replace(/\n/g, "\n" + indent);
+    console.log(indent + message);
+}
+
 // add capture assertion
 var pageRenderer = new PageRenderer(config.piwikUrl + path.join("tests", "PHPUnit", "proxy"));
 
@@ -87,6 +94,7 @@ function capture(screenName, compareAgainst, selector, pageSetupFn, comparisonTh
             if (err) {
                 var indent = "     ";
                 err.stack = err.message + "\n" + indent + getPageLogsString(pageRenderer.pageLogs, indent);
+                logErrorMessage(err.stack);
 
                 done(err);
                 return;
@@ -119,6 +127,7 @@ function capture(screenName, compareAgainst, selector, pageSetupFn, comparisonTh
 
                 // stack traces are useless so we avoid the clutter w/ this
                 error.stack = failureInfo;
+                logErrorMessage(failureInfo);
 
                 done(error);
             };
@@ -205,6 +214,7 @@ function capture(screenName, compareAgainst, selector, pageSetupFn, comparisonTh
     } catch (ex) {
         var err = new Error(ex.message);
         err.stack = ex.message;
+        logErrorMessage(err.stack);
         done(err);
     }
 }
@@ -230,6 +240,7 @@ function compareContents(compareAgainst, pageSetupFn, done) {
             if (err) {
                 var indent = "     ";
                 err.stack = err.message + "\n" + indent + getPageLogsString(pageRenderer.pageLogs, indent);
+                logErrorMessage(err.stack);
 
                 done(err);
                 return;
@@ -245,6 +256,7 @@ function compareContents(compareAgainst, pageSetupFn, done) {
 
                 // stack traces are useless so we avoid the clutter w/ this
                 error.stack = failureInfo;
+                logErrorMessage(failureInfo);
 
                 done(error);
             };
@@ -277,6 +289,7 @@ function compareContents(compareAgainst, pageSetupFn, done) {
     } catch (ex) {
         var err = new Error(ex.message);
         err.stack = ex.message;
+        logErrorMessage(err.stack);
         done(err);
     }
 }
@@ -357,6 +370,7 @@ chai.Assertion.addChainableMethod('contains', function () {
 
         if (err) {
             err.stack = err.message + "\n" + indent + getPageLogsString(pageRenderer.pageLogs, indent);
+            logErrorMessage(err.stack);
 
             done(err);
             return;
@@ -383,6 +397,7 @@ chai.Assertion.addChainableMethod('contains', function () {
 
             var error = new AssertionError(originalError.message);
             error.stack = stack;
+            logErrorMessage(stack);
 
             done(error);
         }
