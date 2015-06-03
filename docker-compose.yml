@@ -1,0 +1,38 @@
+cli:
+  build: misc/docker/php
+  volumes:
+    - .:/app
+  links:
+    - web:piwik.dev
+    - db
+
+web:
+  build: misc/docker/nginx
+  ports:
+    - "8080:80"
+  volumes:
+    - .:/app
+    - ./misc/docker/nginx/default:/etc/nginx/sites-enabled/default
+  links:
+    - phpfpm
+
+phpfpm:
+  build: misc/docker/php
+  command: php5-fpm
+  expose:
+    - "9000"
+  volumes:
+    - .:/app
+    - ./misc/docker/php/php-fpm.conf:/etc/php5/fpm/php-fpm.conf
+  links:
+    - db
+
+db:
+  image: mysql
+  volumes:
+    # necessary for LOAD DATA INFILE
+    - .:/app
+  environment:
+    - MYSQL_DATABASE=piwik
+    - MYSQL_ROOT_PASSWORD=
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
