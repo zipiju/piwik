@@ -207,12 +207,10 @@ class Fixture extends \PHPUnit_Framework_Assert
             }
 
             DbHelper::createDatabase($this->dbName);
-            DbHelper::disconnectDatabase();
-            Tracker::disconnectCachedDbConnection();
 
             // reconnect once we're sure the database exists
             Config::getInstance()->database['dbname'] = $this->dbName;
-            Db::createDatabaseObject();
+            Db::get()->exec("USE `" . $this->dbName . "`");
 
             Db::get()->query("SET wait_timeout=28800;");
 
@@ -808,11 +806,11 @@ class Fixture extends \PHPUnit_Framework_Assert
      */
     public static function connectWithoutDatabase()
     {
-        $dbConfig = Config::getInstance()->database;
+        $dbConfig =& Config::getInstance()->database;
         $oldDbName = $dbConfig['dbname'];
         $dbConfig['dbname'] = null;
 
-        Db::createDatabaseObject($dbConfig);
+        Db::get();
 
         $dbConfig['dbname'] = $oldDbName;
     }

@@ -4,6 +4,7 @@ use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\NotFoundException;
 use Piwik\Cache\Eager;
 use Piwik\SettingsServer;
+use Piwik\Tracker\Db\DbException;
 
 return array(
 
@@ -64,5 +65,19 @@ return array(
 
     'observers.global' => array(),
 
-    'Piwik\EventDispatcher' => DI\object()->constructorParameter('observers', DI\get('observers.global'))
+    'Piwik\EventDispatcher' => DI\object()->constructorParameter('observers', DI\get('observers.global')),
+
+    'db.connection' => function (ContainerInterface $c) {
+        return \Piwik\Db::createDatabaseObject();
+    },
+
+    // TODO: should eventually be moved to tracker.php DI environment config, for now it's easier for tests to keep it here
+    'db.connection.tracker' => function () {
+        try {
+            return \Piwik\Tracker\Db::connectPiwikTrackerDb();
+        } catch (Exception $e) {
+            throw new DbException($e->getMessage(), $e->getCode());
+        }
+    },
+
 );

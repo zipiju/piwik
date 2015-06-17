@@ -64,6 +64,11 @@ abstract class Db
         return self::$profiling;
     }
 
+    public function isConnected()
+    {
+        return $this->connection !== null;
+    }
+
     /**
      * Initialize profiler
      *

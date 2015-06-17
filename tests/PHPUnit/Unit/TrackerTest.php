@@ -33,6 +33,11 @@ class TestTracker extends Tracker
     {
         $this->record = false;
     }
+
+    protected function disconnectDatabase()
+    {
+        // empty
+    }
 }
 
 /**

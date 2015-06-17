@@ -9,10 +9,10 @@
 namespace Piwik;
 
 use Exception;
+use Piwik\Container\StaticContainer;
 use Piwik\Plugins\BulkTracking\Tracker\Requests;
 use Piwik\Plugins\PrivacyManager\Config as PrivacyManagerConfig;
 use Piwik\Tracker\Db as TrackerDb;
-use Piwik\Tracker\Db\DbException;
 use Piwik\Tracker\Handler;
 use Piwik\Tracker\Request;
 use Piwik\Tracker\RequestSet;
@@ -29,11 +29,6 @@ use Piwik\Plugin\Manager as PluginManager;
  */
 class Tracker
 {
-    /**
-     * @var Db
-     */
-    private static $db = null;
-
     // We use hex ID that are 16 chars in length, ie. 64 bits IDs
     const LENGTH_HEX_ID_STRING = 16;
     const LENGTH_BINARY_ID = 8;
@@ -157,12 +152,6 @@ class Tracker
             Access::getInstance();
             Config::getInstance();
 
-            try {
-                Db::get();
-            } catch (Exception $e) {
-                Db::createDatabaseObject();
-            }
-
             PluginManager::getInstance()->loadCorePluginsDuringTracker();
         }
     }
@@ -199,37 +188,21 @@ class Tracker
 
     public function isDatabaseConnected()
     {
-        return !is_null(self::$db);
+        return self::getDatabase()->isConnected();
     }
 
+    /**
+     * @return TrackerDb
+     */
     public static function getDatabase()
     {
-        if (is_null(self::$db)) {
-            try {
-                self::$db = TrackerDb::connectPiwikTrackerDb();
-            } catch (Exception $e) {
-                throw new DbException($e->getMessage(), $e->getCode());
-            }
-        }
-
-        return self::$db;
+        return StaticContainer::get('db.connection.tracker');
     }
 
     protected function disconnectDatabase()
     {
         if ($this->isDatabaseConnected()) { // note: I think we do this only for the tests
-            self::$db->disconnect();
-            self::$db = null;
-        }
-    }
-
-    // for tests
-    public static function disconnectCachedDbConnection()
-    {
-        // code redundancy w/ above is on purpose; above disconnectDatabase depends on method that can potentially be overridden
-        if (!is_null(self::$db)) {
-            self::$db->disconnect();
-            self::$db = null;
+            self::getDatabase()->disconnect();
         }
     }
 

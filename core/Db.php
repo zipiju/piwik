@@ -9,6 +9,7 @@
 namespace Piwik;
 
 use Exception;
+use Piwik\Container\StaticContainer;
 use Piwik\DataAccess\TableMetadata;
 use Piwik\Db\Adapter;
 
@@ -33,8 +34,6 @@ use Piwik\Db\Adapter;
  */
 class Db
 {
-    private static $connection = null;
-
     private static $logQueries = true;
 
     /**
@@ -44,15 +43,7 @@ class Db
      */
     public static function get()
     {
-        if (SettingsServer::isTrackerApiRequest()) {
-            return Tracker::getDatabase();
-        }
-
-        if (!self::hasDatabaseObject()) {
-            self::createDatabaseObject();
-        }
-
-        return self::$connection;
+        return StaticContainer::get('db.connection');
     }
 
     public static function getDatabaseConfig($dbConfig = null)
@@ -95,14 +86,13 @@ class Db
      *
      * @param array|null $dbConfig Connection parameters in an array. Defaults to the `[database]`
      *                             INI config section.
+     * @return mixed
      */
     public static function createDatabaseObject($dbConfig = null)
     {
         $dbConfig = self::getDatabaseConfig($dbConfig);
 
-        $db = @Adapter::factory($dbConfig['adapter'], $dbConfig);
-
-        self::$connection = $db;
+        return @Adapter::factory($dbConfig['adapter'], $dbConfig);
     }
 
     /**
@@ -112,18 +102,19 @@ class Db
      */
     public static function hasDatabaseObject()
     {
-        return isset(self::$connection);
+        return self::get()->isConnected();
     }
 
     /**
      * Disconnects and destroys the database connection.
      *
      * For tests.
+     *
+     * @deprecated
      */
     public static function destroyDatabaseObject()
     {
         DbHelper::disconnectDatabase();
-        self::$connection = null;
     }
 
     /**

@@ -19,35 +19,18 @@ class Adapter
      *
      * @param string $adapterName database adapter name
      * @param array $dbInfos database connection info
-     * @param bool $connect
      * @return AdapterInterface
      */
-    public static function factory($adapterName, & $dbInfos, $connect = true)
+    public static function factory($adapterName, & $dbInfos)
     {
-        if ($connect) {
-            if ($dbInfos['port'][0] == '/') {
-                $dbInfos['unix_socket'] = $dbInfos['port'];
-                unset($dbInfos['host']);
-                unset($dbInfos['port']);
-            }
-
-            // not used by Zend Framework
-            unset($dbInfos['tables_prefix']);
-            unset($dbInfos['adapter']);
-            unset($dbInfos['schema']);
+        if ($dbInfos['port'][0] == '/') {
+            $dbInfos['unix_socket'] = $dbInfos['port'];
         }
 
         $className = self::getAdapterClassName($adapterName);
 
         $adapter   = new $className($dbInfos);
-
-        if ($connect) {
-            $adapter->getConnection();
-
-            Zend_Db_Table::setDefaultAdapter($adapter);
-            // we don't want the connection information to appear in the logs
-            $adapter->resetConfig();
-        }
+        Zend_Db_Table::setDefaultAdapter($adapter);
 
         return $adapter;
     }

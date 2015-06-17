@@ -124,7 +124,7 @@ class FormDatabaseSetup extends QuickForm2
         try {
             @Db::createDatabaseObject($dbInfos);
         } catch (Zend_Db_Adapter_Exception $e) {
-            $db = Adapter::factory($adapter, $dbInfos, $connect = false);
+            $db = Adapter::factory($adapter, $dbInfos);
 
             // database not found, we try to create  it
             if ($db->isErrNo($e, '1049')) {
