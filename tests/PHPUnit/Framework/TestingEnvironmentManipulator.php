@@ -8,9 +8,11 @@
 
 namespace Piwik\Tests\Framework;
 
+use Piwik\Application\Environment;
 use Piwik\Application\EnvironmentManipulator;
 use Piwik\Application\Kernel\GlobalSettingsProvider;
 use Piwik\Application\Kernel\PluginList;
+use Piwik\Config;
 use Piwik\DbHelper;
 use Piwik\Option;
 use Piwik\Plugin;
@@ -38,6 +40,14 @@ class FakePluginList extends PluginList
 class TestingEnvironmentManipulator implements EnvironmentManipulator
 {
     /**
+     * Set only in PHPUnit bootstrap. For PHPUnit tests, we only create one DB connection that is shared among
+     * all environments.
+     *
+     * @var Environment
+     */
+    public static $rootEnvironment = null;
+
+    /**
      * @var string[]
      */
     public static $extraPluginsToLoad = array();
@@ -49,10 +59,13 @@ class TestingEnvironmentManipulator implements EnvironmentManipulator
 
     private $globalObservers;
 
-    public function __construct(TestingEnvironmentVariables $testingEnvironment, array $globalObservers = array())
+    private $connectWithoutDatabase;
+
+    public function __construct(TestingEnvironmentVariables $testingEnvironment, array $globalObservers = array(), $connectWithoutDatabase = false)
     {
         $this->vars = $testingEnvironment;
         $this->globalObservers = $globalObservers;
+        $this->connectWithoutDatabase = $connectWithoutDatabase;
     }
 
     public function makeGlobalSettingsProvider()
@@ -126,14 +139,25 @@ class TestingEnvironmentManipulator implements EnvironmentManipulator
     {
         $testVarDefinitionSource = new TestingEnvironmentVariablesDefinitionSource($this->vars);
 
-        // Apply DI config from the fixture
         $diConfig = array();
+        if (self::$rootEnvironment) {
+            $diConfig['db.connection'] = self::$rootEnvironment->getContainer()->get('db.connection');
+        }
+        if ($this->connectWithoutDatabase) {
+            $diConfig['Piwik\Config'] = \DI\decorate(function (Config $previous) {
+                $previous->database['dbname'] = null;
+                return $previous;
+            });
+        }
+
+        // Apply DI config from the fixture
+        $testDiConfig = array();
         if ($this->vars->fixtureClass) {
             $fixtureClass = $this->vars->fixtureClass;
             if (class_exists($fixtureClass)) {
                 /** @var Fixture $fixture */
                 $fixture = new $fixtureClass;
-                $diConfig = $fixture->provideContainerConfig();
+                $testDiConfig = $fixture->provideContainerConfig();
             }
         }
 
@@ -143,18 +167,19 @@ class TestingEnvironmentManipulator implements EnvironmentManipulator
                 $testCase = new $testCaseClass();
 
                 if (method_exists($testCase, 'provideContainerConfigBeforeClass')) {
-                    $diConfig = array_merge($diConfig, $testCaseClass::provideContainerConfigBeforeClass());
+                    $testDiConfig = array_merge($testDiConfig, $testCaseClass::provideContainerConfigBeforeClass());
                 }
 
                 if (method_exists($testCase, 'provideContainerConfig')) {
-                    $diConfig = array_merge($diConfig, $testCase->provideContainerConfig());
+                    $testDiConfig = array_merge($testDiConfig, $testCase->provideContainerConfig());
                 }
             }
         }
 
         return array(
-            $testVarDefinitionSource,
             $diConfig,
+            $testVarDefinitionSource,
+            $testDiConfig,
             array('observers.global' => \DI\add($this->globalObservers)),
         );
     }

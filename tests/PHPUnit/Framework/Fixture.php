@@ -198,8 +198,6 @@ class Fixture extends \PHPUnit_Framework_Assert
                 $this->dbName = Config::getInstance()->database['dbname'];
             }
 
-            static::connectWithoutDatabase();
-
             if ($this->dropDatabaseInSetUp
                 || $this->resetPersistedFixture
             ) {

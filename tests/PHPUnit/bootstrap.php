@@ -52,10 +52,12 @@ function setupRootContainer() {
     $vars = new TestingEnvironmentVariables();
     $vars->delete();
 
-    Environment::setGlobalEnvironmentManipulator(new TestingEnvironmentManipulator($vars));
+    Environment::setGlobalEnvironmentManipulator(new TestingEnvironmentManipulator($vars, $globalObservers = array(), $connectWithoutDb = true));
 
     $rootTestEnvironment = new \Piwik\Application\Environment(null);
     $rootTestEnvironment->init();
+
+    TestingEnvironmentManipulator::$rootEnvironment = $rootTestEnvironment;
 }
 
 setupRootContainer(); // do it in a function so it doesn't appear in $_GLOBALS and so PHPUnit won't try to serialize it.
