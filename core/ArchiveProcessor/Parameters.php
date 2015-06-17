@@ -29,6 +29,11 @@ class Parameters
     private $site = null;
 
     /**
+     * @var int[]
+     */
+    private $allIdSites = null;
+
+    /**
      * @var Period
      */
     private $period = null;
@@ -102,13 +107,17 @@ class Parameters
      */
     public function getIdSites()
     {
-        $idSite = $this->getSite()->getId();
+        if ($this->allIdSites === null) {
+            $idSite = $this->getSite()->getId();
 
-        $idSites = array($idSite);
+            $idSites = array($idSite);
 
-        Piwik::postEvent('ArchiveProcessor.Parameters.getIdSites', array(&$idSites, $this->getPeriod()));
+            Piwik::postEvent('ArchiveProcessor.Parameters.getIdSites', array(&$idSites, $this->getPeriod()));
 
-        return $idSites;
+            $this->allIdSites = $idSites;
+        }
+
+        return $this->allIdSites;
     }
 
     /**

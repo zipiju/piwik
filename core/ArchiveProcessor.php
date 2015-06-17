@@ -116,7 +116,7 @@ class ArchiveProcessor
     public function __construct(Parameters $params, ArchiveWriter $archiveWriter)
     {
         $this->params = $params;
-        $this->logAggregator = new LogAggregator($params, StaticContainer::get('Piwik\Db\Connection'));
+        $this->logAggregator = new LogAggregator($params, StaticContainer::get('Piwik\DataAccess\LogAggregatorDao'));
         $this->archiveWriter = $archiveWriter;
 
         $this->skipUniqueVisitorsCalculationForMultipleSites = Rules::shouldSkipUniqueVisitorsCalculationForMultipleSites();

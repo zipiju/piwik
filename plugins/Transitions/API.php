@@ -76,7 +76,7 @@ class API extends \Piwik\Plugin\API
         $site = new Site($idSite);
         $period = Period\Factory::build($period, $date);
         $params = new ArchiveProcessor\Parameters($site, $period, $segment);
-        $logAggregator = new LogAggregator($params, StaticContainer::get('Piwik\Db\Connection'));
+        $logAggregator = new LogAggregator($params, StaticContainer::get('Piwik\DataAccess\LogAggregatorDao'));
 
         // prepare the report
         $report = array(
