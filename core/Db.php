@@ -12,6 +12,7 @@ use Exception;
 use Piwik\Container\StaticContainer;
 use Piwik\DataAccess\TableMetadata;
 use Piwik\Db\Adapter;
+use Piwik\Db\Connection;
 
 /**
  * Contains SQL related helper functions for Piwik's MySQL database.
@@ -34,7 +35,10 @@ use Piwik\Db\Adapter;
  */
 class Db
 {
-    private static $logQueries = true;
+    /**
+     * @deprecated
+     */
+    public static $logQueries = true;
 
     /**
      * Returns the database connection and creates it if it hasn't been already.
@@ -118,6 +122,14 @@ class Db
     }
 
     /**
+     * @return Connection
+     */
+    private static function getDbConnectionInstance()
+    {
+        return StaticContainer::get('Piwik\Db\Connection');
+    }
+
+    /**
      * Executes an unprepared SQL query. Recommended for DDL statements like `CREATE`,
      * `DROP` and `ALTER`. The return value is DBMS-specific. For MySQLI, it returns the
      * number of rows affected. For PDO, it returns a
@@ -129,23 +141,7 @@ class Db
      */
     public static function exec($sql)
     {
-        /** @var \Zend_Db_Adapter_Abstract $db */
-        $db = self::get();
-        $profiler = $db->getProfiler();
-        $q = $profiler->queryStart($sql, \Zend_Db_Profiler::INSERT);
-
-        try {
-            self::logSql(__FUNCTION__, $sql);
-
-            $return = self::get()->exec($sql);
-        } catch (Exception $ex) {
-            self::logExtraInfoIfDeadlock($ex);
-            throw $ex;
-        }
-
-        $profiler->queryEnd($q);
-
-        return $return;
+        return self::getDbConnectionInstance()->exec($sql);
     }
 
     /**
@@ -162,14 +158,7 @@ class Db
      */
     public static function query($sql, $parameters = array())
     {
-        try {
-            self::logSql(__FUNCTION__, $sql, $parameters);
-
-            return self::get()->query($sql, $parameters);
-        } catch (Exception $ex) {
-            self::logExtraInfoIfDeadlock($ex);
-            throw $ex;
-        }
+        return self::getDbConnectionInstance()->query($sql, $parameters);
     }
 
     /**
@@ -183,14 +172,7 @@ class Db
      */
     public static function fetchAll($sql, $parameters = array())
     {
-        try {
-            self::logSql(__FUNCTION__, $sql, $parameters);
-
-            return self::get()->fetchAll($sql, $parameters);
-        } catch (Exception $ex) {
-            self::logExtraInfoIfDeadlock($ex);
-            throw $ex;
-        }
+        return self::getDbConnectionInstance()->fetchAll($sql, $parameters);
     }
 
     /**
@@ -204,14 +186,7 @@ class Db
      */
     public static function fetchRow($sql, $parameters = array())
     {
-        try {
-            self::logSql(__FUNCTION__, $sql, $parameters);
-
-            return self::get()->fetchRow($sql, $parameters);
-        } catch (Exception $ex) {
-            self::logExtraInfoIfDeadlock($ex);
-            throw $ex;
-        }
+        return self::getDbConnectionInstance()->fetchRow($sql, $parameters);
     }
 
     /**
@@ -225,14 +200,7 @@ class Db
      */
     public static function fetchOne($sql, $parameters = array())
     {
-        try {
-            self::logSql(__FUNCTION__, $sql, $parameters);
-
-            return self::get()->fetchOne($sql, $parameters);
-        } catch (Exception $ex) {
-            self::logExtraInfoIfDeadlock($ex);
-            throw $ex;
-        }
+        return self::getDbConnectionInstance()->fetchOne($sql, $parameters);
     }
 
     /**
@@ -250,14 +218,7 @@ class Db
      */
     public static function fetchAssoc($sql, $parameters = array())
     {
-        try {
-            self::logSql(__FUNCTION__, $sql, $parameters);
-
-            return self::get()->fetchAssoc($sql, $parameters);
-        } catch (Exception $ex) {
-            self::logExtraInfoIfDeadlock($ex);
-            throw $ex;
-        }
+        return self::getDbConnectionInstance()->fetchAssoc($sql, $parameters);
     }
 
     /**
@@ -354,7 +315,7 @@ class Db
 
     private static function getTableStatus()
     {
-        return Db::fetchAll("SHOW TABLE STATUS");
+        return self::fetchAll("SHOW TABLE STATUS");
     }
 
     /**
@@ -693,28 +654,6 @@ class Db
         }
 
         return self::$lockPrivilegeGranted;
-    }
-
-    private static function logExtraInfoIfDeadlock($ex)
-    {
-        if (self::get()->isErrNo($ex, 1213)) {
-            $deadlockInfo = self::fetchAll("SHOW ENGINE INNODB STATUS");
-
-            // log using exception so backtrace appears in log output
-            Log::debug(new Exception("Encountered deadlock: " . print_r($deadlockInfo, true)));
-        }
-    }
-
-    private static function logSql($functionName, $sql, $parameters = array())
-    {
-        if (self::$logQueries === false
-            || @Config::getInstance()->Debug['log_sql_queries'] != 1
-        ) {
-            return;
-        }
-
-        // NOTE: at the moment we don't log parameters in order to avoid sensitive information leaks
-        Log::debug("Db::%s() executing SQL: %s", $functionName, $sql);
     }
 
     /**

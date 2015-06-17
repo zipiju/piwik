@@ -80,4 +80,6 @@ return array(
         }
     },
 
+    'Piwik\Db\Connection' => DI\object()->constructorParameter('adapter', DI\get('db.connection')),
+
 );
