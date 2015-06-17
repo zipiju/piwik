@@ -12,11 +12,14 @@ use Exception;
 use Piwik\Archive\DataTableFactory;
 use Piwik\ArchiveProcessor\Parameters;
 use Piwik\ArchiveProcessor\Rules;
+use Piwik\Container\StaticContainer;
 use Piwik\DataAccess\ArchiveWriter;
 use Piwik\DataAccess\LogAggregator;
 use Piwik\DataTable\Manager;
 use Piwik\DataTable\Map;
 use Piwik\DataTable\Row;
+use Piwik\Db\Connection;
+
 /**
  * Used by {@link Piwik\Plugin\Archiver} instances to insert and aggregate archive data.
  *
@@ -113,7 +116,7 @@ class ArchiveProcessor
     public function __construct(Parameters $params, ArchiveWriter $archiveWriter)
     {
         $this->params = $params;
-        $this->logAggregator = new LogAggregator($params);
+        $this->logAggregator = new LogAggregator($params, StaticContainer::get('Piwik\Db\Connection'));
         $this->archiveWriter = $archiveWriter;
 
         $this->skipUniqueVisitorsCalculationForMultipleSites = Rules::shouldSkipUniqueVisitorsCalculationForMultipleSites();

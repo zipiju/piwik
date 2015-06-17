@@ -12,6 +12,7 @@ namespace Piwik\Plugins\Transitions;
 use Exception;
 use Piwik\ArchiveProcessor;
 use Piwik\Common;
+use Piwik\Container\StaticContainer;
 use Piwik\DataAccess\LogAggregator;
 use Piwik\DataArray;
 use Piwik\DataTable;
@@ -75,7 +76,7 @@ class API extends \Piwik\Plugin\API
         $site = new Site($idSite);
         $period = Period\Factory::build($period, $date);
         $params = new ArchiveProcessor\Parameters($site, $period, $segment);
-        $logAggregator = new LogAggregator($params);
+        $logAggregator = new LogAggregator($params, StaticContainer::get('Piwik\Db\Connection'));
 
         // prepare the report
         $report = array(

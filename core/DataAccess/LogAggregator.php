@@ -135,17 +135,21 @@ class LogAggregator
     /** @var \Piwik\Segment */
     protected $segment;
 
+    /** @var Db\Connection $db */
+    protected $db;
+
     /**
      * Constructor.
      *
      * @param \Piwik\ArchiveProcessor\Parameters $params
      */
-    public function __construct(Parameters $params)
+    public function __construct(Parameters $params, Db\Connection $db)
     {
         $this->dateStart = $params->getDateStart();
         $this->dateEnd = $params->getDateEnd();
         $this->segment = $params->getSegment();
         $this->sites = $params->getIdSites();
+        $this->db = $db;
     }
 
     public function generateQuery($select, $from, $where, $groupBy, $orderBy)
@@ -915,6 +919,6 @@ class LogAggregator
 
     public function getDb()
     {
-        return Db::get();
+        return $this->db;
     }
 }
