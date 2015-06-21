@@ -28,6 +28,8 @@ if (config.phpServer.REQUEST_URI.slice(-1) != '/') {
     config.phpServer.REQUEST_URI += '/';
 }
 
+console.log('PhantomJS version: ' + phantom.version.major + '.' + phantom.version.minor + '.' + phantom.version.patch);
+
 require('./support/fs-extras');
 
 phantom.injectJs('./support/globals.js');
