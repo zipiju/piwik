@@ -57,7 +57,9 @@ DiffViewerGenerator.prototype.generate = function (callback) {
 
             if (entry.expected) {
                 if (options['assume-artifacts']) {
+                    console.log('22', entry.expected, this.getDiffPath(entry));
                     require('child_process').spawn('cp', [entry.expected, this.getDiffPath(entry)]);
+                    console.log('23');
                 }
 
                 var filename       = entry.name + '.png',
@@ -66,13 +68,13 @@ DiffViewerGenerator.prototype.generate = function (callback) {
                     pathPrefix     = options['screenshot-repo'] ? '/Test/UI' : '',
                     expectedUrlGithub = 'https://raw.githubusercontent.com/' + screenshotRepo + '/master' + pathPrefix
                                       + '/expected-ui-screenshots/' + filename;
-
+console.log('24');
                 var expectedHtml = '';
 
                 if (!options['assume-artifacts']) {
                     expectedUrl = this.getUrlForPath(entry.expected);
                 }
-
+console.log('25');
                 expectedHtml += '<a href="' + expectedUrl + '">Expected</a>&nbsp;';
                 githubUrl     = '<a href="' + expectedUrlGithub + '">Github</a>';
             } else {
