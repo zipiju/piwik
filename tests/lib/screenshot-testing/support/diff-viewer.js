@@ -46,10 +46,14 @@ DiffViewerGenerator.prototype.generate = function (callback) {
         <th>Difference</th>\
     </tr>";
 
+    console.log("1");
+
         for (var i = 0; i != this.failures.length; ++i) {
             var entry = this.failures[i];
             var expectedUrl = null;
             var githubUrl   = '';
+
+            console.log("2");
 
             if (entry.expected) {
                 if (options['assume-artifacts']) {
@@ -75,6 +79,8 @@ DiffViewerGenerator.prototype.generate = function (callback) {
                 var expectedHtml = '<em>Not found</em>';
             }
 
+            console.log("3");
+
             if (entry.processed) {
                 if (options['assume-artifacts']) {
                     entry.processedUrl = path.join("../processed-ui-screenshots", path.basename(entry.processed));
@@ -82,6 +88,8 @@ DiffViewerGenerator.prototype.generate = function (callback) {
                     entry.processedUrl = this.getUrlForPath(entry.processed);
                 }
             }
+
+            console.log("4");
 
             var entryLocationHint = '',
                 hintSource = entry.expected || entry.processed,
@@ -104,13 +112,18 @@ DiffViewerGenerator.prototype.generate = function (callback) {
         <td>' + (expectedUrl ? ('<a href="singlediff.html?processed=' + entry.processedUrl + '&expected=' + expectedUrl + '&github=' + processedEntryPath + '">Difference</a>') : '<em>Could not create diff.</em>') + '</td>\
     </tr>';
         }
-
-        diffViewerContent += '\
+    console.log("5");
+    
+    diffViewerContent += '\
 </table>\
 </body>\
 </html>';
 
+    console.log("before write");
+
         fs.write(this.outputPath, diffViewerContent, "w");
+
+    console.log("after write");
 
         console.log("Failures encountered. View all diffs at: " + this.outputPath);
         console.log();
