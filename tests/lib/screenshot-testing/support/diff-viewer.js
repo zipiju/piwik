@@ -57,7 +57,7 @@ DiffViewerGenerator.prototype.generate = function (callback) {
 
             if (entry.expected) {
                 if (options['assume-artifacts']) {
-                    console.log('22', entry.expected, this.getDiffPath(entry));
+                    console.log('22 ' + entry.expected + ' ccccc ' + this.getDiffPath(entry));
                     require('child_process').spawn('cp', [entry.expected, this.getDiffPath(entry)]);
                     console.log('23');
                 }
