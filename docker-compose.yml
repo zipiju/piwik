@@ -17,7 +17,7 @@ web:
     - phpfpm
 
 phpfpm:
-  build: misc/docker/php
+  build: misc/docker/phpfpm
   command: php5-fpm
   expose:
     - "9000"
