@@ -14,7 +14,6 @@ This is a changelog for Piwik platform developers. All changes for our HTTP API'
 * The properties `Report::$widgetTitle`, `Report::$widgetParams` and `Report::$menuTitle` were removed, use the method `Report::configureWidgets()` to create widgets instead
 * In the HTTP API methods `Dashboard.getDefaultDashboard` and `Dashboard.getUserDashboards` we do no longer remove not existing widgets as it is up to the client which widgets actually exist
 
-
 ### New APIs
 * Multiple widgets for one report can now be created via the `Report::configureWidgets()` method via the new classes `Piwik\Widget\ReportWidgetFactory` and `Piwik\Widget\ReportWidgetConfig`
 * There is a new property `Report::$subCategory` that let's you add a report to the reporting UI. If a page having that name does not exist yet, it will be created automatically. The newly added method `Report::getSubCategory()` let's you get this value.
@@ -22,10 +21,11 @@ This is a changelog for Piwik platform developers. All changes for our HTTP API'
 * New HTTP API method `API.getWidgetMetadata` to get a list of available widgets
 * New HTTP API method `API.getReportPagesMetadata` to get a list of all available pages that exist including the widgets they include
 
-
 ### New features
 * New "Sparklines" visualization that let's you create a widget showing multiple sparklines
 
+### Library updates
+* Update AngularJS from 1.2.28 to 1.4.1. IE8 will be no longer supported.
 
 ## Piwik 2.14.0
 
