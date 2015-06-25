@@ -12,7 +12,7 @@
             <ul ng-show="(category.subcategories|length) > 1">
                 <li ng-repeat="subcategory in category.subcategories"
                     ng-class="{'sfHover': subcategory.active}">
-                    <div ng-if="subcategory.isGroup" piwik-menudropdown show-search="true" menu-title="{{ subcategory.name }}">
+                    <div ng-if="subcategory.isGroup" piwik-menudropdown show-search="true" menu-title="{{ subcategory.name|escape }}">
                         <a class="item"
                            ng-repeat="subcat in subcategory.subcategories"
                            title="{{ subcat.tooltip }}"
