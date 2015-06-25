@@ -16,6 +16,7 @@ use Piwik\FrontController;
 use Piwik\Notification\Manager as NotificationManager;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
+use Piwik\Plugins\API\WidgetMetadata;
 use Piwik\Widget\Widget;
 use Piwik\Plugins\CoreHome\DataTableRowAction\MultiRowEvolution;
 use Piwik\Plugins\CoreHome\DataTableRowAction\RowEvolution;
@@ -69,7 +70,7 @@ class Controller extends \Piwik\Plugin\Controller
 
         $view = new View('@CoreHome/widgetContainer');
 
-        $widgets = array();
+        $view->widget = '';
 
         $widgetsList = WidgetsList::get();
         foreach ($widgetsList->getWidgets() as $container) {
@@ -79,30 +80,12 @@ class Controller extends \Piwik\Plugin\Controller
 
                 $container->checkIsEnabled();
 
-                foreach ($container->getWidgetConfigs() as $config) {
-                    $defaultParams = array(
-                        'module' => $config->getModule(),
-                        'action' => $config->getAction(),
-                        'idSite' => Common::getRequestVar('idSite', null, 'int'),
-                        'period' => Common::getRequestVar('period', null, 'string'),
-                        'date' => Common::getRequestVar('date', null, 'string'),
-                    );
-                    $params = $defaultParams + $config->getParameters();
-                    $oldGet = $_GET;
-
-                    $_GET = $oldGet + $params;
-
-                    //$content = FrontController::getInstance()->dispatch($config->getModule(), $config->getAction());
-                    $widgets[] = array('content' => '', 'name' => $config->getName());
-
-                    $_GET = $oldGet;
-                }
+                $widgetMetadata = new WidgetMetadata();
+                $view->widget = $widgetMetadata->buildWidgetMetadata($container, '', '', $nested = true);
 
                 break;
             }
         }
-
-        $view->widgets = $widgets;
 
         return $view->render();
     }

@@ -17,7 +17,8 @@
             pages : [],
             findPage: findPage,
             reloadAllPages : reloadAllPages,
-            getAllPages : getAllPages
+            getAllPages : getAllPages,
+            findWidgetInAnyPage: findWidgetInAnyPage
         };
 
         return model;
@@ -35,6 +36,23 @@
             });
 
             return found;
+        }
+
+        function findWidgetInAnyPage(widgetUniqueId)
+        {
+            return getAllPages().then(function (pages) {
+                var found = null;
+
+                angular.forEach(pages, function (page) {
+                    angular.forEach(page.widgets, function (widget) {
+                            if (widget.uniqueId === widgetUniqueId) {
+                                found = widget;
+                            }
+                    });
+                });
+
+                return found;
+            });
         }
 
         function reloadAllPages()

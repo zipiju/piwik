@@ -60,7 +60,6 @@
 
             var self = this;
             this.element.on('setParameters.dashboardWidget', function (e, params) { self.setParameters(params); });
-
             this.reload(true, true);
         },
 
@@ -115,38 +114,19 @@
                 return;
             }
 
-            var self = this, currentWidget = this.element;
-
-            function onWidgetLoadedReplaceElementWithContent(loadedContent) {
-                $('.widgetContent', currentWidget).html(loadedContent);
-                $('.widgetContent', currentWidget).removeClass('loading');
-                $('.widgetContent', currentWidget).trigger('widget:create', [self]);
-            }
-
             // Reading segment from hash tag (standard case) or from the URL (when embedding dashboard)
             var segment = broadcast.getValueFromHash('segment') || broadcast.getValueFromUrl('segment');
             if (segment.length) {
                 this.widgetParameters.segment = segment;
             }
 
-            if (!hideLoading) {
-                $('.widgetContent', currentWidget).addClass('loading');
-            }
-
             var params = $.extend(this.widgetParameters, overrideParams || {});
-            widgetsHelper.loadWidgetAjax(this.uniqueId, params, onWidgetLoadedReplaceElementWithContent, function (deferred, status) {
-                if (status == 'abort' || !deferred || deferred.status < 400 || deferred.status >= 600) {
-                    return;
-                }
+            $('[piwik-widget]', this.element).attr('widget-params', JSON.stringify(params));
 
-                $('.widgetContent', currentWidget).removeClass('loading');
-                var errorMessage = _pk_translate('General_ErrorRequest', ['', '']);
-                if ($('#loadingError').html()) {
-                    errorMessage = $('#loadingError').html();
-                }
+            piwikHelper.compileAngularComponents(this.element);
 
-                $('.widgetContent', currentWidget).html('<div class="widgetLoadingError">' + errorMessage + '</div>');
-            });
+            $('.widgetContent', this.element).removeClass('loading');
+            $('.widgetContent', this.element).trigger('widget:create', [this]);
 
             return this;
         },
