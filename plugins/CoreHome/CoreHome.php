@@ -276,5 +276,6 @@ class CoreHome extends \Piwik\Plugin
         $translationKeys[] = 'CoreHome_UndoPivotBySubtable';
         $translationKeys[] = 'CoreHome_PivotBySubtable';
         $translationKeys[] = 'General_LearnMore';
+        $translationKeys[] = 'CoreHome_NoSuchPage';
     }
 }

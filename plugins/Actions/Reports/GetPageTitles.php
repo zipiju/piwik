@@ -45,11 +45,6 @@ class GetPageTitles extends Base
         $this->subCategory = 'Actions_SubmenuPageTitles';
     }
 
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        $widgetsList->addWidget($factory->createWidget()->setName('Actions_WidgetPageTitles'));
-    }
-
     public function getMetrics()
     {
         $metrics = parent::getMetrics();

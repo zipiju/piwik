@@ -45,11 +45,6 @@ class GetExitPageUrls extends Base
         $this->subCategory = 'Actions_SubmenuPagesExit';
     }
 
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        $widgetsList->addWidget($factory->createWidget()->setName('Actions_WidgetPagesExit'));
-    }
-
     public function getProcessedMetrics()
     {
         $result = parent::getProcessedMetrics();

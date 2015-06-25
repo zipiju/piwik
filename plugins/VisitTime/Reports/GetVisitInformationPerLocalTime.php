@@ -26,7 +26,7 @@ class GetVisitInformationPerLocalTime extends Base
         $this->name          = Piwik::translate('VisitTime_WidgetLocalTime');
         $this->documentation = Piwik::translate('VisitTime_WidgetLocalTimeDocumentation', array('<strong>', '</strong>'));
         $this->constantRowsCount = true;
-        $this->order = 20;
+        $this->order = 15;
 
         $this->subCategory = 'VisitTime_SubmenuTimes';
     }

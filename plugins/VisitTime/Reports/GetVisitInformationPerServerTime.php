@@ -26,7 +26,7 @@ class GetVisitInformationPerServerTime extends Base
         $this->documentation = Piwik::translate('VisitTime_WidgetServerTimeDocumentation', array('<strong>', '</strong>'));
         $this->constantRowsCount = true;
         $this->hasGoalMetrics = true;
-        $this->order = 15;
+        $this->order = 20;
 
         $this->subCategory = 'VisitTime_SubmenuTimes';
     }

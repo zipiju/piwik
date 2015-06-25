@@ -8,14 +8,14 @@
                     class="reportDimension"
                     ng-class="{activeDimension: (selectedWidget.uniqueId===widget.uniqueId)}"
                     ng-click="selectWidget(widget)">
-                    <span class='dimension' ng-bind-html="widget.name"></span>
+                    <span class='dimension'>{{widget.name}}</span>
                 </li>
             </ul>
         </div>
     </div>
 
     <div style="float:left;max-width:900px;">
-        <h2 ng-if="selectedWidget.name" ng-bind-html="selectedWidget.name"></h2>
+        <h2 ng-if="selectedWidget.name">{{ selectedWidget.name }}</h2>
 
         <div ng-if="selectedWidget.widget_url" class="dimensionReport"
              piwik-widget-loader="selectedWidget.widget_url"></div>

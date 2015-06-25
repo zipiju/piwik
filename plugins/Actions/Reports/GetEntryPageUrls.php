@@ -45,11 +45,6 @@ class GetEntryPageUrls extends Base
         $this->subCategory = 'Actions_SubmenuPagesEntry';
     }
 
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        $widgetsList->addWidget($factory->createWidget()->setName('Actions_WidgetPagesEntry'));
-    }
-
     public function getProcessedMetrics()
     {
         $result = parent::getProcessedMetrics();

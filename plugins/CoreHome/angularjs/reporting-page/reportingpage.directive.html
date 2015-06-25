@@ -4,9 +4,7 @@
         <img src="plugins/Morpheus/images/loading-blue.gif" alt=""/>{{ 'General_LoadingData'|translate }}
     </div>
 
-    <div ng-show="hasNoPage">
-        No such page exists
-    </div>
+    <div ng-show="hasNoPage">{{ 'CoreHome_NoSuchPage'|translate }}</div>
 
     <div ng-repeat="evolutionReport in pageModel.evolutionReports" piwik-widget widget="evolutionReport"></div>
 

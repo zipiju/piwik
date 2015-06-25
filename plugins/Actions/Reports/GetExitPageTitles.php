@@ -41,11 +41,6 @@ class GetExitPageTitles extends Base
         $this->actionToLoadSubTables = $this->action;
     }
 
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        $widgetsList->addWidget($factory->createWidget()->setName('Actions_WidgetExitPageTitles'));
-    }
-
     public function getProcessedMetrics()
     {
         $result = parent::getProcessedMetrics();

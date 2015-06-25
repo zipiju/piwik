@@ -1,7 +1,7 @@
 <div>
     <h2 ng-if="widget.name"
         piwik-enriched-headline
-        feature-name="{{widget.name}}" ng-bind-html="widget.name"></h2>
+        feature-name="{{widget.name}}">{{widget.name}}</h2>
 
     <div ng-if="!widget.isContainer && widget.widget_url"
          piwik-widget-loader="widget.widget_url"></div>
