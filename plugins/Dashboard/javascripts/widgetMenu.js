@@ -313,6 +313,8 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
                         widgetClass += ' ' + settings.unavailableClass;
                     }
 
+                    widgetName = piwikHelper.escape(piwikHelper.htmlEntities(widgetName));
+
                     widgetList.append('<li class="' + widgetClass + '" uniqueid="' + widgetUniqueId + '">' + widgetName + '</li>');
                 }
 

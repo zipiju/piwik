@@ -1,9 +1,8 @@
 <div>
-    {% for widget in widgets %}
-        {% if widget.name %}
-            <h2>{{ widget.name|translate }}</h2>
-        {% endif %}
-
-        {{ widget.content|raw }}
-    {% endfor %}
+    <div piwik-widget widget="{{ widget|json_encode }}" show-name="{% if showWidgetTitle %}true{% else %}false{% endif %}"></div>
+    <script type="text/javascript">
+        $(function () {
+            piwikHelper.compileAngularComponents('[id="{{ widgetUniqueId }}"]');
+        });
+    </script>
 </div>

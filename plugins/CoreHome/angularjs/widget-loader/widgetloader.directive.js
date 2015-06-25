@@ -53,6 +53,20 @@
 
                         // available in global scope
                         var search = $location.search();
+
+                        if (!search.idSite) {
+                            // see https://github.com/angular/angular.js/issues/7239 (issue is resolved but problem still exists)
+                            search.idSite = piwik.broadcast.getValueFromUrl('idSite');
+                        }
+
+                        if (!search.period) {
+                            search.period = piwik.broadcast.getValueFromUrl('period');
+                        }
+
+                        if (!search.date) {
+                            search.date = piwik.broadcast.getValueFromUrl('date');
+                        }
+
                         url += '&idSite=' + search.idSite + '&period=' + search.period;
                         url += '&date=' + search.date + '&random=' + parseInt(Math.random() * 10000);
 

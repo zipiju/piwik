@@ -125,6 +125,10 @@ var piwikHelper = {
     compileAngularComponents: function (selector) {
         var $element = $(selector);
 
+        if (!$element || !$element.length) {
+            return;
+        }
+
         angular.element(document).injector().invoke(function($compile) {
             var scope = angular.element($element).scope();
             $compile($element)(scope);

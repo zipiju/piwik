@@ -18,9 +18,16 @@
         return {
             restrict: 'A',
             scope: {
-                widget: '='
+                widget: '=',
+                showName: '=?'
             },
-            templateUrl: 'plugins/CoreHome/angularjs/widget/widget.directive.html?cb=' + piwik.cacheBuster
+            templateUrl: 'plugins/CoreHome/angularjs/widget/widget.directive.html?cb=' + piwik.cacheBuster,
+            compile: function (element, attrs) {
+
+                return function (scope, element, attrs, ngModel) {
+                    scope.showName = angular.isDefined(scope.showName) ? scope.showName : true;
+                };
+            }
         };
     }
 })();
