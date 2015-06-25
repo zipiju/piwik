@@ -27,10 +27,6 @@ use Piwik\Tests\Framework\TestingEnvironmentVariables;
  */
 abstract class IntegrationTestCase extends SystemTestCase
 {
-    /**
-     * @var Fixture
-     */
-    public static $fixture;
     public static $tableData;
 
     /**

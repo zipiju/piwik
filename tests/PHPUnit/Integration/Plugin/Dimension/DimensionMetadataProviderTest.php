@@ -8,10 +8,8 @@
 
 namespace Piwik\Tests\Integration\Plugin\Dimension;
 
-use Piwik\Container\StaticContainer;
 use Piwik\Plugin\Dimension\DimensionMetadataProvider;
 use Piwik\Tests\Framework\TestCase\IntegrationTestCase;
-use Piwik\Plugin\Manager as PluginManager;
 
 class DimensionMetadataProviderTest extends IntegrationTestCase
 {
@@ -19,8 +17,7 @@ class DimensionMetadataProviderTest extends IntegrationTestCase
     {
         parent::setUp();
 
-        /** @var PluginManager $manager */
-        $manager = StaticContainer::get('Piwik\Plugin\Manager');
+        $manager = $this->getContainer()->get('Piwik\Plugin\Manager');
         $manager->loadPlugins(array('Events', 'Contents'));
     }
 

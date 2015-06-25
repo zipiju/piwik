@@ -2,21 +2,20 @@
 /**
  * Piwik - free/libre analytics platform
  *
- * @link http://piwik.org
+ * @link    http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
 namespace Piwik\Tests\Integration;
 
-use PHPUnit_Framework_TestCase;
 use Piwik\API\DocumentationGenerator;
 use Piwik\API\Proxy;
-use Piwik\EventDispatcher;
+use Piwik\Tests\Framework\TestCase\IntegrationTestCase;
 
 /**
  * @group Core
  */
-class DocumentationGeneratorTest extends PHPUnit_Framework_TestCase
+class DocumentationGeneratorTest extends IntegrationTestCase
 {
     public function test_CheckIfModule_ContainsHideAnnotation()
     {
@@ -40,8 +39,10 @@ class DocumentationGeneratorTest extends PHPUnit_Framework_TestCase
 
     public function test_CheckIfMethodComment_ContainsHideAnnotation_andText()
     {
+        $eventDispatcher = $this->getContainer()->get('Piwik\EventDispatcher');
+
         $annotation = '@hideForAll test test';
-        EventDispatcher::getInstance()->addObserver('API.DocumentationGenerator.@hideForAll',
+        $eventDispatcher->addObserver('API.DocumentationGenerator.@hideForAll',
             function (&$hide) {
                 $hide = true;
             });
@@ -50,8 +51,10 @@ class DocumentationGeneratorTest extends PHPUnit_Framework_TestCase
 
     public function test_CheckIfMethodComment_ContainsHideAnnotation_only()
     {
+        $eventDispatcher = $this->getContainer()->get('Piwik\EventDispatcher');
+
         $annotation = '@hideForAll';
-        EventDispatcher::getInstance()->addObserver('API.DocumentationGenerator.@hideForAll',
+        $eventDispatcher->addObserver('API.DocumentationGenerator.@hideForAll',
             function (&$hide) {
                 $hide = true;
             });
@@ -60,8 +63,10 @@ class DocumentationGeneratorTest extends PHPUnit_Framework_TestCase
 
     public function test_CheckIfMethodComment_DoesNotContainHideAnnotation()
     {
+        $eventDispatcher = $this->getContainer()->get('Piwik\EventDispatcher');
+
         $annotation = '@not found here';
-        EventDispatcher::getInstance()->addObserver('API.DocumentationGenerator.@hello',
+        $eventDispatcher->addObserver('API.DocumentationGenerator.@hello',
             function (&$hide) {
                 $hide = true;
             });

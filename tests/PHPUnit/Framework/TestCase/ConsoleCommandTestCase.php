@@ -9,7 +9,6 @@
 namespace Piwik\Tests\Framework\TestCase;
 
 use Piwik\Console;
-use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Tester\ApplicationTester;
@@ -59,12 +58,12 @@ class TestConsole extends Console
  *
  * @since 2.8.0
  */
-class ConsoleCommandTestCase extends SystemTestCase
+abstract class ConsoleCommandTestCase extends SystemTestCase
 {
     /**
      * @var ApplicationTester
      */
-    protected $applicationTester = null;
+    protected $applicationTester;
 
     /**
      * @var Console

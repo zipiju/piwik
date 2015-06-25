@@ -9,6 +9,7 @@
 namespace Piwik\Tests\Framework\TestCase;
 
 use Exception;
+use Interop\Container\ContainerInterface;
 use Piwik\ArchiveProcessor\Rules;
 use Piwik\Common;
 use Piwik\Config;
@@ -21,11 +22,9 @@ use Piwik\Tests\Framework\Constraint\HttpResponseText;
 use Piwik\Tests\Framework\TestRequest\ApiTestConfig;
 use Piwik\Tests\Framework\TestRequest\Collection;
 use Piwik\Tests\Framework\TestRequest\Response;
-use Piwik\Translate;
 use Piwik\Log;
 use PHPUnit_Framework_TestCase;
 use Piwik\Tests\Framework\Fixture;
-use Piwik\Translation\Translator;
 
 require_once PIWIK_INCLUDE_PATH . '/libs/PiwikTracker/PiwikTracker.php';
 
@@ -498,7 +497,6 @@ abstract class SystemTestCase extends PHPUnit_Framework_TestCase
     {
         if ($this->lastLanguage != $langId) {
             $_GET['language'] = $langId;
-            /** @var Translator $translator */
             $translator = StaticContainer::get('Piwik\Translation\Translator');
             $translator->setCurrentLanguage($langId);
         }
@@ -630,6 +628,14 @@ abstract class SystemTestCase extends PHPUnit_Framework_TestCase
     public static function provideContainerConfigBeforeClass()
     {
         return array();
+    }
+
+    /**
+     * @return ContainerInterface
+     */
+    public function getContainer()
+    {
+        return self::$fixture->piwikEnvironment->getContainer();
     }
 }
 

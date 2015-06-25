@@ -202,7 +202,7 @@ class AccessTest extends IntegrationTestCase
 
     public function testCheckUserHasViewAccessWithSuperUserAccess()
     {
-        $access = Access::getInstance();
+        $access = $this->getContainer()->get('Piwik\Access');
         $access->setSuperUserAccess(true);
         $access->checkUserHasViewAccess(array());
     }
@@ -358,7 +358,6 @@ class AccessTest extends IntegrationTestCase
 
     public function test_reloadAccess_loadSitesIfNeeded_doesActuallyResetAllSiteIdsAndRequestThemAgain()
     {
-        /** @var Access $mock */
         $mock = $this->createAccessMockWithAuthenticatedUser(array('getRawSitesWithSomeViewAccess'));
 
         $mock->expects($this->at(0))
@@ -395,22 +394,24 @@ class AccessTest extends IntegrationTestCase
 
     public function test_doAsSuperUser_ChangesSuperUserAccessCorrectly()
     {
-        Access::getInstance()->setSuperUserAccess(false);
+        $access = $this->getContainer()->get('Piwik\Access');
+        $access->setSuperUserAccess(false);
 
-        $this->assertFalse(Access::getInstance()->hasSuperUserAccess());
+        $this->assertFalse($access->hasSuperUserAccess());
 
-        Access::doAsSuperUser(function () {
-            AccessTest::assertTrue(Access::getInstance()->hasSuperUserAccess());
+        Access::doAsSuperUser(function () use ($access) {
+            AccessTest::assertTrue($access->hasSuperUserAccess());
         });
 
-        $this->assertFalse(Access::getInstance()->hasSuperUserAccess());
+        $this->assertFalse($access->hasSuperUserAccess());
     }
 
     public function test_doAsSuperUser_RemovesSuperUserAccess_IfExceptionThrown()
     {
-        Access::getInstance()->setSuperUserAccess(false);
+        $access = $this->getContainer()->get('Piwik\Access');
+        $access->setSuperUserAccess(false);
 
-        $this->assertFalse(Access::getInstance()->hasSuperUserAccess());
+        $this->assertFalse($access->hasSuperUserAccess());
 
         try {
             Access::doAsSuperUser(function () {
@@ -423,7 +424,7 @@ class AccessTest extends IntegrationTestCase
             // pass
         }
 
-        $this->assertFalse(Access::getInstance()->hasSuperUserAccess());
+        $this->assertFalse($access->hasSuperUserAccess());
     }
 
     public function test_doAsSuperUser_ReturnsCallbackResult()
@@ -436,11 +437,10 @@ class AccessTest extends IntegrationTestCase
 
     public function test_reloadAccess_DoesNotRemoveSuperUserAccess_IfUsedInDoAsSuperUser()
     {
-        Access::getInstance()->setSuperUserAccess(false);
+        $access = $this->getContainer()->get('Piwik\Access');
+        $access->setSuperUserAccess(false);
 
-        Access::doAsSuperUser(function () {
-            $access = Access::getInstance();
-
+        Access::doAsSuperUser(function () use ($access) {
             AccessTest::assertTrue($access->hasSuperUserAccess());
             $access->reloadAccess();
             AccessTest::assertTrue($access->hasSuperUserAccess());
@@ -469,12 +469,18 @@ class AccessTest extends IntegrationTestCase
         return $access;
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|\Piwik\Auth
+     */
     private function createPiwikAuthMockInstance()
     {
         return $this->getMock('Piwik\\Auth', array('authenticate', 'getName', 'getTokenAuthSecret', 'getLogin', 'setTokenAuth', 'setLogin',
             'setPassword', 'setPasswordHash'));
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|\Piwik\Access
+     */
     private function createAccessMockWithAccessToSitesButUnauthenticated($idSites)
     {
         $mock = $this->getMock('Piwik\Access', array('getRawSitesWithSomeViewAccess', 'loadSitesIfNeeded'));
@@ -488,6 +494,9 @@ class AccessTest extends IntegrationTestCase
         return $mock;
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|\Piwik\Access
+     */
     private function createAccessMockWithAuthenticatedUser($methodsToMock = array())
     {
         $methods = array('authenticate');
@@ -507,6 +516,9 @@ class AccessTest extends IntegrationTestCase
         return $mock;
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject|\Piwik\Auth
+     */
     private function createAuthMockWithAuthResult($resultCode)
     {
         $mock = $this->createPiwikAuthMockInstance();
@@ -516,5 +528,4 @@ class AccessTest extends IntegrationTestCase
 
         return $mock;
     }
-
 }

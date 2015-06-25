@@ -9,7 +9,6 @@
 namespace Piwik\Tests\Integration;
 
 use Piwik\Cache;
-use Piwik\Container\StaticContainer;
 use Piwik\Piwik;
 use Piwik\Tests\Framework\TestCase\IntegrationTestCase;
 
@@ -24,8 +23,7 @@ class CacheTest extends IntegrationTestCase
         $cache = Cache::getEagerCache();
         $cache->save('test', 'mycontent'); // make sure something was changed, otherwise it won't save anything
 
-        /** @var Cache\Backend $backend */
-        $backend = StaticContainer::get('Piwik\Cache\Backend');
+        $backend = $this->getContainer()->get('Piwik\Cache\Backend');
         $this->assertFalse($backend->doContains($storageId));
 
         Piwik::postEvent('Request.dispatch.end'); // should trigger save
