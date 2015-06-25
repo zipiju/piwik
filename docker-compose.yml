@@ -12,7 +12,6 @@ web:
     - "8080:80"
   volumes:
     - .:/app
-    - ./misc/docker/nginx/default:/etc/nginx/sites-enabled/default
   links:
     - phpfpm
 
@@ -23,7 +22,6 @@ phpfpm:
     - "9000"
   volumes:
     - .:/app
-    - ./misc/docker/php/php-fpm.conf:/etc/php5/fpm/php-fpm.conf
   links:
     - db
 

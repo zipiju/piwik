@@ -17,6 +17,8 @@ RUN locale-gen de_DE
 # forward logs to docker log collector
 RUN ln -sf /dev/stderr /var/log/php-fpm.log
 
+COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
+
 WORKDIR /app
 
 CMD ["php5-fpm"]
