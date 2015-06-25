@@ -37,12 +37,13 @@ class Pages
      */
     public function createGoalsOverviewPage($goals)
     {
+        $subcategory = 'General_Overview';
+
         $widgets = array();
 
         $config = $this->factory->createWidget();
         $config->forceViewDataTable(Evolution::ID);
-        $config->setSubCategory('General_Overview');
-        $config->setName('General_EvolutionOverPeriod');
+        $config->setSubCategory($subcategory);
         $config->setAction('getEvolutionGraph');
         $config->setOrder(++$this->orderId);
         $config->setParameters(array('columns' => 'nb_conversions'));
@@ -51,18 +52,10 @@ class Pages
 
         $config = $this->factory->createWidget();
         $config->forceViewDataTable(Sparklines::ID);
-        $config->setSubCategory('General_Overview');
+        $config->setSubCategory($subcategory);
         $config->setName('');
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
-        $widgets[] = $config;
-
-        $config = $this->factory->createContainerWidget('Goals');
-        $config->setSubCategory('General_Overview');
-        $config->setName('Goals_ConversionsOverviewBy');
-        $config->setOrder(++$this->orderId);
-        $config->setIsNotWidgetizable();
-        $this->buildGoalByDimensionView('', $config);
         $widgets[] = $config;
 
         foreach ($goals as $goal) {
@@ -71,7 +64,7 @@ class Pages
 
             $config = $this->factory->createWidget();
             $config->setName($goalTranslated);
-            $config->setSubCategory('General_Overview');
+            $config->setSubCategory($subcategory);
             $config->forceViewDataTable(Sparklines::ID);
             $config->setParameters(array('idGoal' => $goal['idgoal']));
             $config->setOrder(++$this->orderId);
@@ -80,7 +73,18 @@ class Pages
             $widgets[] = $config;
         }
 
-        return $widgets;
+        if ($this->getConversionForGoal()) {
+            $config = $this->factory->createContainerWidget('Goals');
+            $config->setSubCategory($subcategory);
+            $config->setName('Goals_ConversionsOverviewBy');
+            $config->setOrder(++$this->orderId);
+            $config->setIsNotWidgetizable();
+            $this->buildGoalByDimensionView('', $config);
+            $widgets[] = $config;
+        }
+
+        $container = $this->createWidgetizableWidgetContainer($subcategory, $widgets);
+        return array($container);
     }
 
     /**
@@ -88,12 +92,14 @@ class Pages
      */
     public function createEcommerceOverviewPage()
     {
+        $category    = 'Goals_Ecommerce';
+        $subcategory = 'General_Overview';
+
         $widgets = array();
         $config  = $this->factory->createWidget();
         $config->forceViewDataTable(Evolution::ID);
-        $config->setCategory('Goals_Ecommerce');
-        $config->setSubCategory('General_Overview');
-        $config->setName('General_EvolutionOverPeriod');
+        $config->setCategory($category);
+        $config->setSubCategory($subcategory);
         $config->setAction('getEvolutionGraph');
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
@@ -101,9 +107,9 @@ class Pages
         $widgets[] = $config;
 
         $config = $this->factory->createWidget();
-        $config->setCategory('Goals_Ecommerce');
+        $config->setCategory($category);
         $config->forceViewDataTable(Sparklines::ID);
-        $config->setSubCategory('General_Overview');
+        $config->setSubCategory($subcategory);
         $config->setName('');
         $config->setModule('Ecommerce');
         $config->setAction('getSparklines');
@@ -112,7 +118,8 @@ class Pages
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
-        return $widgets;
+        $container = $this->createWidgetizableWidgetContainer($subcategory, $widgets);
+        return array($container);
     }
 
     /**
@@ -120,9 +127,12 @@ class Pages
      */
     public function createEcommerceSalesPage()
     {
+        $category    = 'Goals_Ecommerce';
+        $subcategory = 'Ecommerce_Sales';
+
         $config = $this->factory->createContainerWidget('GoalsOrder');
-        $config->setCategory('Goals_Ecommerce');
-        $config->setSubCategory('Ecommerce_Sales');
+        $config->setCategory($category);
+        $config->setSubCategory($subcategory);
         $config->setName('');
         $config->setParameters(array('idGoal' => Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER));
         $config->setOrder(++$this->orderId);
@@ -144,10 +154,7 @@ class Pages
         $name   = Common::sanitizeInputValue($goal['name']);
         $params = array('idGoal' => $idGoal);
 
-        $goalTranslated = Piwik::translate('Goals_GoalX', array($name));
-
         $config = $this->factory->createWidget();
-        $config->setName($goalTranslated);
         $config->setSubCategory($idGoal);
         $config->forceViewDataTable(Evolution::ID);
         $config->setAction('getEvolutionGraph');
@@ -187,7 +194,36 @@ class Pages
         $this->buildGoalByDimensionView($idGoal, $config);
         $widgets[] = $config;
 
-        return $widgets;
+        $container = $this->createWidgetizableWidgetContainer($name, $widgets);
+        $container->addParameters($params);
+
+        return array($container);
+    }
+
+    private function createWidgetizableWidgetContainer($pageName, $widgets)
+    {
+        /** @var \Piwik\Widget\WidgetConfig[] $widgets */
+        $firstWidget = reset($widgets);
+
+        $id = $firstWidget->getCategory() . $firstWidget->getSubCategory();
+
+        if (!empty($pageName)) {
+            // make sure to not show two titles (one for this container and one for the first widget)
+            $firstWidget->setName('');
+        }
+
+        $config = $this->factory->createContainerWidget($id);
+        $config->setName($pageName);
+        $config->setCategory($firstWidget->getCategory());
+        $config->setSubCategory($firstWidget->getSubCategory());
+        $config->setIsWidgetizable();
+        $config->setOrder($this->orderId++);
+
+        foreach ($widgets as $widget) {
+            $config->addWidget($widget);
+        }
+
+        return $config;
     }
 
     private function buildGoalByDimensionView($idGoal, WidgetContainerConfig $container)

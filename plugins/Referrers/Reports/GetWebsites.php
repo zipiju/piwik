@@ -31,12 +31,6 @@ class GetWebsites extends Base
         $this->subCategory = 'Referrers_SubmenuWebsites';
     }
 
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        $widget = $factory->createWidget()->setName('Referrers_WidgetExternalWebsites');
-        $widgetsList->addWidget($widget);
-    }
-
     public function configureView(ViewDataTable $view)
     {
         $view->config->show_exclude_low_population = false;

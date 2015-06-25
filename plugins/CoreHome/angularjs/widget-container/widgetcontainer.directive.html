@@ -1,8 +1,10 @@
 <div>
-    <div ng-repeat="widget in container.widgets">
-        <h2 ng-if="widget.name" ng-bind-html="widget.name"></h2>
+    <!-- custom template prevents recursion -->
+    <script id="mywidget.html" type="text/ng-template">
+        <div piwik-widget widget="widget"></div>
+    </script>
 
-        <div ng-if="widget.widget_url"
-             piwik-widget-loader="widget.widget_url"></div>
+    <div ng-repeat="widget in container.widgets">
+        <div ng-include src="'mywidget.html'"/>
     </div>
 </div>

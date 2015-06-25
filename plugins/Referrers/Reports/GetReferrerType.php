@@ -57,6 +57,7 @@ class GetReferrerType extends Base
                 ->setName('General_EvolutionOverPeriod')
                 ->setSubCategory('General_Overview')
                 ->setAction('getEvolutionGraph')
+                ->setIsNotWidgetizable()
                 ->forceViewDataTable(Evolution::ID)
                 ->addParameters(array(
                     'columns' => $defaultColumns = array('nb_visits'),
@@ -67,6 +68,7 @@ class GetReferrerType extends Base
         $widgetsList->addWidget(
             $factory->createCustomWidget('getSparklines')
                 ->forceViewDataTable(Sparklines::ID)
+                ->setIsNotWidgetizable()
                 ->setName('Referrers_Type')
                 ->setSubCategory('General_Overview')
                 ->setOrder(10)

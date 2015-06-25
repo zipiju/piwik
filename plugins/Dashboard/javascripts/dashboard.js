@@ -294,6 +294,7 @@ function copyDashboardToUser() {
 
     DashboardManagerControl.initElements = function () {
         UIControl.initElements(this, '.dashboard-manager');
+        $('.top_controls .dashboard-manager').hide(); // initially hide the manager
     };
 
     exports.DashboardManagerControl = DashboardManagerControl;

@@ -29,7 +29,7 @@
             angular.forEach(model.pages, function (page) {
                 if (page &&
                     page.category && page.subcategory &&
-                    page.category.id === categoryId && page.subcategory.id === subcategoryId) {
+                    page.category.id === categoryId && ('' + page.subcategory.id) === subcategoryId) {
                     found = page;
                 }
             });

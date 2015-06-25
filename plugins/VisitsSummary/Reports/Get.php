@@ -55,7 +55,7 @@ class Get extends \Piwik\Plugin\Report
     {
         $widgetsList->addWidget(
             $factory->createWidget()
-                ->setName('General_EvolutionOverPeriod')
+                ->setName('VisitsSummary_WidgetLastVisits')
                 ->forceViewDataTable(Evolution::ID)
                 ->setAction('getEvolutionGraph')
                 ->setOrder(5)
@@ -64,7 +64,7 @@ class Get extends \Piwik\Plugin\Report
 
         $widgetsList->addWidget(
             $factory->createWidget()
-                ->setName('General_Report')
+                ->setName('VisitsSummary_WidgetVisits')
                 ->forceViewDataTable(Sparklines::ID)
                 ->setOrder(10)
         );

@@ -114,7 +114,7 @@ class Goals extends \Piwik\Plugin
 
         $goals = API::getInstance()->getGoals($idSite);
 
-        $order = 0;
+        $order = 900;
         foreach ($goals as $goal) {
             $config = new SubCategory();
             $config->setName($goal['name']);

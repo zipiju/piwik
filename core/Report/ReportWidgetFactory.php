@@ -31,6 +31,7 @@ use Piwik\Widget\WidgetContainerConfig;
  * Access is granted per website. Uses with access for a website can view all
  * data associated with that website.
  *
+ * @api
  */
 class ReportWidgetFactory
 {

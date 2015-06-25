@@ -18,7 +18,7 @@ class GetBrowsers extends Base
     {
         parent::init();
         $this->dimension     = new BrowserName();
-        $this->name          = Piwik::translate('DevicesDetection_WidgetBrowsers');
+        $this->name          = Piwik::translate('DevicesDetection_Browsers');
         $this->documentation = Piwik::translate('DevicesDetection_WidgetBrowsersDocumentation', '<br />');
         $this->order = 5;
 

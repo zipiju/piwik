@@ -94,13 +94,12 @@ class WidgetMetadata
             $item['isContainer'] = true;
 
             if ($addNestedWidgets) {
-                // todo we would extract that code into a method and reuse it with above
                 $children = array();
                 foreach ($widget->getWidgetConfigs() as $widgetConfig) {
                     $cat = $this->createCategoryForName($widgetConfig->getCategory());
                     $subcat = $this->createSubCategoryForName($widgetConfig->getCategory(), $widgetConfig->getSubCategory());
 
-                    $child = $this->buildWidgetMetadata($widgetConfig, $cat, $subcat);
+                    $child = $this->buildWidgetMetadata($widgetConfig, $cat, $subcat, $addNestedWidgets);
                     $children[] = $child;
                 }
                 $item['widgets'] = $children;
@@ -150,7 +149,7 @@ class WidgetMetadata
         return array(
             'name'  => Piwik::translate($category->getName()),
             'order' => $category->getOrder(),
-            'id'    => $category->getId()
+            'id'    => (string) $category->getId()
         );
     }
 
@@ -159,7 +158,7 @@ class WidgetMetadata
         return array(
             'name'  => Piwik::translate($subcategory->getName()),
             'order' => $subcategory->getOrder(),
-            'id'    => $subcategory->getId()
+            'id'    => (string) $subcategory->getId()
         );
     }
 
