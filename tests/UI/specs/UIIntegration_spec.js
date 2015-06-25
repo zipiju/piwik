@@ -336,7 +336,7 @@ describe("UIIntegrationTest", function () { // TODO: Rename to Piwik?
 
     it('should not display API response in the content', function (done) {
         expect.screenshot('menu_apidisallowed').to.be.captureSelector('#content', function (page) {
-            page.load("?" + urlBase + "#" + generalParams + "&module=API&action=SitesManager.getImageTrackingCode");
+            page.load("?" + urlBase + "#?" + generalParams + "&module=API&action=SitesManager.getImageTrackingCode");
         }, done);
     });
 

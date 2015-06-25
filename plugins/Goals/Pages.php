@@ -94,6 +94,7 @@ class Pages
     {
         $category    = 'Goals_Ecommerce';
         $subcategory = 'General_Overview';
+        $idGoal = Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER;
 
         $widgets = array();
         $config  = $this->factory->createWidget();
@@ -103,7 +104,7 @@ class Pages
         $config->setAction('getEvolutionGraph');
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
-        $config->setParameters(array('columns' => 'nb_conversions', 'idGoal' => Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER));
+        $config->setParameters(array('columns' => 'nb_conversions', 'idGoal' => $idGoal));
         $widgets[] = $config;
 
         $config = $this->factory->createWidget();
@@ -113,10 +114,23 @@ class Pages
         $config->setName('');
         $config->setModule('Ecommerce');
         $config->setAction('getSparklines');
-        $config->setParameters(array('idGoal' => Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER));
+        $config->setParameters(array('idGoal' => $idGoal));
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
+
+        $conversions = $this->getConversionForGoal($idGoal);
+        if ($conversions > 0) {
+            $config = $this->factory->createWidget();
+            $config->setModule('Ecommerce');
+            $config->setAction('getConversionsOverview');
+            $config->setSubCategory($idGoal);
+            $config->setName('Goals_ConversionsOverview');
+            $config->setParameters(array('idGoal' => $idGoal));
+            $config->setOrder(++$this->orderId);
+            $config->setIsNotWidgetizable();
+            $widgets[] = $config;
+        }
 
         $container = $this->createWidgetizableWidgetContainer($subcategory, $widgets);
         return array($container);

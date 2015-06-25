@@ -8,6 +8,8 @@
  */
 namespace Piwik\Plugins\Ecommerce;
 
+use Piwik\API\Request;
+use Piwik\Common;
 use Piwik\DataTable;
 use Piwik\FrontController;
 use Piwik\Piwik;
@@ -64,6 +66,27 @@ class Controller extends \Piwik\Plugins\Goals\Controller
 
         $view->idGoal = $idGoal;
         $view->goalAllowMultipleConversionsPerVisit = $goalDefinition['allow_multiple'];
+
+        return $view->render();
+    }
+
+    public function getConversionsOverview()
+    {
+        $view = new View('@Ecommerce/conversionOverview');
+        $idGoal = Common::getRequestVar('idGoal', null, 'string');
+
+        $goalMetrics = Request::processRequest('Goals.get', array('idGoal' => $idGoal));
+        $dataRow = $goalMetrics->getFirstRow();
+
+        $view->idSite = Common::getRequestVar('idSite', null, 'int');
+
+        if ($dataRow) {
+            $view->revenue          = $dataRow->getColumn('revenue');
+            $view->revenue_subtotal = $dataRow->getColumn('revenue_subtotal');
+            $view->revenue_tax      = $dataRow->getColumn('revenue_tax');
+            $view->revenue_shipping = $dataRow->getColumn('revenue_shipping');
+            $view->revenue_discount = $dataRow->getColumn('revenue_discount');
+        }
 
         return $view->render();
     }
