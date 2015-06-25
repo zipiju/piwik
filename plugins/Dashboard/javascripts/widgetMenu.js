@@ -172,12 +172,6 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
     WidgetFactory.prototype.make = function (uniqueId, widgetName) {
         var $result = this.getWidgetTemplate().clone();
         $result.attr('id', uniqueId).find('.widgetName').append(widgetName);
-
-        var widget = widgetsHelper.getWidgetObjectFromUniqueId(uniqueId);
-
-        var widgetDirective = $('[piwik-widget-loader]', $result);
-        widgetDirective.attr('show-name', 'false');
-
         return $result;
     };
 
@@ -319,8 +313,6 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
                         widgetClass += ' ' + settings.unavailableClass;
                     }
 
-                    widgetName = piwikHelper.escape(piwikHelper.htmlEntities(widgetName));
-
                     widgetList.append('<li class="' + widgetClass + '" uniqueid="' + widgetUniqueId + '">' + widgetName + '</li>');
                 }
 
@@ -398,21 +390,20 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
                 );
                 previewElement.html(emptyWidgetHtml);
 
-                widgetDirective.attr('widget-url', JSON.stringify(widget));
-
-                piwikHelper.compileAngularComponents(emptyWidgetHtml);
-
-                var widgetElement = $(document.getElementById(widgetUniqueId));
-                // document.getElementById needed for widgets with uniqueid like widgetOpens+Contact+Form
-                $('.widgetContent', widgetElement).trigger('widget:create');
-                settings.onPreviewLoaded(widgetUniqueId, widgetElement);
-                $('.' + settings.widgetpreviewClass + ' .widgetTop', widgetPreview).on('click', function () {
-                    settings.onSelect(widgetUniqueId);
-                    if (settings.resetOnSelect) {
-                        resetWidgetPreview(widgetPreview);
-                    }
-                });
-                return;
+                var onWidgetLoadedCallback = function (response) {
+                    var widgetElement = $(document.getElementById(widgetUniqueId));
+                    // document.getElementById needed for widgets with uniqueid like widgetOpens+Contact+Form
+                    $('.widgetContent', widgetElement).html($(response));
+                    $('.widgetContent', widgetElement).trigger('widget:create');
+                    settings.onPreviewLoaded(widgetUniqueId, widgetElement);
+                    $('.' + settings.widgetpreviewClass + ' .widgetTop', widgetPreview).on('click', function () {
+                        settings.onSelect(widgetUniqueId);
+                        if (settings.resetOnSelect) {
+                            resetWidgetPreview(widgetPreview);
+                        }
+                        return false;
+                    });
+                };
 
                 // abort previous sent request
                 if (widgetPreview.widgetAjaxRequest) {

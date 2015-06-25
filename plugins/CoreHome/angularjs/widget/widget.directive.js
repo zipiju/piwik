@@ -12,39 +12,15 @@
 (function () {
     angular.module('piwikApp').directive('piwikWidget', piwikWidget);
 
-    piwikWidget.$inject = ['piwik', 'reportingPagesModel'];
+    piwikWidget.$inject = ['piwik'];
 
-    function piwikWidget(piwik, reportingPagesModel){
+    function piwikWidget(piwik){
         return {
             restrict: 'A',
             scope: {
-                widget: '=?',
-                widgetUniqueId: '@',
-                widgetParams: '=?',
-                showName: '=?'
+                widget: '='
             },
-            templateUrl: 'plugins/CoreHome/angularjs/widget/widget.directive.html?cb=' + piwik.cacheBuster,
-            compile: function (element, attrs) {
-
-                return function (scope, element, attrs, ngModel) {
-                    scope.showName = angular.isDefined(scope.showName) ? scope.showName : true;
-
-                    function addParamsToUrl() {
-                        if (scope.widgetParams && scope.widget && scope.widget.widget_url) {
-                            scope.widget.widget_url += '&' + $.param(scope.widgetParams)
-                        }
-                    }
-
-                    if (scope.widget) {
-                        addParamsToUrl();
-                    } else if (scope.widgetUniqueId) {
-                        // TODO remove widgetUniqueId feature again
-                        reportingPagesModel.findWidgetInAnyPage(scope.widgetUniqueId).then(function (widget) {
-                            scope.widget = widget;
-                        });
-                    }
-                };
-            }
+            templateUrl: 'plugins/CoreHome/angularjs/widget/widget.directive.html?cb=' + piwik.cacheBuster
         };
     }
 })();

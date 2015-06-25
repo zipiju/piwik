@@ -199,9 +199,6 @@ class Pages
             $widgets[] = $config;
         }
 
-        $container = $this->createWidgetizableWidgetContainer($name, $widgets);
-        $container->addParameters($params);
-
         $config = $this->factory->createContainerWidget('Goals' . $idGoal);
         $config->setName(Piwik::translate('Goals_GoalConversionsBy', array($name)));
         $config->setSubCategory($idGoal);
@@ -209,8 +206,12 @@ class Pages
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
         $this->buildGoalByDimensionView($idGoal, $config);
+        $widgets[] = $config;
 
-        return array($container, $config);
+        $container = $this->createWidgetizableWidgetContainer($name, $widgets);
+        $container->addParameters($params);
+
+        return array($container);
     }
 
     private function createWidgetizableWidgetContainer($pageName, $widgets)

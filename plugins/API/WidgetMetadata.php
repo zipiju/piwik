@@ -66,7 +66,7 @@ class WidgetMetadata
         return $flat;
     }
 
-    public function buildWidgetMetadata(WidgetConfig $widget, $category, $subcategory, $addNestedWidgets = true)
+    private function buildWidgetMetadata(WidgetConfig $widget, $category, $subcategory, $addNestedWidgets = true)
     {
         $category = $category ? $this->buildCategoryMetadata($category) : null;
         $subcategory = $subcategory ? $this->buildSubCategoryMetadata($subcategory) : null;
