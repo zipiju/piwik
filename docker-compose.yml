@@ -1,17 +1,17 @@
 cli:
   build: misc/docker/php
-  volumes:
-    - .:/app
+  volumes_from:
+    - data
   links:
     - web:piwik.dev
     - db
 
 web:
   build: misc/docker/nginx
-  ports:
-    - "8080:80"
-  volumes:
-    - .:/app
+#  ports:
+#    - "8080:80"
+  volumes_from:
+    - data
   links:
     - phpfpm
 
@@ -20,17 +20,22 @@ phpfpm:
   command: php5-fpm
   expose:
     - "9000"
-  volumes:
-    - .:/app
+  volumes_from:
+    - data
   links:
     - db
 
 db:
   image: mysql
-  volumes:
+  volumes_from:
     # necessary for LOAD DATA INFILE
-    - .:/app
+    - data
   environment:
     - MYSQL_DATABASE=piwik
     - MYSQL_ROOT_PASSWORD=
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
+data:
+  build: misc/docker/data
+  volumes:
+    - .:/app
