@@ -24,9 +24,6 @@ This is a changelog for Piwik platform developers. All changes for our HTTP API'
 ### New features
 * New "Sparklines" visualization that let's you create a widget showing multiple sparklines
 
-### Library updates
-* Update AngularJS from 1.2.28 to 1.4.1. IE8 will be no longer supported.
-
 ## Piwik 2.14.0
 
 ### Breaking Changes
