@@ -113,7 +113,14 @@
             }
 
             var copy = angular.copy(groupedWidgets);
-            copy = markWidgetsInFirstRowOfPage(copy);
+
+            if (model.evolutionReports.length) {
+                markWidgetsInFirstRowOfPage(model.evolutionReports);
+            } else if (model.sparklineReports.length) {
+                markWidgetsInFirstRowOfPage(model.sparklineReports);
+            } else {
+                copy = markWidgetsInFirstRowOfPage(copy);
+            }
 
             // angular.copy forces the page to re-render. Otherwise it won't reload some pages
             model.widgets = copy;

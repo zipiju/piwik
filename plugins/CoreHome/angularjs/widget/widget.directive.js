@@ -19,8 +19,7 @@
             restrict: 'A',
             scope: {
                 widget: '=',
-                showName: '=?',
-                isFirstInPage: '=?'
+                showName: '=?'
             },
             templateUrl: 'plugins/CoreHome/angularjs/widget/widget.directive.html?cb=' + piwik.cacheBuster,
             compile: function (element, attrs) {
