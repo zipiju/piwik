@@ -1,7 +1,7 @@
 <div>
     <h2 ng-if="widget.name && showName"
         piwik-enriched-headline
-        ng-class="{'noTopMargin': isInFirstRow}"
+        ng-class="{'noTopMargin': widget.isFirstInPage}"
         feature-name="{{widget.name}}">{{widget.name}}</h2>
 
     <div ng-if="!widget.isContainer && widget.widget_url"

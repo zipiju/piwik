@@ -112,8 +112,25 @@
                 }
             }
 
+            var copy = angular.copy(groupedWidgets);
+            copy = markWidgetsInFirstRowOfPage(copy);
+
             // angular.copy forces the page to re-render. Otherwise it won't reload some pages
-            model.widgets = angular.copy(groupedWidgets);
+            model.widgets = copy;
+        }
+
+        function markWidgetsInFirstRowOfPage(widgets)
+        {
+            if (widgets && widgets[0]) {
+                if (widgets[0].group) {
+                    markWidgetsInFirstRowOfPage(widgets[0].left);
+                    markWidgetsInFirstRowOfPage(widgets[0].right);
+                } else {
+                    widgets[0].isFirstInPage = true;
+                }
+            }
+
+            return widgets;
         }
 
         function getRelatedReports(widget)
