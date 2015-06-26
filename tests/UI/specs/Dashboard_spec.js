@@ -150,7 +150,7 @@ describe("Dashboard", function () {
             page.click('.dashboard-manager');
             page.click('li[data-action=showChangeDashboardLayoutDialog]');
             page.click('div[layout=50-50]');
-            page.click('.ui-dialog button>span:contains(Save)', 3000);
+            page.click('.ui-dialog button>span:contains(Save)');
         }, done);
     });
 
@@ -186,7 +186,7 @@ describe("Dashboard", function () {
         expect.screenshot("reset").to.be.capture(function (page) {
             page.click('.dashboard-manager');
             page.click('li[data-action=resetDashboard]');
-            page.click('.ui-dialog button>span:contains(Yes)', 10000);
+            page.click('.ui-dialog button>span:contains(Yes)', 4000);
             page.mouseMove('.dashboard-manager');
         }, done);
     });

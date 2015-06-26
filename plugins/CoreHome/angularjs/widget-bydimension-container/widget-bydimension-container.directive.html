@@ -15,7 +15,7 @@
     </div>
 
     <div style="float:left;max-width:900px;">
-        <h2 ng-if="selectedWidget.name">{{ selectedWidget.name }}</h2>
+        <h2 ng-if="selectedWidget.name" class="noTopMargin">{{ selectedWidget.name }}</h2>
 
         <div ng-if="selectedWidget.widget_url" class="dimensionReport"
              piwik-widget-loader="selectedWidget.widget_url"></div>

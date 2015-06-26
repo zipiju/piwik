@@ -26,7 +26,25 @@
 
                 return function (scope, element, attrs, ngModel) {
                     scope.showName = angular.isDefined(scope.showName) ? scope.showName : true;
-                };
+
+                    function isThisWidgetIsInFirstRowOfPage()
+                    {
+                        var widgetsInFirstRow = angular.element('.reporting-page .row:first [piwik-widget]:nth-child(1)');
+                        var elementScope = element.first().scope();
+
+                        var i;
+                        for (i = 0; i < widgetsInFirstRow.length; i++) {
+                            if (elementScope === angular.element(widgetsInFirstRow[i]).scope()) {
+                                return true;
+                            }
+                        }
+
+                        return false;
+                    }
+
+                    // first widget of first row should not get margin-top:40px
+                    scope.isInFirstRow = isThisWidgetIsInFirstRowOfPage();
+                }
             }
         };
     }

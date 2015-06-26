@@ -16,10 +16,31 @@
             menu: [],
             selected: [],
             fetchMenuItems: fetchMenuItems,
-            reloadMenuItems: reloadMenuItems
+            reloadMenuItems: reloadMenuItems,
+            findSubcategory: findSubcategory
         };
 
         return model;
+
+        function findSubcategory(categoryId, subcategoryId)
+        {
+            var foundCategory = null;
+            var foundSubcategory = null;
+
+            angular.forEach(model.menu, function (category) {
+                if (category.id !== categoryId) {
+                    return;
+                }
+                angular.forEach(category.subcategories, function (subcategory) {
+                    if (subcategory.id === subcategoryId) {
+                        foundCategory = category;
+                        foundSubcategory = subcategory;
+                    }
+                });
+            });
+
+            return {category: foundCategory, subcategory: foundSubcategory};
+        }
 
         function buildMenuFromPages(pages)
         {
