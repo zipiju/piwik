@@ -57,7 +57,9 @@
             }
 
             var widgets = [];
-            var reportsToIgnore = [];
+            var evolutionReports = [];
+            var sparklineReports = [];
+            var reportsToIgnore  = [];
 
             angular.forEach(page.widgets, function (widget) {
 
@@ -68,9 +70,9 @@
                 reportsToIgnore = reportsToIgnore.concat(getRelatedReports(widget));
 
                 if (widget.viewDataTable && widget.viewDataTable === 'graphEvolution') {
-                    model.evolutionReports.push(widget);
+                    evolutionReports.push(widget);
                 } else if (widget.viewDataTable && widget.viewDataTable === 'sparklines') {
-                    model.sparklineReports.push(widget);
+                    sparklineReports.push(widget);
                 } else {
                     widgets.push(widget);
                 }
@@ -112,18 +114,22 @@
                 }
             }
 
-            var copy = angular.copy(groupedWidgets);
+            var copyWidgets    = angular.copy(groupedWidgets);
+            var copyEvolution  = angular.copy(evolutionReports);
+            var copySparklines = angular.copy(sparklineReports);
 
-            if (model.evolutionReports.length) {
-                markWidgetsInFirstRowOfPage(model.evolutionReports);
-            } else if (model.sparklineReports.length) {
-                markWidgetsInFirstRowOfPage(model.sparklineReports);
+            if (copyEvolution.length) {
+                copyEvolution = markWidgetsInFirstRowOfPage(copyEvolution);
+            } else if (copySparklines.length) {
+                copySparklines = markWidgetsInFirstRowOfPage(copySparklines);
             } else {
-                copy = markWidgetsInFirstRowOfPage(copy);
+                copyWidgets = markWidgetsInFirstRowOfPage(copyWidgets);
             }
 
             // angular.copy forces the page to re-render. Otherwise it won't reload some pages
-            model.widgets = copy;
+            model.evolutionReports = copyEvolution;
+            model.sparklineReports = copySparklines;
+            model.widgets          = copyWidgets;
         }
 
         function markWidgetsInFirstRowOfPage(widgets)
