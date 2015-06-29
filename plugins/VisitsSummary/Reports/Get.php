@@ -15,6 +15,7 @@ use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\CoreHome\Columns\Metrics\ActionsPerVisit;
 use Piwik\Plugins\CoreHome\Columns\Metrics\AverageTimeOnSite;
 use Piwik\Plugins\CoreHome\Columns\Metrics\BounceRate;
+use Piwik\Plugins\CoreHome\Columns\UserId;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Plugins\CoreVisualizations\Visualizations\Sparklines;
 use Piwik\Report\ReportWidgetFactory;
@@ -110,6 +111,8 @@ class Get extends \Piwik\Plugin\Report
     private function getSparklineColumns()
     {
         $currentPeriod = Common::getRequestVar('period');
+        $currentIdSite = Common::getRequestVar('idSite');
+        $currentDate   = Common::getRequestVar('date');
         $displayUniqueVisitors = SettingsPiwik::isUniqueVisitorsEnabled($currentPeriod);
 
         $columns = array(
@@ -124,8 +127,11 @@ class Get extends \Piwik\Plugin\Report
             $columns[] = array();
         }
 
-        $columns[] = array('nb_users');
-        $columns[] = array();
+        $userId = new UserId();
+        if ($userId->isUsedInAtLeastOneSite($currentIdSite, $currentPeriod, $currentDate)) {
+            $columns[] = array('nb_users');
+            $columns[] = array();
+        }
 
         $columns[] = array('avg_time_on_site');
 

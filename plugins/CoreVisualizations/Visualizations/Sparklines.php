@@ -49,6 +49,8 @@ class Sparklines extends ViewDataTable
             }
         }
         $this->requestConfig->request_parameters_to_modify['columns'] = $columnsList;
+        $this->requestConfig->request_parameters_to_modify['format_metrics'] = '1';
+
         $data = $this->loadDataTableFromAPI();
 
         if (empty($columns)) {
@@ -82,14 +84,19 @@ class Sparklines extends ViewDataTable
             }
 
             foreach ($column as $col) {
+                $value = $firstRow->getColumn($col);
 
-                if ($col === 'nb_users' && 0 >= $firstRow->getColumns($col)) {
+                if ($value === false) {
+                    $value = 0;
+                }
+
+                if ($col === 'nb_users' && (!is_numeric($value) || 0 >= $value)) {
                     $sparklines[] = $blankSparkline;
                     continue;
                 }
 
                 $sparkline['metrics'][] = array(
-                    'value' => $firstRow->getColumn($col),
+                    'value' => $value,
                     'description' => isset($translations[$col]) ? $translations[$col] : $col
                 );
             }
