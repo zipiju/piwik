@@ -12,9 +12,9 @@
 (function () {
     angular.module('piwikApp').directive('piwikWidgetLoader', piwikWidgetLoader);
 
-    piwikWidgetLoader.$inject = ['piwik', '$location', '$http', '$compile', '$q'];
+    piwikWidgetLoader.$inject = ['piwik', 'piwikUrl', '$http', '$compile', '$q'];
 
-    function piwikWidgetLoader(piwik, $location, $http, $compile, $q){
+    function piwikWidgetLoader(piwik, piwikUrl, $http, $compile, $q){
         return {
             restrict: 'A',
             transclude: true,
@@ -51,24 +51,12 @@
 
                     function getFullWidgetUrl(url) {
 
-                        // available in global scope
-                        var search = $location.search();
+                        var idSite = piwikUrl.getSearchParam('idSite');
+                        var period = piwikUrl.getSearchParam('period');
+                        var date   = piwikUrl.getSearchParam('date');
 
-                        if (!search.idSite) {
-                            // see https://github.com/angular/angular.js/issues/7239 (issue is resolved but problem still exists)
-                            search.idSite = piwik.broadcast.getValueFromUrl('idSite');
-                        }
-
-                        if (!search.period) {
-                            search.period = piwik.broadcast.getValueFromUrl('period');
-                        }
-
-                        if (!search.date) {
-                            search.date = piwik.broadcast.getValueFromUrl('date');
-                        }
-
-                        url += '&idSite=' + search.idSite + '&period=' + search.period;
-                        url += '&date=' + search.date + '&random=' + parseInt(Math.random() * 10000);
+                        url += '&idSite=' + idSite + '&period=' + period;
+                        url += '&date=' + date + '&random=' + parseInt(Math.random() * 10000);
 
                         return url;
                     }
