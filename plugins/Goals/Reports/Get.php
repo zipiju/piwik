@@ -96,15 +96,13 @@ class Get extends Base
 
                 $view->config->addSparklineMetricsToDisplay(array('nb_conversions', 'nb_visits'));
 
-                if (!$onlySummary) {
-                    if ($allowMultiple) {
-                        $view->config->addSparklineMetricsToDisplay(array('nb_visits_converted'));
-                    }
-
-                    $view->config->addSparklineMetricsToDisplay(array('conversion_rate'));
+                if (!$onlySummary && $allowMultiple) {
+                    $view->config->addSparklineMetricsToDisplay(array('nb_visits_converted'));
                 }
 
-                if ($isEcommerceEnabled) {
+                $view->config->addSparklineMetricsToDisplay(array('conversion_rate'));
+
+                if (!$onlySummary && $isEcommerceEnabled) {
                     // TODO this should be done in Ecommerce plugin
                     $view->config->addSparklineMetricsToDisplay(array('revenue'));
                 }
