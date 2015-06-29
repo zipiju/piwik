@@ -23,7 +23,7 @@ class GetVisitInformationPerLocalTime extends Base
     {
         parent::init();
         $this->dimension     = new LocalTime();
-        $this->name          = Piwik::translate('VisitTime_WidgetLocalTime');
+        $this->name          = Piwik::translate('VisitTime_LocalTime');
         $this->documentation = Piwik::translate('VisitTime_WidgetLocalTimeDocumentation', array('<strong>', '</strong>'));
         $this->constantRowsCount = true;
         $this->order = 15;

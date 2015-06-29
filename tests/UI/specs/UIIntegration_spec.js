@@ -243,7 +243,7 @@ describe("UIIntegrationTest", function () { // TODO: Rename to Piwik?
 
     it('should load the goals > management page correctly', function (done) {
         expect.screenshot('goals_manage').to.be.captureSelector('.centerLargeDiv,.top_bar_sites_selector,.entityContainer', function (page) {
-            page.load( "?" + generalParams + "&category=Goals_Goals&subcategory=Goals_ManageGoals");
+            page.load("?" + urlBase + "#?" + generalParams + "&category=Goals_Goals&subcategory=Goals_ManageGoals");
             page.wait(200);
         }, done);
     });
