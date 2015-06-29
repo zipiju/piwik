@@ -11,8 +11,6 @@ namespace Piwik\Plugins\UserCountry\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\UserCountry\Columns\Region;
-use Piwik\Report\ReportWidgetFactory;
-use Piwik\Widget\WidgetsList;
 
 class GetRegion extends Base
 {
@@ -27,14 +25,6 @@ class GetRegion extends Base
         $this->order = 7;
 
         $this->subCategory = 'UserCountry_SubmenuLocations';
-    }
-
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        // $name   = Piwik::translate('UserCountry_WidgetLocation') . ' (' . Piwik::translate('UserCountry_Region') . ')';
-        // $widget = $factory->createWidget()->setName($name);
-        $widget = $factory->createWidget();
-        $widgetsList->addWidget($widget);
     }
 
     public function configureView(ViewDataTable $view)

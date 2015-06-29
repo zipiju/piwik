@@ -89,7 +89,7 @@
                 for (var i = 0; i < widgets.length; i++) {
                     var widget = widgets[i];
 
-                    if (shouldBeRenderedWithFullWidth(widget)) {
+                    if (shouldBeRenderedWithFullWidth(widget) || (widgets[i+1] && shouldBeRenderedWithFullWidth(widgets[i+1]))) {
                         widget.widgets = sortWidgets(widget.widgets);
 
                         groupedWidgets.push(widget);

@@ -29,14 +29,6 @@ class GetCountry extends Base
         $this->subCategory = 'UserCountry_SubmenuLocations';
     }
 
-    public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
-    {
-        // $name   = Piwik::translate('UserCountry_WidgetLocation') . ' (' . Piwik::translate('UserCountry_Country') . ')';
-        // $widget = $factory->createWidget()->setName($name);
-        $widget = $factory->createWidget();
-        $widgetsList->addWidget($widget);
-    }
-
     public function configureView(ViewDataTable $view)
     {
         $view->config->show_exclude_low_population = false;

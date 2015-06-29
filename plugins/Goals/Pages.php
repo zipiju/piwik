@@ -69,7 +69,7 @@ class Pages
             $config->setParameters(array('idGoal' => $goal['idgoal']));
             $config->setOrder(++$this->orderId);
             $config->setIsNotWidgetizable();
-            $config->addParameters(array('allow_multiple' => (int) $goal['allow_multiple']));
+            $config->addParameters(array('allow_multiple' => (int) $goal['allow_multiple'], 'only_summary' => '1'));
             $widgets[] = $config;
         }
 

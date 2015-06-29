@@ -9,6 +9,7 @@
 namespace Piwik\Plugins\Goals\Widgets;
 
 use Piwik\Common;
+use Piwik\Piwik;
 use Piwik\Plugins\Goals\API;
 use Piwik\Widget\WidgetConfig;
 
@@ -22,6 +23,12 @@ class EditGoals extends \Piwik\Widget\Widget
         $config->setCategory('Goals_Goals');
         $config->setSubCategory('Goals_ManageGoals');
         $config->setIsNotWidgetizable();
+
+        if (Piwik::isUserHasAdminAccess($idSite)) {
+            $config->setName('Goals_ManageGoals');
+        } else {
+            $config->setName('Goals_CreateNewGOal');
+        }
 
         if (count($goals) === 0) {
             $config->disable();
