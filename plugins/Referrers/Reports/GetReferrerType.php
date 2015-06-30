@@ -61,7 +61,6 @@ class GetReferrerType extends Base
                 ->forceViewDataTable(Evolution::ID)
                 ->addParameters(array(
                     'columns' => $defaultColumns = array('nb_visits'),
-                    'typeReferrer' => Common::REFERRER_TYPE_DIRECT_ENTRY
                 ))
         );
 
@@ -112,67 +111,6 @@ class GetReferrerType extends Base
             $view->requestConfig->disable_queued_filters = true;
         }
 
-        if ($view->isViewDataTableId(Evolution::ID)) {
-
-            $view->config->add_total_row = true;
-
-            // configure displayed columns
-            if (empty($columns)) {
-                $columns = Common::getRequestVar('columns', false);
-                if (false !== $columns) {
-                    $columns = Piwik::getArrayFromApiParameter($columns);
-                }
-            }
-            if (false !== $columns) {
-                $columns = !is_array($columns) ? array($columns) : $columns;
-            }
-
-            if (!empty($columns)) {
-                $view->config->columns_to_display = $columns;
-            } elseif (empty($view->config->columns_to_display) && !empty($defaultColumns)) {
-                $view->config->columns_to_display = $defaultColumns;
-            }
-
-            // configure selectable columns
-            // todo: should use SettingsPiwik::isUniqueVisitorsEnabled
-            if (Common::getRequestVar('period', false) == 'day') {
-                $selectable = array('nb_visits', 'nb_uniq_visitors', 'nb_users', 'nb_actions');
-            } else {
-                $selectable = array('nb_visits', 'nb_actions');
-            }
-            $view->config->selectable_columns = $selectable;
-
-            // configure displayed rows
-            $visibleRows = Common::getRequestVar('rows', false);
-            if ($visibleRows !== false) {
-                // this happens when the row picker has been used
-                $visibleRows = Piwik::getArrayFromApiParameter($visibleRows);
-
-                // typeReferrer is redundant if rows are defined, so make sure it's not used
-                $view->config->custom_parameters['typeReferrer'] = false;
-            } else {
-                // use $typeReferrer as default
-                $typeReferrer = Common::getRequestVar('typeReferrer', Common::REFERRER_TYPE_DIRECT_ENTRY);
-                $label = Piwik::translate(\Piwik\Plugins\Referrers\getReferrerTypeLabel($typeReferrer));
-                $total = Piwik::translate('General_Total');
-
-                if (!empty($view->config->rows_to_display)) {
-                    $visibleRows = $view->config->rows_to_display;
-                } else {
-                    $visibleRows = array($label, $total);
-                }
-
-                $view->requestConfig->request_parameters_to_modify['rows'] = $label . ',' . $total;
-            }
-            $view->config->row_picker_match_rows_by = 'label';
-            $view->config->rows_to_display = $visibleRows;
-
-            $view->config->documentation = Piwik::translate('Referrers_EvolutionDocumentation') . '<br />'
-                . Piwik::translate('General_BrokenDownReportDocumentation') . '<br />'
-                . Piwik::translate('Referrers_EvolutionDocumentationMoreInfo', '&quot;'
-                    . Piwik::translate('Referrers_ReferrerTypes') . '&quot;');
-
-        }
     }
 
 }

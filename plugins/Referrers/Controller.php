@@ -174,7 +174,7 @@ class Controller extends \Piwik\Plugin\Controller
         } else {
             // use $typeReferrer as default
             if ($typeReferrer === false) {
-                $typeReferrer = Common::getRequestVar('typeReferrer', false);
+                $typeReferrer = Common::getRequestVar('typeReferrer', Common::REFERRER_TYPE_DIRECT_ENTRY);
             }
             $label = self::getTranslatedReferrerTypeLabel($typeReferrer);
             $total = $this->translator->translate('General_Total');
