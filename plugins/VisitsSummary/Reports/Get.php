@@ -60,7 +60,6 @@ class Get extends \Piwik\Plugin\Report
                 ->forceViewDataTable(Evolution::ID)
                 ->setAction('getEvolutionGraph')
                 ->setOrder(5)
-                ->addParameters(array('columns' => $defaultColumns = array('nb_visits')))
         );
 
         $widgetsList->addWidget(

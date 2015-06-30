@@ -51,7 +51,6 @@ class Get extends \Piwik\Plugin\Report
                 ->forceViewDataTable(Evolution::ID)
                 ->setAction('getEvolutionGraph')
                 ->setOrder(1)
-                ->addParameters(array('columns' => array('nb_visits_returning')))
         );
 
         $widgetsList->addWidget(

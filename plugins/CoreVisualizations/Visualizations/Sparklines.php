@@ -54,7 +54,6 @@ class Sparklines extends ViewDataTable
         $data = $this->loadDataTableFromAPI();
 
         $this->applyFilters($data);
-
         if (empty($columns)) {
             $columns = $data->getColumns();
         }

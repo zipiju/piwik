@@ -34,13 +34,11 @@ class Controller extends \Piwik\Plugin\Controller
         parent::__construct();
     }
 
-    public function getEvolutionGraph(array $columns = array(), array $defaultColumns = array(), $callingAction = __FUNCTION__)
+    public function getEvolutionGraph()
     {
-        if (empty($columns)) {
-            $columns = Common::getRequestVar('columns', false);
-            if (false !== $columns) {
-                $columns = Piwik::getArrayFromApiParameter($columns);
-            }
+        $columns = Common::getRequestVar('columns', false);
+        if (false !== $columns) {
+            $columns = Piwik::getArrayFromApiParameter($columns);
         }
 
         $documentation = $this->translator->translate('VisitsSummary_VisitsSummaryDocumentation') . '<br />'
@@ -90,11 +88,11 @@ class Controller extends \Piwik\Plugin\Controller
         }
         // $callingAction may be specified to distinguish between
         // "VisitsSummary_WidgetLastVisits" and "VisitsSummary_WidgetOverviewGraph"
-        $view = $this->getLastUnitGraphAcrossPlugins($this->pluginName, $callingAction, $columns,
+        $view = $this->getLastUnitGraphAcrossPlugins($this->pluginName, __FUNCTION__, $columns,
             $selectableColumns, $documentation);
 
-        if (empty($view->config->columns_to_display) && !empty($defaultColumns)) {
-            $view->config->columns_to_display = $defaultColumns;
+        if (empty($view->config->columns_to_display)) {
+            $view->config->columns_to_display = array('nb_visits');
         }
 
         return $this->renderView($view);
