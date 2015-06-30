@@ -126,11 +126,11 @@ describe("Dashboard", function () {
             page.click('.dashboard-manager');
 
             page.mouseMove('.widgetpreview-categorylist>li:contains(Live!)'); // have to mouse move twice... otherwise Live! will just be highlighted
-            page.mouseMove('.widgetpreview-categorylist>li:contains(Visitors)');
+            page.mouseMove('.widgetpreview-categorylist>li:contains(Visitors):first');
 
-            page.mouseMove('.widgetpreview-widgetlist>li:contains(Visits by Local Time)');
+            page.mouseMove('.widgetpreview-widgetlist>li:contains(Visits per local time)');
 
-            page.click('.widgetpreview-widgetlist>li:contains(Visits by Local Time)');
+            page.click('.widgetpreview-widgetlist>li:contains(Visits per local time)');
         }, done);
     });
 
