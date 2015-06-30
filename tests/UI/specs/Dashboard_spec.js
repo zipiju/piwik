@@ -49,7 +49,7 @@ describe("Dashboard", function () {
         var layout = [
             [
                 {
-                    uniqueId: "widgetVisitsSummarygetEvolutionGraphmoduleVisitsSummaryactiongetEvolutionGraphforceView1viewDataTablegraphEvolutioncolumnsArray",
+                    uniqueId: "widgetVisitsSummarygetEvolutionGraphmoduleVisitsSummaryactiongetEvolutionGraphforceView1viewDataTablegraphEvolution",
                     parameters: {module: "VisitsSummary", action: "getEvolutionGraph", columns: "nb_visits"}
                 }
             ],
