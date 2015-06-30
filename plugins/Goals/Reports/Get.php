@@ -9,6 +9,8 @@
 namespace Piwik\Plugins\Goals\Reports;
 
 use Piwik\Common;
+use Piwik\DataTable;
+use Piwik\Metrics\Formatter;
 use Piwik\Piwik;
 use Piwik\Plugin;
 use Piwik\Plugin\Report;
@@ -75,14 +77,23 @@ class Get extends Base
     public function configureView(ViewDataTable $view)
     {
         if ($view->isViewDataTableId(Sparklines::ID)) {
-            $isEcommerceEnabled = $this->isEcommerceEnabled($this->getIdSite());
+            $idSite = $this->getIdSite();
+            $isEcommerceEnabled = $this->isEcommerceEnabled($idSite);
 
             $idGoal = Common::getRequestVar('idGoal', 0, 'int');
+
+            $formatter = new Formatter();
+            $view->config->filters[] = function (DataTable $table) use ($formatter, $idSite) {
+                $firstRow = $table->getFirstRow();
+                if ($firstRow) {
+                    $revenue = $firstRow->getColumn('revenue');
+                    $firstRow->setColumn('revenue', $formatter->getPrettyMoney($revenue, $idSite));
+                }
+            };
 
             if (empty($idGoal)) {
 
                 $view->config->addSparklineMetricsToDisplay(array('nb_conversions'));
-
                 $view->config->addSparklineMetricsToDisplay(array('conversion_rate'));
 
                 if ($isEcommerceEnabled) {

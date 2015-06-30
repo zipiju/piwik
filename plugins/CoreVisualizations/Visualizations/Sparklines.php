@@ -53,6 +53,8 @@ class Sparklines extends ViewDataTable
 
         $data = $this->loadDataTableFromAPI();
 
+        $this->applyFilters($data);
+
         if (empty($columns)) {
             $columns = $data->getColumns();
         }
@@ -109,6 +111,20 @@ class Sparklines extends ViewDataTable
         $view->sparklines = $sparklines;
 
         return $view->render();
+    }
+
+    private function applyFilters(DataTable\DataTableInterface $table)
+    {
+        foreach ($this->config->getPriorityFilters() as $filter) {
+            $table->filter($filter[0], $filter[1]);
+        }
+
+        // queue other filters so they can be applied later if queued filters are disabled
+        foreach ($this->config->getPresentationFilters() as $filter) {
+            $table->queueFilter($filter[0], $filter[1]);
+        }
+
+        $table->applyQueuedFilters();
     }
 
     /**
