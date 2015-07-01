@@ -75,9 +75,9 @@
 </div>
 
 <div style="float:left;" class="relatedReferrerReports">{{ 'General_View'|translate }}
-    <a href="javascript:broadcast.propagateAjax('module=Referrers&action=getSearchEnginesAndKeywords')">{{ 'Referrers_SubmenuSearchEngines'|translate }}</a>,
-    <a href="javascript:broadcast.propagateAjax('module=Referrers&action=indexWebsites')">{{ 'Referrers_SubmenuWebsites'|translate }}</a>,
-    <a href="javascript:broadcast.propagateAjax('module=Referrers&action=indexCampaigns')">{{ 'Referrers_Campaigns'|translate }}</a>.
+    <a href="#" onclick="this.href=broadcast.buildReportingUrl('category=Referrers_Referrers&subcategory=Referrers_SubmenuSearchEngines')">{{ 'Referrers_SubmenuSearchEngines'|translate }}</a>,
+    <a href="#" onclick="this.href=broadcast.buildReportingUrl('category=Referrers_Referrers&subcategory=Referrers_SubmenuWebsites')">{{ 'Referrers_SubmenuWebsites'|translate }}</a>,
+    <a href="#" onclick="this.href=broadcast.buildReportingUrl('category=Referrers_Referrers&subcategory=Referrers_Campaigns')">{{ 'Referrers_Campaigns'|translate }}</a>.
 </div>
 
 {% include "_sparklineFooter.twig" %}

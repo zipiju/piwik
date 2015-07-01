@@ -172,6 +172,7 @@ var broadcast = {
     },
 
     /**
+     * ONLY USED BY OVERLAY
      * propagateAjax -- update hash values then make ajax calls.
      *    example :
      *       1) <a href="javascript:broadcast.propagateAjax('module=Referrers&action=getKeywords')">View keywords report</a>
@@ -200,7 +201,7 @@ var broadcast = {
         for (var i = 0; i < params_vals.length; i++) {
             currentHashStr = broadcast.updateParamValue(params_vals[i], currentHashStr);
         }
-        
+
         // if the module is not 'Goals', we specifically unset the 'idGoal' parameter
         // this is to ensure that the URLs are clean (and that clicks on graphs work as expected - they are broken with the extra parameter)
         var action = broadcast.getParamValue('action', currentHashStr);
@@ -225,6 +226,51 @@ var broadcast = {
                 historyService.load(currentHashStr);
             });
         }
+    },
+
+    /**
+     * propagateAjax -- update hash values then make ajax calls.
+     *    example :
+     *       1) <a href="javascript:broadcast.propagateAjax('module=Referrers&action=getKeywords')">View keywords report</a>
+     *       2) Main menu li also goes through this function.
+     *
+     * Will propagate your new value into the current hash string and make ajax calls.
+     *
+     * NOTE: this method will only make ajax call and replacing main content.
+     *
+     * @param {string} ajaxUrl  querystring with parameters to be updated
+     * @param {boolean} [disableHistory]  the hash change won't be available in the browser history
+     * @return {void}
+     */
+    buildReportingUrl: function (ajaxUrl, disableHistory) {
+        broadcast.init();
+
+        // abort all existing ajax requests
+        globalAjaxQueue.abort();
+
+        // available in global scope
+        var currentHashStr = broadcast.getHash();
+
+        ajaxUrl = ajaxUrl.replace(/^\?|&#/, '');
+
+        var params_vals = ajaxUrl.split("&");
+        for (var i = 0; i < params_vals.length; i++) {
+            currentHashStr = broadcast.updateParamValue(params_vals[i], currentHashStr);
+        }
+
+        // if the module is not 'Goals', we specifically unset the 'idGoal' parameter
+        // this is to ensure that the URLs are clean (and that clicks on graphs work as expected - they are broken with the extra parameter)
+        var action = broadcast.getParamValue('action', currentHashStr);
+        if (action != 'goalReport' && action != 'ecommerceReport' && action != 'products' && action != 'sales') {
+            currentHashStr = broadcast.updateParamValue('idGoal=', currentHashStr);
+        }
+        // unset idDashboard if use doesn't display a dashboard
+        var module = broadcast.getParamValue('module', currentHashStr);
+        if (module != 'Dashboard') {
+            currentHashStr = broadcast.updateParamValue('idDashboard=', currentHashStr);
+        }
+
+        return '#' + currentHashStr;
     },
 
     /**
