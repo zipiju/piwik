@@ -196,13 +196,11 @@ var broadcast = {
 
         ajaxUrl = ajaxUrl.replace(/^\?|&#/, '');
 
-        var $location = angular.element(document).injector().get('$location');
-
         var params_vals = ajaxUrl.split("&");
         for (var i = 0; i < params_vals.length; i++) {
-            $location.search(i, params_vals[i]);
+            currentHashStr = broadcast.updateParamValue(params_vals[i], currentHashStr);
         }
-
+        
         // if the module is not 'Goals', we specifically unset the 'idGoal' parameter
         // this is to ensure that the URLs are clean (and that clicks on graphs work as expected - they are broken with the extra parameter)
         var action = broadcast.getParamValue('action', currentHashStr);

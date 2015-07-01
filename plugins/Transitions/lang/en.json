@@ -5,6 +5,8 @@
         "ErrorBack": "Go back to the previous action",
         "ExitsInline": "%s exits",
         "NumPageviews": "%s pageviews",
+        "NumDownloads": "%s downloads",
+        "NumOutlinks": "%s outlinks",
         "FromCampaigns": "From Campaigns",
         "FromPreviousPages": "From Internal Pages",
         "FromPreviousPagesInline": "%s from internal pages",
