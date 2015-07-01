@@ -90,9 +90,7 @@
             setTimeout(function () {
                 var element = $('[piwik-dashboard]');
                 var scope = angular.element(element).scope();
-                scope.$apply(function() {
-                    element.attr('dashboardid', dashboardIdToLoad);
-                });
+                scope.fetchDashboard(dashboardIdToLoad);
             }, 0);
 
             return this;
@@ -490,9 +488,66 @@
      * Handle clicks for menu items for choosing between available dashboards
      */
     function rebuildMenu() {
-        angular.element(document).injector().invoke(function (reportingMenuModel) {
-            reportingMenuModel.reloadMenuItems();
-        });
+
+        if ($('[piwik-reporting-menu]').length) {
+            // dashboard in reporting page (regular Piwik UI)
+            angular.element(document).injector().invoke(function (reportingMenuModel) {
+                reportingMenuModel.reloadMenuItems();
+            });
+            return;
+        }
+
+        var _self = this;
+
+        // widgetized
+        var success = function (dashboards) {
+            var dashboardMenuList = $('#Dashboard').find('> ul');
+            var dashboardMenuListItems = dashboardMenuList.find('>li');
+
+            dashboardMenuListItems.filter(function () {
+                return $(this).attr('id').indexOf('Dashboard_embeddedIndex') == 0;
+            }).remove();
+
+            if (dashboards.length > 1
+                || dashboardMenuListItems.length >= 1
+            ) {
+                var items = [];
+                for (var i = 0; i < dashboards.length; i++) {
+                    var $link = $('<a/>').attr('data-idDashboard', dashboards[i].iddashboard).text(dashboards[i].name);
+                    var $li = $('<li/>').attr('id', 'Dashboard_embeddedIndex_' + dashboards[i].iddashboard)
+                        .addClass('dashboardMenuItem').append($link);
+                    items.push($li);
+
+                    if (dashboards[i].iddashboard == dashboardId) {
+                        dashboardName = dashboards[i].name;
+                        $li.addClass('sfHover');
+                    }
+                }
+                dashboardMenuList.prepend(items);
+            } else {
+                dashboardMenuList.hide();
+            }
+
+            dashboardMenuList.find('a[data-idDashboard]').click(function (e) {
+                e.preventDefault();
+
+                var idDashboard = $(this).attr('data-idDashboard');
+
+                $('#Dashboard ul li').removeClass('sfHover');
+
+                methods.loadDashboard.apply(_self, [idDashboard]);
+
+                $(this).closest('li').addClass('sfHover');
+            });
+        };
+
+        var ajaxRequest = new ajaxHelper();
+        ajaxRequest.addParams({
+            module: 'Dashboard',
+            action: 'getAllDashboards'
+        }, 'get');
+        ajaxRequest.setCallback(success);
+        ajaxRequest.send();
     }
 
     /**

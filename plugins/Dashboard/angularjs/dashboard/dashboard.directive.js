@@ -51,7 +51,6 @@
         }
 
         function fetchDashboard(dashboardId) {
-
             $('#dashboardWidgetsArea').innerHTML ='';
 
             var getDashboard = dashboardsModel.getDashboard(dashboardId);
@@ -80,11 +79,12 @@
             },
             link: function (scope, element, attrs) {
 
-                scope.$watch(function(){
-                    return $(element).attr('dashboardid');    // Set a watch on the actual DOM value
-                }, function(newVal){
-                    fetchDashboard(newVal);
-                });
+                scope.$parent.fetchDashboard = function (dashboardId) {
+                    scope.dashboardId = dashboardId;
+                    fetchDashboard(dashboardId)
+                };
+
+                fetchDashboard(scope.dashboardid);
 
                 function onLocationChange(event, url1, url2)
                 {
