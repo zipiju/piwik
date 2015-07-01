@@ -216,7 +216,7 @@ describe("Dashboard", function () {
         expect.screenshot("create_new").to.be.capture(function (page) {
             page.click('.dashboard-manager');
             page.click('li[data-action=createDashboard]');
-            page.sendKeys('#createDashboardName', 'newdash2');
+            page.sendKeys('#createDashboardName:visible', 'newdash2');
             page.click('.ui-dialog[aria-describedby=createDashboardConfirm] button>span:contains(Yes)');
         }, done);
     });

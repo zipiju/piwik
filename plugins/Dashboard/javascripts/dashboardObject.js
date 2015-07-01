@@ -178,6 +178,8 @@
             ajaxRequest.send(true);
         },
 
+        rebuildMenu: rebuildMenu,
+
         /**
          * Removes the current dashboard
          */
@@ -487,12 +489,15 @@
     /**
      * Handle clicks for menu items for choosing between available dashboards
      */
-    function rebuildMenu() {
+    function rebuildMenu(callback) {
 
         if ($('[piwik-reporting-menu]').length) {
             // dashboard in reporting page (regular Piwik UI)
             angular.element(document).injector().invoke(function (reportingMenuModel) {
-                reportingMenuModel.reloadMenuItems();
+                var promise = reportingMenuModel.reloadMenuItems();
+                if (callback) {
+                    promise.then(callback);
+                }
             });
             return;
         }
@@ -539,6 +544,10 @@
 
                 $(this).closest('li').addClass('sfHover');
             });
+
+            if (callback) {
+                callback();
+            }
         };
 
         var ajaxRequest = new ajaxHelper();

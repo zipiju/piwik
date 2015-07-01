@@ -24,9 +24,9 @@ function createDashboard() {
         }, 'post');
         ajaxRequest.setCallback(
             function (id) {
-
                 angular.element(document).injector().invoke(function ($location, reportingMenuModel, dashboardsModel) {
-                    reportingMenuModel.reloadMenuItems().then(function () {
+
+                    $('#dashboardWidgetsArea').dashboard('rebuildMenu', function () {
                         dashboardsModel.reloadAllDashboards().then(function () {
                             $('#dashboardWidgetsArea').dashboard('loadDashboard', id);
                         });
