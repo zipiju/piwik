@@ -86,9 +86,16 @@
                     fetchDashboard(newVal);
                 });
 
+                function onLocationChange(event, url1, url2)
+                {
+                   if (url1 !== url2) {
+                       clearDashboard();
+                   }
+                }
+
                 // should be rather handled in route or so.
-                var unbind = $rootScope.$on('$locationChangeSuccess', clearDashboard);
-                scope.$on('$destroy', clearDashboard());
+                var unbind = $rootScope.$on('$locationChangeSuccess', onLocationChange);
+                scope.$on('$destroy', onLocationChange);
                 scope.$on('$destroy', unbind);
             }
         };
