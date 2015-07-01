@@ -243,10 +243,6 @@ var broadcast = {
      * @return {void}
      */
     buildReportingUrl: function (ajaxUrl, disableHistory) {
-        broadcast.init();
-
-        // abort all existing ajax requests
-        globalAjaxQueue.abort();
 
         // available in global scope
         var currentHashStr = broadcast.getHash();
