@@ -16,7 +16,7 @@ describe("Transitions", function () {
 
     it('should load the transitions popup correctly for the page titles report', function (done) {
         expect.screenshot('transitions_popup_titles').to.be.captureSelector('.ui-dialog', function (page) {
-            page.load("?" + urlBase + "#?" + generalParams + "&category=General_Actions&subcategory=General_Pages");
+            page.load("?" + urlBase + "#?" + generalParams + "&category=General_Actions&subcategory=Actions_SubmenuPageTitles");
 
             page.mouseMove('div.dataTable tbody tr:eq(2)');
             page.mouseMove('a.actionTransitions:visible'); // necessary to get popover to display

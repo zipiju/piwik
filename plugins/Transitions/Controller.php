@@ -22,7 +22,7 @@ class Controller extends \Piwik\Plugin\Controller
      * translation keys.
      */
     private static $metricTranslations = array(
-        'pageviewsInline'                => 'VisitsSummary_NbPageviewsDescription',
+        'pageviewsInline'                => 'Transitions_NumPageviews',
         'loopsInline'                    => 'Transitions_LoopsInline',
         'fromPreviousPages'              => 'Transitions_FromPreviousPages',
         'fromPreviousPagesInline'        => 'Transitions_FromPreviousPagesInline',
