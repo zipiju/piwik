@@ -87,11 +87,9 @@
             dashboardLayout = null;
             dashboardId = dashboardIdToLoad;
 
-            setTimeout(function () {
-                var element = $('[piwik-dashboard]');
-                var scope = angular.element(element).scope();
-                scope.fetchDashboard(dashboardIdToLoad);
-            }, 0);
+            var element = $('[piwik-dashboard]');
+            var scope = angular.element(element).scope();
+            scope.fetchDashboard(dashboardIdToLoad);
 
             return this;
         },
@@ -489,15 +487,12 @@
     /**
      * Handle clicks for menu items for choosing between available dashboards
      */
-    function rebuildMenu(callback) {
+    function rebuildMenu() {
 
         if ($('[piwik-reporting-menu]').length) {
             // dashboard in reporting page (regular Piwik UI)
             angular.element(document).injector().invoke(function (reportingMenuModel) {
-                var promise = reportingMenuModel.reloadMenuItems();
-                if (callback) {
-                    promise.then(callback);
-                }
+                reportingMenuModel.reloadMenuItems();
             });
             return;
         }
@@ -544,10 +539,6 @@
 
                 $(this).closest('li').addClass('sfHover');
             });
-
-            if (callback) {
-                callback();
-            }
         };
 
         var ajaxRequest = new ajaxHelper();
