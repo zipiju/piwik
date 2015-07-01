@@ -207,25 +207,7 @@ abstract class ViewDataTable implements ViewInterface
             $relatedReports = $report->getRelatedReports();
             if (!empty($relatedReports)) {
                 foreach ($relatedReports as $relatedReport) {
-                    $relatedReportName = null;
-
-                    // todo rethink how this works (related report and widget definition),
-                    // maybe we should just always go with the report name?
-                    if (Common::getRequestVar('widget', 0, 'int')) {
-                        $factory = new ReportWidgetFactory($relatedReport);
-                        $list    = new WidgetsList();
-                        $relatedReport->configureWidgets($list, $factory);
-                        $widgets = $list->getWidgets();
-                        // there might be many widgets and we might pick the title of the wrong one
-                        if (!empty($widgets)) {
-                            $widget = array_shift($widgets);
-                            $relatedReportName = Piwik::translate($widget->getName());
-                        }
-                    }
-
-                    if (empty($relatedReportName)) {
-                        $relatedReportName = $relatedReport->getName();
-                    }
+                    $relatedReportName = $relatedReport->getName();
 
                     $this->config->addRelatedReport($relatedReport->getModule() . '.' . $relatedReport->getAction(),
                                                     $relatedReportName);

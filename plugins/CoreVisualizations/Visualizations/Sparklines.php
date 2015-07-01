@@ -13,6 +13,7 @@ use Piwik\DataTable;
 use Piwik\Metrics;
 use Piwik\NoAccessException;
 use Piwik\Period\Range;
+use Piwik\Plugin\Report;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Site;
 use Piwik\Url;

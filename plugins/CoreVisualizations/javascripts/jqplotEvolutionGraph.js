@@ -130,6 +130,10 @@
 
         render: function () {
             JqplotGraphDataTablePrototype.render.call(this);
+
+            if (initializeSparklines) {
+                initializeSparklines();
+            }
         }
     });
 
