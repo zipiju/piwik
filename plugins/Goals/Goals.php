@@ -14,7 +14,7 @@ use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Tracker\GoalManager;
-use Piwik\Widget\SubCategory;
+use Piwik\Widget\Subcategory;
 
 /**
  *
@@ -99,12 +99,12 @@ class Goals extends \Piwik\Plugin
             'Goals.getReportsWithGoalMetrics'        => 'getActualReportsWithGoalMetrics',
             'Translate.getClientSideTranslationKeys' => 'getClientSideTranslationKeys',
             'Metrics.getDefaultMetricTranslations'   => 'addMetricTranslations',
-            'SubCategory.addSubCategories' => 'addSubCategories'
+            'Subcategory.addSubcategories' => 'addSubcategories'
         );
         return $hooks;
     }
 
-    public function addSubCategories(&$subcategories)
+    public function addSubcategories(&$subcategories)
     {
         $idSite = Common::getRequestVar('idSite', 0, 'int');
 
@@ -116,9 +116,9 @@ class Goals extends \Piwik\Plugin
 
         $order = 900;
         foreach ($goals as $goal) {
-            $config = new SubCategory();
+            $config = new Subcategory();
             $config->setName($goal['name']);
-            $config->setCategory('Goals_Goals');
+            $config->setCategoryId('Goals_Goals');
             $config->setId($goal['idgoal']);
             $config->setOrder($order++);
             $subcategories[] = $config;
@@ -202,7 +202,7 @@ class Goals extends \Piwik\Plugin
         foreach (Report::getAllReports() as $report) {
             if ($report->hasGoalMetrics()) {
                 $reportsWithGoals[] = array(
-                    'category' => $report->getCategory(),
+                    'category' => $report->getCategoryId(),
                     'name'     => $report->getName(),
                     'module'   => $report->getModule(),
                     'action'   => $report->getAction(),

@@ -29,7 +29,7 @@ class GetOutlinks extends Base
 
         $this->actionToLoadSubTables = $this->action;
 
-        $this->subCategory = 'General_Outlinks';
+        $this->subcategoryId = 'General_Outlinks';
     }
 
     public function getMetrics()

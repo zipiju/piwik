@@ -19,8 +19,8 @@ use Exception;
  */
 class WidgetConfig
 {
-    protected $category = '';
-    protected $subCategory = '';
+    protected $categoryId = '';
+    protected $subcategoryId = '';
     protected $module = '';
     protected $action = '';
     protected $parameters = array();
@@ -29,26 +29,26 @@ class WidgetConfig
     protected $isEnabled = true;
     protected $isWidgetizable = true;
 
-    public function getCategory()
+    public function getCategoryId()
     {
-        return $this->category;
+        return $this->categoryId;
     }
 
-    public function setCategory($category)
+    public function setCategoryId($categoryId)
     {
-        $this->category = $category;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
 
-    public function getSubCategory()
+    public function getSubcategoryId()
     {
-        return $this->subCategory;
+        return $this->subcategoryId;
     }
 
-    public function setSubCategory($subCategory)
+    public function setSubcategoryId($subcategoryId)
     {
-        $this->subCategory = $subCategory;
+        $this->subcategoryId = $subcategoryId;
 
         return $this;
     }
@@ -94,7 +94,12 @@ class WidgetConfig
      */
     public function getParameters()
     {
-        return $this->parameters;
+        $defaultParams = array(
+            'module' => $this->getModule(),
+            'action' => $this->getAction()
+        );
+
+        return $defaultParams + $this->parameters;
     }
 
     /**
@@ -218,7 +223,11 @@ class WidgetConfig
      */
     public function getUniqueId()
     {
-        return WidgetsList::getWidgetUniqueId($this->getModule(), $this->getAction(), $this->getParameters());
+        $parameters = $this->getParameters();
+        unset($parameters['module']);
+        unset($parameters['action']);
+
+        return WidgetsList::getWidgetUniqueId($this->getModule(), $this->getAction(), $parameters);
     }
 
     public function setIsNotWidgetizable()

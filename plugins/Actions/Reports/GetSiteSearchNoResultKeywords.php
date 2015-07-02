@@ -33,7 +33,7 @@ class GetSiteSearchNoResultKeywords extends SiteSearchBase
         );
         $this->order = 18;
 
-        $this->subCategory = 'Actions_SubmenuSitesearch';
+        $this->subcategoryId = 'Actions_SubmenuSitesearch';
     }
 
     public function getMetrics()

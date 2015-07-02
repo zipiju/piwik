@@ -21,6 +21,6 @@ class GetItemsCategory extends BaseItem
         $this->dimension = new ProductCategory();
         $this->order     = 32;
 
-        $this->subCategory = 'Goals_Products';
+        $this->subcategoryId = 'Goals_Products';
     }
 }

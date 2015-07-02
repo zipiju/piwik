@@ -14,8 +14,8 @@ class GetVisitorMap extends \Piwik\Widget\Widget
 {
     public static function configure(WidgetConfig $config)
     {
-        $config->setCategory('General_Visitors');
-        $config->setSubCategory('UserCountry_SubmenuLocations');
+        $config->setCategoryId('General_Visitors');
+        $config->setSubcategoryId('UserCountry_SubmenuLocations');
         $config->setName('UserCountryMap_VisitorMap');
         $config->setAction('visitorMap');
         $config->setOrder(1);

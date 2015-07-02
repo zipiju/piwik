@@ -24,7 +24,7 @@ class GetCustomVariables extends Base
         $this->actionToLoadSubTables = 'getCustomVariablesValuesFromNameId';
         $this->order = 10;
 
-        $this->subCategory    = 'CustomVariables_CustomVariables';
+        $this->subcategoryId    = 'CustomVariables_CustomVariables';
         $this->hasGoalMetrics = true;
     }
 

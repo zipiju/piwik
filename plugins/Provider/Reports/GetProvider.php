@@ -20,13 +20,13 @@ class GetProvider extends Report
 {
     protected function init()
     {
-        $this->category      = 'General_Visitors';
+        $this->categoryId      = 'General_Visitors';
         $this->dimension     = new Provider();
         $this->name          = Piwik::translate('Provider_ColumnProvider');
         $this->documentation = Piwik::translate('Provider_ProviderReportDocumentation', '<br />');
         $this->order = 50;
 
-        $this->subCategory = 'UserCountry_SubmenuLocations';
+        $this->subcategoryId = 'UserCountry_SubmenuLocations';
     }
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)

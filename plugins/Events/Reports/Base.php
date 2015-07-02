@@ -17,8 +17,8 @@ abstract class Base extends \Piwik\Plugin\Report
 {
     protected function init()
     {
-        $this->category = 'General_Actions';
-        $this->subCategory = 'Events_Events';
+        $this->categoryId = 'General_Actions';
+        $this->subcategoryId = 'Events_Events';
 
         $this->processedMetrics = array(
             new AverageEventValue()

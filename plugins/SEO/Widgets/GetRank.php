@@ -21,7 +21,7 @@ class GetRank extends \Piwik\Widget\Widget
 {
     public static function configure(WidgetConfig $config)
     {
-        $config->setCategory('SEO');
+        $config->setCategoryId('SEO');
         $config->setName('SEO_SeoRankings');
     }
 

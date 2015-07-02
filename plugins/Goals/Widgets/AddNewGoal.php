@@ -20,8 +20,8 @@ class AddNewGoal extends \Piwik\Widget\Widget
         $idSite = Common::getRequestVar('idSite', null, 'int');
         $goals  = API::getInstance()->getGoals($idSite);
 
-        $config->setCategory('Goals_Goals');
-        $config->setSubCategory('Goals_AddNewGoal');
+        $config->setCategoryId('Goals_Goals');
+        $config->setSubcategoryId('Goals_AddNewGoal');
         $config->setParameters(array('idGoal' => ''));
         $config->setIsNotWidgetizable();
 

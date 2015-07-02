@@ -44,9 +44,9 @@ class ReportWidgetConfig extends WidgetConfig
 
     public function getParameters()
     {
+        $parameters = parent::getParameters();
+
         $defaultParams = array(
-            'module' => $this->getModule(),
-            'action' => $this->getAction(),
             'forceView' => (int) $this->forceViewDataTable
         );
 
@@ -54,7 +54,7 @@ class ReportWidgetConfig extends WidgetConfig
             $defaultParams['viewDataTable'] = $this->viewDataTable;
         }
 
-        return $defaultParams + $this->parameters;
+        return $defaultParams + $parameters;
     }
 
     /**

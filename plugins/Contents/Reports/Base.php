@@ -20,8 +20,8 @@ abstract class Base extends Report
 {
     protected function init()
     {
-        $this->category = 'General_Actions';
-        $this->subCategory = 'Contents_Contents';
+        $this->categoryId = 'General_Actions';
+        $this->subcategoryId = 'Contents_Contents';
     }
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)

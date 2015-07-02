@@ -36,7 +36,7 @@ class GetReferrerType extends Base
         $this->constantRowsCount = true;
         $this->hasGoalMetrics = true;
         $this->order = 1;
-        $this->subCategory = 'Referrers_WidgetGetAll';
+        $this->subcategoryId = 'Referrers_WidgetGetAll';
     }
 
     public function getDefaultTypeViewDataTable()
@@ -49,13 +49,13 @@ class GetReferrerType extends Base
         $widgetsList->addWidget(
             $factory->createWidget()
                     ->setName('Referrers_ReferrerTypes')
-                    ->setSubCategory('Referrers_WidgetGetAll')
+                    ->setSubcategoryId('Referrers_WidgetGetAll')
         );
 
         $widgetsList->addWidget(
             $factory->createWidget()
                 ->setName('General_EvolutionOverPeriod')
-                ->setSubCategory('General_Overview')
+                ->setSubcategoryId('General_Overview')
                 ->setAction('getEvolutionGraph')
                 ->setIsNotWidgetizable()
                 ->forceViewDataTable(Evolution::ID)
@@ -69,7 +69,7 @@ class GetReferrerType extends Base
                 ->forceViewDataTable(Sparklines::ID)
                 ->setIsNotWidgetizable()
                 ->setName('Referrers_Type')
-                ->setSubCategory('General_Overview')
+                ->setSubcategoryId('General_Overview')
                 ->setOrder(10)
         );
     }

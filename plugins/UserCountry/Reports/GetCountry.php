@@ -26,7 +26,7 @@ class GetCountry extends Base
         $this->metrics        = array('nb_visits', 'nb_uniq_visitors', 'nb_actions');
         $this->hasGoalMetrics = true;
         $this->order = 5;
-        $this->subCategory = 'UserCountry_SubmenuLocations';
+        $this->subcategoryId = 'UserCountry_SubmenuLocations';
     }
 
     public function configureView(ViewDataTable $view)

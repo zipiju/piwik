@@ -42,7 +42,7 @@ class GetExitPageUrls extends Base
 
         $this->order = 4;
 
-        $this->subCategory = 'Actions_SubmenuPagesExit';
+        $this->subcategoryId = 'Actions_SubmenuPagesExit';
     }
 
     public function getProcessedMetrics()

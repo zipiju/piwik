@@ -30,7 +30,7 @@ class Get extends \Piwik\Plugin\Report
     protected function init()
     {
         parent::init();
-        $this->category      = 'General_Visitors';
+        $this->categoryId      = 'General_Visitors';
         $this->name          = Piwik::translate('VisitsSummary_VisitsSummary');
         $this->documentation = ''; // TODO
         $this->processedMetrics = array(
@@ -45,7 +45,7 @@ class Get extends \Piwik\Plugin\Report
             'nb_actions',
             'max_actions'
         );
-        $this->subCategory = 'General_Overview';
+        $this->subcategoryId = 'General_Overview';
         // Used to process metrics, not displayed/used directly
 //								'sum_visit_length',
 //								'nb_visits_converted',

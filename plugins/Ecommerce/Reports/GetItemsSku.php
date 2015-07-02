@@ -22,7 +22,7 @@ class GetItemsSku extends BaseItem
         $this->dimension = new ProductSku();
         $this->order     = 30;
 
-        $this->subCategory = 'Goals_Products';
+        $this->subcategoryId = 'Goals_Products';
     }
 
 }

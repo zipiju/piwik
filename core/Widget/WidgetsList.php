@@ -119,7 +119,7 @@ class WidgetsList
     public function remove($widgetCategory, $widgetName = false)
     {
         foreach ($this->widgets as $index => $widget) {
-            if ($widget->getCategory() === $widgetCategory) {
+            if ($widget->getCategoryId() === $widgetCategory) {
                 if (!$widgetName || $widget->getName() === $widgetName) {
                     unset($this->widgets[$index]);
                 }

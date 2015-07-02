@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class ActionsCategory extends Category
 {
-    protected $name = 'General_Actions';
+    protected $id = 'General_Actions';
     protected $order = 10;
 }

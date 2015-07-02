@@ -16,7 +16,7 @@ class GetVisitorProfilePopup extends \Piwik\Widget\Widget
 
     public static function configure(WidgetConfig $config)
     {
-        $config->setCategory('General_Visitors');
+        $config->setCategoryId('General_Visitors');
         $config->setName('Live_VisitorProfile');
         $config->setOrder(25);
 

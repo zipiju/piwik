@@ -27,7 +27,7 @@ class GetContinent extends Base
         $this->hasGoalMetrics = true;
         $this->order = 6;
 
-        $this->subCategory = 'UserCountry_SubmenuLocations';
+        $this->subcategoryId = 'UserCountry_SubmenuLocations';
     }
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)

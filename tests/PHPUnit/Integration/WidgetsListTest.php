@@ -65,7 +65,7 @@ class WidgetsListTest extends IntegrationTestCase
     {
         $widgetsPerCategory = array();
         foreach ($list->getWidgets() as $widgetConfig) {
-            $category = $widgetConfig->getCategory();
+            $category = $widgetConfig->getCategoryId();
             if (!isset($widgetsPerCategory[$category])) {
                 $widgetsPerCategory[$category] = array();
             }
@@ -159,7 +159,7 @@ class WidgetsListTest extends IntegrationTestCase
         $_GET['idSite'] = 1;
 
         $config = new WidgetConfig();
-        $config->setCategory('Actions');
+        $config->setCategoryId('Actions');
         $config->setName('Pages');
         $config->setModule('Actions');
         $config->setAction('getPageUrls');

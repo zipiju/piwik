@@ -33,7 +33,7 @@ class GetBasicReport extends Report
         $this->order  = 20;
         $this->module = 'TestPlugin';
         $this->action = 'getBasicReport';
-        $this->category = 'Goals_Goals';
+        $this->categoryId = 'Goals_Goals';
         $this->actionToLoadSubTables = 'invalidReport';
     }
 }
@@ -45,7 +45,7 @@ class GetAdvancedReport extends GetBasicReport
         parent::init();
 
         $this->action      = 'getAdvancedReport';
-        $this->subCategory = 'Actions_SubmenuPageTitles';
+        $this->subcategoryId = 'Actions_SubmenuPageTitles';
         $this->documentation = Piwik::translate('ExampleReportDocumentation');
         $this->dimension   = new ExitPageUrl();
         $this->metrics     = array('nb_actions', 'nb_visits');
@@ -155,7 +155,7 @@ class ReportTest extends IntegrationTestCase
     public function test_getCategory_shouldReturnTranslatedCategory()
     {
         Translate::loadAllTranslations();
-        $this->assertEquals('Goals_Goals', $this->advancedReport->getCategory());
+        $this->assertEquals('Goals_Goals', $this->advancedReport->getCategoryId());
         Translate::reset();
     }
 

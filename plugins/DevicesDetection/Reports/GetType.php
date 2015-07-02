@@ -23,7 +23,7 @@ class GetType extends Base
         $this->documentation = ''; // TODO
         $this->order = 0;
 
-        $this->subCategory = 'DevicesDetection_Devices';
+        $this->subcategoryId = 'DevicesDetection_Devices';
     }
 
     public function configureView(ViewDataTable $view)

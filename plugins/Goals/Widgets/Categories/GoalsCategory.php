@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class GoalsCategory extends Category
 {
-    protected $name = 'Goals_Goals';
+    protected $id = 'Goals_Goals';
     protected $order = 25;
 }

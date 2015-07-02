@@ -40,14 +40,14 @@ class GetTemperaturesEvolution extends Base
     {
         $widgetsList->addWidget(
             $factory->createWidget()
-                    ->setSubCategory('Sparklines')
+                    ->setSubcategoryId('Sparklines')
                     ->forceViewDataTable(Sparklines::ID)
         );
 
         $widgetsList->addWidget(
             $factory->createWidget()
                     ->setName('ExampleUI_TemperaturesEvolution')
-                    ->setSubCategory('Evolution Graph')
+                    ->setSubcategoryId('Evolution Graph')
                     ->forceViewDataTable(Evolution::ID)
                     ->setParameters(array('columns' => array('server1', 'server2')))
         );

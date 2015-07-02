@@ -112,8 +112,8 @@ class GenerateWidget extends GeneratePluginBase
     {
         $categories = array();
         foreach (WidgetsList::get()->getWidgets() as $widget) {
-            if ($widget->getCategory()) {
-                $categories[] = Piwik::translate($widget->getCategory());
+            if ($widget->getCategoryId()) {
+                $categories[] = Piwik::translate($widget->getCategoryId());
             }
         }
         $categories = array_values(array_unique($categories));

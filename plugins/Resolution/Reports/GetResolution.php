@@ -22,7 +22,7 @@ class GetResolution extends Base
         $this->documentation = ''; // TODO
         $this->order = 8;
 
-        $this->subCategory = 'DevicesDetection_Devices';
+        $this->subcategoryId = 'DevicesDetection_Devices';
     }
 
     public function configureView(ViewDataTable $view)

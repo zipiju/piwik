@@ -17,8 +17,8 @@ class ProductsByDimension extends WidgetContainerConfig
 {
     protected $layout = CoreHome::WIDGET_CONTAINER_LAYOUT_BY_DIMENSION;
     protected $id = 'Products';
-    protected $category = 'Goals_Ecommerce';
-    protected $subCategory = 'Goals_Products';
+    protected $categoryId = 'Goals_Ecommerce';
+    protected $subcategoryId = 'Goals_Products';
 
     public function isEnabled()
     {

@@ -53,11 +53,11 @@ class ReportWidgetFactory
     public function createContainerWidget($containerId)
     {
         $widget = new WidgetContainerConfig();
-        $widget->setCategory($this->report->getCategory());
+        $widget->setCategoryId($this->report->getCategoryId());
         $widget->setId($containerId);
 
-        if ($this->report->getSubCategory()) {
-            $widget->setSubCategory($this->report->getSubCategory());
+        if ($this->report->getSubcategoryId()) {
+            $widget->setSubcategoryId($this->report->getSubcategoryId());
         }
 
         $orderThatListsReportsAtTheEndOfEachCategory = 100 + $this->report->getOrder();
@@ -70,14 +70,14 @@ class ReportWidgetFactory
     {
         $widget = new ReportWidgetConfig();
         $widget->setName($this->report->getName());
-        $widget->setCategory($this->report->getCategory());
+        $widget->setCategoryId($this->report->getCategoryId());
 
         if ($this->report->getDefaultTypeViewDataTable()) {
             $widget->setDefaultView($this->report->getDefaultTypeViewDataTable());
         }
 
-        if ($this->report->getSubCategory()) {
-            $widget->setSubCategory($this->report->getSubCategory());
+        if ($this->report->getSubcategoryId()) {
+            $widget->setSubcategoryId($this->report->getSubcategoryId());
         }
 
         $widget->setModule($this->report->getModule());

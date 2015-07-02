@@ -80,7 +80,7 @@ class GenerateReport extends GeneratePluginBase
         $order = 1;
 
         foreach (Report::getAllReports() as $report) {
-            if ($report->getCategory() === $category) {
+            if ($report->getCategoryId() === $category) {
                 if ($report->getOrder() > $order) {
                     $order = $report->getOrder() + 1;
                 }
@@ -192,8 +192,8 @@ class GenerateReport extends GeneratePluginBase
 
         $categories = array();
         foreach (Report::getAllReports() as $report) {
-            if ($report->getCategory()) {
-                $categories[] = Piwik::translate($report->getCategory());
+            if ($report->getCategoryId()) {
+                $categories[] = Piwik::translate($report->getCategoryId());
             }
         }
         $categories = array_values(array_unique($categories));

@@ -43,7 +43,7 @@ class Pages
 
         $config = $this->factory->createWidget();
         $config->forceViewDataTable(Evolution::ID);
-        $config->setSubCategory($subcategory);
+        $config->setSubcategoryId($subcategory);
         $config->setAction('getEvolutionGraph');
         $config->setOrder(++$this->orderId);
         $config->setParameters(array('columns' => 'nb_conversions'));
@@ -52,7 +52,7 @@ class Pages
 
         $config = $this->factory->createWidget();
         $config->forceViewDataTable(Sparklines::ID);
-        $config->setSubCategory($subcategory);
+        $config->setSubcategoryId($subcategory);
         $config->setName('');
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
@@ -64,7 +64,7 @@ class Pages
 
             $config = $this->factory->createWidget();
             $config->setName($goalTranslated);
-            $config->setSubCategory($subcategory);
+            $config->setSubcategoryId($subcategory);
             $config->forceViewDataTable(Sparklines::ID);
             $config->setParameters(array('idGoal' => $goal['idgoal']));
             $config->setOrder(++$this->orderId);
@@ -75,7 +75,7 @@ class Pages
 
         if ($this->getConversionForGoal()) {
             $config = $this->factory->createContainerWidget('Goals');
-            $config->setSubCategory($subcategory);
+            $config->setSubcategoryId($subcategory);
             $config->setName('Goals_ConversionsOverviewBy');
             $config->setOrder(++$this->orderId);
             $config->setIsNotWidgetizable();
@@ -99,8 +99,8 @@ class Pages
         $widgets = array();
         $config  = $this->factory->createWidget();
         $config->forceViewDataTable(Evolution::ID);
-        $config->setCategory($category);
-        $config->setSubCategory($subcategory);
+        $config->setCategoryId($category);
+        $config->setSubcategoryId($subcategory);
         $config->setAction('getEvolutionGraph');
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
@@ -108,9 +108,9 @@ class Pages
         $widgets[] = $config;
 
         $config = $this->factory->createWidget();
-        $config->setCategory($category);
+        $config->setCategoryId($category);
         $config->forceViewDataTable(Sparklines::ID);
-        $config->setSubCategory($subcategory);
+        $config->setSubcategoryId($subcategory);
         $config->setName('');
         $config->setModule('Ecommerce');
         $config->setAction('getSparklines');
@@ -124,7 +124,7 @@ class Pages
             $config = $this->factory->createWidget();
             $config->setModule('Ecommerce');
             $config->setAction('getConversionsOverview');
-            $config->setSubCategory($idGoal);
+            $config->setSubcategoryId($idGoal);
             $config->setName('Goals_ConversionsOverview');
             $config->setParameters(array('idGoal' => $idGoal));
             $config->setOrder(++$this->orderId);
@@ -145,8 +145,8 @@ class Pages
         $subcategory = 'Ecommerce_Sales';
 
         $config = $this->factory->createContainerWidget('GoalsOrder');
-        $config->setCategory($category);
-        $config->setSubCategory($subcategory);
+        $config->setCategoryId($category);
+        $config->setSubcategoryId($subcategory);
         $config->setName('');
         $config->setParameters(array('idGoal' => Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER));
         $config->setOrder(++$this->orderId);
@@ -169,7 +169,7 @@ class Pages
         $params = array('idGoal' => $idGoal);
 
         $config = $this->factory->createWidget();
-        $config->setSubCategory($idGoal);
+        $config->setSubcategoryId($idGoal);
         $config->forceViewDataTable(Evolution::ID);
         $config->setAction('getEvolutionGraph');
         $config->setParameters($params);
@@ -178,7 +178,7 @@ class Pages
         $widgets[] = $config;
 
         $config = $this->factory->createWidget();
-        $config->setSubCategory($idGoal);
+        $config->setSubcategoryId($idGoal);
         $config->setName('');
         $config->forceViewDataTable(Sparklines::ID);
         $config->setParameters($params);
@@ -191,7 +191,7 @@ class Pages
         if ($conversions > 0) {
             $config = $this->factory->createWidget();
             $config->setAction('goalConversionsOverview');
-            $config->setSubCategory($idGoal);
+            $config->setSubcategoryId($idGoal);
             $config->setName('Goals_ConversionsOverview');
             $config->setParameters($params);
             $config->setOrder(++$this->orderId);
@@ -204,7 +204,7 @@ class Pages
 
         $config = $this->factory->createContainerWidget('Goals' . $idGoal);
         $config->setName(Piwik::translate('Goals_GoalConversionsBy', array($name)));
-        $config->setSubCategory($idGoal);
+        $config->setSubcategoryId($idGoal);
         $config->setParameters(array());
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
@@ -218,7 +218,8 @@ class Pages
         /** @var \Piwik\Widget\WidgetConfig[] $widgets */
         $firstWidget = reset($widgets);
 
-        $id = $firstWidget->getCategory() . $firstWidget->getSubCategory();
+        /** @var \Piwik\Report\ReportWidgetConfig $firstWidget */
+        $id = $firstWidget->getCategoryId() . $firstWidget->getSubcategoryId();
 
         if (!empty($pageName)) {
             // make sure to not show two titles (one for this container and one for the first widget)
@@ -227,8 +228,8 @@ class Pages
 
         $config = $this->factory->createContainerWidget($id);
         $config->setName($pageName);
-        $config->setCategory($firstWidget->getCategory());
-        $config->setSubCategory($firstWidget->getSubCategory());
+        $config->setCategoryId($firstWidget->getCategoryId());
+        $config->setSubcategoryId($firstWidget->getSubcategoryId());
         $config->setIsWidgetizable();
         $config->setOrder($this->orderId++);
 
@@ -295,8 +296,8 @@ class Pages
 
                     $widget = $this->createWidgetForReport($report['module'], $report['action']);
                     $widget->setParameters($customParams);
-                    $widget->setCategory($categoryText);
-                    $widget->setSubCategory($categoryText);
+                    $widget->setCategoryId($categoryText);
+                    $widget->setSubcategoryId($categoryText);
                     $widget->setIsNotWidgetizable();
 
                     if (!empty($report['viewDataTable'])) {

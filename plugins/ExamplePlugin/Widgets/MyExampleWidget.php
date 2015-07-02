@@ -26,7 +26,7 @@ class MyExampleWidget extends Widget
          * Set the category the widget belongs to. You can reuse any existing widget category or define
          * your own category.
          */
-        $config->setCategory('Example Widgets');
+        $config->setCategoryId('Example Widgets');
 
         /**
          * Set the name of the widget belongs to.

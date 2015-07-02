@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class LiveCategory extends Category
 {
-    protected $name = 'Live!';
+    protected $id = 'Live!';
     protected $order = 2;
 }

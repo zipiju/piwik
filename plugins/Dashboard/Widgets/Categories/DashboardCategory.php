@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class DashboardCategory extends Category
 {
-    protected $name = 'Dashboard_Dashboard';
+    protected $id = 'Dashboard_Dashboard';
     protected $order = 0;
 }

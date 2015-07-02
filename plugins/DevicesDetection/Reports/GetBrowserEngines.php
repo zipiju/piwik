@@ -23,7 +23,7 @@ class GetBrowserEngines extends Base
         $this->documentation = Piwik::translate('DevicesDetection_BrowserEngineDocumentation', '<br />');
         $this->order = 10;
 
-        $this->subCategory = 'DevicesDetection_Software';
+        $this->subcategoryId = 'DevicesDetection_Software';
     }
 
     public function getDefaultTypeViewDataTable()

@@ -14,7 +14,7 @@ class Widget extends \Piwik\Widget\Widget
 {
     public static function configure(WidgetConfig $config)
     {
-        $config->setCategory('Live!');
+        $config->setCategoryId('Live!');
         $config->setName('Live_VisitorsInRealTime');
         $config->setOrder(20);
     }

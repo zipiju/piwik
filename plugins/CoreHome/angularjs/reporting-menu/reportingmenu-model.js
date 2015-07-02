@@ -47,7 +47,7 @@
             var menu = [];
 
             var activeCategory = $location.search().category;
-            var activeSubCategory = $location.search().subcategory;
+            var activeSubcategory = $location.search().subcategory;
 
             var categoriesHandled = {};
             angular.forEach(pages, function (page, key) {
@@ -74,7 +74,7 @@
                     if (page.category.id === categoryId) {
                         var subcategory = page.subcategory;
 
-                        if (subcategory.id === activeSubCategory) {
+                        if (subcategory.id === activeSubcategory) {
                             subcategory.active = true;
                         }
 

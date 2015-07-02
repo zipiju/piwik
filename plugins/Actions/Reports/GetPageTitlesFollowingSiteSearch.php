@@ -33,7 +33,7 @@ class GetPageTitlesFollowingSiteSearch extends SiteSearchBase
         );
         $this->order = 19;
 
-        $this->subCategory = 'Actions_SubmenuSitesearch';
+        $this->subcategoryId = 'Actions_SubmenuSitesearch';
     }
 
     public function configureView(ViewDataTable $view)

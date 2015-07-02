@@ -15,7 +15,7 @@ class ContentsByDimension extends WidgetContainerConfig
 {
     protected $layout = CoreHome::WIDGET_CONTAINER_LAYOUT_BY_DIMENSION;
     protected $id = 'Contents';
-    protected $category = 'General_Actions';
-    protected $subCategory = 'Contents_Contents';
+    protected $categoryId = 'General_Actions';
+    protected $subcategoryId = 'Contents_Contents';
 
 }

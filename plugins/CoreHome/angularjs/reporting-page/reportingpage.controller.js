@@ -14,7 +14,7 @@
         $scope.pageModel = pageModel;
 
         var currentCategory = null;
-        var currentSubCategory = null;
+        var currentSubcategory = null;
 
         $scope.renderPage = function (category, subcategory) {
             if (!category || !subcategory) {
@@ -24,7 +24,7 @@
             }
 
             currentCategory = category;
-            currentSubCategory = subcategory;
+            currentSubcategory = subcategory;
 
             pageModel.fetchPage(category, subcategory).then(function () {
                 $scope.hasNoPage = !pageModel.page;
@@ -41,7 +41,7 @@
             var category = $location.search().category;
             var subcategory = $location.search().subcategory;
 
-            if (category === currentCategory && subcategory === currentSubCategory) {
+            if (category === currentCategory && subcategory === currentSubcategory) {
                 return;
             }
 

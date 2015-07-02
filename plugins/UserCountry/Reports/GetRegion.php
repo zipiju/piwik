@@ -24,7 +24,7 @@ class GetRegion extends Base
         $this->hasGoalMetrics = true;
         $this->order = 7;
 
-        $this->subCategory = 'UserCountry_SubmenuLocations';
+        $this->subcategoryId = 'UserCountry_SubmenuLocations';
     }
 
     public function configureView(ViewDataTable $view)

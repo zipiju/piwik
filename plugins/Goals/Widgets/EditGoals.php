@@ -20,8 +20,8 @@ class EditGoals extends \Piwik\Widget\Widget
         $idSite = Common::getRequestVar('idSite', null, 'int');
         $goals  = API::getInstance()->getGoals($idSite);
 
-        $config->setCategory('Goals_Goals');
-        $config->setSubCategory('Goals_ManageGoals');
+        $config->setCategoryId('Goals_Goals');
+        $config->setSubcategoryId('Goals_ManageGoals');
         $config->setIsNotWidgetizable();
 
         if (Piwik::isUserHasAdminAccess($idSite)) {

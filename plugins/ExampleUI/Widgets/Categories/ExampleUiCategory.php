@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class ExampleUiCategory extends Category
 {
-    protected $name = 'ExampleUI_UiFramework';
+    protected $id = 'ExampleUI_UiFramework';
     protected $order = 90;
 }

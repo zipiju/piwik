@@ -37,7 +37,7 @@ FrontController::getInstance()->init();
 $widgets = WidgetsList::get()->getWidgets();
 $widgetCategoriesHandled = array();
 foreach ($widgets as $widgetConfig) {
-    $category = $widgetConfig->getCategory();
+    $category = $widgetConfig->getCategoryId();
 
     if (!empty($widgetCategoriesHandled[$category])) {
         continue;
@@ -47,7 +47,7 @@ foreach ($widgets as $widgetConfig) {
     echo '<h2>' . $category . '</h2>';
 
     foreach ($widgets as $widget) {
-        if ($category !== $widget->getCategory()) {
+        if ($category !== $widget->getCategoryId()) {
             continue;
         }
 

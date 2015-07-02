@@ -25,7 +25,7 @@ class GetSearchEngines extends Base
         $this->hasGoalMetrics = true;
         $this->order = 7;
 
-        $this->subCategory = 'Referrers_SubmenuSearchEngines';
+        $this->subcategoryId = 'Referrers_SubmenuSearchEngines';
     }
 
     public function configureView(ViewDataTable $view)

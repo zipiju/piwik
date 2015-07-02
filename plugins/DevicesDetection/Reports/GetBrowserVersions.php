@@ -22,7 +22,7 @@ class GetBrowserVersions extends Base
         $this->documentation = ''; // TODO
         $this->order = 6;
 
-        $this->subCategory = 'DevicesDetection_Software';
+        $this->subcategoryId = 'DevicesDetection_Software';
     }
 
     public function configureView(ViewDataTable $view)

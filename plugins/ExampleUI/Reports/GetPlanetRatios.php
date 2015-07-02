@@ -27,7 +27,7 @@ class GetPlanetRatios extends Base
         parent::init();
 
         $this->name = 'Pie graph';
-        $this->subCategory = $this->name;
+        $this->subcategoryId = $this->name;
         $this->order = 112;
     }
 
@@ -46,7 +46,7 @@ class GetPlanetRatios extends Base
         $widgetsList->addWidget(
             $factory->createWidget()
                 ->setName('Simple tag cloud')
-                ->setSubCategory('Tag clouds')
+                ->setSubcategoryId('Tag clouds')
                 ->forceViewDataTable(Cloud::ID)
                 ->setOrder(5)
         );

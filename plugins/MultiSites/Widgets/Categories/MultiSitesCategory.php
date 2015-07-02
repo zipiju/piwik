@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class MultiSitesCategory extends Category
 {
-    protected $name = 'General_MultiSitesSummary';
+    protected $id = 'General_MultiSitesSummary';
     protected $order = 3;
 }

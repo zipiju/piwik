@@ -25,7 +25,7 @@ class GetPlanetRatiosWithLogos extends Base
         parent::init();
 
         $this->name = Piwik::translate('Advanced tag cloud: with logos and links');
-        $this->subCategory = 'Tag clouds';
+        $this->subcategoryId = 'Tag clouds';
         $this->order = 113;
     }
 

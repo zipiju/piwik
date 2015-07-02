@@ -28,7 +28,7 @@ class GetWebsites extends Base
         $this->hasGoalMetrics = true;
         $this->order = 5;
 
-        $this->subCategory = 'Referrers_SubmenuWebsites';
+        $this->subcategoryId = 'Referrers_SubmenuWebsites';
     }
 
     public function configureView(ViewDataTable $view)

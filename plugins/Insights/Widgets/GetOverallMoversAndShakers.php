@@ -14,7 +14,7 @@ class GetOverallMoversAndShakers extends \Piwik\Widget\Widget
 {
     public static function configure(WidgetConfig $config)
     {
-        $config->setCategory('Insights_WidgetCategory');
+        $config->setCategoryId('Insights_WidgetCategory');
         $config->setName('Insights_MoversAndShakersWidgetTitle');
     }
 }

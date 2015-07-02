@@ -18,7 +18,7 @@ abstract class SiteSearchBase extends Base
     protected function init()
     {
         parent::init();
-        $this->category = 'General_Actions';
+        $this->categoryId = 'General_Actions';
     }
 
     public function isEnabled()

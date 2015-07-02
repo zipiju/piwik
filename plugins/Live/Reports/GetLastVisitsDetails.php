@@ -21,8 +21,8 @@ class GetLastVisitsDetails extends Base
     {
         parent::init();
         $this->order = 2;
-        $this->category = 'General_Visitors';
-        $this->subCategory = 'Live_VisitorLog';
+        $this->categoryId = 'General_Visitors';
+        $this->subcategoryId = 'Live_VisitorLog';
     }
 
     public function getDefaultTypeViewDataTable()

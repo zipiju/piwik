@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class ReferrersCategory extends Category
 {
-    protected $name = 'Referrers_Referrers';
+    protected $id = 'Referrers_Referrers';
     protected $order = 15;
 }

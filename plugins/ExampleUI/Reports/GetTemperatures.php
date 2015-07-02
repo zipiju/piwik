@@ -29,7 +29,7 @@ class GetTemperatures extends Base
         parent::init();
 
         $this->name = Piwik::translate('ExampleUI_GetTemperaturesDataTable');
-        $this->subCategory = 'ExampleUI_GetTemperaturesDataTable';
+        $this->subcategoryId = 'ExampleUI_GetTemperaturesDataTable';
         $this->order = 110;
     }
 
@@ -41,14 +41,14 @@ class GetTemperatures extends Base
         $widgetsList->addWidget(
             $factory->createWidget()
                     ->forceViewDataTable(Bar::ID)
-                    ->setSubCategory('Bar graph')
+                    ->setSubcategoryId('Bar graph')
         );
 
         if (PluginManager::getInstance()->isPluginActivated('TreemapVisualization')) {
             $widgetsList->addWidget(
                 $factory->createWidget()
                         ->setName('Treemap example')
-                        ->setSubCategory('Treemap')
+                        ->setSubcategoryId('Treemap')
                         ->forceViewDataTable('infoviz-treemap')
             );
 

@@ -22,7 +22,7 @@ class GetModel extends Base
         $this->documentation = ''; // TODO
         $this->order = 2;
 
-        $this->subCategory = 'DevicesDetection_Devices';
+        $this->subcategoryId = 'DevicesDetection_Devices';
     }
 
     public function configureView(ViewDataTable $view)

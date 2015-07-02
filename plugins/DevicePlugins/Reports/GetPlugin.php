@@ -25,7 +25,7 @@ class GetPlugin extends Base
         $this->processedMetrics = array('nb_visits_percentage');
         $this->order = 13;
 
-        $this->subCategory = 'DevicesDetection_Software';
+        $this->subcategoryId = 'DevicesDetection_Software';
     }
 
     public function configureView(ViewDataTable $view)

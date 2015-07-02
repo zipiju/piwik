@@ -28,7 +28,7 @@ class GetVisitInformationPerServerTime extends Base
         $this->hasGoalMetrics = true;
         $this->order = 20;
 
-        $this->subCategory = 'VisitTime_SubmenuTimes';
+        $this->subcategoryId = 'VisitTime_SubmenuTimes';
     }
 
     public function configureView(ViewDataTable $view)

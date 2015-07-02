@@ -15,7 +15,7 @@ class GetKeywordsForPage extends \Piwik\Widget\Widget
 {
     public static function configure(WidgetConfig $config)
     {
-        $config->setCategory('SEO');
+        $config->setCategoryId('SEO');
         $config->setName('Referrers_WidgetTopKeywordsForPages');
         $config->setIsEnabled(SettingsPiwik::isSegmentationEnabled());
     }

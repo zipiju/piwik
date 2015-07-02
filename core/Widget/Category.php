@@ -19,12 +19,13 @@ use Piwik\Plugin\Manager as PluginManager;
  */
 class Category
 {
+    protected $id = '';
     protected $name = '';
 
     /**
-     * @var SubCategory[]
+     * @var Subcategory[]
      */
-    protected $subCategories = array();
+    protected $subcategories = array();
 
     protected $order = 99;
 
@@ -35,44 +36,49 @@ class Category
 
     public function getName()
     {
-        return $this->name;
+        if (!empty($this->name)) {
+            return $this->name;
+        }
+
+        return $this->id;
     }
 
     public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
-    public function setName($name)
+    public function setId($id)
     {
-        return $this->name = $name;
+        $this->id = $id;
+        return $this;
     }
 
-    public function addSubCategory(SubCategory $subCategory)
+    public function addSubcategory(Subcategory $subcategory)
     {
-        $this->subCategories[$subCategory->getId()] = $subCategory;
+        $this->subcategories[$subcategory->getId()] = $subcategory;
     }
 
-    public function hasSubCategory($subCategoryId)
+    public function hasSubcategory($subcategoryId)
     {
-        return isset($this->subCategories[$subCategoryId]);
+        return isset($this->subcategories[$subcategoryId]);
     }
 
-    public function getSubCategory($subCategoryId)
+    public function getSubcategory($subcategoryId)
     {
-        if ($this->hasSubCategory($subCategoryId)) {
-            return $this->subCategories[$subCategoryId];
+        if ($this->hasSubcategory($subcategoryId)) {
+            return $this->subcategories[$subcategoryId];
         }
     }
 
-    public function getSubCategories()
+    public function getSubcategories()
     {
-        return $this->subCategories;
+        return $this->subcategories;
     }
 
     public function hasSubCategories()
     {
-        return !empty($this->subCategories);
+        return !empty($this->subcategories);
     }
 
     /** @return \Piwik\Widget\Category[] */
@@ -94,14 +100,14 @@ class Category
     /**
      * @return \Piwik\Widget\Category[]
      */
-    public static function getAllCategoriesWithSubCategories()
+    public static function getAllCategoriesWithSubcategories()
     {
         $categories    = Category::getAllCategories();
-        $subcategories = SubCategory::getAllSubCategories();
+        $subcategories = Subcategory::getAllSubcategories();
 
         // move subcategories into categories
         foreach ($subcategories as $subcategory) {
-            $category = $subcategory->getCategory();
+            $category = $subcategory->getCategoryId();
 
             if (!$category) {
                 continue;
@@ -109,10 +115,10 @@ class Category
 
             if (!isset($categories[$category])) {
                 $categories[$category] = new Category();
-                $categories[$category]->setName($category);
+                $categories[$category]->setId($category);
             }
 
-            $categories[$category]->addSubCategory($subcategory);
+            $categories[$category]->addSubcategory($subcategory);
         }
 
         return $categories;

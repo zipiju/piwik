@@ -16,7 +16,7 @@ use Piwik\Widget\WidgetsList;
 
 class Index extends \Piwik\Widget\WidgetContainerConfig
 {
-    protected $category = 'General_Visitors';
+    protected $categoryId = 'General_Visitors';
     protected $name = 'VisitsSummary_WidgetOverviewGraph';
     protected $id = 'VisitOverviewWithGraph';
     protected $isWidgetizable = true;

@@ -40,12 +40,12 @@ class GetPageUrls extends Base
         );
 
         $this->segmentSql  = 'log_visit.visit_entry_idaction_url';
-        $this->subCategory = 'General_Pages';
+        $this->subcategoryId = 'General_Pages';
     }
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget($factory->createWidget()->setName($this->subCategory));
+        $widgetsList->addWidget($factory->createWidget()->setName($this->subcategoryId));
     }
 
     public function getMetrics()

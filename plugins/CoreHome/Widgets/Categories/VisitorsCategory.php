@@ -12,6 +12,6 @@ use Piwik\Widget\Category;
 
 class VisitorsCategory extends Category
 {
-    protected $name = 'General_Visitors';
+    protected $id = 'General_Visitors';
     protected $order = 5;
 }

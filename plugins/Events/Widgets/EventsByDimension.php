@@ -16,7 +16,7 @@ class EventsByDimension extends WidgetContainerConfig
 {
     protected $layout = CoreHome::WIDGET_CONTAINER_LAYOUT_BY_DIMENSION;
     protected $id = 'Events';
-    protected $category = 'General_Actions';
-    protected $subCategory = 'Events_Events';
+    protected $categoryId = 'General_Actions';
+    protected $subcategoryId = 'Events_Events';
 
 }

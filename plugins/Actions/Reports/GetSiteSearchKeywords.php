@@ -33,7 +33,7 @@ class GetSiteSearchKeywords extends SiteSearchBase
             new AveragePageGenerationTime()
         );
         $this->order = 15;
-        $this->subCategory = 'Actions_SubmenuSitesearch';
+        $this->subcategoryId = 'Actions_SubmenuSitesearch';
     }
 
     public function getMetrics()

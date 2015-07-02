@@ -27,7 +27,6 @@ use Exception;
 use Piwik\Widget\WidgetsList;
 use Piwik\Report\ReportWidgetFactory;
 use Piwik\Widget\Category;
-use Piwik\Widget\SubCategory;
 
 /**
  * Defines a new report. This class contains all information a report defines except the corresponding API method which
@@ -86,14 +85,14 @@ class Report
      * @var string
      * @api
      */
-    protected $category;
+    protected $categoryId;
 
     /**
      * The translation key of the subcategory the report belongs to.
      * @var string
      * @api
      */
-    protected $subCategory;
+    protected $subcategoryId;
 
     /**
      * An array of supported metrics. Eg `array('nb_visits', 'nb_actions', ...)`. Defaults to the platform default
@@ -315,7 +314,7 @@ class Report
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        if ($this->category && $this->subCategory) {
+        if ($this->categoryId && $this->subcategoryId) {
             $widgetsList->addWidget($factory->createWidget());
         }
     }
@@ -498,8 +497,8 @@ class Report
     protected function buildReportMetadata()
     {
         $report = array(
-            'category' => $this->getCategory(),
-            'subcategory' => $this->getSubCategory(),
+            'category' => $this->getCategoryId(),
+            'subcategory' => $this->getSubcategoryId(),
             'name'     => $this->getName(),
             'module'   => $this->getModule(),
             'action'   => $this->getAction()
@@ -624,13 +623,9 @@ class Report
      * @return string
      * @ignore
      */
-    public function getCategory()
+    public function getCategoryId()
     {
-        if (isset($this->category) && $this->category instanceof Category) {
-            return $this->category->getName();
-        }
-
-        return $this->category;
+        return $this->categoryId;
     }
 
     /**
@@ -638,13 +633,9 @@ class Report
      * @return string
      * @ignore
      */
-    public function getSubCategory()
+    public function getSubcategoryId()
     {
-        if (isset($this->subCategory) && $this->subCategory instanceof SubCategory) {
-            return $this->subCategory->getName();
-        }
-
-        return $this->subCategory;
+        return $this->subcategoryId;
     }
 
     /**
@@ -836,7 +827,7 @@ class Report
      */
     private static function sort($a, $b)
     {
-        return self::compareCategories($a->category, $a->subCategory, $a->order, $b->category, $b->subCategory, $b->order);
+        return self::compareCategories($a->categoryId, $a->subcategoryId, $a->order, $b->categoryId, $b->subcategoryId, $b->order);
     }
     
     public static function compareCategories($catA, $subcatA, $orderA, $catB, $subcatB, $orderB)
@@ -844,7 +835,7 @@ class Report
         static $categories;
 
         if (!isset($categories)) {
-            $categories = Category::getAllCategoriesWithSubCategories();
+            $categories = Category::getAllCategoriesWithSubcategories();
         }
 
         if (!empty($categories[$catA]) && !empty($categories[$catB])) {
@@ -853,8 +844,8 @@ class Report
 
             if ($catA->getOrder() == $catB->getOrder()) {
                 // same category, compare subcategory
-                $subcatA = $catA->getSubCategory($subcatA);
-                $subcatB = $catB->getSubCategory($subcatB);
+                $subcatA = $catA->getSubcategory($subcatA);
+                $subcatB = $catB->getSubcategory($subcatB);
 
                 if ($subcatA && $subcatB) {
                     if ($subcatA->getOrder() == $subcatB->getOrder()) {

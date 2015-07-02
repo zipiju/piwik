@@ -22,7 +22,7 @@ class GetPageUrlsFollowingSiteSearch extends GetPageTitlesFollowingSiteSearch
         $this->documentation = Piwik::translate('Actions_SiteSearchFollowingPagesDoc') . '<br/>' . Piwik::translate('General_UsePlusMinusIconsDocumentation');
         $this->order = 16;
 
-        $this->subCategory = 'Actions_SubmenuSitesearch';
+        $this->subcategoryId = 'Actions_SubmenuSitesearch';
     }
 
     public function configureView(ViewDataTable $view)

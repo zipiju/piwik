@@ -25,7 +25,7 @@ class GetCampaigns extends Base
         $this->hasGoalMetrics = true;
         $this->order = 9;
 
-        $this->subCategory = 'Referrers_Campaigns';
+        $this->subcategoryId = 'Referrers_Campaigns';
     }
 
     public function configureView(ViewDataTable $view)

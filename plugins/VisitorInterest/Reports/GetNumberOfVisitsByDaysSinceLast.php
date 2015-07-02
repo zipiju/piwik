@@ -29,7 +29,7 @@ class GetNumberOfVisitsByDaysSinceLast extends Base
         $this->constantRowsCount = true;
         $this->order = 30;
 
-        $this->subCategory = 'VisitorInterest_Engagement';
+        $this->subcategoryId = 'VisitorInterest_Engagement';
     }
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)

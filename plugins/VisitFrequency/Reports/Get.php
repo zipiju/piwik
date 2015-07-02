@@ -24,7 +24,7 @@ class Get extends \Piwik\Plugin\Report
     protected function init()
     {
         parent::init();
-        $this->category      = 'General_Visitors';
+        $this->categoryId      = 'General_Visitors';
         $this->name          = Piwik::translate('VisitFrequency_ColumnReturningVisits');
         $this->documentation = ''; // TODO
         $this->processedMetrics = array(
@@ -40,7 +40,7 @@ class Get extends \Piwik\Plugin\Report
             'max_actions_returning'
         );
         $this->order = 40;
-        $this->subCategory = 'VisitorInterest_Engagement';
+        $this->subcategoryId = 'VisitorInterest_Engagement';
     }
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
