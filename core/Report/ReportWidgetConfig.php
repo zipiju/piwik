@@ -8,6 +8,7 @@
  */
 namespace Piwik\Report;
 use Piwik\Widget\WidgetConfig;
+use Piwik\Widget\WidgetsList;
 
 /**
  * Defines a new widget. You can create a new widget using the console command `./console generate:widget`.
@@ -54,6 +55,21 @@ class ReportWidgetConfig extends WidgetConfig
         }
 
         return $defaultParams + $this->parameters;
+    }
+
+    /**
+     * Returns the unique id of an widget with the given parameters
+     *
+     * @return string
+     */
+    public function getUniqueId()
+    {
+        $params = $this->getParameters();
+        unset($params['module']);
+        unset($params['action']);
+        unset($params['forceView']);
+
+        return WidgetsList::getWidgetUniqueId($this->getModule(), $this->getAction(), $params);
     }
 
 }

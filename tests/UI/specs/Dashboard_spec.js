@@ -49,7 +49,7 @@ describe("Dashboard", function () {
         var layout = [
             [
                 {
-                    uniqueId: "widgetVisitsSummarygetEvolutionGraphmoduleVisitsSummaryactiongetEvolutionGraphforceView1viewDataTablegraphEvolution",
+                    uniqueId: "widgetVisitsSummarygetEvolutionGraphviewDataTablegraphEvolution",
                     parameters: {module: "VisitsSummary", action: "getEvolutionGraph", columns: "nb_visits"}
                 }
             ],
@@ -136,7 +136,7 @@ describe("Dashboard", function () {
 
     it("should remove widget when remove widget icon is clicked", function (done) {
         expect.screenshot("widget_move").to.be.capture("widget_removed", function (page) {
-            var widget = '[id="widgetVisitTimegetVisitInformationPerLocalTimemoduleVisitTimeactiongetVisitInformationPerLocalTimeforceView0viewDataTablegraphVerticalBar"]';
+            var widget = '[id="widgetVisitTimegetVisitInformationPerLocalTimeviewDataTablegraphVerticalBar"]';
 
             page.mouseMove(widget + ' .widgetTop');
             page.click(widget + ' .button#close');
