@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\CustomVariables\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class CustomVariablesSubcategory extends Subcategory
 {

@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Actions\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class DownloadsSubcategory extends Subcategory
 {

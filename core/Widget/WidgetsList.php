@@ -111,15 +111,15 @@ class WidgetsList
     /**
      * Removes one or more widgets from the widget list.
      *
-     * @param string $widgetCategory The widget category. Can be a translation token.
+     * @param string $widgetCategoryId The widget category. Can be a translation token.
      * @param string|false $widgetName The name of the widget to remove. Cannot be a
      *                                 translation token. If not supplied, the entire category
      *                                 will be removed.
      */
-    public function remove($widgetCategory, $widgetName = false)
+    public function remove($widgetCategoryId, $widgetName = false)
     {
         foreach ($this->widgets as $index => $widget) {
-            if ($widget->getCategoryId() === $widgetCategory) {
+            if ($widget->getCategoryId() === $widgetCategoryId) {
                 if (!$widgetName || $widget->getName() === $widgetName) {
                     unset($this->widgets[$index]);
                 }

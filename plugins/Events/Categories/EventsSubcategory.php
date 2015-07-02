@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Events\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class EventsSubcategory extends Subcategory
 {

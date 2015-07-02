@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\UserCountry\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class LocationsSubcategory extends Subcategory
 {

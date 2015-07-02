@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Live\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class VisitorLogSubcategory extends Subcategory
 {

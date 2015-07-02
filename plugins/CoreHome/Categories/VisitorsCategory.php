@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\CoreHome\Categories;
 
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 class VisitorsCategory extends Category
 {

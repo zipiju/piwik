@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Dashboard\Categories;
 
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 class DashboardCategory extends Category
 {

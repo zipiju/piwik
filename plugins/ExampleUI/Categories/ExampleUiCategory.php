@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\ExampleUI\Categories;
 
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 class ExampleUiCategory extends Category
 {

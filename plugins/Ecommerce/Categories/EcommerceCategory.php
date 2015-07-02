@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Ecommerce\Categories;
 
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 /**
  * TODO define this in ecommerce plugin

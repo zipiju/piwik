@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\VisitTime\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class TimesSubcategory extends Subcategory
 {

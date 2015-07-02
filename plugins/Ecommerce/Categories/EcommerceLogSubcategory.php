@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Ecommerce\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class EcommerceLogSubcategory extends Subcategory
 {

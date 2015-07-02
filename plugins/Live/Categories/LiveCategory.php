@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Live\Categories;
 
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 class LiveCategory extends Category
 {

@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Referrers\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class ReferrersOverviewSubcategory extends Subcategory
 {

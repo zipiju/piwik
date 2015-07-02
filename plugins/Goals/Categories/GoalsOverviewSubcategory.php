@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Goals\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class GoalsOverviewSubcategory extends Subcategory
 {

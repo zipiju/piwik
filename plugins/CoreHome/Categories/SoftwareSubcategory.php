@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\CoreHome\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class SoftwareSubcategory extends Subcategory
 {

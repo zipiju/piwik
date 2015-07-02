@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Contents\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class ContentsSubcategory extends Subcategory
 {

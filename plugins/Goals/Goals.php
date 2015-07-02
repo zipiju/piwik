@@ -14,7 +14,7 @@ use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Tracker\GoalManager;
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 /**
  *

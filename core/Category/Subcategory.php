@@ -5,11 +5,12 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
-namespace Piwik\Widget;
+namespace Piwik\Category;
 
 use Piwik\Container\StaticContainer;
 use Piwik\Piwik;
-use \Piwik\Plugin\Manager as PluginManager;
+use Piwik\Plugin\Manager as PluginManager;
+use Piwik\Widget\WidgetConfig;
 
 /**
  * Base type for metric metadata classes that describe aggregated metrics. These metrics are
@@ -21,6 +22,8 @@ use \Piwik\Plugin\Manager as PluginManager;
 class Subcategory
 {
     protected $categoryId = '';
+
+    // name and id are usually the same and just a translation key. The name is used in the menu, the id in the url
     protected $name = '';
     protected $id = '';
 
@@ -89,7 +92,7 @@ class Subcategory
         return $this;
     }
 
-    /** @return \Piwik\Widget\Subcategory[] */
+    /** @return \Piwik\Category\Subcategory[] */
     public static function getAllSubcategories()
     {
         $subcategories = array();

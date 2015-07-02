@@ -26,7 +26,7 @@ use Piwik\Plugin\Report;
 use Piwik\Site;
 use Piwik\Timer;
 use Piwik\Url;
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 class ProcessedReport
 {

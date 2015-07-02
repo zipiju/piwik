@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\MultiSites\Categories;
 
-use Piwik\Widget\Category;
+use Piwik\Category\Category;
 
 class MultiSitesCategory extends Category
 {

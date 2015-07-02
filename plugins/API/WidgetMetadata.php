@@ -11,8 +11,8 @@ namespace Piwik\Plugins\API;
 
 use Piwik\Piwik;
 use Piwik\Report\ReportWidgetConfig;
-use Piwik\Widget\Category;
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Category;
+use Piwik\Category\Subcategory;
 use Piwik\Widget\WidgetContainerConfig;
 use Piwik\Widget\WidgetConfig;
 use Piwik\Widget\WidgetsList;
@@ -211,7 +211,7 @@ class WidgetMetadata
     {
         $subcategory = new Subcategory();
         $subcategory->setCategoryId($categoryId);
-        $subcategory->setName($subcategoryId);
+        $subcategory->setId($subcategoryId);
         return $subcategory;
     }
 

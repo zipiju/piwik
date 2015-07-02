@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\UserCountryMap\Categories;
 
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 
 class RealTimeMapSubcategory extends Subcategory
 {

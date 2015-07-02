@@ -5,7 +5,7 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
-namespace Piwik\Widget;
+namespace Piwik\Category;
 
 use Piwik\Container\StaticContainer;
 use Piwik\Plugin\Manager as PluginManager;
@@ -19,6 +19,7 @@ use Piwik\Plugin\Manager as PluginManager;
  */
 class Category
 {
+    // name and id are usually the same and just a translation key. The name is used in the menu, the id in the url
     protected $id = '';
     protected $name = '';
 
@@ -81,24 +82,24 @@ class Category
         return !empty($this->subcategories);
     }
 
-    /** @return \Piwik\Widget\Category[] */
+    /** @return \Piwik\Category\Category[] */
     private static function getAllCategories()
     {
         $manager = PluginManager::getInstance();
-        // todo move to Piwik\Widget\Category
-        $categories = $manager->findMultipleComponents('Categories', '\\Piwik\\Widget\\Category');
+        // todo move to Piwik\Category\Category
+        $categories = $manager->findMultipleComponents('Categories', '\\Piwik\\Category\\Category');
 
         $instances = array();
         foreach ($categories as $category) {
             $cat = StaticContainer::get($category);
-            $instances[$cat->getName()] = $cat;
+            $instances[$cat->getId()] = $cat;
         }
 
         return $instances;
     }
 
     /**
-     * @return \Piwik\Widget\Category[]
+     * @return Category[]
      */
     public static function getAllCategoriesWithSubcategories()
     {

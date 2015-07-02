@@ -11,7 +11,7 @@ namespace Piwik\Plugins\Dashboard;
 use Piwik\Common;
 use Piwik\Db;
 use Piwik\Piwik;
-use Piwik\Widget\Subcategory;
+use Piwik\Category\Subcategory;
 use Piwik\Widget\WidgetConfig;
 use Piwik\Widget\WidgetsList;
 
