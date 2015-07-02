@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\API;
 
-
+use Piwik\Category\Categories;
 use Piwik\Piwik;
 use Piwik\Report\ReportWidgetConfig;
 use Piwik\Category\Category;
@@ -19,6 +19,12 @@ use Piwik\Widget\WidgetsList;
 
 class WidgetMetadata
 {
+    private $categories;
+
+    public function __construct(Categories $categories)
+    {
+        $this->categories = $categories;
+    }
 
     public function getPagesMetadata($idSite)
     {
@@ -136,11 +142,6 @@ class WidgetMetadata
         return $orderA > $orderB ? 1 : -1;
     }
 
-    private function buildWidgetParameters(WidgetConfig $widget)
-    {
-        return $widget->getParameters();
-    }
-
     private function buildCategoryMetadata(Category $category)
     {
         return array(
@@ -165,8 +166,7 @@ class WidgetMetadata
      */
     private function moveWidgetsIntoCategories($widgetConfigs)
     {
-        /** @var Category[] $all */
-        $all = Category::getAllCategoriesWithSubcategories();
+        $all = $this->categories->getAllCategoriesWithSubcategories();
 
         // move reports into categories/subcategories and create missing ones if needed
         foreach ($widgetConfigs as $widgetConfig) {

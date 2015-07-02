@@ -10,10 +10,11 @@ namespace Piwik\Http;
 
 use DI\FactoryInterface;
 use Exception;
+use Piwik\Plugin;
 use Piwik\Plugin\Controller;
 use Piwik\Plugin\Report;
-use Piwik\Widget\Widget;
 use Piwik\Session;
+use Piwik\Widget\Widgets;
 
 /**
  * Resolves the controller that will handle the request.
@@ -27,9 +28,15 @@ class ControllerResolver
      */
     private $abstractFactory;
 
-    public function __construct(FactoryInterface $abstractFactory)
+    /**
+     * @var Widgets
+     */
+    private $widgets;
+
+    public function __construct(FactoryInterface $abstractFactory, Widgets $widgets)
     {
         $this->abstractFactory = $abstractFactory;
+        $this->widgets = $widgets;
     }
 
     /**
@@ -80,7 +87,7 @@ class ControllerResolver
 
     private function createWidgetController($module, $action, array &$parameters)
     {
-        $widget = Widget::factory($module, $action);
+        $widget = $this->widgets->factory($module, $action);
 
         if (!$widget) {
             return;

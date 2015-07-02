@@ -9,6 +9,7 @@
 namespace Piwik\Widget;
 
 use Piwik\Cache as PiwikCache;
+use Piwik\Container\StaticContainer;
 use Piwik\Development;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
@@ -151,16 +152,18 @@ class WidgetsList
 
         Piwik::postEvent('Widgets.addWidgets', array($list));
 
-        $widgets = Widget::getAllWidgetConfigurations();
+        /** @var Widgets $widgets */
+        $widgets = StaticContainer::get(__NAMESPACE__ . '\Widgets');
 
-        $widgetContainerConfigs = WidgetContainerConfig::getAllContainerConfigs();
+        $widgetContainerConfigs = $widgets->getWidgetContainerConfigs();
         foreach ($widgetContainerConfigs as $config) {
             if ($config->isEnabled()) {
                 $list->addContainer($config);
             }
         }
 
-        foreach ($widgets as $widget) {
+        $widgetConfigs = $widgets->getWidgetConfigs();
+        foreach ($widgetConfigs as $widget) {
             if ($widget->isEnabled()) {
                 $list->addWidget($widget);
             }

@@ -81,47 +81,4 @@ class Category
     {
         return !empty($this->subcategories);
     }
-
-    /** @return \Piwik\Category\Category[] */
-    private static function getAllCategories()
-    {
-        $manager = PluginManager::getInstance();
-        // todo move to Piwik\Category\Category
-        $categories = $manager->findMultipleComponents('Categories', '\\Piwik\\Category\\Category');
-
-        $instances = array();
-        foreach ($categories as $category) {
-            $cat = StaticContainer::get($category);
-            $instances[$cat->getId()] = $cat;
-        }
-
-        return $instances;
-    }
-
-    /**
-     * @return Category[]
-     */
-    public static function getAllCategoriesWithSubcategories()
-    {
-        $categories    = Category::getAllCategories();
-        $subcategories = Subcategory::getAllSubcategories();
-
-        // move subcategories into categories
-        foreach ($subcategories as $subcategory) {
-            $category = $subcategory->getCategoryId();
-
-            if (!$category) {
-                continue;
-            }
-
-            if (!isset($categories[$category])) {
-                $categories[$category] = new Category();
-                $categories[$category]->setId($category);
-            }
-
-            $categories[$category]->addSubcategory($subcategory);
-        }
-
-        return $categories;
-    }
 }

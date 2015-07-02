@@ -91,21 +91,4 @@ class Subcategory
         $this->id = $id;
         return $this;
     }
-
-    /** @return \Piwik\Category\Subcategory[] */
-    public static function getAllSubcategories()
-    {
-        $subcategories = array();
-
-        Piwik::postEvent('Subcategory.addSubcategories', array(&$subcategories));
-
-        $manager = PluginManager::getInstance();
-        $classes = $manager->findMultipleComponents('Categories', '\\Piwik\\Widget\\Subcategory');
-
-        foreach ($classes as $subcategory) {
-            $subcategories[] = StaticContainer::get($subcategory);
-        }
-
-        return $subcategories;
-    }
 }

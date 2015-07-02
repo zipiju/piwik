@@ -7,7 +7,7 @@
  *
  */
 namespace Piwik\Widget;
-use Piwik\Common;
+
 use Piwik\Container\StaticContainer;
 use Piwik\Plugin\Manager as PluginManager;
 
@@ -73,29 +73,6 @@ class WidgetContainerConfig extends WidgetConfig
         $params = parent::getParameters();
         $params['containerId'] = $this->getId();
         return $params;
-    }
-
-    /**
-     * @return WidgetContainerConfig[]
-     */
-    public static function getAllContainerConfigs()
-    {
-        $configs = array();
-
-        $widgetContainerConfigs = self::getAllWidgetContainerConfigClassNames();
-        foreach ($widgetContainerConfigs as $widgetClass) {
-            $configs[] = StaticContainer::get($widgetClass);
-        }
-
-        return $configs;
-    }
-
-    /**
-     * @return string[]
-     */
-    private static function getAllWidgetContainerConfigClassNames()
-    {
-        return PluginManager::getInstance()->findMultipleComponents('Widgets', 'Piwik\\Widget\\WidgetContainerConfig');
     }
 
 }

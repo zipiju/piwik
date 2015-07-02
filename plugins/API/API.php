@@ -243,16 +243,22 @@ class API extends \Piwik\Plugin\API
     {
         Piwik::checkUserHasViewAccess($idSite);
 
-        $metadata = new WidgetMetadata();
+        $metadata = $this->getWidgetMetadataInstance();
 
         return $metadata->getWidgetMetadata($idSite);
+    }
+
+    /** @return WidgetMetadata */
+    private function getWidgetMetadataInstance()
+    {
+        return StaticContainer::get(__NAMESPACE__ . '\WidgetMetadata');
     }
 
     public function getReportPagesMetadata($idSite, $period, $date, $segment = false)
     {
         Piwik::checkUserHasViewAccess($idSite);
 
-        $metadata = new WidgetMetadata();
+        $metadata = $this->getWidgetMetadataInstance();
 
         return $metadata->getPagesMetadata($idSite);
     }

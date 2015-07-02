@@ -14,6 +14,7 @@ use Piwik\Cache;
 use Piwik\CacheId;
 use Piwik\Columns\Dimension;
 use Piwik\Common;
+use Piwik\Container\StaticContainer;
 use Piwik\DataTable;
 use Piwik\DataTable\Filter\Sort;
 use Piwik\Metrics;
@@ -835,7 +836,9 @@ class Report
         static $categories;
 
         if (!isset($categories)) {
-            $categories = Category::getAllCategoriesWithSubcategories();
+            /** @var \Piwik\Category\Categories $categories */
+            $categories = StaticContainer::get('Piwik\Category\Categories');
+            $categories = $categories->getAllCategoriesWithSubcategories();
         }
 
         if (!empty($categories[$catA]) && !empty($categories[$catB])) {

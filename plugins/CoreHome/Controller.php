@@ -39,9 +39,15 @@ class Controller extends \Piwik\Plugin\Controller
      */
     private $translator;
 
-    public function __construct(Translator $translator)
+    /**
+     * @var WidgetMetadata
+     */
+    private $widgetMetadata;
+
+    public function __construct(Translator $translator, WidgetMetadata $widgetMetadata)
     {
         $this->translator = $translator;
+        $this->widgetMetadata = $widgetMetadata;
 
         parent::__construct();
     }
@@ -86,9 +92,8 @@ class Controller extends \Piwik\Plugin\Controller
 
                 $container->checkIsEnabled();
 
-                $widgetMetadata = new WidgetMetadata();
                 $view->widgetUniqueId = $container->getUniqueId();
-                $view->widget = $widgetMetadata->buildWidgetMetadata($container, '', '', $nested = true);
+                $view->widget = $this->widgetMetadata->buildWidgetMetadata($container, '', '', $nested = true);
                 break;
             }
         }
