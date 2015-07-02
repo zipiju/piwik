@@ -7,7 +7,7 @@
 
 /**
  * Example:
- * <div piwik-widget-loader="widget url"></div>
+ * <div piwik-widget-loader="{module: '', action: '', ...}"></div>
  */
 (function () {
     angular.module('piwikApp').directive('piwikWidgetLoader', piwikWidgetLoader);
@@ -49,7 +49,9 @@
                         }
                     }
 
-                    function getFullWidgetUrl(url) {
+                    function getFullWidgetUrl(parameters) {
+
+                        var url = $.param(parameters);
 
                         var idSite  = piwikUrl.getSearchParam('idSite');
                         var period  = piwikUrl.getSearchParam('period');
@@ -63,14 +65,14 @@
                             url += '&segment=' + segment;
                         }
 
-                        return url;
+                        return '?' + url;
                     }
 
-                    function loadWidgetUrl(url, thisChangeId)
+                    function loadWidgetUrl(parameters, thisChangeId)
                     {
                         scope.loading = true;
 
-                        url = getFullWidgetUrl(url);
+                        var url = getFullWidgetUrl(parameters);
 
                         abortHttpRequestIfNeeded();
                         cleanupLastWidgetContent();
@@ -109,9 +111,9 @@
                         });
                     }
 
-                    scope.$watch('piwikWidgetLoader', function (newUrl, oldUrl) {
-                        if (newUrl) {
-                            loadWidgetUrl(newUrl, ++changeCounter);
+                    scope.$watch('piwikWidgetLoader', function (parameters, oldUrl) {
+                        if (parameters) {
+                            loadWidgetUrl(parameters, ++changeCounter);
                         }
                     });
 

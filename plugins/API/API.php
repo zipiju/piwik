@@ -31,6 +31,7 @@ use Piwik\Plugins\CoreAdminHome\CustomLogo;
 use Piwik\Translation\Translator;
 use Piwik\Measurable\Type\TypeManager;
 use Piwik\Version;
+use Piwik\Widget\WidgetsList;
 
 require_once PIWIK_INCLUDE_PATH . '/core/Config.php';
 
@@ -239,28 +240,30 @@ class API extends \Piwik\Plugin\API
         return $processed;
     }
 
-    public function getWidgetMetadata($idSite, $period, $date, $segment = false)
+    public function getWidgetMetadata($idSite, $period, $date, $segment = false, $deep = false)
     {
         Piwik::checkUserHasViewAccess($idSite);
 
-        $metadata = $this->getWidgetMetadataInstance();
+        $widgetsList = WidgetsList::get();
+        $metadata    = $this->getWidgetMetadataInstance();
 
-        return $metadata->getWidgetMetadata($idSite);
-    }
-
-    /** @return WidgetMetadata */
-    private function getWidgetMetadataInstance()
-    {
-        return StaticContainer::get(__NAMESPACE__ . '\WidgetMetadata');
+        return $metadata->getWidgetMetadata($widgetsList, $deep);
     }
 
     public function getReportPagesMetadata($idSite, $period, $date, $segment = false)
     {
         Piwik::checkUserHasViewAccess($idSite);
 
-        $metadata = $this->getWidgetMetadataInstance();
+        $widgetsList = WidgetsList::get();
+        $metadata    = $this->getWidgetMetadataInstance();
 
-        return $metadata->getPagesMetadata($idSite);
+        return $metadata->getPagesMetadata($widgetsList);
+    }
+
+    /** @return WidgetMetadata */
+    private function getWidgetMetadataInstance()
+    {
+        return StaticContainer::get(__NAMESPACE__ . '\WidgetMetadata');
     }
 
     /**

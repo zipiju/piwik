@@ -26,23 +26,21 @@ class WidgetMetadata
         $this->categories = $categories;
     }
 
-    public function getPagesMetadata($idSite)
+    public function getPagesMetadata(WidgetsList $widgetsList)
     {
-        $widgetsList = WidgetsList::get($idSite);
         $categories  = $this->moveWidgetsIntoCategories($widgetsList->getWidgets());
         $categories  = $this->buildPagesMetadata($categories);
 
         return $categories;
     }
 
-    public function getWidgetMetadata($idSite)
+    public function getWidgetMetadata(WidgetsList $widgetsList, $deep)
     {
-        $list = WidgetsList::get($idSite);
         $flat = array();
 
-        $categories = $this->moveWidgetsIntoCategories($list->getWidgets());
+        $categories = $this->moveWidgetsIntoCategories($widgetsList->getWidgets());
 
-        foreach ($list->getWidgets() as $widgetConfig) {
+        foreach ($widgetsList->getWidgets() as $widgetConfig) {
 
             /** @var WidgetConfig[] $widgets */
             $widgets = array($widgetConfig);
@@ -63,7 +61,7 @@ class WidgetMetadata
                     $subcategory = $category->getSubcategory($widget->getSubcategoryId());
                 }
 
-                $flat[] = $this->buildWidgetMetadata($widget, $category, $subcategory, $addNestedWidgets = false);
+                $flat[] = $this->buildWidgetMetadata($widget, $category, $subcategory, $deep);
             }
         }
 
@@ -85,12 +83,10 @@ class WidgetMetadata
             'action'      => $widget->getAction(),
             'order'       => $widget->getOrder(),
             'parameters'  => $widget->getParameters(),
-            'widget_url'  => '?' . http_build_query($widget->getParameters()),
             'uniqueId'    => $widget->getUniqueId(),
         );
 
         if ($widget instanceof ReportWidgetConfig) {
-            // todo this is rather bad, there should be a method that is implemented by widgetConfig to add "configs".
             $item['viewDataTable'] = $widget->getDefaultView();
             $item['isReport'] = true;
         }

@@ -11,6 +11,7 @@ namespace Piwik\Plugins\CoreHome;
 use Exception;
 use Piwik\API\Request;
 use Piwik\Common;
+use Piwik\Container\StaticContainer;
 use Piwik\Date;
 use Piwik\FrontController;
 use Piwik\Notification\Manager as NotificationManager;
@@ -39,15 +40,9 @@ class Controller extends \Piwik\Plugin\Controller
      */
     private $translator;
 
-    /**
-     * @var WidgetMetadata
-     */
-    private $widgetMetadata;
-
-    public function __construct(Translator $translator, WidgetMetadata $widgetMetadata)
+    public function __construct(Translator $translator)
     {
         $this->translator = $translator;
-        $this->widgetMetadata = $widgetMetadata;
 
         parent::__construct();
     }
@@ -73,27 +68,30 @@ class Controller extends \Piwik\Plugin\Controller
         $this->checkSitePermission();
 
         $containerId = Common::getRequestVar('containerId', null, 'string');
+        $idSite      = Common::getRequestVar('idSite', null, 'int');
+        $date        = Common::getRequestVar('date', null, 'string');
+        $period      = Common::getRequestVar('period', null, 'string');
+        $segment     = Request::getRawSegmentFromRequest();
 
         $view = new View('@CoreHome/widgetContainer');
         $view->widget = '';
-        $view->widgetUniqueId = '';
         $view->showWidgetTitle = true;
 
         if (Common::getRequestVar('widget', 0, 'int')) {
             $view->showWidgetTitle = false;
         }
 
-        $widgetsList = WidgetsList::get();
+        $widgets = Request::processRequest('API.getWidgetMetadata', array(
+            'idSite'  => $idSite,
+            'date'    => $date,
+            'period'  => $period,
+            'segment' => $segment,
+            'deep'    => 1
+        ));
 
-        foreach ($widgetsList->getWidgets() as $container) {
-            if ($container instanceof WidgetContainerConfig
-                && $container->getId() === $containerId
-                && $container->isWidgetizeable()) {
-
-                $container->checkIsEnabled();
-
-                $view->widgetUniqueId = $container->getUniqueId();
-                $view->widget = $this->widgetMetadata->buildWidgetMetadata($container, '', '', $nested = true);
+        foreach ($widgets as $widget) {
+            if (!empty($widget['isContainer']) && $widget['parameters']['containerId'] === $containerId) {
+                $view->widget = $widget;
                 break;
             }
         }
