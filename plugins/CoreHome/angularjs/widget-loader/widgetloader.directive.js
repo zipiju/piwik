@@ -51,12 +51,17 @@
 
                     function getFullWidgetUrl(url) {
 
-                        var idSite = piwikUrl.getSearchParam('idSite');
-                        var period = piwikUrl.getSearchParam('period');
-                        var date   = piwikUrl.getSearchParam('date');
+                        var idSite  = piwikUrl.getSearchParam('idSite');
+                        var period  = piwikUrl.getSearchParam('period');
+                        var date    = piwikUrl.getSearchParam('date');
+                        var segment = piwikUrl.getSearchParam('segment');
 
                         url += '&idSite=' + idSite + '&period=' + period;
                         url += '&date=' + date + '&random=' + parseInt(Math.random() * 10000);
+
+                        if (segment) {
+                            url += '&segment=' + segment;
+                        }
 
                         return url;
                     }

@@ -22,6 +22,15 @@
 
         function getSearchParam(paramName)
         {
+            if (paramName === 'segment') {
+                var hash = window.location.href.split('#');
+                if (hash && hash[1]) {
+                    return piwik.broadcast.getValueFromHash(paramName, hash[1]);
+                }
+
+                return broadcast.getValueFromUrl(paramName);
+            }
+
             // available in global scope
             var search = $location.search();
 
@@ -40,7 +49,6 @@
 
                 return value;
             }
-
         }
     }
 })();
