@@ -97,7 +97,7 @@ class Subcategory
         Piwik::postEvent('Subcategory.addSubcategories', array(&$subcategories));
 
         $manager = PluginManager::getInstance();
-        $classes = $manager->findMultipleComponents('Widgets/Subcategories', '\\Piwik\\Widget\\Subcategory');
+        $classes = $manager->findMultipleComponents('Categories', '\\Piwik\\Widget\\Subcategory');
 
         foreach ($classes as $subcategory) {
             $subcategories[] = StaticContainer::get($subcategory);

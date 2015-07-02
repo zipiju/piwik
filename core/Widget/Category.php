@@ -86,7 +86,7 @@ class Category
     {
         $manager = PluginManager::getInstance();
         // todo move to Piwik\Widget\Category
-        $categories = $manager->findMultipleComponents('Widgets/Categories', '\\Piwik\\Widget\\Category');
+        $categories = $manager->findMultipleComponents('Categories', '\\Piwik\\Widget\\Category');
 
         $instances = array();
         foreach ($categories as $category) {
