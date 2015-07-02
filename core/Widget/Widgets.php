@@ -89,7 +89,7 @@ class Widgets
         foreach ($widgets as $widgetClass) {
             $config = $this->getWidgetConfigForClassName($widgetClass);
             if ($config->getAction() === $action) {
-                $config->checkIsEnabled(); // todo how can we handle this better?!? only isEnabled? or setEnabled on widget?
+                $config->checkIsEnabled();
                 return StaticContainer::get($widgetClass);
             }
         }
