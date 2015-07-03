@@ -473,15 +473,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>99</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Events</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Events</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdEvents</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Events</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdEvents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -652,15 +652,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>99</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Events</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Events</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdEvents</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Events</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdEvents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -846,15 +846,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>99</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Contents</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Contents</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdContents</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Contents</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -967,15 +967,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>99</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Contents</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Contents</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdContents</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Contents</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -1811,15 +1811,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>106</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Continent</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Continent</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdContinent</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Continent</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContinent</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -1988,15 +1988,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>106</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Continent</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Continent</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdContinent</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Continent</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContinent</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -2799,15 +2799,15 @@
 			<row>
 				<name>Goal Goal 1 - Thank you conversions by type of visit</name>
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>12</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Goals1</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals1</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals1</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals1</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals1</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -3229,15 +3229,15 @@
 			<row>
 				<name>Goal Goal 2 - Hello conversions by type of visit</name>
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>15</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Goals2</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals2</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals2</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals2</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals2</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -3676,15 +3676,15 @@
 			<row>
 				<name>Goal triggered js conversions by type of visit</name>
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>19</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Goals3</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals3</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals3</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals3</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals3</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -4105,15 +4105,15 @@
 			<row>
 				<name>Conversions overview by type of visit</name>
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>3</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Goals</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -4573,15 +4573,15 @@
 			<row>
 				<name>Conversions overview by type of visit</name>
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>3</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Goals</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -5186,15 +5186,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>99</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Products</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Products</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdProducts</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Products</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdProducts</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -5365,15 +5365,15 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>99</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<containerId>Products</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Products</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdProducts</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Products</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdProducts</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -5559,16 +5559,16 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>9</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<idGoal>ecommerceOrder</idGoal>
 					<containerId>GoalsOrder</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;idGoal=ecommerceOrder&amp;containerId=GoalsOrder</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContaineridGoalecommerceOrdercontainerIdGoalsOrder</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;idGoal=ecommerceOrder&amp;containerId=GoalsOrder</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContaineridGoalecommerceOrdercontainerIdGoalsOrder</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -5954,16 +5954,16 @@
 			<row>
 				<name />
 				<module>CoreHome</module>
-				<action>renderReportWidgetContainer</action>
+				<action>renderWidgetContainer</action>
 				<order>9</order>
 				<parameters>
 					<module>CoreHome</module>
-					<action>renderReportWidgetContainer</action>
+					<action>renderWidgetContainer</action>
 					<idGoal>ecommerceOrder</idGoal>
 					<containerId>GoalsOrder</containerId>
 				</parameters>
-				<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;idGoal=ecommerceOrder&amp;containerId=GoalsOrder</widget_url>
-				<uniqueId>widgetCoreHomerenderReportWidgetContaineridGoalecommerceOrdercontainerIdGoalsOrder</uniqueId>
+				<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;idGoal=ecommerceOrder&amp;containerId=GoalsOrder</widget_url>
+				<uniqueId>widgetCoreHomerenderWidgetContaineridGoalecommerceOrdercontainerIdGoalsOrder</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>

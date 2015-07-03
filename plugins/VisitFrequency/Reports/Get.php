@@ -56,7 +56,7 @@ class Get extends \Piwik\Plugin\Report
         $widgetsList->addWidget(
             $factory->createWidget()
                 ->forceViewDataTable(Sparklines::ID)
-                ->setName('')
+                ->setName('VisitFrequency_WidgetOverview')
                 ->setOrder(2)
         );
     }

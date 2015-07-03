@@ -287,15 +287,15 @@
 		</category>
 		<subcategory />
 		<module>CoreHome</module>
-		<action>renderReportWidgetContainer</action>
+		<action>renderWidgetContainer</action>
 		<order>99</order>
 		<parameters>
 			<module>CoreHome</module>
-			<action>renderReportWidgetContainer</action>
+			<action>renderWidgetContainer</action>
 			<containerId>VisitOverviewWithGraph</containerId>
 		</parameters>
-		<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=VisitOverviewWithGraph</widget_url>
-		<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdVisitOverviewWithGraph</uniqueId>
+		<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=VisitOverviewWithGraph</widget_url>
+		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdVisitOverviewWithGraph</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1697,15 +1697,15 @@
 		</category>
 		<subcategory />
 		<module>CoreHome</module>
-		<action>renderReportWidgetContainer</action>
+		<action>renderWidgetContainer</action>
 		<order>2</order>
 		<parameters>
 			<module>CoreHome</module>
-			<action>renderReportWidgetContainer</action>
+			<action>renderWidgetContainer</action>
 			<containerId>Goals_EcommerceGeneral_Overview</containerId>
 		</parameters>
-		<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals_EcommerceGeneral_Overview</widget_url>
-		<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals_EcommerceGeneral_Overview</uniqueId>
+		<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals_EcommerceGeneral_Overview</widget_url>
+		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_EcommerceGeneral_Overview</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1718,15 +1718,15 @@
 		</category>
 		<subcategory />
 		<module>CoreHome</module>
-		<action>renderReportWidgetContainer</action>
+		<action>renderWidgetContainer</action>
 		<order>1</order>
 		<parameters>
 			<module>CoreHome</module>
-			<action>renderReportWidgetContainer</action>
+			<action>renderWidgetContainer</action>
 			<containerId>Goals_GoalsGeneral_Overview</containerId>
 		</parameters>
-		<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals_GoalsGeneral_Overview</widget_url>
-		<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals_GoalsGeneral_Overview</uniqueId>
+		<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals_GoalsGeneral_Overview</widget_url>
+		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_GoalsGeneral_Overview</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1739,15 +1739,15 @@
 		</category>
 		<subcategory />
 		<module>CoreHome</module>
-		<action>renderReportWidgetContainer</action>
+		<action>renderWidgetContainer</action>
 		<order>5</order>
 		<parameters>
 			<module>CoreHome</module>
-			<action>renderReportWidgetContainer</action>
+			<action>renderWidgetContainer</action>
 			<containerId>Goals_Goals3</containerId>
 		</parameters>
-		<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals_Goals3</widget_url>
-		<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals_Goals3</uniqueId>
+		<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals_Goals3</widget_url>
+		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_Goals3</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1760,15 +1760,15 @@
 		</category>
 		<subcategory />
 		<module>CoreHome</module>
-		<action>renderReportWidgetContainer</action>
+		<action>renderWidgetContainer</action>
 		<order>3</order>
 		<parameters>
 			<module>CoreHome</module>
-			<action>renderReportWidgetContainer</action>
+			<action>renderWidgetContainer</action>
 			<containerId>Goals_Goals1</containerId>
 		</parameters>
-		<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals_Goals1</widget_url>
-		<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals_Goals1</uniqueId>
+		<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals_Goals1</widget_url>
+		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_Goals1</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1781,15 +1781,15 @@
 		</category>
 		<subcategory />
 		<module>CoreHome</module>
-		<action>renderReportWidgetContainer</action>
+		<action>renderWidgetContainer</action>
 		<order>4</order>
 		<parameters>
 			<module>CoreHome</module>
-			<action>renderReportWidgetContainer</action>
+			<action>renderWidgetContainer</action>
 			<containerId>Goals_Goals2</containerId>
 		</parameters>
-		<widget_url>?module=CoreHome&amp;action=renderReportWidgetContainer&amp;containerId=Goals_Goals2</widget_url>
-		<uniqueId>widgetCoreHomerenderReportWidgetContainercontainerIdGoals_Goals2</uniqueId>
+		<widget_url>?module=CoreHome&amp;action=renderWidgetContainer&amp;containerId=Goals_Goals2</widget_url>
+		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_Goals2</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>

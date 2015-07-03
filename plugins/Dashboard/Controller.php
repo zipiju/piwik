@@ -13,7 +13,6 @@ use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Session\SessionNamespace;
 use Piwik\View;
-use Piwik\FrontController;
 
 /**
  * Dashboard Controller

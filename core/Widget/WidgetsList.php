@@ -183,6 +183,9 @@ class WidgetsList
     }
 
     /**
+     * CAUTION! If you ever change this method, existing updates will fail as they currently use that method!
+     * If you change the output the uniqueId for existing widgets would not be found anymore
+     *
      * Returns the unique id of an widget with the given parameters
      *
      * @param $controllerName

@@ -105,14 +105,14 @@ class Dashboard extends \Piwik\Plugin
 
             $defaultLayout = '[
                 [
-                    {"uniqueId":"widgetVisitsSummarygetEvolutionGraphcolumnsArray","parameters":{"module":"VisitsSummary","action":"getEvolutionGraph","columns":"nb_visits"}},
+                    {"uniqueId":"widgetVisitsSummarygetEvolutionGraphforceView1viewDataTablegraphEvolution","parameters":{"forceView":"1","viewDataTable":"graphEvolution","module":"VisitsSummary","action":"getEvolutionGraph"}},
                     {"uniqueId":"widgetLivewidget","parameters":{"module":"Live","action":"widget"}},
-                    {"uniqueId":"widgetVisitorInterestgetNumberOfVisitsPerVisitDuration","parameters":{"module":"VisitorInterest","action":"getNumberOfVisitsPerVisitDuration"}}
+                    {"uniqueId":"widgetVisitorInterestgetNumberOfVisitsPerVisitDurationviewDataTablecloud","parameters":{"viewDataTable":"cloud","module":"VisitorInterest","action":"getNumberOfVisitsPerVisitDuration"}}
                 ],
                 [
                     ' . $topWidget . '
                     {"uniqueId":"widgetReferrersgetWebsites","parameters":{"module":"Referrers","action":"getWebsites"}},
-                    {"uniqueId":"widgetVisitTimegetVisitInformationPerServerTime","parameters":{"module":"VisitTime","action":"getVisitInformationPerServerTime"}}
+                    {"uniqueId":"widgetVisitTimegetVisitInformationPerServerTime","parameters":{"viewDataTable": "graphVerticalBar","module":"VisitTime","action":"getVisitInformationPerServerTime"}}
                 ],
                 [
                     {"uniqueId":"widgetUserCountryMapvisitorMap","parameters":{"module":"UserCountryMap","action":"visitorMap"}},

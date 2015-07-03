@@ -13,14 +13,12 @@ use Piwik\Common;
 use Piwik\DataTable;
 use Piwik\Period;
 use Piwik\Piwik;
-use Piwik\Report\ReportWidgetFactory;
 use Piwik\View;
 use Piwik\View\ViewInterface;
 use Piwik\ViewDataTable\Config as VizConfig;
 use Piwik\ViewDataTable\Manager as ViewDataTableManager;
 use Piwik\ViewDataTable\Request as ViewDataTableRequest;
 use Piwik\ViewDataTable\RequestConfig as VizRequest;
-use Piwik\Widget\WidgetsList;
 
 /**
  * The base class of all report visualizations.

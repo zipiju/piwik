@@ -12,8 +12,6 @@ use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\UserCountry\Columns\Country;
 use Piwik\Plugins\UserCountry\LocationProvider;
-use Piwik\Report\ReportWidgetFactory;
-use Piwik\Widget\WidgetsList;
 
 class GetCountry extends Base
 {

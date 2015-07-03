@@ -29,7 +29,7 @@ class WidgetContainerConfig extends WidgetConfig
     protected $id;
 
     protected $module = 'CoreHome';
-    protected $action = 'renderReportWidgetContainer';
+    protected $action = 'renderWidgetContainer';
     protected $isWidgetizable = false;
 
     public function getId()

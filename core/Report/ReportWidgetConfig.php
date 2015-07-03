@@ -7,6 +7,7 @@
  *
  */
 namespace Piwik\Report;
+use Piwik\ViewDataTable\Factory;
 use Piwik\Widget\WidgetConfig;
 use Piwik\Widget\WidgetsList;
 
@@ -46,30 +47,19 @@ class ReportWidgetConfig extends WidgetConfig
     {
         $parameters = parent::getParameters();
 
-        $defaultParams = array(
-            'forceView' => (int) $this->forceViewDataTable
-        );
+        $defaultParams = array();
 
-        if ($this->viewDataTable) {
+        if ($this->forceViewDataTable) {
+            $defaultParams['forceView'] = 1;
+        }
+
+        if ($this->viewDataTable &&
+            ($this->forceViewDataTable || $this->viewDataTable !== Factory::DEFAULT_VIEW)) {
+            // URL param is not needed for default view dataTable
             $defaultParams['viewDataTable'] = $this->viewDataTable;
         }
 
         return $defaultParams + $parameters;
-    }
-
-    /**
-     * Returns the unique id of an widget with the given parameters
-     *
-     * @return string
-     */
-    public function getUniqueId()
-    {
-        $params = $this->getParameters();
-        unset($params['module']);
-        unset($params['action']);
-        unset($params['forceView']);
-
-        return WidgetsList::getWidgetUniqueId($this->getModule(), $this->getAction(), $params);
     }
 
 }

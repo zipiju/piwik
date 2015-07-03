@@ -11,13 +11,11 @@ namespace Piwik\Plugins\CoreHome;
 use Exception;
 use Piwik\API\Request;
 use Piwik\Common;
-use Piwik\Container\StaticContainer;
 use Piwik\Date;
 use Piwik\FrontController;
 use Piwik\Notification\Manager as NotificationManager;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
-use Piwik\Plugins\API\WidgetMetadata;
 use Piwik\Widget\Widget;
 use Piwik\Plugins\CoreHome\DataTableRowAction\MultiRowEvolution;
 use Piwik\Plugins\CoreHome\DataTableRowAction\RowEvolution;
@@ -30,8 +28,6 @@ use Piwik\UpdateCheck;
 use Piwik\Url;
 use Piwik\View;
 use Piwik\ViewDataTable\Manager as ViewDataTableManager;
-use Piwik\Widget\WidgetContainerConfig;
-use Piwik\Widget\WidgetsList;
 
 class Controller extends \Piwik\Plugin\Controller
 {
@@ -62,7 +58,7 @@ class Controller extends \Piwik\Plugin\Controller
         return $report->render();
     }
 
-    public function renderReportWidgetContainer()
+    public function renderWidgetContainer()
     {
         Piwik::checkUserHasSomeViewAccess();
         $this->checkSitePermission();
