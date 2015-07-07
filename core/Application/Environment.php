@@ -93,6 +93,10 @@ class Environment
 
         $this->validateEnvironment();
 
+        /** @var \Piwik\Plugin\Manager $pluginManager */
+        $pluginManager = $this->container->get('Piwik\Plugin\Manager');
+        $pluginManager->loadActivatedPlugins();
+
         $this->invokeEnvironmentBootstrappedHook();
 
         Piwik::postEvent('Environment.bootstrapped'); // this event should be removed eventually

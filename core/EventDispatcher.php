@@ -60,6 +60,8 @@ class EventDispatcher
 
     private $pluginHooks = array();
 
+    private $allPluginsToPostTo = null;
+
     /**
      * Constructor.
      */
@@ -80,10 +82,9 @@ class EventDispatcher
      * @param array $params The parameters to pass to each callback when executing.
      * @param bool $pending Whether this event should be posted again for plugins
      *                      loaded after the event is fired.
-     * @param array|null $plugins The plugins to post events to. If null, the event
-     *                            is posted to all plugins. The elements of this array
-     *                            can be either the Plugin objects themselves
-     *                            or their string names.
+     * @param string[]|null $plugins The plugins to post events to. If null, the event
+     *                               is posted to all plugins.
+     * TODO: BC break, changed array param to string[]
      */
     public function postEvent($eventName, $params, $pending = false, $plugins = null)
     {
@@ -91,22 +92,16 @@ class EventDispatcher
             $this->pendingEvents[] = array($eventName, $params);
         }
 
-        $manager = $this->pluginManager;
-
         if (empty($plugins)) {
-            $plugins = $manager->getPluginsLoadedAndActivated();
+            $plugins = $this->getAllPluginsToPostTo();
         }
 
         $callbacks = array();
 
         // collect all callbacks to execute
         foreach ($plugins as $pluginName) {
-            if (!is_string($pluginName)) {
-                $pluginName = $pluginName->getPluginName();
-            }
-
             if (!isset($this->pluginHooks[$pluginName])) {
-                $plugin = $manager->getLoadedPlugin($pluginName);
+                $plugin = $this->pluginManager->getLoadedPlugin($pluginName);
                 $this->pluginHooks[$pluginName] = $plugin->getListHooksRegistered();
             }
 
@@ -116,11 +111,10 @@ class EventDispatcher
                 list($pluginFunction, $callbackGroup) = $this->getCallbackFunctionAndGroupNumber($hooks[$eventName]);
 
                 if (is_string($pluginFunction)) {
-                    $plugin = $manager->getLoadedPlugin($pluginName);
-                    $callbacks[$callbackGroup][] = array($plugin, $pluginFunction) ;
-                } else {
-                    $callbacks[$callbackGroup][] = $pluginFunction;
+                    $pluginFunction = array($this->pluginManager->getLoadedPlugin($pluginName), $pluginFunction);
                 }
+
+                $callbacks[$callbackGroup][] = $pluginFunction;
             }
         }
 
@@ -200,5 +194,14 @@ class EventDispatcher
         }
 
         return array($pluginFunction, $callbackGroup);
+    }
+
+    private function getAllPluginsToPostTo()
+    {
+        if ($this->allPluginsToPostTo === null) {
+            $this->allPluginsToPostTo = array_keys($this->pluginManager->getPluginsLoadedAndActivated());
+        }
+
+        return $this->allPluginsToPostTo;
     }
 }

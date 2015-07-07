@@ -120,43 +120,7 @@ class Manager
      */
     public function loadTrackerPlugins()
     {
-        $cacheId = 'PluginsTracker';
-        $cache = Cache::getEagerCache();
-
-        if ($cache->contains($cacheId)) {
-            $pluginsTracker = $cache->fetch($cacheId);
-        } else {
-            $this->unloadPlugins();
-            $this->loadActivatedPlugins();
-
-            $pluginsTracker = array();
-
-            foreach ($this->loadedPlugins as $pluginName => $plugin) {
-                if ($this->isTrackerPlugin($plugin)) {
-                    $pluginsTracker[] = $pluginName;
-                }
-            }
-
-            if (!empty($pluginsTracker)) {
-                $cache->save($cacheId, $pluginsTracker);
-            }
-        }
-
-        if (empty($pluginsTracker)) {
-            $this->unloadPlugins();
-            return array();
-        }
-
-        $pluginsTracker = array_diff($pluginsTracker, $this->getTrackerPluginsNotToLoad());
-        $this->doNotLoadAlwaysActivatedPlugins();
-        $this->loadPlugins($pluginsTracker);
-
-        // we could simply unload all plugins first before loading plugins but this way it is much faster
-        // since we won't have to create each plugin again and we won't have to parse each plugin metadata file
-        // again etc
-        $this->makeSureOnlyActivatedPluginsAreLoaded();
-
-        return $pluginsTracker;
+        return; // TODO: remove
     }
 
     /**
@@ -763,7 +727,7 @@ class Manager
      */
     public function getPluginsLoadedAndActivated()
     {
-        if (is_null($this->pluginsLoadedAndActivated)) {
+        if ($this->pluginsLoadedAndActivated === null) {
             $enabled = $this->getActivatedPlugins();
 
             if (empty($enabled)) {
@@ -771,6 +735,7 @@ class Manager
             }
 
             $plugins = $this->getLoadedPlugins();
+
             $enabled = array_combine($enabled, $enabled);
             $plugins = array_intersect_key($plugins, $enabled);
 
@@ -1076,33 +1041,7 @@ class Manager
 
     public function isTrackerPlugin(Plugin $plugin)
     {
-        $dimensions = VisitDimension::getDimensions($plugin);
-        if (!empty($dimensions)) {
-            return true;
-        }
-
-        $dimensions = ActionDimension::getDimensions($plugin);
-        if (!empty($dimensions)) {
-            return true;
-        }
-
-        $hooks = $plugin->getListHooksRegistered();
-        $hookNames = array_keys($hooks);
-        foreach ($hookNames as $name) {
-            if (strpos($name, self::TRACKER_EVENT_PREFIX) === 0) {
-                return true;
-            }
-            if ($name === 'Request.initAuthenticationObject') {
-                return true;
-            }
-        }
-
-        $dimensions = ConversionDimension::getDimensions($plugin);
-        if (!empty($dimensions)) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     private static function pluginStructureLooksValid($path)
