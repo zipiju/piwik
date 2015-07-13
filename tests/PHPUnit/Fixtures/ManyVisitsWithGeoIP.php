@@ -7,7 +7,9 @@
  */
 namespace Piwik\Tests\Fixtures;
 
+use Piwik\Application\Environment;
 use Piwik\Cache;
+use Piwik\Config;
 use Piwik\Date;
 use Piwik\Plugins\Goals\API;
 use Piwik\Plugins\UserCountry\LocationProvider\GeoIp;
@@ -94,7 +96,15 @@ class ManyVisitsWithGeoIP extends Fixture
 
         if ($useLocal) {
             Cache::getTransientCache()->flushAll(); // make sure dimension cache is empty between local tracking runs
-            Visit::$dimensions = null;
+
+            $pluginsInstalled = Config::getInstance()->PluginsInstalled;
+
+            $environment = new Environment('tracker');
+            $environment->init();
+
+            // TestConfig will remove PluginsInstalled (legacy code from setUpTestEnvironment)
+            // TODO: should be removed / dealt with eventually
+            $environment->getContainer()->get('Piwik\Config')->PluginsInstalled = $pluginsInstalled;
         }
 
         // use local tracker so mock location provider can be used
@@ -174,6 +184,11 @@ class ManyVisitsWithGeoIP extends Fixture
         }
         if ($doBulk) {
             self::checkBulkTrackingResponse($t->doBulkTrack());
+        }
+        if ($useLocal
+            && isset($environment)
+        ) {
+            $environment->destroy();
         }
     }
 

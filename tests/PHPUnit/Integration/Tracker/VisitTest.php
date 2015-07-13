@@ -38,7 +38,6 @@ class VisitTest extends IntegrationTestCase
 
         Manager::getInstance()->loadTrackerPlugins();
         Manager::getInstance()->loadPlugin('SitesManager');
-        Visit::$dimensions = null;
     }
 
     /**
@@ -448,7 +447,6 @@ class VisitTest extends IntegrationTestCase
 
         $cache = Cache::getTransientCache();
         $cache->save(CacheId::pluginAware('VisitDimensions'), $dimensions);
-        Visit::$dimensions = null;
     }
 
     public function provideContainerConfig()

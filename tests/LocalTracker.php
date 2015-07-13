@@ -45,7 +45,6 @@ class Piwik_LocalTracker extends PiwikTracker
 
         // unset cached values
         Cache::$cache = null;
-        Tracker\Visit::$dimensions = null;
 
         // save some values
         $plugins = Config::getInstance()->Plugins['Plugins'];

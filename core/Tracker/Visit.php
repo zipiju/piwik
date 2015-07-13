@@ -54,7 +54,7 @@ class Visit implements VisitInterface
     protected $userSettings;
     protected $visitorCustomVariables = array();
 
-    public static $dimensions;
+    private $dimensions; // TODO: remove this
 
     /**
      * @param Request $request
@@ -611,11 +611,11 @@ class Visit implements VisitInterface
 
     protected function getAllVisitDimensions()
     {
-        if (is_null(self::$dimensions)) {
-            self::$dimensions = VisitDimension::getAllDimensions();
+        if (is_null($this->dimensions)) {
+            $this->dimensions = VisitDimension::getAllDimensions();
 
             $dimensionNames = array();
-            foreach (self::$dimensions as $dimension) {
+            foreach ($this->dimensions as $dimension) {
                 $dimensionNames[] = $dimension->getColumnName();
             }
 
@@ -623,7 +623,7 @@ class Visit implements VisitInterface
                     $dimensionNames));
         }
 
-        return self::$dimensions;
+        return $this->dimensions;
     }
 
     private function getVisitStandardLength()
