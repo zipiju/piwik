@@ -8,6 +8,8 @@ set -e
 
 DIR=$(realpath $(dirname "$0"))
 echo "DIR = $DIR"
+echo `pwd`
+ls `pwd`
 
 service nginx stop
 
