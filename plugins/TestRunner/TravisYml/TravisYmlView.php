@@ -30,7 +30,8 @@ class TravisYmlView extends View
         'before_script',
         'after_script',
         'after_success',
-        'sudo'
+        'sudo',
+        'addons'
     );
 
     /**
