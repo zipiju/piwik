@@ -55,13 +55,12 @@ sed -i "s|@PIWIK_ROOT@|$PIWIK_ROOT|g" "$DIR/piwik_nginx.conf"
 sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/piwik_nginx.conf"
 
 cp $NGINX_CONF "$DIR/nginx.conf"
-sed -i "s|include /etc/nginx/sites-enabled/*;|include /etc/nginx/sites-enabled/*; include $DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
 sed -i "s|/etc/nginx/sites-enabled/\\*|$DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
+sed -i "s|user www-data|user $USER|g" "$DIR/nginx.conf"
 
 # Start daemons
 echo "Starting php-fpm"
 $PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini"
-chown www-data:www-data ./tests/travis/php-fpm.sock
 
 echo "Starting nginx"
 nginx -c "$DIR/nginx.conf"
