@@ -46,26 +46,9 @@ sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/php-fpm.ini"
 sed -i "s|@PHP_FPM_LOG@|$PHP_FPM_LOG|g" "$DIR/php-fpm.ini"
 sed -i "s|@PATH@|$PATH|g" "$DIR/php-fpm.ini"
 
-# Setup nginx
-echo "Configuring nginx"
-PIWIK_ROOT=$(realpath "$DIR/../..")
-NGINX_CONF="/etc/nginx/nginx.conf"
-
-sed -i "s|@PIWIK_ROOT@|$PIWIK_ROOT|g" "$DIR/piwik_nginx.conf"
-sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/piwik_nginx.conf"
-
-cp $NGINX_CONF "$DIR/nginx.conf"
-cp "/etc/nginx/fastcgi_params" "$DIR"
-sed -i "s|/etc/nginx/sites-enabled/\\*|$DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
-sed -i "s|user www-data|user $USER|g" "$DIR/nginx.conf"
-sed -i "s|access_log .*;|access_log $DIR/access.log;|g" "$DIR/nginx.conf"
-sed -i "s|error_log .*;|error_log $DIR/error.log;|g" "$DIR/nginx.conf" # TODO: replace reference in .travis.yml
-
-cat "$DIR/nginx.conf"
-
 # Start daemons
 echo "Starting php-fpm"
-$PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini"
+#$PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini"
 
-echo "Starting nginx"
-nginx -c "$DIR/nginx.conf"
+echo "Starting webserver"
+php -S localhost:8000 &

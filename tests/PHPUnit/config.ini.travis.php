@@ -13,6 +13,7 @@ tables_prefix =
 ;charset = utf8
 
 [tests]
+http_host = "localhost:8000"
 request_uri = "/"
 
 [database_tests]
