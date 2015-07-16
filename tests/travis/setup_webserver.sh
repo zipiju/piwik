@@ -49,15 +49,19 @@ sed -i "s|@PATH@|$PATH|g" "$DIR/php-fpm.ini"
 # Setup nginx
 echo "Configuring nginx"
 PIWIK_ROOT=$(realpath "$DIR/../..")
-NGINX_CONF="/etc/nginx/sites-enabled/default"
+NGINX_CONF="/etc/nginx/nginx.conf"
 
 sed -i "s|@PIWIK_ROOT@|$PIWIK_ROOT|g" "$DIR/piwik_nginx.conf"
 sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/piwik_nginx.conf"
-cp "$DIR/piwik_nginx.conf" $NGINX_CONF # TODO: will this work?
+
+cp $NGINX_CONF "$DIR/nginx.conf"
+sed -i "s|include /etc/nginx/sites-enabled/*;|include /etc/nginx/sites-enabled/*; include $DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
+sed -i "s|/etc/nginx/sites-enabled/\\*|$DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
 
 # Start daemons
 echo "Starting php-fpm"
-$PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini" # TODO: will this work?
-chown www-data:www-data ./tests/travis/php-fpm.sock # TODO: will this work?
+$PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini"
+chown www-data:www-data ./tests/travis/php-fpm.sock
+
 echo "Starting nginx"
-service nginx start # TODO: will this work?
+nginx -c "$DIR/nginx.conf"
