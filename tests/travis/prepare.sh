@@ -7,12 +7,12 @@ fi
 set -e
 
 # Install fonts for UI tests
-if [ "$TEST_SUITE" = "UITests" ];
-then
+#if [ "$TEST_SUITE" = "UITests" ];
+#then
     # TODO: remove this (hopefully not needed)
     #sudo sh -c "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
     #sudo apt-get install -qq ttf-mscorefonts-installer > /dev/null
-fi
+#fi
 
 # Copy Piwik configuration
 echo "Install config.ini.php"
