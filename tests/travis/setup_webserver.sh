@@ -6,9 +6,9 @@ fi
 
 set -e
 
-DIR=$(dirname "$0")
+DIR=$(readlink -f $(dirname "$0"))
 
-service nginx stop # TODO: will this work?
+service nginx stop
 
 # Setup PHP-FPM
 echo "Configuring php-fpm"
@@ -57,6 +57,8 @@ sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/piwik_nginx.conf"
 cp $NGINX_CONF "$DIR/nginx.conf"
 sed -i "s|/etc/nginx/sites-enabled/\\*|$DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
 sed -i "s|user www-data|user $USER|g" "$DIR/nginx.conf"
+sed -i "s|access_log .*;|access_log $DIR/access.log;|g" "$DIR/nginx.conf"
+sed -i "s|error_log .*;|error_log $DIR/error.log;|g" "$DIR/nginx.conf" # TODO: replace reference in .travis.yml
 
 # Start daemons
 echo "Starting php-fpm"
