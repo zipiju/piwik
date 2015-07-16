@@ -6,7 +6,8 @@ fi
 
 set -e
 
-DIR=$(readlink -f $(dirname "$0"))
+DIR=$(realpath $(dirname "$0"))
+echo "DIR = $DIR"
 
 service nginx stop
 
@@ -59,8 +60,6 @@ sed -i "s|/etc/nginx/sites-enabled/\\*|$DIR/piwik_nginx.conf|g" "$DIR/nginx.conf
 sed -i "s|user www-data|user $USER|g" "$DIR/nginx.conf"
 sed -i "s|access_log .*;|access_log $DIR/access.log;|g" "$DIR/nginx.conf"
 sed -i "s|error_log .*;|error_log $DIR/error.log;|g" "$DIR/nginx.conf" # TODO: replace reference in .travis.yml
-
-cat "$DIR/nginx.conf"
 
 # Start daemons
 echo "Starting php-fpm"
