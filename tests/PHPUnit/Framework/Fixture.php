@@ -477,7 +477,7 @@ class Fixture extends \PHPUnit_Framework_Assert
         // in case force_ssl=1, or assume_secure_protocol=1, is set in tests
         // we don't want to require Travis CI or devs to setup HTTPS on their local machine
         $piwikUrl = str_replace("https://", "http://", $piwikUrl);
-
+echo "PIWIK URL: $piwikUrl\n";
         return $piwikUrl;
     }
 
