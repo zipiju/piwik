@@ -7,9 +7,6 @@ fi
 set -e
 
 DIR=$(realpath $(dirname "$0"))
-echo "DIR = $DIR"
-echo `pwd`
-ls `pwd`
 
 service nginx stop
 
@@ -58,6 +55,7 @@ sed -i "s|@PIWIK_ROOT@|$PIWIK_ROOT|g" "$DIR/piwik_nginx.conf"
 sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/piwik_nginx.conf"
 
 cp $NGINX_CONF "$DIR/nginx.conf"
+cp "/etc/nginx/fastcgi_params" "$DIR"
 sed -i "s|/etc/nginx/sites-enabled/\\*|$DIR/piwik_nginx.conf|g" "$DIR/nginx.conf"
 sed -i "s|user www-data|user $USER|g" "$DIR/nginx.conf"
 sed -i "s|access_log .*;|access_log $DIR/access.log;|g" "$DIR/nginx.conf"
