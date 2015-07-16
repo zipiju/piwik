@@ -22,7 +22,7 @@
 // IN THE SOFTWARE
 
 var fs  = require("fs");
-var url = 'http://localhost/tests/javascript/';
+var url = 'http://localhost:8000/tests/javascript/'; // TODO: make the port configurable through command line arg
 
 function printError(message) {
    console.error(message + "\n");

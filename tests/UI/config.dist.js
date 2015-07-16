@@ -7,17 +7,18 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
+// TODO: create special config for travis instead of modifying config.dist.js
 /**
  * The root Piwik URL to test against.
  */
-exports.piwikUrl = "http://localhost/";
+exports.piwikUrl = "http://localhost:8000/";
 
 /**
  * Data for the $_SERVER variable in the setup/teardown PHP scripts. Should be the same as
  * the values in your phpunit.xml file.
  */
 exports.phpServer = {
-    HTTP_HOST: 'localhost',
+    HTTP_HOST: 'localhost:8000',
     REQUEST_URI: '/',
     REMOTE_ADDR: '127.0.0.1'
 };

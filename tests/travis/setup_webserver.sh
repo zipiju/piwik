@@ -51,4 +51,4 @@ echo "Starting php-fpm"
 #$PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini"
 
 echo "Starting webserver"
-php -S localhost:8000 &
+php -S localhost:8000 >/dev/null 2>webserver.log &
