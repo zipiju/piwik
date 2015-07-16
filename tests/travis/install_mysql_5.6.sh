@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: re-enable mysql 5.6 installation somehow, maybe there's a ppa out there
+SKIP_INSTALL_MYSQL_56=1
+
 if [ "$SKIP_INSTALL_MYSQL_56" == "1" ]; then
     echo "Skipping MySQL 5.6 installation."
     exit 0;

@@ -79,7 +79,7 @@ matrix:
     - php: hhvm
       env: TEST_SUITE=AngularJSTests MYSQL_ADAPTER=PDO_MYSQL SKIP_COMPOSER_INSTALL=1
 
-sudo: required
+sudo: false
 
 script: $PIWIK_ROOT_DIR/tests/travis/travis.sh
 
@@ -158,6 +158,37 @@ after_script:
 after_success:
   - cd $PIWIK_ROOT_DIR
   - ./tests/travis/generate_docs.sh
+
+addons:
+  apt:
+    sources:
+    - deadsnakes
+
+    packages:
+    - python2.6
+    - python2.6-dev
+    - lftp
+    - xmlstarlet
+    - ttf-mscorefonts-installer
+    - nginx
+    - realpath
+    - python-software-properties
+
+addons:
+  apt:
+    sources:
+    - deadsnakes
+    packages:
+    - python2.6
+    - python2.6-dev
+    - lftp
+    - xmlstarlet
+    - ttf-mscorefonts-installer
+    - nginx
+    - realpath
+    - python-software-properties
+
+
 
 notifications:
   slack:

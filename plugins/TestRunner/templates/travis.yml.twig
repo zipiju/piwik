@@ -61,7 +61,7 @@ matrix:
   {{ existingMatrix|trim|raw }}
 {% endif %}
 
-sudo: required
+sudo: false
 
 script: {{ travisShScriptLocation }}
 
@@ -205,6 +205,21 @@ after_success:
 
 {{ customTravisBuildSteps.after_success.after|raw }}
 {% endif %}
+
+addons:
+  apt:
+    sources:
+    - deadsnakes
+
+    packages:
+    - python2.6
+    - python2.6-dev
+    - lftp
+    - xmlstarlet
+    - ttf-mscorefonts-installer
+    - nginx
+    - realpath
+    - python-software-properties
 {% if extraSections|default is not empty %}
 
 {{ extraSections|trim|raw }}

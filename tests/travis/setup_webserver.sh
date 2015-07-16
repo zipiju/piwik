@@ -8,11 +8,7 @@ set -e
 
 DIR=$(dirname "$0")
 
-echo "Installing nginx"
-sudo apt-get update -qq > /dev/null
-sudo apt-get install -qq nginx realpath > /dev/null
-
-sudo service nginx stop
+service nginx stop # TODO: will this work?
 
 # Setup PHP-FPM
 echo "Configuring php-fpm"
@@ -57,11 +53,11 @@ NGINX_CONF="/etc/nginx/sites-enabled/default"
 
 sed -i "s|@PIWIK_ROOT@|$PIWIK_ROOT|g" "$DIR/piwik_nginx.conf"
 sed -i "s|@PHP_FPM_SOCK@|$PHP_FPM_SOCK|g" "$DIR/piwik_nginx.conf"
-sudo cp "$DIR/piwik_nginx.conf" $NGINX_CONF
+cp "$DIR/piwik_nginx.conf" $NGINX_CONF # TODO: will this work?
 
 # Start daemons
 echo "Starting php-fpm"
-sudo $PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini"
-sudo chown www-data:www-data ./tests/travis/php-fpm.sock
+$PHP_FPM_BIN --fpm-config "$DIR/php-fpm.ini" # TODO: will this work?
+chown www-data:www-data ./tests/travis/php-fpm.sock # TODO: will this work?
 echo "Starting nginx"
-sudo service nginx start
+service nginx start # TODO: will this work?

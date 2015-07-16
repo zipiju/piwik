@@ -6,16 +6,12 @@ fi
 
 set -e
 
-sudo apt-get update > /dev/null
-
-# Install XMLStarlet
-sudo apt-get install -qq xmlstarlet > /dev/null
-
 # Install fonts for UI tests
 if [ "$TEST_SUITE" = "UITests" ];
 then
-    sudo sh -c "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
-    sudo apt-get install -qq ttf-mscorefonts-installer > /dev/null
+    # TODO: remove this (hopefully not needed)
+    #sudo sh -c "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
+    #sudo apt-get install -qq ttf-mscorefonts-installer > /dev/null
 fi
 
 # Copy Piwik configuration
