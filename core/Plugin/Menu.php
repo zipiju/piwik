@@ -15,6 +15,7 @@ use Piwik\Menu\MenuTop;
 use Piwik\Menu\MenuUser;
 use Piwik\Plugin\Manager as PluginManager;
 use Piwik\Plugins\UsersManager\UserPreferences;
+use Piwik\Report\Reports;
 
 /**
  * Base class of all plugin menu providers. Plugins that define their own menu items can extend this class to easily
@@ -245,7 +246,7 @@ class Menu
         }
 
         $reportAction = lcfirst(substr($action, 4));
-        if (Report::factory($module, $reportAction)) {
+        if (Reports::factory($module, $reportAction)) {
             return;
         }
 

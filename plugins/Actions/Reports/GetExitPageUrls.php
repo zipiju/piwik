@@ -17,6 +17,7 @@ use Piwik\Plugins\Actions\Columns\Metrics\AveragePageGenerationTime;
 use Piwik\Plugins\Actions\Columns\Metrics\AverageTimeOnPage;
 use Piwik\Plugins\Actions\Columns\Metrics\BounceRate;
 use Piwik\Plugins\Actions\Columns\Metrics\ExitRate;
+use Piwik\Report\Reports;
 use Piwik\Report\ReportWidgetFactory;
 use Piwik\Widget\WidgetsList;
 
@@ -98,7 +99,7 @@ class GetExitPageUrls extends Base
     public function getRelatedReports()
     {
         return array(
-            self::factory('Actions', 'getExitPageTitles'),
+            Reports::factory('Actions', 'getExitPageTitles'),
         );
     }
 

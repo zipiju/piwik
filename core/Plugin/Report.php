@@ -23,11 +23,11 @@ use Piwik\Piwik;
 use Piwik\Plugin\Manager as PluginManager;
 use Piwik\Plugins\CoreVisualizations\Visualizations\HtmlTable;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
+use Piwik\Report\Reports;
 use Piwik\ViewDataTable\Factory as ViewDataTableFactory;
 use Exception;
 use Piwik\Widget\WidgetsList;
 use Piwik\Report\ReportWidgetFactory;
-use Piwik\Category\Category;
 
 /**
  * Defines a new report. This class contains all information a report defines except the corresponding API method which
@@ -683,7 +683,7 @@ class Report
 
         list($subtableReportModule, $subtableReportAction) = $this->getSubtableApiMethod();
 
-        $subtableReport = self::factory($subtableReportModule, $subtableReportAction);
+        $subtableReport = Reports::factory($subtableReportModule, $subtableReportAction);
         if (empty($subtableReport)) {
             return null;
         }
@@ -729,175 +729,6 @@ class Report
         return Request::processRequest($module . '.' . $action, $paramOverride);
     }
 
-    /**
-     * Get an instance of a specific report belonging to the given module and having the given action.
-     * @param  string $module
-     * @param  string $action
-     * @return null|\Piwik\Plugin\Report
-     * @api
-     */
-    public static function factory($module, $action)
-    {
-        $listApiToReport = self::getMapOfModuleActionsToReport();
-        $api = $module . '.' . ucfirst($action);
-
-        if (!array_key_exists($api, $listApiToReport)) {
-            return null;
-        }
-
-        $klassName = $listApiToReport[$api];
-
-        return new $klassName;
-    }
-
-    private static function getMapOfModuleActionsToReport()
-    {
-        $cacheId = CacheId::pluginAware('ReportFactoryMap');
-
-        $cache = Cache::getEagerCache();
-        if ($cache->contains($cacheId)) {
-            $mapApiToReport = $cache->fetch($cacheId);
-        } else {
-            $reports = self::getAllReports();
-
-            $mapApiToReport = array();
-            foreach ($reports as $report) {
-                $key = $report->getModule() . '.' . ucfirst($report->getAction());
-
-                if (isset($mapApiToReport[$key]) && $report->getParameters()) {
-                    // sometimes there are multiple reports with same module/action but different parameters.
-                    // we might pick the "wrong" one. At some point we should compare all parameters and if there is
-                    // a report which parameters mach $_REQUEST then we should prefer that report
-                    continue;
-                }
-                $mapApiToReport[$key] = get_class($report);
-            }
-
-            $cache->save($cacheId, $mapApiToReport);
-        }
-
-        return $mapApiToReport;
-    }
-
-    /**
-     * Returns a list of all available reports. Even not enabled reports will be returned. They will be already sorted
-     * depending on the order and category of the report.
-     * @return \Piwik\Plugin\Report[]
-     * @api
-     */
-    public static function getAllReports()
-    {
-        $reports = self::getAllReportClasses();
-        $cacheId = CacheId::languageAware('Reports' . md5(implode('', $reports)));
-        $cache   = PiwikCache::getTransientCache();
-
-
-        if (!$cache->contains($cacheId)) {
-            $instances = array();
-
-            foreach ($reports as $report) {
-                $instances[] = new $report();
-            }
-
-            usort($instances, array('self', 'sort'));
-
-            $cache->save($cacheId, $instances);
-        }
-
-        return $cache->fetch($cacheId);
-    }
-
-    /**
-     * Returns class names of all Report metadata classes.
-     *
-     * @return string[]
-     * @api
-     */
-    public static function getAllReportClasses()
-    {
-        return PluginManager::getInstance()->findMultipleComponents('Reports', '\\Piwik\\Plugin\\Report');
-    }
-
-    /**
-     * API metadata are sorted by category/name,
-     * with a little tweak to replicate the standard Piwik category ordering
-     *
-     * @param Report $a
-     * @param Report $b
-     * @return int
-     */
-    private static function sort($a, $b)
-    {
-        return self::compareCategories($a->categoryId, $a->subcategoryId, $a->order, $b->categoryId, $b->subcategoryId, $b->order);
-    }
-    
-    public static function compareCategories($catA, $subcatA, $orderA, $catB, $subcatB, $orderB)
-    {
-        static $categories;
-
-        if (!isset($categories)) {
-            /** @var \Piwik\Category\Categories $categories */
-            $categories = StaticContainer::get('Piwik\Category\Categories');
-            $categories = $categories->getAllCategoriesWithSubcategories();
-        }
-
-        // in case there is a category class for both reports
-        if (!empty($categories[$catA]) && !empty($categories[$catB])) {
-            $catA = $categories[$catA];
-            $catB = $categories[$catB];
-
-            if ($catA->getOrder() == $catB->getOrder()) {
-                // same category order, compare subcategory order
-                $subcatA = $catA->getSubcategory($subcatA);
-                $subcatB = $catB->getSubcategory($subcatB);
-
-                // both reports have a subcategory with custom subcategory class
-                if ($subcatA && $subcatB) {
-                    if ($subcatA->getOrder() == $subcatB->getOrder()) {
-                        // same subcategory order, compare order of report
-
-                        if ($orderA == $orderB) {
-                            return 0;
-                        }
-
-                        return $orderA < $orderB ? -1 : 1;
-                    }
-
-                    return $subcatA->getOrder() < $subcatB->getOrder() ? -1 : 1;
-
-                } elseif ($subcatA) {
-                    return -1;
-                } elseif ($subcatB) {
-                    return 1;
-                }
-
-                if ($orderA == $orderB) {
-                    return 0;
-                }
-
-                return $orderA < $orderB ? -1 : 1;
-            }
-
-            return $catA->getOrder() < $catB->getOrder() ? -1 : 1;
-
-        } elseif (!empty($categories[$catA])) {
-            return -1;
-        } elseif (!empty($categories[$catB])) {
-            return 1;
-        }
-
-        if ($catA === $catB) {
-            // both have same category, compare order
-            if ($orderA == $orderB) {
-                return 0;
-            }
-
-            return $orderA < $orderB ? -1 : 1;
-        }
-
-        return strnatcasecmp($catA, $catB);
-    }
-
     private function getMetricTranslations($metricsToTranslate)
     {
         $translations = Metrics::getDefaultMetricTranslations();
@@ -916,11 +747,6 @@ class Report
         }
 
         return $metrics;
-    }
-
-    private function getMenuControllerAction()
-    {
-        return self::PREFIX_ACTION_IN_MENU . ucfirst($this->action);
     }
 
     private function getSubtableApiMethod()

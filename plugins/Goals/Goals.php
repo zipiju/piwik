@@ -13,6 +13,7 @@ use Piwik\Common;
 use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
+use Piwik\Report\Reports;
 use Piwik\Tracker\GoalManager;
 use Piwik\Category\Subcategory;
 
@@ -180,7 +181,9 @@ class Goals extends \Piwik\Plugin
     {
         $reportsWithGoals = array();
 
-        foreach (Report::getAllReports() as $report) {
+        $reports = new Reports();
+
+        foreach ($reports->getAllReports() as $report) {
             if ($report->hasGoalMetrics()) {
                 $reportsWithGoals[] = array(
                     'category' => $report->getCategoryId(),

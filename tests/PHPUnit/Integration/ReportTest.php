@@ -16,6 +16,7 @@ use Piwik\Piwik;
 use Piwik\Metrics;
 use Piwik\Plugins\ExampleTracker\Columns\ExampleDimension;
 use Piwik\Plugins\Referrers\Columns\Keyword;
+use Piwik\Report\Reports;
 use Piwik\Report\ReportWidgetFactory;
 use Piwik\Translate;
 use Piwik\Plugin\Manager as PluginManager;
@@ -314,41 +315,18 @@ class ReportTest extends IntegrationTestCase
         $module = 'ExampleReport';
         $action = 'getExampleReport';
 
-        $report = Report::factory($module, $action);
+        $report = Reports::factory($module, $action);
 
         $this->assertInstanceOf('Piwik\Plugins\ExampleReport\Reports\GetExampleReport', $report);
         $this->assertEquals($module, $report->getModule());
         $this->assertEquals($action, $report->getAction());
 
         // action ucfirst should work as well
-        $report = Report::factory($module, ucfirst($action));
+        $report = Reports::factory($module, ucfirst($action));
 
         $this->assertInstanceOf('Piwik\Plugins\ExampleReport\Reports\GetExampleReport', $report);
         $this->assertEquals($module, $report->getModule());
         $this->assertEquals($action, $report->getAction());
-    }
-
-    public function test_getAllReports_shouldNotFindAReport_IfNoPluginLoaded()
-    {
-        $this->unloadAllPlugins();
-
-        $report = Report::getAllReports();
-
-        $this->assertEquals(array(), $report);
-    }
-
-    public function test_getAllReports_ShouldFindAllAvailableReports()
-    {
-        $this->loadExampleReportPlugin();
-        $this->loadMorePlugins();
-
-        $reports = Report::getAllReports();
-
-        $this->assertGreaterThan(20, count($reports));
-
-        foreach ($reports as $report) {
-            $this->assertInstanceOf('Piwik\Plugin\Report', $report);
-        }
     }
 
     public function test_getSubtableDimension_ShouldReturnNullIfNoSubtableActionExists()
@@ -367,7 +345,7 @@ class ReportTest extends IntegrationTestCase
     {
         PluginManager::getInstance()->loadPlugins(array('Referrers'));
 
-        $report = Report::factory('Referrers', 'getSearchEngines');
+        $report = Reports::factory('Referrers', 'getSearchEngines');
         $subtableDimension = $report->getSubtableDimension();
 
         $this->assertNotNull($subtableDimension);

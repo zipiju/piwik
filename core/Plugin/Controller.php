@@ -33,6 +33,7 @@ use Piwik\Piwik;
 use Piwik\Plugins\CoreAdminHome\CustomLogo;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Plugins\LanguagesManager\LanguagesManager;
+use Piwik\Report\Reports;
 use Piwik\SettingsPiwik;
 use Piwik\Site;
 use Piwik\Url;
@@ -313,7 +314,7 @@ abstract class Controller
     protected function renderReport($apiAction, $controllerAction = false)
     {
         if (empty($controllerAction) && is_string($apiAction)) {
-            $report = Report::factory($this->pluginName, $apiAction);
+            $report = Reports::factory($this->pluginName, $apiAction);
 
             if (!empty($report)) {
                 $apiAction = $report;

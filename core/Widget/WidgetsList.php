@@ -12,7 +12,7 @@ use Piwik\Cache as PiwikCache;
 use Piwik\Container\StaticContainer;
 use Piwik\Development;
 use Piwik\Piwik;
-use Piwik\Plugin\Report;
+use Piwik\Report\Reports;
 use Piwik\Report\ReportWidgetFactory;
 
 /**
@@ -44,17 +44,27 @@ class WidgetsList
 
     public function addWidget(WidgetConfig $widget)
     {
-        $this->checkIsValidWidget($widget);
+        if ($widget instanceof WidgetContainerConfig) {
+            $this->addContainer($widget);
+        } else {
+            $this->checkIsValidWidget($widget);
+        }
 
         $this->widgets[] = $widget;
     }
 
-    public function addContainer(WidgetContainerConfig $containerWidget)
+    public function addWidgets($widgets)
+    {
+        foreach ($widgets as $widget) {
+            $this->addWidget($widget);
+        }
+    }
+
+    private function addContainer(WidgetContainerConfig $containerWidget)
     {
         $widgetId = $containerWidget->getId();
 
         $this->container[$widgetId] = $containerWidget;
-        $this->widgets[] = $containerWidget;
 
         // widgets were added to this container, but the container did not exist yet.
         if (isset($this->containerWidgets[$widgetId])) {
@@ -62,17 +72,6 @@ class WidgetsList
                 $containerWidget->addWidget($widget);
             }
             unset($this->containerWidgets[$widgetId]);
-        }
-    }
-
-    public function addWidgets($widgets)
-    {
-        foreach ($widgets as $widget) {
-            if ($widget instanceof WidgetContainerConfig) {
-                $this->addContainer($widget);
-            } else {
-                $this->addWidget($widget);
-            }
         }
     }
 
@@ -152,13 +151,12 @@ class WidgetsList
 
         Piwik::postEvent('Widgets.addWidgets', array($list));
 
-        /** @var Widgets $widgets */
-        $widgets = StaticContainer::get(__NAMESPACE__ . '\Widgets');
+        $widgets = StaticContainer::get('Piwik\Widget\Widgets');
 
         $widgetContainerConfigs = $widgets->getWidgetContainerConfigs();
         foreach ($widgetContainerConfigs as $config) {
             if ($config->isEnabled()) {
-                $list->addContainer($config);
+                $list->addWidget($config);
             }
         }
 
@@ -169,7 +167,8 @@ class WidgetsList
             }
         }
 
-        $reports = Report::getAllReports();
+        $reports = StaticContainer::get('Piwik\Report\Reports');
+        $reports = $reports->getAllReports();
         foreach ($reports as $report) {
             if ($report->isEnabled()) {
                 $factory = new ReportWidgetFactory($report);

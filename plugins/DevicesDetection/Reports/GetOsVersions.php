@@ -11,6 +11,7 @@ namespace Piwik\Plugins\DevicesDetection\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\DevicesDetection\Columns\OsVersion;
+use Piwik\Report\Reports;
 
 class GetOsVersions extends Base
 {
@@ -36,7 +37,7 @@ class GetOsVersions extends Base
     public function getRelatedReports()
     {
         return array(
-            self::factory('DevicesDetection', 'getOsFamilies'),
+            Reports::factory('DevicesDetection', 'getOsFamilies'),
         );
     }
 }

@@ -10,6 +10,7 @@ namespace Piwik\Plugins\API\Reports;
 
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
+use Piwik\Report\Reports;
 
 class Get extends Report
 {
@@ -80,8 +81,9 @@ class Get extends Report
      */
     private function getReportsToMerge()
     {
+        $reports = new Reports();
         $result = array();
-        foreach (Report::getAllReportClasses() as $reportClass) {
+        foreach ($reports->getAllReportClasses() as $reportClass) {
             if ($reportClass == 'Piwik\\Plugins\\API\\Reports\\Get') {
                 continue;
             }

@@ -14,6 +14,7 @@ use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\CoreVisualizations\Visualizations\Graph;
 use Piwik\Plugins\VisitTime\Columns\DayOfTheWeek;
 use Piwik\Period;
+use Piwik\Report\Reports;
 use Piwik\Site;
 
 class GetByDayOfWeek extends Base
@@ -77,7 +78,7 @@ class GetByDayOfWeek extends Base
     public function getRelatedReports()
     {
         return array(
-            self::factory('VisitTime', 'getVisitInformationPerLocalTime')
+            Reports::factory('VisitTime', 'getVisitInformationPerLocalTime')
         );
     }
 }

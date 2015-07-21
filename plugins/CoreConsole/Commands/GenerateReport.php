@@ -13,6 +13,7 @@ use Piwik\Columns\Dimension;
 use Piwik\Piwik;
 use Piwik\Plugin\Manager;
 use Piwik\Plugin\Report;
+use Piwik\Report\Reports;
 use Piwik\Translate;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -79,7 +80,9 @@ class GenerateReport extends GeneratePluginBase
     {
         $order = 1;
 
-        foreach (Report::getAllReports() as $report) {
+        $reports = new Reports();
+
+        foreach ($reports->getAllReports() as $report) {
             if ($report->getCategoryId() === $category) {
                 if ($report->getOrder() > $order) {
                     $order = $report->getOrder() + 1;
@@ -190,8 +193,10 @@ class GenerateReport extends GeneratePluginBase
 
         $category = $input->getOption('category');
 
+        $reports = new Reports();
+
         $categories = array();
-        foreach (Report::getAllReports() as $report) {
+        foreach ($reports->getAllReports() as $report) {
             if ($report->getCategoryId()) {
                 $categories[] = Piwik::translate($report->getCategoryId());
             }
@@ -227,7 +232,9 @@ class GenerateReport extends GeneratePluginBase
         $dimensions = array();
         $dimensionNames = array();
 
-        foreach (Report::getAllReports() as $report) {
+        $reports = new Reports();
+
+        foreach ($reports->getAllReports() as $report) {
             $dimension = $report->getDimension();
             if (is_object($dimension)) {
                 $name = $dimension->getName();

@@ -15,6 +15,7 @@ use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Plugins\CoreVisualizations\Visualizations\Sparklines;
+use Piwik\Report\Reports;
 use Piwik\Widget\WidgetContainerConfig;
 use Piwik\Widget\WidgetConfig;
 use Piwik\Report\ReportWidgetFactory;
@@ -336,7 +337,7 @@ class Pages
 
     private function createWidgetForReport($module, $action)
     {
-        $factory = new ReportWidgetFactory(Report::factory($module, $action));
+        $factory = new ReportWidgetFactory(Reports::factory($module, $action));
         return $factory->createWidget();
     }
 

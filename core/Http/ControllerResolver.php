@@ -13,6 +13,7 @@ use Exception;
 use Piwik\Plugin;
 use Piwik\Plugin\Controller;
 use Piwik\Plugin\Report;
+use Piwik\Report\Reports;
 use Piwik\Session;
 use Piwik\Widget\Widgets;
 
@@ -100,7 +101,7 @@ class ControllerResolver
 
     private function createReportController($module, $action, array &$parameters)
     {
-        $report = Report::factory($module, $action);
+        $report = Reports::factory($module, $action);
 
         if (!$report) {
             return null;

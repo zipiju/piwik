@@ -9,7 +9,6 @@
 namespace Piwik\Report;
 use Piwik\ViewDataTable\Factory;
 use Piwik\Widget\WidgetConfig;
-use Piwik\Widget\WidgetsList;
 
 /**
  * Defines a new widget. You can create a new widget using the console command `./console generate:widget`.
@@ -38,6 +37,11 @@ class ReportWidgetConfig extends WidgetConfig
         return $this;
     }
 
+    public function isViewDataTableForced()
+    {
+        return $this->forceViewDataTable;
+    }
+
     public function getDefaultView()
     {
         return $this->viewDataTable;
@@ -50,7 +54,7 @@ class ReportWidgetConfig extends WidgetConfig
         $defaultParams = array();
 
         if ($this->forceViewDataTable) {
-            $defaultParams['forceView'] = 1;
+            $defaultParams['forceView'] = '1';
         }
 
         if ($this->viewDataTable &&

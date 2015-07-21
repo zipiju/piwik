@@ -11,6 +11,7 @@ namespace Piwik\Plugins\Resolution\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\Resolution\Columns\Resolution;
+use Piwik\Report\Reports;
 
 class GetResolution extends Base
 {
@@ -35,7 +36,7 @@ class GetResolution extends Base
     public function getRelatedReports()
     {
         return array(
-            self::factory('Resolution', 'getConfiguration'),
+            Reports::factory('Resolution', 'getConfiguration'),
         );
     }
 }

@@ -32,7 +32,7 @@ class GetContinent extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addContainer($factory->createContainerWidget('Continent'));
+        $widgetsList->addWidget($factory->createContainerWidget('Continent'));
 
         $widgetsList->addToContainerWidget('Continent', $factory->createWidget());
 

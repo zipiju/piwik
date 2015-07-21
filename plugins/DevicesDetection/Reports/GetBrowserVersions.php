@@ -11,6 +11,7 @@ namespace Piwik\Plugins\DevicesDetection\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\DevicesDetection\Columns\BrowserVersion;
+use Piwik\Report\Reports;
 
 class GetBrowserVersions extends Base
 {
@@ -35,7 +36,7 @@ class GetBrowserVersions extends Base
     public function getRelatedReports()
     {
         return array(
-            self::factory('DevicesDetection', 'getBrowsers'),
+            Reports::factory('DevicesDetection', 'getBrowsers'),
         );
     }
 }
