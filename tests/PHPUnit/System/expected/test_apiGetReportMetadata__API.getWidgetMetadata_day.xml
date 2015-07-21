@@ -264,7 +264,7 @@
 			<action>renderWidgetContainer</action>
 			<containerId>VisitOverviewWithGraph</containerId>
 		</parameters>
-		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdVisitOverviewWithGraph</uniqueId>
+		<uniqueId>widgetVisitOverviewWithGraph</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -609,29 +609,6 @@
 		<uniqueId>widgetUserCountryMapvisitorMap</uniqueId>
 	</row>
 	<row>
-		<name>Visits by Days Since Last Visit</name>
-		<category>
-			<name>Visitors</name>
-			<order>5</order>
-			<id>General_Visitors</id>
-		</category>
-		<subcategory>
-			<name>Engagement</name>
-			<order>30</order>
-			<id>VisitorInterest_Engagement</id>
-		</subcategory>
-		<module>VisitorInterest</module>
-		<action>getNumberOfVisitsByDaysSinceLast</action>
-		<order>130</order>
-		<parameters>
-			<module>VisitorInterest</module>
-			<action>getNumberOfVisitsByDaysSinceLast</action>
-		</parameters>
-		<uniqueId>widgetVisitorInterestgetNumberOfVisitsByDaysSinceLast</uniqueId>
-		<viewDataTable>table</viewDataTable>
-		<isReport>1</isReport>
-	</row>
-	<row>
 		<name>Visits per visit duration</name>
 		<category>
 			<name>Visitors</name>
@@ -656,7 +633,7 @@
 		<isReport>1</isReport>
 	</row>
 	<row>
-		<name>Frequency Overview</name>
+		<name>Returning Visits Over Time</name>
 		<category>
 			<name>Visitors</name>
 			<order>5</order>
@@ -668,36 +645,39 @@
 			<id>VisitorInterest_Engagement</id>
 		</subcategory>
 		<module>VisitFrequency</module>
-		<action>get</action>
-		<order>2</order>
+		<action>getEvolutionGraph</action>
+		<order>1</order>
 		<parameters>
 			<forceView>1</forceView>
-			<viewDataTable>sparklines</viewDataTable>
+			<viewDataTable>graphEvolution</viewDataTable>
 			<module>VisitFrequency</module>
-			<action>get</action>
+			<action>getEvolutionGraph</action>
 		</parameters>
-		<uniqueId>widgetVisitFrequencygetforceView1viewDataTablesparklines</uniqueId>
-		<viewDataTable>sparklines</viewDataTable>
+		<uniqueId>widgetVisitFrequencygetEvolutionGraphforceView1viewDataTablegraphEvolution</uniqueId>
+		<viewDataTable>graphEvolution</viewDataTable>
 		<isReport>1</isReport>
 	</row>
 	<row>
-		<name>Visits by Day of Week</name>
+		<name>Visits by Days Since Last Visit</name>
 		<category>
 			<name>Visitors</name>
 			<order>5</order>
 			<id>General_Visitors</id>
 		</category>
-		<subcategory />
-		<module>VisitTime</module>
-		<action>getByDayOfWeek</action>
-		<order>125</order>
+		<subcategory>
+			<name>Engagement</name>
+			<order>30</order>
+			<id>VisitorInterest_Engagement</id>
+		</subcategory>
+		<module>VisitorInterest</module>
+		<action>getNumberOfVisitsByDaysSinceLast</action>
+		<order>130</order>
 		<parameters>
-			<viewDataTable>graphVerticalBar</viewDataTable>
-			<module>VisitTime</module>
-			<action>getByDayOfWeek</action>
+			<module>VisitorInterest</module>
+			<action>getNumberOfVisitsByDaysSinceLast</action>
 		</parameters>
-		<uniqueId>widgetVisitTimegetByDayOfWeekviewDataTablegraphVerticalBar</uniqueId>
-		<viewDataTable>graphVerticalBar</viewDataTable>
+		<uniqueId>widgetVisitorInterestgetNumberOfVisitsByDaysSinceLast</uniqueId>
+		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>
 	<row>
@@ -748,7 +728,7 @@
 		<isReport>1</isReport>
 	</row>
 	<row>
-		<name>Returning Visits Over Time</name>
+		<name>Frequency Overview</name>
 		<category>
 			<name>Visitors</name>
 			<order>5</order>
@@ -760,16 +740,16 @@
 			<id>VisitorInterest_Engagement</id>
 		</subcategory>
 		<module>VisitFrequency</module>
-		<action>getEvolutionGraph</action>
-		<order>1</order>
+		<action>get</action>
+		<order>2</order>
 		<parameters>
 			<forceView>1</forceView>
-			<viewDataTable>graphEvolution</viewDataTable>
+			<viewDataTable>sparklines</viewDataTable>
 			<module>VisitFrequency</module>
-			<action>getEvolutionGraph</action>
+			<action>get</action>
 		</parameters>
-		<uniqueId>widgetVisitFrequencygetEvolutionGraphforceView1viewDataTablegraphEvolution</uniqueId>
-		<viewDataTable>graphEvolution</viewDataTable>
+		<uniqueId>widgetVisitFrequencygetforceView1viewDataTablesparklines</uniqueId>
+		<viewDataTable>sparklines</viewDataTable>
 		<isReport>1</isReport>
 	</row>
 	<row>
@@ -817,6 +797,30 @@
 			<action>getVisitInformationPerLocalTime</action>
 		</parameters>
 		<uniqueId>widgetVisitTimegetVisitInformationPerLocalTimeviewDataTablegraphVerticalBar</uniqueId>
+		<viewDataTable>graphVerticalBar</viewDataTable>
+		<isReport>1</isReport>
+	</row>
+	<row>
+		<name>Visits by Day of Week</name>
+		<category>
+			<name>Visitors</name>
+			<order>5</order>
+			<id>General_Visitors</id>
+		</category>
+		<subcategory>
+			<name>Times</name>
+			<order>35</order>
+			<id>VisitTime_SubmenuTimes</id>
+		</subcategory>
+		<module>VisitTime</module>
+		<action>getByDayOfWeek</action>
+		<order>125</order>
+		<parameters>
+			<viewDataTable>graphVerticalBar</viewDataTable>
+			<module>VisitTime</module>
+			<action>getByDayOfWeek</action>
+		</parameters>
+		<uniqueId>widgetVisitTimegetByDayOfWeekviewDataTablegraphVerticalBar</uniqueId>
 		<viewDataTable>graphVerticalBar</viewDataTable>
 		<isReport>1</isReport>
 	</row>
@@ -1432,9 +1436,9 @@
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
-			<containerId>Goals_EcommerceGeneral_Overview</containerId>
+			<containerId>EcommerceOverview</containerId>
 		</parameters>
-		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_EcommerceGeneral_Overview</uniqueId>
+		<uniqueId>widgetEcommerceOverview</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1549,9 +1553,9 @@
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
-			<containerId>Goals_GoalsGeneral_Overview</containerId>
+			<containerId>GoalsOverview</containerId>
 		</parameters>
-		<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_GoalsGeneral_Overview</uniqueId>
+		<uniqueId>widgetGoalsOverview</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1573,10 +1577,9 @@
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
-			<idGoal>1</idGoal>
-			<containerId>Goals_Goals1</containerId>
+			<containerId>Goal_1</containerId>
 		</parameters>
-		<uniqueId>widgetCoreHomerenderWidgetContaineridGoal1containerIdGoals_Goals1</uniqueId>
+		<uniqueId>widgetGoal_1</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1598,10 +1601,9 @@
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
-			<idGoal>2</idGoal>
-			<containerId>Goals_Goals2</containerId>
+			<containerId>Goal_2</containerId>
 		</parameters>
-		<uniqueId>widgetCoreHomerenderWidgetContaineridGoal2containerIdGoals_Goals2</uniqueId>
+		<uniqueId>widgetGoal_2</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>
@@ -1623,10 +1625,9 @@
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
-			<idGoal>3</idGoal>
-			<containerId>Goals_Goals3</containerId>
+			<containerId>Goal_3</containerId>
 		</parameters>
-		<uniqueId>widgetCoreHomerenderWidgetContaineridGoal3containerIdGoals_Goals3</uniqueId>
+		<uniqueId>widgetGoal_3</uniqueId>
 		<layout />
 		<isContainer>1</isContainer>
 	</row>

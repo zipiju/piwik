@@ -414,7 +414,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Events</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdEvents</uniqueId>
+				<uniqueId>widgetEvents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -574,7 +574,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Events</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdEvents</uniqueId>
+				<uniqueId>widgetEvents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -749,7 +749,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Contents</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContents</uniqueId>
+				<uniqueId>widgetContents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -857,7 +857,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Contents</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContents</uniqueId>
+				<uniqueId>widgetContents</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -1580,7 +1580,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Continent</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContinent</uniqueId>
+				<uniqueId>widgetContinent</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -1731,7 +1731,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Continent</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdContinent</uniqueId>
+				<uniqueId>widgetContinent</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -1892,6 +1892,20 @@
 				<isReport>1</isReport>
 			</row>
 			<row>
+				<name>Visits by Day of Week</name>
+				<module>VisitTime</module>
+				<action>getByDayOfWeek</action>
+				<order>125</order>
+				<parameters>
+					<viewDataTable>graphVerticalBar</viewDataTable>
+					<module>VisitTime</module>
+					<action>getByDayOfWeek</action>
+				</parameters>
+				<uniqueId>widgetVisitTimegetByDayOfWeekviewDataTablegraphVerticalBar</uniqueId>
+				<viewDataTable>graphVerticalBar</viewDataTable>
+				<isReport>1</isReport>
+			</row>
+			<row>
 				<name>Visits per local time</name>
 				<module>VisitTime</module>
 				<action>getVisitInformationPerLocalTime</action>
@@ -1916,6 +1930,20 @@
 					<action>getVisitInformationPerServerTime</action>
 				</parameters>
 				<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTablegraphVerticalBar</uniqueId>
+				<viewDataTable>graphVerticalBar</viewDataTable>
+				<isReport>1</isReport>
+			</row>
+			<row>
+				<name>Visits by Day of Week</name>
+				<module>VisitTime</module>
+				<action>getByDayOfWeek</action>
+				<order>125</order>
+				<parameters>
+					<viewDataTable>graphVerticalBar</viewDataTable>
+					<module>VisitTime</module>
+					<action>getByDayOfWeek</action>
+				</parameters>
+				<uniqueId>widgetVisitTimegetByDayOfWeekviewDataTablegraphVerticalBar</uniqueId>
 				<viewDataTable>graphVerticalBar</viewDataTable>
 				<isReport>1</isReport>
 			</row>
@@ -2423,10 +2451,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<idGoal>1</idGoal>
-					<containerId>Goals_Goals1</containerId>
+					<containerId>Goal_1</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContaineridGoal1containerIdGoals_Goals1</uniqueId>
+				<uniqueId>widgetGoal_1</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -2477,8 +2504,9 @@
 							<module>Goals</module>
 							<action>get</action>
 							<idGoal>1</idGoal>
+							<allow_multiple>1</allow_multiple>
 						</parameters>
-						<uniqueId>widgetGoalsgetforceView1viewDataTablesparklinesidGoal1</uniqueId>
+						<uniqueId>widgetGoalsgetforceView1viewDataTablesparklinesidGoal1allow_multiple1</uniqueId>
 						<viewDataTable>sparklines</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -2494,188 +2522,60 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Goals1</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals1</uniqueId>
+				<uniqueId>widgetGoals1</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
 					<row>
-						<name>Referrer Type</name>
+						<name>Custom Variables</name>
 						<category>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getReferrerType</action>
-						<order>101</order>
+						<module>CustomVariables</module>
+						<action>getCustomVariables</action>
+						<order>301</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getReferrerType</action>
+							<module>CustomVariables</module>
+							<action>getCustomVariables</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Keywords</name>
+						<name>Visits per server time</name>
 						<category>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getKeywords</action>
-						<order>103</order>
+						<module>VisitTime</module>
+						<action>getVisitInformationPerServerTime</action>
+						<order>302</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getKeywords</action>
+							<module>VisitTime</module>
+							<action>getVisitInformationPerServerTime</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Search Engines</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getSearchEngines</action>
-						<order>107</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getSearchEngines</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Websites</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getWebsites</action>
-						<order>105</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getWebsites</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Campaigns</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getCampaigns</action>
-						<order>109</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getCampaigns</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Visits to Conversion</name>
-						<category>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</category>
-						<subcategory>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getVisitsUntilConversion</action>
-						<order>105</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getVisitsUntilConversion</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Days to Conversion</name>
-						<category>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</category>
-						<subcategory>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getDaysToConversion</action>
-						<order>110</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getDaysToConversion</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
@@ -2692,7 +2592,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
-						<order>105</order>
+						<order>201</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -2718,7 +2618,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
-						<order>106</order>
+						<order>202</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -2744,7 +2644,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
-						<order>107</order>
+						<order>203</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -2770,7 +2670,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
-						<order>110</order>
+						<order>204</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -2783,55 +2683,183 @@
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Visits per server time</name>
+						<name>Referrer Type</name>
 						<category>
-							<name>Goals by User location</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User location</id>
+							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Goals by User location</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User location</id>
+							<id>Goals by Referrers</id>
 						</subcategory>
-						<module>VisitTime</module>
-						<action>getVisitInformationPerServerTime</action>
-						<order>120</order>
+						<module>Referrers</module>
+						<action>getReferrerType</action>
+						<order>1</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>VisitTime</module>
-							<action>getVisitInformationPerServerTime</action>
+							<module>Referrers</module>
+							<action>getReferrerType</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Custom Variables</name>
+						<name>Keywords</name>
 						<category>
-							<name>Goals by User attribute</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
+							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Goals by User attribute</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
+							<id>Goals by Referrers</id>
 						</subcategory>
-						<module>CustomVariables</module>
-						<action>getCustomVariables</action>
-						<order>110</order>
+						<module>Referrers</module>
+						<action>getKeywords</action>
+						<order>2</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>CustomVariables</module>
-							<action>getCustomVariables</action>
+							<module>Referrers</module>
+							<action>getKeywords</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Search Engines</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getSearchEngines</action>
+						<order>3</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getSearchEngines</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Websites</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getWebsites</action>
+						<order>4</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getWebsites</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Campaigns</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getCampaigns</action>
+						<order>5</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getCampaigns</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Visits to Conversion</name>
+						<category>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</category>
+						<subcategory>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getVisitsUntilConversion</action>
+						<order>101</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getVisitsUntilConversion</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Days to Conversion</name>
+						<category>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</category>
+						<subcategory>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getDaysToConversion</action>
+						<order>102</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getDaysToConversion</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 				</widgets>
@@ -2859,10 +2887,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<idGoal>2</idGoal>
-					<containerId>Goals_Goals2</containerId>
+					<containerId>Goal_2</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContaineridGoal2containerIdGoals_Goals2</uniqueId>
+				<uniqueId>widgetGoal_2</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -2913,8 +2940,9 @@
 							<module>Goals</module>
 							<action>get</action>
 							<idGoal>2</idGoal>
+							<allow_multiple>0</allow_multiple>
 						</parameters>
-						<uniqueId>widgetGoalsgetforceView1viewDataTablesparklinesidGoal2</uniqueId>
+						<uniqueId>widgetGoalsgetforceView1viewDataTablesparklinesidGoal2allow_multiple0</uniqueId>
 						<viewDataTable>sparklines</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -2930,188 +2958,60 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Goals2</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals2</uniqueId>
+				<uniqueId>widgetGoals2</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
 					<row>
-						<name>Referrer Type</name>
+						<name>Custom Variables</name>
 						<category>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getReferrerType</action>
-						<order>101</order>
+						<module>CustomVariables</module>
+						<action>getCustomVariables</action>
+						<order>301</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getReferrerType</action>
+							<module>CustomVariables</module>
+							<action>getCustomVariables</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Keywords</name>
+						<name>Visits per server time</name>
 						<category>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getKeywords</action>
-						<order>103</order>
+						<module>VisitTime</module>
+						<action>getVisitInformationPerServerTime</action>
+						<order>302</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getKeywords</action>
+							<module>VisitTime</module>
+							<action>getVisitInformationPerServerTime</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Search Engines</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getSearchEngines</action>
-						<order>107</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getSearchEngines</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Websites</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getWebsites</action>
-						<order>105</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getWebsites</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Campaigns</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getCampaigns</action>
-						<order>109</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getCampaigns</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Visits to Conversion</name>
-						<category>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</category>
-						<subcategory>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getVisitsUntilConversion</action>
-						<order>105</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getVisitsUntilConversion</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Days to Conversion</name>
-						<category>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</category>
-						<subcategory>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getDaysToConversion</action>
-						<order>110</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getDaysToConversion</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
@@ -3128,7 +3028,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
-						<order>105</order>
+						<order>201</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3154,7 +3054,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
-						<order>106</order>
+						<order>202</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3180,7 +3080,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
-						<order>107</order>
+						<order>203</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3206,7 +3106,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
-						<order>110</order>
+						<order>204</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3219,55 +3119,183 @@
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Visits per server time</name>
+						<name>Referrer Type</name>
 						<category>
-							<name>Goals by User location</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User location</id>
+							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Goals by User location</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User location</id>
+							<id>Goals by Referrers</id>
 						</subcategory>
-						<module>VisitTime</module>
-						<action>getVisitInformationPerServerTime</action>
-						<order>120</order>
+						<module>Referrers</module>
+						<action>getReferrerType</action>
+						<order>1</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>VisitTime</module>
-							<action>getVisitInformationPerServerTime</action>
+							<module>Referrers</module>
+							<action>getReferrerType</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Custom Variables</name>
+						<name>Keywords</name>
 						<category>
-							<name>Goals by User attribute</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
+							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Goals by User attribute</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
+							<id>Goals by Referrers</id>
 						</subcategory>
-						<module>CustomVariables</module>
-						<action>getCustomVariables</action>
-						<order>110</order>
+						<module>Referrers</module>
+						<action>getKeywords</action>
+						<order>2</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>CustomVariables</module>
-							<action>getCustomVariables</action>
+							<module>Referrers</module>
+							<action>getKeywords</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Search Engines</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getSearchEngines</action>
+						<order>3</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getSearchEngines</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Websites</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getWebsites</action>
+						<order>4</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getWebsites</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Campaigns</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getCampaigns</action>
+						<order>5</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getCampaigns</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Visits to Conversion</name>
+						<category>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</category>
+						<subcategory>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getVisitsUntilConversion</action>
+						<order>101</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getVisitsUntilConversion</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Days to Conversion</name>
+						<category>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</category>
+						<subcategory>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getDaysToConversion</action>
+						<order>102</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getDaysToConversion</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 				</widgets>
@@ -3295,10 +3323,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<idGoal>3</idGoal>
-					<containerId>Goals_Goals3</containerId>
+					<containerId>Goal_3</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContaineridGoal3containerIdGoals_Goals3</uniqueId>
+				<uniqueId>widgetGoal_3</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -3349,8 +3376,9 @@
 							<module>Goals</module>
 							<action>get</action>
 							<idGoal>3</idGoal>
+							<allow_multiple>0</allow_multiple>
 						</parameters>
-						<uniqueId>widgetGoalsgetforceView1viewDataTablesparklinesidGoal3</uniqueId>
+						<uniqueId>widgetGoalsgetforceView1viewDataTablesparklinesidGoal3allow_multiple0</uniqueId>
 						<viewDataTable>sparklines</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -3390,188 +3418,60 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Goals3</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals3</uniqueId>
+				<uniqueId>widgetGoals3</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
 					<row>
-						<name>Referrer Type</name>
+						<name>Custom Variables</name>
 						<category>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getReferrerType</action>
-						<order>101</order>
+						<module>CustomVariables</module>
+						<action>getCustomVariables</action>
+						<order>301</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getReferrerType</action>
+							<module>CustomVariables</module>
+							<action>getCustomVariables</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Keywords</name>
+						<name>Visits per server time</name>
 						<category>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Goals by Referrers</name>
+							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
+							<id>Goals by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getKeywords</action>
-						<order>103</order>
+						<module>VisitTime</module>
+						<action>getVisitInformationPerServerTime</action>
+						<order>302</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getKeywords</action>
+							<module>VisitTime</module>
+							<action>getVisitInformationPerServerTime</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Search Engines</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getSearchEngines</action>
-						<order>107</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getSearchEngines</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Websites</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getWebsites</action>
-						<order>105</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getWebsites</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Campaigns</name>
-						<category>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Goals by Referrers</name>
-							<order>99</order>
-							<id>Goals by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getCampaigns</action>
-						<order>109</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getCampaigns</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Visits to Conversion</name>
-						<category>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</category>
-						<subcategory>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getVisitsUntilConversion</action>
-						<order>105</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getVisitsUntilConversion</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Days to Conversion</name>
-						<category>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</category>
-						<subcategory>
-							<name>Goals engagement</name>
-							<order>99</order>
-							<id>Goals engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getDaysToConversion</action>
-						<order>110</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getDaysToConversion</action>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
@@ -3588,7 +3488,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
-						<order>105</order>
+						<order>201</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3614,7 +3514,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
-						<order>106</order>
+						<order>202</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3640,7 +3540,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
-						<order>107</order>
+						<order>203</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3666,7 +3566,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
-						<order>110</order>
+						<order>204</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -3679,55 +3579,183 @@
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Visits per server time</name>
+						<name>Referrer Type</name>
 						<category>
-							<name>Goals by User location</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User location</id>
+							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Goals by User location</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User location</id>
+							<id>Goals by Referrers</id>
 						</subcategory>
-						<module>VisitTime</module>
-						<action>getVisitInformationPerServerTime</action>
-						<order>120</order>
+						<module>Referrers</module>
+						<action>getReferrerType</action>
+						<order>1</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>VisitTime</module>
-							<action>getVisitInformationPerServerTime</action>
+							<module>Referrers</module>
+							<action>getReferrerType</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Custom Variables</name>
+						<name>Keywords</name>
 						<category>
-							<name>Goals by User attribute</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
+							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Goals by User attribute</name>
+							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
+							<id>Goals by Referrers</id>
 						</subcategory>
-						<module>CustomVariables</module>
-						<action>getCustomVariables</action>
-						<order>110</order>
+						<module>Referrers</module>
+						<action>getKeywords</action>
+						<order>2</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>CustomVariables</module>
-							<action>getCustomVariables</action>
+							<module>Referrers</module>
+							<action>getKeywords</action>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Search Engines</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getSearchEngines</action>
+						<order>3</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getSearchEngines</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Websites</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getWebsites</action>
+						<order>4</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getWebsites</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Campaigns</name>
+						<category>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Goals by Referrers</name>
+							<order>99</order>
+							<id>Goals by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getCampaigns</action>
+						<order>5</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getCampaigns</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Visits to Conversion</name>
+						<category>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</category>
+						<subcategory>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getVisitsUntilConversion</action>
+						<order>101</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getVisitsUntilConversion</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Days to Conversion</name>
+						<category>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</category>
+						<subcategory>
+							<name>Goals engagement</name>
+							<order>99</order>
+							<id>Goals engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getDaysToConversion</action>
+						<order>102</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getDaysToConversion</action>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 				</widgets>
@@ -3755,9 +3783,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<containerId>Goals_GoalsGeneral_Overview</containerId>
+					<containerId>GoalsOverview</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_GoalsGeneral_Overview</uniqueId>
+				<uniqueId>widgetGoalsOverview</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -3781,9 +3809,8 @@
 							<viewDataTable>graphEvolution</viewDataTable>
 							<module>Goals</module>
 							<action>getEvolutionGraph</action>
-							<columns>nb_conversions</columns>
 						</parameters>
-						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolutioncolumnsnb_conversions</uniqueId>
+						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolution</uniqueId>
 						<viewDataTable>graphEvolution</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -3916,188 +3943,60 @@
 							<action>renderWidgetContainer</action>
 							<containerId>Goals</containerId>
 						</parameters>
-						<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals</uniqueId>
+						<uniqueId>widgetGoals</uniqueId>
 						<layout>ByDimension</layout>
 						<isContainer>1</isContainer>
 						<widgets>
 							<row>
-								<name>Referrer Type</name>
+								<name>Custom Variables</name>
 								<category>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</category>
 								<subcategory>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</subcategory>
-								<module>Referrers</module>
-								<action>getReferrerType</action>
-								<order>101</order>
+								<module>CustomVariables</module>
+								<action>getCustomVariables</action>
+								<order>301</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getReferrerType</action>
+									<module>CustomVariables</module>
+									<action>getCustomVariables</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 							<row>
-								<name>Keywords</name>
+								<name>Visits per server time</name>
 								<category>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</category>
 								<subcategory>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</subcategory>
-								<module>Referrers</module>
-								<action>getKeywords</action>
-								<order>103</order>
+								<module>VisitTime</module>
+								<action>getVisitInformationPerServerTime</action>
+								<order>302</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getKeywords</action>
+									<module>VisitTime</module>
+									<action>getVisitInformationPerServerTime</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Search Engines</name>
-								<category>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</category>
-								<subcategory>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</subcategory>
-								<module>Referrers</module>
-								<action>getSearchEngines</action>
-								<order>107</order>
-								<parameters>
-									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getSearchEngines</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Websites</name>
-								<category>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</category>
-								<subcategory>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</subcategory>
-								<module>Referrers</module>
-								<action>getWebsites</action>
-								<order>105</order>
-								<parameters>
-									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getWebsites</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Campaigns</name>
-								<category>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</category>
-								<subcategory>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</subcategory>
-								<module>Referrers</module>
-								<action>getCampaigns</action>
-								<order>109</order>
-								<parameters>
-									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getCampaigns</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Visits to Conversion</name>
-								<category>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</category>
-								<subcategory>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</subcategory>
-								<module>Goals</module>
-								<action>getVisitsUntilConversion</action>
-								<order>105</order>
-								<parameters>
-									<module>Goals</module>
-									<action>getVisitsUntilConversion</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>table</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Days to Conversion</name>
-								<category>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</category>
-								<subcategory>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</subcategory>
-								<module>Goals</module>
-								<action>getDaysToConversion</action>
-								<order>110</order>
-								<parameters>
-									<module>Goals</module>
-									<action>getDaysToConversion</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>table</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 							<row>
@@ -4114,7 +4013,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getCountry</action>
-								<order>105</order>
+								<order>201</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4140,7 +4039,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getContinent</action>
-								<order>106</order>
+								<order>202</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4166,7 +4065,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getRegion</action>
-								<order>107</order>
+								<order>203</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4192,7 +4091,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getCity</action>
-								<order>110</order>
+								<order>204</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4205,55 +4104,183 @@
 								<isReport>1</isReport>
 							</row>
 							<row>
-								<name>Visits per server time</name>
+								<name>Referrer Type</name>
 								<category>
-									<name>Goals by User location</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User location</id>
+									<id>Goals by Referrers</id>
 								</category>
 								<subcategory>
-									<name>Goals by User location</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User location</id>
+									<id>Goals by Referrers</id>
 								</subcategory>
-								<module>VisitTime</module>
-								<action>getVisitInformationPerServerTime</action>
-								<order>120</order>
+								<module>Referrers</module>
+								<action>getReferrerType</action>
+								<order>1</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>VisitTime</module>
-									<action>getVisitInformationPerServerTime</action>
+									<module>Referrers</module>
+									<action>getReferrerType</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 							<row>
-								<name>Custom Variables</name>
+								<name>Keywords</name>
 								<category>
-									<name>Goals by User attribute</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User attribute</id>
+									<id>Goals by Referrers</id>
 								</category>
 								<subcategory>
-									<name>Goals by User attribute</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User attribute</id>
+									<id>Goals by Referrers</id>
 								</subcategory>
-								<module>CustomVariables</module>
-								<action>getCustomVariables</action>
-								<order>110</order>
+								<module>Referrers</module>
+								<action>getKeywords</action>
+								<order>2</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>CustomVariables</module>
-									<action>getCustomVariables</action>
+									<module>Referrers</module>
+									<action>getKeywords</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Search Engines</name>
+								<category>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</category>
+								<subcategory>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</subcategory>
+								<module>Referrers</module>
+								<action>getSearchEngines</action>
+								<order>3</order>
+								<parameters>
+									<viewDataTable>tableGoals</viewDataTable>
+									<module>Referrers</module>
+									<action>getSearchEngines</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Websites</name>
+								<category>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</category>
+								<subcategory>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</subcategory>
+								<module>Referrers</module>
+								<action>getWebsites</action>
+								<order>4</order>
+								<parameters>
+									<viewDataTable>tableGoals</viewDataTable>
+									<module>Referrers</module>
+									<action>getWebsites</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Campaigns</name>
+								<category>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</category>
+								<subcategory>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</subcategory>
+								<module>Referrers</module>
+								<action>getCampaigns</action>
+								<order>5</order>
+								<parameters>
+									<viewDataTable>tableGoals</viewDataTable>
+									<module>Referrers</module>
+									<action>getCampaigns</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Visits to Conversion</name>
+								<category>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</category>
+								<subcategory>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</subcategory>
+								<module>Goals</module>
+								<action>getVisitsUntilConversion</action>
+								<order>101</order>
+								<parameters>
+									<module>Goals</module>
+									<action>getVisitsUntilConversion</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>table</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Days to Conversion</name>
+								<category>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</category>
+								<subcategory>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</subcategory>
+								<module>Goals</module>
+								<action>getDaysToConversion</action>
+								<order>102</order>
+								<parameters>
+									<module>Goals</module>
+									<action>getDaysToConversion</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>table</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 						</widgets>
@@ -4268,9 +4295,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<containerId>Goals_GoalsGeneral_Overview</containerId>
+					<containerId>GoalsOverview</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_GoalsGeneral_Overview</uniqueId>
+				<uniqueId>widgetGoalsOverview</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -4294,9 +4321,8 @@
 							<viewDataTable>graphEvolution</viewDataTable>
 							<module>Goals</module>
 							<action>getEvolutionGraph</action>
-							<columns>nb_conversions</columns>
 						</parameters>
-						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolutioncolumnsnb_conversions</uniqueId>
+						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolution</uniqueId>
 						<viewDataTable>graphEvolution</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -4429,188 +4455,60 @@
 							<action>renderWidgetContainer</action>
 							<containerId>Goals</containerId>
 						</parameters>
-						<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals</uniqueId>
+						<uniqueId>widgetGoals</uniqueId>
 						<layout>ByDimension</layout>
 						<isContainer>1</isContainer>
 						<widgets>
 							<row>
-								<name>Referrer Type</name>
+								<name>Custom Variables</name>
 								<category>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</category>
 								<subcategory>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</subcategory>
-								<module>Referrers</module>
-								<action>getReferrerType</action>
-								<order>101</order>
+								<module>CustomVariables</module>
+								<action>getCustomVariables</action>
+								<order>301</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getReferrerType</action>
+									<module>CustomVariables</module>
+									<action>getCustomVariables</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 							<row>
-								<name>Keywords</name>
+								<name>Visits per server time</name>
 								<category>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</category>
 								<subcategory>
-									<name>Goals by Referrers</name>
+									<name>Goals by User attribute</name>
 									<order>99</order>
-									<id>Goals by Referrers</id>
+									<id>Goals by User attribute</id>
 								</subcategory>
-								<module>Referrers</module>
-								<action>getKeywords</action>
-								<order>103</order>
+								<module>VisitTime</module>
+								<action>getVisitInformationPerServerTime</action>
+								<order>302</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getKeywords</action>
+									<module>VisitTime</module>
+									<action>getVisitInformationPerServerTime</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Search Engines</name>
-								<category>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</category>
-								<subcategory>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</subcategory>
-								<module>Referrers</module>
-								<action>getSearchEngines</action>
-								<order>107</order>
-								<parameters>
-									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getSearchEngines</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Websites</name>
-								<category>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</category>
-								<subcategory>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</subcategory>
-								<module>Referrers</module>
-								<action>getWebsites</action>
-								<order>105</order>
-								<parameters>
-									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getWebsites</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Campaigns</name>
-								<category>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</category>
-								<subcategory>
-									<name>Goals by Referrers</name>
-									<order>99</order>
-									<id>Goals by Referrers</id>
-								</subcategory>
-								<module>Referrers</module>
-								<action>getCampaigns</action>
-								<order>109</order>
-								<parameters>
-									<viewDataTable>tableGoals</viewDataTable>
-									<module>Referrers</module>
-									<action>getCampaigns</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>tableGoals</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Visits to Conversion</name>
-								<category>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</category>
-								<subcategory>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</subcategory>
-								<module>Goals</module>
-								<action>getVisitsUntilConversion</action>
-								<order>105</order>
-								<parameters>
-									<module>Goals</module>
-									<action>getVisitsUntilConversion</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>table</viewDataTable>
-								<isReport>1</isReport>
-							</row>
-							<row>
-								<name>Days to Conversion</name>
-								<category>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</category>
-								<subcategory>
-									<name>Goals engagement</name>
-									<order>99</order>
-									<id>Goals engagement</id>
-								</subcategory>
-								<module>Goals</module>
-								<action>getDaysToConversion</action>
-								<order>110</order>
-								<parameters>
-									<module>Goals</module>
-									<action>getDaysToConversion</action>
-									<documentationForGoalsPage>1</documentationForGoalsPage>
-									<idGoal>0</idGoal>
-								</parameters>
-								<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
-								<viewDataTable>table</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 							<row>
@@ -4627,7 +4525,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getCountry</action>
-								<order>105</order>
+								<order>201</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4653,7 +4551,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getContinent</action>
-								<order>106</order>
+								<order>202</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4679,7 +4577,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getRegion</action>
-								<order>107</order>
+								<order>203</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4705,7 +4603,7 @@
 								</subcategory>
 								<module>UserCountry</module>
 								<action>getCity</action>
-								<order>110</order>
+								<order>204</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
 									<module>UserCountry</module>
@@ -4718,55 +4616,183 @@
 								<isReport>1</isReport>
 							</row>
 							<row>
-								<name>Visits per server time</name>
+								<name>Referrer Type</name>
 								<category>
-									<name>Goals by User location</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User location</id>
+									<id>Goals by Referrers</id>
 								</category>
 								<subcategory>
-									<name>Goals by User location</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User location</id>
+									<id>Goals by Referrers</id>
 								</subcategory>
-								<module>VisitTime</module>
-								<action>getVisitInformationPerServerTime</action>
-								<order>120</order>
+								<module>Referrers</module>
+								<action>getReferrerType</action>
+								<order>1</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>VisitTime</module>
-									<action>getVisitInformationPerServerTime</action>
+									<module>Referrers</module>
+									<action>getReferrerType</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 							<row>
-								<name>Custom Variables</name>
+								<name>Keywords</name>
 								<category>
-									<name>Goals by User attribute</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User attribute</id>
+									<id>Goals by Referrers</id>
 								</category>
 								<subcategory>
-									<name>Goals by User attribute</name>
+									<name>Goals by Referrers</name>
 									<order>99</order>
-									<id>Goals by User attribute</id>
+									<id>Goals by Referrers</id>
 								</subcategory>
-								<module>CustomVariables</module>
-								<action>getCustomVariables</action>
-								<order>110</order>
+								<module>Referrers</module>
+								<action>getKeywords</action>
+								<order>2</order>
 								<parameters>
 									<viewDataTable>tableGoals</viewDataTable>
-									<module>CustomVariables</module>
-									<action>getCustomVariables</action>
+									<module>Referrers</module>
+									<action>getKeywords</action>
 									<documentationForGoalsPage>1</documentationForGoalsPage>
 									<idGoal>0</idGoal>
 								</parameters>
-								<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
 								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Search Engines</name>
+								<category>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</category>
+								<subcategory>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</subcategory>
+								<module>Referrers</module>
+								<action>getSearchEngines</action>
+								<order>3</order>
+								<parameters>
+									<viewDataTable>tableGoals</viewDataTable>
+									<module>Referrers</module>
+									<action>getSearchEngines</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Websites</name>
+								<category>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</category>
+								<subcategory>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</subcategory>
+								<module>Referrers</module>
+								<action>getWebsites</action>
+								<order>4</order>
+								<parameters>
+									<viewDataTable>tableGoals</viewDataTable>
+									<module>Referrers</module>
+									<action>getWebsites</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Campaigns</name>
+								<category>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</category>
+								<subcategory>
+									<name>Goals by Referrers</name>
+									<order>99</order>
+									<id>Goals by Referrers</id>
+								</subcategory>
+								<module>Referrers</module>
+								<action>getCampaigns</action>
+								<order>5</order>
+								<parameters>
+									<viewDataTable>tableGoals</viewDataTable>
+									<module>Referrers</module>
+									<action>getCampaigns</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsdocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>tableGoals</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Visits to Conversion</name>
+								<category>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</category>
+								<subcategory>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</subcategory>
+								<module>Goals</module>
+								<action>getVisitsUntilConversion</action>
+								<order>101</order>
+								<parameters>
+									<module>Goals</module>
+									<action>getVisitsUntilConversion</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetGoalsgetVisitsUntilConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>table</viewDataTable>
+								<isReport>1</isReport>
+							</row>
+							<row>
+								<name>Days to Conversion</name>
+								<category>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</category>
+								<subcategory>
+									<name>Goals engagement</name>
+									<order>99</order>
+									<id>Goals engagement</id>
+								</subcategory>
+								<module>Goals</module>
+								<action>getDaysToConversion</action>
+								<order>102</order>
+								<parameters>
+									<module>Goals</module>
+									<action>getDaysToConversion</action>
+									<documentationForGoalsPage>1</documentationForGoalsPage>
+									<idGoal>0</idGoal>
+								</parameters>
+								<uniqueId>widgetGoalsgetDaysToConversiondocumentationForGoalsPage1idGoal0</uniqueId>
+								<viewDataTable>table</viewDataTable>
 								<isReport>1</isReport>
 							</row>
 						</widgets>
@@ -4870,9 +4896,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<containerId>Goals_EcommerceGeneral_Overview</containerId>
+					<containerId>EcommerceOverview</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_EcommerceGeneral_Overview</uniqueId>
+				<uniqueId>widgetEcommerceOverview</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -4896,10 +4922,9 @@
 							<viewDataTable>graphEvolution</viewDataTable>
 							<module>Goals</module>
 							<action>getEvolutionGraph</action>
-							<columns>nb_conversions</columns>
 							<idGoal>ecommerceOrder</idGoal>
 						</parameters>
-						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolutioncolumnsnb_conversionsidGoalecommerceOrder</uniqueId>
+						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolutionidGoalecommerceOrder</uniqueId>
 						<viewDataTable>graphEvolution</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -4939,9 +4964,9 @@
 				<parameters>
 					<module>CoreHome</module>
 					<action>renderWidgetContainer</action>
-					<containerId>Goals_EcommerceGeneral_Overview</containerId>
+					<containerId>EcommerceOverview</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdGoals_EcommerceGeneral_Overview</uniqueId>
+				<uniqueId>widgetEcommerceOverview</uniqueId>
 				<layout />
 				<isContainer>1</isContainer>
 				<widgets>
@@ -4965,10 +4990,9 @@
 							<viewDataTable>graphEvolution</viewDataTable>
 							<module>Goals</module>
 							<action>getEvolutionGraph</action>
-							<columns>nb_conversions</columns>
 							<idGoal>ecommerceOrder</idGoal>
 						</parameters>
-						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolutioncolumnsnb_conversionsidGoalecommerceOrder</uniqueId>
+						<uniqueId>widgetGoalsgetEvolutionGraphforceView1viewDataTablegraphEvolutionidGoalecommerceOrder</uniqueId>
 						<viewDataTable>graphEvolution</viewDataTable>
 						<isReport>1</isReport>
 					</row>
@@ -5025,7 +5049,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Products</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdProducts</uniqueId>
+				<uniqueId>widgetProducts</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -5185,7 +5209,7 @@
 					<action>renderWidgetContainer</action>
 					<containerId>Products</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContainercontainerIdProducts</uniqueId>
+				<uniqueId>widgetProducts</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
@@ -5361,195 +5385,62 @@
 					<idGoal>ecommerceOrder</idGoal>
 					<containerId>GoalsOrder</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContaineridGoalecommerceOrdercontainerIdGoalsOrder</uniqueId>
+				<uniqueId>widgetGoalsOrderidGoalecommerceOrder</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
 					<row>
-						<name>Referrer Type</name>
+						<name>Custom Variables</name>
 						<category>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getReferrerType</action>
-						<order>101</order>
+						<module>CustomVariables</module>
+						<action>getCustomVariables</action>
+						<order>301</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getReferrerType</action>
+							<module>CustomVariables</module>
+							<action>getCustomVariables</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Keywords</name>
+						<name>Visits per server time</name>
 						<category>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getKeywords</action>
-						<order>103</order>
+						<module>VisitTime</module>
+						<action>getVisitInformationPerServerTime</action>
+						<order>302</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getKeywords</action>
+							<module>VisitTime</module>
+							<action>getVisitInformationPerServerTime</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Search Engines</name>
-						<category>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getSearchEngines</action>
-						<order>107</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getSearchEngines</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Websites</name>
-						<category>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getWebsites</action>
-						<order>105</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getWebsites</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Campaigns</name>
-						<category>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getCampaigns</action>
-						<order>109</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getCampaigns</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Visits to Conversion</name>
-						<category>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</category>
-						<subcategory>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getVisitsUntilConversion</action>
-						<order>105</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getVisitsUntilConversion</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetVisitsUntilConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Days to Conversion</name>
-						<category>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</category>
-						<subcategory>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getDaysToConversion</action>
-						<order>110</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getDaysToConversion</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetDaysToConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
@@ -5566,7 +5457,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
-						<order>105</order>
+						<order>201</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -5593,7 +5484,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
-						<order>106</order>
+						<order>202</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -5620,7 +5511,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
-						<order>107</order>
+						<order>203</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -5647,7 +5538,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
-						<order>110</order>
+						<order>204</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -5661,57 +5552,190 @@
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Visits per server time</name>
+						<name>Referrer Type</name>
 						<category>
-							<name>Sales by User location</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User location</id>
+							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Sales by User location</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User location</id>
+							<id>Sales by Referrers</id>
 						</subcategory>
-						<module>VisitTime</module>
-						<action>getVisitInformationPerServerTime</action>
-						<order>120</order>
+						<module>Referrers</module>
+						<action>getReferrerType</action>
+						<order>1</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>VisitTime</module>
-							<action>getVisitInformationPerServerTime</action>
+							<module>Referrers</module>
+							<action>getReferrerType</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Custom Variables</name>
+						<name>Keywords</name>
 						<category>
-							<name>Sales by User attribute</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
+							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Sales by User attribute</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
+							<id>Sales by Referrers</id>
 						</subcategory>
-						<module>CustomVariables</module>
-						<action>getCustomVariables</action>
-						<order>110</order>
+						<module>Referrers</module>
+						<action>getKeywords</action>
+						<order>2</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>CustomVariables</module>
-							<action>getCustomVariables</action>
+							<module>Referrers</module>
+							<action>getKeywords</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Search Engines</name>
+						<category>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getSearchEngines</action>
+						<order>3</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getSearchEngines</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Websites</name>
+						<category>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getWebsites</action>
+						<order>4</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getWebsites</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Campaigns</name>
+						<category>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getCampaigns</action>
+						<order>5</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getCampaigns</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Visits to Conversion</name>
+						<category>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</category>
+						<subcategory>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getVisitsUntilConversion</action>
+						<order>101</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getVisitsUntilConversion</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetVisitsUntilConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Days to Conversion</name>
+						<category>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</category>
+						<subcategory>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getDaysToConversion</action>
+						<order>102</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getDaysToConversion</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetDaysToConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 				</widgets>
@@ -5727,195 +5751,62 @@
 					<idGoal>ecommerceOrder</idGoal>
 					<containerId>GoalsOrder</containerId>
 				</parameters>
-				<uniqueId>widgetCoreHomerenderWidgetContaineridGoalecommerceOrdercontainerIdGoalsOrder</uniqueId>
+				<uniqueId>widgetGoalsOrderidGoalecommerceOrder</uniqueId>
 				<layout>ByDimension</layout>
 				<isContainer>1</isContainer>
 				<widgets>
 					<row>
-						<name>Referrer Type</name>
+						<name>Custom Variables</name>
 						<category>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getReferrerType</action>
-						<order>101</order>
+						<module>CustomVariables</module>
+						<action>getCustomVariables</action>
+						<order>301</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getReferrerType</action>
+							<module>CustomVariables</module>
+							<action>getCustomVariables</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Keywords</name>
+						<name>Visits per server time</name>
 						<category>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</category>
 						<subcategory>
-							<name>Sales by Referrers</name>
+							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
+							<id>Sales by User attribute</id>
 						</subcategory>
-						<module>Referrers</module>
-						<action>getKeywords</action>
-						<order>103</order>
+						<module>VisitTime</module>
+						<action>getVisitInformationPerServerTime</action>
+						<order>302</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getKeywords</action>
+							<module>VisitTime</module>
+							<action>getVisitInformationPerServerTime</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Search Engines</name>
-						<category>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getSearchEngines</action>
-						<order>107</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getSearchEngines</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Websites</name>
-						<category>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getWebsites</action>
-						<order>105</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getWebsites</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Campaigns</name>
-						<category>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</category>
-						<subcategory>
-							<name>Sales by Referrers</name>
-							<order>99</order>
-							<id>Sales by Referrers</id>
-						</subcategory>
-						<module>Referrers</module>
-						<action>getCampaigns</action>
-						<order>109</order>
-						<parameters>
-							<viewDataTable>tableGoals</viewDataTable>
-							<module>Referrers</module>
-							<action>getCampaigns</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>tableGoals</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Visits to Conversion</name>
-						<category>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</category>
-						<subcategory>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getVisitsUntilConversion</action>
-						<order>105</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getVisitsUntilConversion</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetVisitsUntilConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
-						<isReport>1</isReport>
-					</row>
-					<row>
-						<name>Days to Conversion</name>
-						<category>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</category>
-						<subcategory>
-							<name>Sales engagement</name>
-							<order>99</order>
-							<id>Sales engagement</id>
-						</subcategory>
-						<module>Goals</module>
-						<action>getDaysToConversion</action>
-						<order>110</order>
-						<parameters>
-							<module>Goals</module>
-							<action>getDaysToConversion</action>
-							<abandonedCarts>0</abandonedCarts>
-							<documentationForGoalsPage>1</documentationForGoalsPage>
-							<idGoal>0</idGoal>
-						</parameters>
-						<uniqueId>widgetGoalsgetDaysToConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
-						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
@@ -5932,7 +5823,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
-						<order>105</order>
+						<order>201</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -5959,7 +5850,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
-						<order>106</order>
+						<order>202</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -5986,7 +5877,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
-						<order>107</order>
+						<order>203</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -6013,7 +5904,7 @@
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
-						<order>110</order>
+						<order>204</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
 							<module>UserCountry</module>
@@ -6027,57 +5918,190 @@
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Visits per server time</name>
+						<name>Referrer Type</name>
 						<category>
-							<name>Sales by User location</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User location</id>
+							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Sales by User location</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User location</id>
+							<id>Sales by Referrers</id>
 						</subcategory>
-						<module>VisitTime</module>
-						<action>getVisitInformationPerServerTime</action>
-						<order>120</order>
+						<module>Referrers</module>
+						<action>getReferrerType</action>
+						<order>1</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>VisitTime</module>
-							<action>getVisitInformationPerServerTime</action>
+							<module>Referrers</module>
+							<action>getReferrerType</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetVisitTimegetVisitInformationPerServerTimeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetReferrerTypeviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 					<row>
-						<name>Custom Variables</name>
+						<name>Keywords</name>
 						<category>
-							<name>Sales by User attribute</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
+							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
-							<name>Sales by User attribute</name>
+							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
+							<id>Sales by Referrers</id>
 						</subcategory>
-						<module>CustomVariables</module>
-						<action>getCustomVariables</action>
-						<order>110</order>
+						<module>Referrers</module>
+						<action>getKeywords</action>
+						<order>2</order>
 						<parameters>
 							<viewDataTable>tableGoals</viewDataTable>
-							<module>CustomVariables</module>
-							<action>getCustomVariables</action>
+							<module>Referrers</module>
+							<action>getKeywords</action>
 							<abandonedCarts>0</abandonedCarts>
 							<documentationForGoalsPage>1</documentationForGoalsPage>
 							<idGoal>0</idGoal>
 						</parameters>
-						<uniqueId>widgetCustomVariablesgetCustomVariablesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<uniqueId>widgetReferrersgetKeywordsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
 						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Search Engines</name>
+						<category>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getSearchEngines</action>
+						<order>3</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getSearchEngines</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetSearchEnginesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Websites</name>
+						<category>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getWebsites</action>
+						<order>4</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getWebsites</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetWebsitesviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Campaigns</name>
+						<category>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</category>
+						<subcategory>
+							<name>Sales by Referrers</name>
+							<order>99</order>
+							<id>Sales by Referrers</id>
+						</subcategory>
+						<module>Referrers</module>
+						<action>getCampaigns</action>
+						<order>5</order>
+						<parameters>
+							<viewDataTable>tableGoals</viewDataTable>
+							<module>Referrers</module>
+							<action>getCampaigns</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetReferrersgetCampaignsviewDataTabletableGoalsabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>tableGoals</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Visits to Conversion</name>
+						<category>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</category>
+						<subcategory>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getVisitsUntilConversion</action>
+						<order>101</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getVisitsUntilConversion</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetVisitsUntilConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
+						<isReport>1</isReport>
+					</row>
+					<row>
+						<name>Days to Conversion</name>
+						<category>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</category>
+						<subcategory>
+							<name>Sales engagement</name>
+							<order>99</order>
+							<id>Sales engagement</id>
+						</subcategory>
+						<module>Goals</module>
+						<action>getDaysToConversion</action>
+						<order>102</order>
+						<parameters>
+							<module>Goals</module>
+							<action>getDaysToConversion</action>
+							<abandonedCarts>0</abandonedCarts>
+							<documentationForGoalsPage>1</documentationForGoalsPage>
+							<idGoal>0</idGoal>
+						</parameters>
+						<uniqueId>widgetGoalsgetDaysToConversionabandonedCarts0documentationForGoalsPage1idGoal0</uniqueId>
+						<viewDataTable>table</viewDataTable>
 						<isReport>1</isReport>
 					</row>
 				</widgets>
