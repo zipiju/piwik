@@ -15,6 +15,7 @@ use Piwik\Widget\WidgetConfig;
 /**
  * @group Category
  * @group Subcategory
+ * @group SubcategoryTest
  */
 class SubcategoryTest extends \PHPUnit_Framework_TestCase
 {

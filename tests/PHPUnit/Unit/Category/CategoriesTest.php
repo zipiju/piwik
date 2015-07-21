@@ -18,6 +18,7 @@ require_once PIWIK_INCLUDE_PATH . '/tests/PHPUnit/Framework/Mock/Category/Catege
 /**
  * @group Category
  * @group Categories
+ * @group CategoriesTest
  */
 class CategoriesTest extends \PHPUnit_Framework_TestCase
 {

@@ -164,7 +164,7 @@ class WidgetConfig
      */
     public function setOrder($order)
     {
-        $this->order = $order;
+        $this->order = (int) $order;
 
         return $this;
     }
