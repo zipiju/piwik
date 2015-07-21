@@ -7,9 +7,6 @@
  */
 namespace Piwik\Category;
 
-use Piwik\Container\StaticContainer;
-use Piwik\Piwik;
-use Piwik\Plugin\Manager as PluginManager;
 use Piwik\Widget\WidgetConfig;
 
 /**
@@ -39,12 +36,20 @@ class Subcategory
         return $this->categoryId;
     }
 
+    /**
+     * @param  string $categoryId
+     * @return $this
+     */
     public function setCategoryId($categoryId)
     {
         $this->categoryId = $categoryId;
         return $this;
     }
 
+    /**
+     * @param  string $name A translation key
+     * @return $this
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -56,9 +61,13 @@ class Subcategory
         return $this->order;
     }
 
+    /**
+     * @param int $order
+     * @return $this
+     */
     public function setOrder($order)
     {
-        $this->order = $order;
+        $this->order = (int) $order;
         return $this;
     }
 

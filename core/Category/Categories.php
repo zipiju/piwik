@@ -21,7 +21,7 @@ class Categories
     }
 
     /** @return \Piwik\Category\Category[] */
-    private function getAllCategories()
+    protected function getAllCategories()
     {
         $categories = $this->pluginManager->findMultipleComponents('Categories', '\\Piwik\\Category\\Category');
 
@@ -35,7 +35,7 @@ class Categories
     }
 
     /** @return \Piwik\Category\Subcategory[] */
-    private function getAllSubcategories()
+    protected function getAllSubcategories()
     {
         $subcategories = array();
 

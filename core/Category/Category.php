@@ -35,6 +35,16 @@ class Category
         return $this->order;
     }
 
+    /**
+     * @param int $order
+     * @return $this
+     */
+    public function setOrder($order)
+    {
+        $this->order = (int) $order;
+        return $this;
+    }
+
     public function getName()
     {
         if (!empty($this->name)) {
@@ -42,6 +52,16 @@ class Category
         }
 
         return $this->id;
+    }
+
+    /**
+     * @param  string $name A translation key
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     public function getId()
@@ -74,7 +94,7 @@ class Category
 
     public function getSubcategories()
     {
-        return $this->subcategories;
+        return array_values($this->subcategories);
     }
 
     public function hasSubCategories()
