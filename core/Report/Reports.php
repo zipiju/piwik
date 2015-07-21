@@ -76,7 +76,7 @@ class Reports
      */
     public function getAllReports()
     {
-        $reports = self::getAllReportClasses();
+        $reports = $this->getAllReportClasses();
         $cacheId = CacheId::languageAware('Reports' . md5(implode('', $reports)));
         $cache   = PiwikCache::getTransientCache();
 
