@@ -23,20 +23,20 @@ class TestsRunUIDocker extends ConsoleCommand
     {
         $this->setName('tests:run-ui-docker')
             ->setDescription('Run screenshot tests in parallel using Docker')
-            ->addOption('parallel', null, InputOption::VALUE_OPTIONAL, 'Number of processes to run un parallel', 2);
+            ->addOption('parallel', null, InputOption::VALUE_OPTIONAL, 'Number of processes to run un parallel', 2)
+            ->addOption('limit', null, InputOption::VALUE_OPTIONAL, 'Maximum number of specs to run. If missing, runs all the specs.', null);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $specsToRun = $this->getSpecsToRun();
-        $output->writeln(sprintf('<comment>%d specs to run</comment>', count($specsToRun)));
-
         $parallelProcessesCount = $input->getOption('parallel');
+
+        $specsToRun = $this->getSpecsToRun($input);
+        $output->writeln(sprintf('<comment>%d specs to run on %d processes</comment>', count($specsToRun), $parallelProcessesCount));
+
         $runningProcesses = array_pad(array(), $parallelProcessesCount, null);
 
-        $this->initContainers($runningProcesses);
-
-        $testsOutput = '';
+        $this->initContainers($runningProcesses, $output);
 
         while (!empty($specsToRun)) {
             foreach ($runningProcesses as $i => $process) {
@@ -44,43 +44,42 @@ class TestsRunUIDocker extends ConsoleCommand
             }
 
             while ($this->isSpecRunning($runningProcesses)) {
-                usleep(100);
-            }
-
-            $testsOutput .= '---' . PHP_EOL;
-            foreach ($runningProcesses as $process) {
-                if (!$process) {
-                    continue;
-                }
-
-                $testsOutput .= $process->getOutput();
+                usleep(100000);
             }
         }
-
-        $output->writeln($testsOutput);
     }
 
-    private function getSpecsToRun()
+    private function getSpecsToRun(InputInterface $input)
     {
         $specsToRun = Filesystem::globr(PIWIK_INCLUDE_PATH . '/tests/UI/specs', '*_spec.js');
+
+        $limit = $input->getOption('limit');
+        if ($limit > 0) {
+            $specsToRun = array_slice($specsToRun, 0, $limit);
+        }
 
         return array_map(function ($file) {
             return basename($file, '_spec.js');
         }, $specsToRun);
     }
 
-    private function initContainers($runningProcesses)
+    private function initContainers($runningProcesses, OutputInterface $output)
     {
         foreach ($runningProcesses as $i => $process) {
             $command = $this->getDockerCommand($i, 'up -d');
+            $output->writeln(sprintf('<comment>Initializing docker project %d</comment>', $i + 1));
             $process = new Process($command);
-            $exitCode = $process->run();
+            $process->setIdleTimeout(300);
+            $process->setTimeout(300);
+            $exitCode = $process->run(function ($type, $buffer) use ($output) {
+                $output->write($buffer);
+            });
 
             if ($exitCode !== 0) {
                 throw new \RuntimeException(sprintf(
                     'Error while running "%s": %s',
                     $command,
-                    $process->getOutput() . PHP_EOL . $process->getErrorOutput()
+                    $process->getErrorOutput()
                 ));
             }
         }
@@ -93,10 +92,13 @@ class TestsRunUIDocker extends ConsoleCommand
             return null;
         }
 
-        $output->writeln(sprintf('Running <info>%s</info> on process %d', $spec, $number));
+        $output->writeln(sprintf('Running <info>%s</info> on process %d', $spec, $number + 1));
 
-        $command = $this->getDockerCommand($number, 'run cli ./console tests:run-ui ' . $spec);
+        $logFile = 'tmp/tests/ui.' . $spec . '.log';
+        $command = $this->getDockerCommand($number, 'run cli ./console tests:run-ui --keep-symlinks ' . $spec . ' > ' . $logFile . ' 2>&1');
         $process = new Process($command);
+        // Somehow we need this to get the output
+        $process->setTty(true);
         $process->start();
 
         return $process;
@@ -119,8 +121,8 @@ class TestsRunUIDocker extends ConsoleCommand
     private function getDockerCommand($number, $command)
     {
         return sprintf(
-            'docker-compose –project-name piwik_%d %s',
-            $number,
+            'docker-compose -project-name=piwik_%d %s',
+            $number + 1,
             $command
         );
     }
