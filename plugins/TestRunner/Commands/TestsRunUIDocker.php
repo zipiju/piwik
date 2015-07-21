@@ -28,14 +28,13 @@ class TestsRunUIDocker extends ConsoleCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $specsToRun = Filesystem::globr(PIWIK_INCLUDE_PATH . '/tests/UI/specs', '*_spec.js');
-        $specsToRun = array_map(function ($file) {
-            return basename($file, '_spec.js');
-        }, $specsToRun);
-
+        $specsToRun = $this->getSpecsToRun();
         $output->writeln(sprintf('<comment>%d specs to run</comment>', count($specsToRun)));
 
-        $runningProcesses = array_pad(array(), $input->getOption('parallel'), null);
+        $parallelProcessesCount = $input->getOption('parallel');
+        $runningProcesses = array_pad(array(), $parallelProcessesCount, null);
+
+        $this->initContainers($runningProcesses);
 
         $testsOutput = '';
 
@@ -61,6 +60,32 @@ class TestsRunUIDocker extends ConsoleCommand
         $output->writeln($testsOutput);
     }
 
+    private function getSpecsToRun()
+    {
+        $specsToRun = Filesystem::globr(PIWIK_INCLUDE_PATH . '/tests/UI/specs', '*_spec.js');
+
+        return array_map(function ($file) {
+            return basename($file, '_spec.js');
+        }, $specsToRun);
+    }
+
+    private function initContainers($runningProcesses)
+    {
+        foreach ($runningProcesses as $i => $process) {
+            $command = $this->getDockerCommand($i, 'up -d');
+            $process = new Process($command);
+            $exitCode = $process->run();
+
+            if ($exitCode !== 0) {
+                throw new \RuntimeException(sprintf(
+                    'Error while running "%s": %s',
+                    $command,
+                    $process->getOutput() . PHP_EOL . $process->getErrorOutput()
+                ));
+            }
+        }
+    }
+
     private function startSpec(array &$specsToRun, $number, OutputInterface $output)
     {
         $spec = array_shift($specsToRun);
@@ -70,12 +95,7 @@ class TestsRunUIDocker extends ConsoleCommand
 
         $output->writeln(sprintf('Running <info>%s</info> on process %d', $spec, $number));
 
-        $command = sprintf(
-            'docker-compose –project-name %s run cli ./console tests:run-ui %s',
-            'piwik_' . $number,
-            $spec
-        );
-
+        $command = $this->getDockerCommand($number, 'run cli ./console tests:run-ui ' . $spec);
         $process = new Process($command);
         $process->start();
 
@@ -94,5 +114,14 @@ class TestsRunUIDocker extends ConsoleCommand
             }
         }
         return false;
+    }
+
+    private function getDockerCommand($number, $command)
+    {
+        return sprintf(
+            'docker-compose –project-name piwik_%d %s',
+            $number,
+            $command
+        );
     }
 }
