@@ -20,6 +20,7 @@ use Piwik\Plugins\Goals\Goals;
 use Piwik\Plugins\Goals\Columns\Metrics\AveragePrice;
 use Piwik\Plugins\Goals\Columns\Metrics\AverageQuantity;
 use Piwik\Plugins\Goals\Columns\Metrics\ProductConversionRate;
+use Piwik\Plugins\Goals\Pages;
 use Piwik\Report\ReportWidgetFactory;
 use Piwik\Widget\WidgetsList;
 
@@ -68,8 +69,10 @@ abstract class BaseItem extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $conversions = $this->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
-        $cartNbConversions = $this->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_CART);
+        $pages = new Pages($factory, array());
+
+        $conversions = $pages->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
+        $cartNbConversions = $pages->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_CART);
         $preloadAbandonedCart = $cartNbConversions !== false && $conversions == 0;
 
         $ecommerceCustomParams = array();
@@ -80,34 +83,6 @@ abstract class BaseItem extends Base
         }
 
         $widgetsList->addToContainerWidget('Products', $factory->createWidget()->setParameters($ecommerceCustomParams));
-    }
-
-    private function getConversionForGoal($idGoal = '')
-    {
-        $period = Common::getRequestVar('period', '', 'string');
-        $date   = Common::getRequestVar('date', '', 'string');
-        $idSite = Common::getRequestVar('idSite', 0, 'int');
-
-        if (!$period || !$date || !$idSite) {
-            return false;
-        }
-
-        $datatable = Request::processRequest('Goals.get', array(
-            'idGoal' => $idGoal,
-            'period' => $period,
-            'date' => $date,
-            'idSite' => $idSite,
-            'serialize' => 0,
-            'segment' => false
-        ));
-
-        $dataRow = $datatable->getFirstRow();
-
-        if (!$dataRow) {
-            return false;
-        }
-
-        return $dataRow->getColumn('nb_conversions');
     }
 
     public function configureView(ViewDataTable $view)

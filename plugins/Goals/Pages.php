@@ -340,7 +340,7 @@ class Pages
         return $factory->createWidget();
     }
 
-    private function getConversionForGoal($idGoal = '')
+    public function getConversionForGoal($idGoal = '')
     {
         $period = Common::getRequestVar('period', '', 'string');
         $date   = Common::getRequestVar('date', '', 'string');

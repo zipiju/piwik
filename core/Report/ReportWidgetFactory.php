@@ -50,6 +50,10 @@ class ReportWidgetFactory
         $this->report = $report;
     }
 
+    /**
+     * @param string $containerId
+     * @return WidgetContainerConfig
+     */
     public function createContainerWidget($containerId)
     {
         $widget = new WidgetContainerConfig();

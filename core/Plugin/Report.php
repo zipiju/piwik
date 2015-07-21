@@ -841,18 +841,20 @@ class Report
             $categories = $categories->getAllCategoriesWithSubcategories();
         }
 
+        // in case there is a category class for both reports
         if (!empty($categories[$catA]) && !empty($categories[$catB])) {
             $catA = $categories[$catA];
             $catB = $categories[$catB];
 
             if ($catA->getOrder() == $catB->getOrder()) {
-                // same category, compare subcategory
+                // same category order, compare subcategory order
                 $subcatA = $catA->getSubcategory($subcatA);
                 $subcatB = $catB->getSubcategory($subcatB);
 
+                // both reports have a subcategory with custom subcategory class
                 if ($subcatA && $subcatB) {
                     if ($subcatA->getOrder() == $subcatB->getOrder()) {
-                        // same subcategory, compare order
+                        // same subcategory order, compare order of report
 
                         if ($orderA == $orderB) {
                             return 0;
