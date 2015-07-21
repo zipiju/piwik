@@ -1,7 +1,6 @@
 FROM ubuntu:14.04
 
-RUN apt-get update -qq
-RUN apt-get install -y --quiet git php5-cli php5-curl php5-mcrypt php5-mysql php5-gd php5-fpm && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && apt-get install -y --quiet git php5-cli php5-curl php5-mcrypt php5-mysql php5-gd php5-fpm && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/run/php5-fpm
 

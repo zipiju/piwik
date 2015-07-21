@@ -26,15 +26,13 @@ phpfpm:
     - db
 
 db:
-  image: mysql
+  image: mysql/mysql-server
   volumes_from:
     # necessary for LOAD DATA INFILE
     - data
   environment:
     - MYSQL_DATABASE=piwik
     - MYSQL_ROOT_PASSWORD=
-    - MYSQL_USER=piwik
-    - MYSQL_PASSWORD=
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 data:
