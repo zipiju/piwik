@@ -47,3 +47,4 @@
 [submodule "tests/travis"]
 	path = tests/travis
 	url = https://github.com/piwik/travis-scripts
+    branch = git-lfs
