@@ -22,6 +22,10 @@
 
         return model;
 
+        function isNumeric(text) {
+            return !isNaN(parseFloat(text)) && isFinite(text);
+        }
+
         function findSubcategory(categoryId, subcategoryId)
         {
             var foundCategory = null;
@@ -78,7 +82,7 @@
                             subcategory.active = true;
                         }
 
-                        if (page.widgets && page.widgets[0] && page.widgets[0].parameters.idGoal && page.category.id === 'Goals_Goals') {
+                        if (page.widgets && page.widgets[0] && page.category.id === 'Goals_Goals' && isNumeric(page.subcategory.id)) {
                             // we handle a goal
                             if (!goalsGroup) {
                                 goalsGroup = angular.copy(subcategory);
@@ -92,7 +96,7 @@
                                 goalsGroup.name = subcategory.name;
                             }
 
-                            var goalId = page.widgets[0].parameters.idGoal;
+                            var goalId = page.subcategory.id;
                             subcategory.tooltip = subcategory.name + ' (id = ' + goalId + ' )';
 
                             goalsGroup.subcategories.push(subcategory);

@@ -248,21 +248,15 @@ class Pages
 
         $conversions = $this->conversions->getConversionForGoal();
 
-        // add ecommerce reports
-        $ecommerceCustomParams = array();
-
-        if (Common::getRequestVar('idGoal', '') === '') // if no idGoal, use 0 for overview
-        {
-            $customParams['idGoal'] = '0'; // NOTE: Must be string! Otherwise Piwik_View_HtmlTable_Goals fails.
-        }
-
         if ($conversions > 0 || $ecommerce) {
             // for non-Goals reports, we show the goals table
-            $customParams = $ecommerceCustomParams + array('documentationForGoalsPage' => '1');
+            $customParams = array('documentationForGoalsPage' => '1');
 
-            if (Common::getRequestVar('idGoal', '') === '') // if no idGoal, use 0 for overview
+            if ($idGoal === '') // if no idGoal, use 0 for overview
             {
                 $customParams['idGoal'] = '0'; // NOTE: Must be string! Otherwise Piwik_View_HtmlTable_Goals fails.
+            } else {
+                $customParams['idGoal'] = $idGoal;
             }
 
             $translationHelper = new TranslationHelper();
