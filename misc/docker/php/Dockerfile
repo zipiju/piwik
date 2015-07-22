@@ -1,5 +1,8 @@
 FROM ubuntu:14.04
 
+# Run as the same user as php-fpm (because of file permissions)
+USER www-data
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get install -y software-properties-common
