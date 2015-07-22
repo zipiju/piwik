@@ -31,7 +31,8 @@
                         scope.isEnabled = true;
                     } else {
 
-                        piwikApi.fetch(scope.widget.middlewareParameters).then(function (response) {
+                        var params = angular.copy(scope.widget.middlewareParameters);
+                        piwikApi.fetch(params).then(function (response) {
                             scope.isEnabled = response;
                         });
 
