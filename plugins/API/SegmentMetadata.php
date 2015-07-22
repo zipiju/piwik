@@ -10,7 +10,6 @@ namespace Piwik\Plugins\API;
 
 use Piwik\Columns\Dimension;
 use Piwik\Piwik;
-use Piwik\Segment\SegmentExpression;
 
 class SegmentMetadata
 {

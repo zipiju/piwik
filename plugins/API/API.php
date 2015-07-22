@@ -126,7 +126,7 @@ class API extends \Piwik\Plugin\API
     {
         $isAuthenticatedWithViewAccess = Piwik::isUserHasViewAccess($idSites) && !Piwik::isUserIsAnonymous();
 
-        $sites   = (is_array($idSites) ? implode('', $idSites) : $idSites);
+        $sites   = (is_array($idSites) ? implode('.', $idSites) : (int) $idSites);
         $cache   = Cache::getTransientCache();
         $cachKey = 'API.getSegmentsMetadata' . $sites . '_' . (int) $_hideImplementationData . '_' . (int) $isAuthenticatedWithViewAccess;
         $cachKey = CacheId::pluginAware($cachKey);
