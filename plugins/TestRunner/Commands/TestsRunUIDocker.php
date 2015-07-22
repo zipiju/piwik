@@ -70,22 +70,28 @@ class TestsRunUIDocker extends ConsoleCommand
     private function initContainers($runningProcesses, OutputInterface $output)
     {
         foreach ($runningProcesses as $i => $process) {
-            $command = $this->getDockerCommand($i, 'up -d');
             $output->writeln(sprintf('<comment>Initializing docker project %d</comment>', $i + 1));
-            $process = new Process($command);
-            $process->setIdleTimeout(300);
-            $process->setTimeout(300);
-            $exitCode = $process->run(function ($type, $buffer) use ($output) {
-                $output->write($buffer);
-            });
+            $this->runCommand($i, 'build', $output);
+            $this->runCommand($i, 'up -d', $output);
+        }
+    }
 
-            if ($exitCode !== 0) {
-                throw new \RuntimeException(sprintf(
-                    'Error while running "%s": %s',
-                    $command,
-                    $process->getErrorOutput()
-                ));
-            }
+    private function runCommand($number, $command, OutputInterface $output)
+    {
+        $command = $this->getDockerCommand($number, $command);
+        $process = new Process($command);
+        $process->setIdleTimeout(300);
+        $process->setTimeout(300);
+        $exitCode = $process->run(function ($type, $buffer) use ($output) {
+            $output->write($buffer);
+        });
+
+        if ($exitCode !== 0) {
+            throw new \RuntimeException(sprintf(
+                'Error while running "%s": %s',
+                $command,
+                $process->getErrorOutput()
+            ));
         }
     }
 
