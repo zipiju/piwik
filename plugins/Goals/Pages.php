@@ -132,11 +132,9 @@ class Pages
         $config->setIsNotWidgetizable();
 
         $conversions = $this->conversions->getConversionForGoal($idGoal);
-        if ($conversions <= 0) {
-            $config->disable();
+        if ($conversions > 0) {
+            $widgets[] = $config;
         }
-
-        $widgets[] = $config;
 
         $container = $this->createWidgetizableWidgetContainer('EcommerceOverview', $subcategory, $widgets);
         return array($container);

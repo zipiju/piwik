@@ -1550,7 +1550,7 @@
 		</subcategory>
 		<module>CoreHome</module>
 		<action>renderWidgetContainer</action>
-		<order>8</order>
+		<order>9</order>
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
@@ -1757,7 +1757,7 @@
 		</subcategory>
 		<module>CoreHome</module>
 		<action>renderWidgetContainer</action>
-		<order>12</order>
+		<order>13</order>
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
@@ -1805,7 +1805,7 @@
 		</subcategory>
 		<module>CoreHome</module>
 		<action>renderWidgetContainer</action>
-		<order>20</order>
+		<order>19</order>
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
