@@ -29,6 +29,10 @@ class TestsRunUIDocker extends ConsoleCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!is_dir(PIWIK_DOCUMENT_ROOT . '/tmp/tests')) {
+            mkdir(PIWIK_DOCUMENT_ROOT . '/tmp/tests');
+        }
+
         $parallelProcessesCount = $input->getOption('parallel');
 
         $specsToRun = $this->getSpecsToRun($input);
