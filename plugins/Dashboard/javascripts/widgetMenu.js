@@ -63,10 +63,14 @@ widgetsHelper.getAvailableWidgets = function (callback) {
 
     if (!widgetsHelper.availableWidgets) {
         var ajaxRequest = new ajaxHelper();
+        ajaxRequest._mixinDefaultGetParams = function (params) {
+            return params;
+        };
         ajaxRequest.addParams({
             module: 'API',
             method: 'API.getWidgetMetadata',
-            format: 'JSON'
+            format: 'JSON',
+            idSite:  piwik.idSite || broadcast.getValueFromUrl('idSite')
         }, 'get');
         ajaxRequest.setCallback(
             function (data) {

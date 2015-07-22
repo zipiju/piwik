@@ -63,7 +63,7 @@ class WidgetTest extends SystemTestCase
 
         Piwik::postEvent('Platform.initialized'); // userCountryMap defines it's Widgets via this event currently
 
-        $widgets = API\API::getInstance()->getWidgetMetadata($_GET['idSite'], $_GET['period'], $_GET['date']);
+        $widgets = API\API::getInstance()->getWidgetMetadata($_GET['idSite']);
 
         $currentUniqueIds = array();
         foreach ($widgets as $widget) {
