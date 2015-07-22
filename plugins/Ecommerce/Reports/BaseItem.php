@@ -17,6 +17,7 @@ use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Plugins\Goals\Columns\Metrics\AveragePrice;
 use Piwik\Plugins\Goals\Columns\Metrics\AverageQuantity;
 use Piwik\Plugins\Goals\Columns\Metrics\ProductConversionRate;
+use Piwik\Plugins\Goals\Conversions;
 use Piwik\Plugins\Goals\Model;
 use Piwik\Report\ReportWidgetFactory;
 use Piwik\Widget\WidgetsList;
@@ -48,7 +49,8 @@ abstract class BaseItem extends Base
 
     public function getMetricsDocumentation()
     {
-        if ($this->isAbandonedCart()) {
+        // we do not check whether it is abondon carts if not set re performance improvements
+        if ($this->isAbandonedCart($fetchIfNotSet = false)) {
             return array(
                 'revenue'         => Piwik::translate('Goals_ColumnRevenueDocumentation',
                                             Piwik::translate('Goals_DocumentationRevenueGeneratedByProductSales')),
@@ -107,7 +109,7 @@ abstract class BaseItem extends Base
             $view->config->custom_parameters['viewDataTable'] = 'table';
             $abandonedCart = true;
         } else {
-            $abandonedCart = $this->isAbandonedCart();
+            $abandonedCart = $this->isAbandonedCart($fetchIfNotSet = true);
         }
 
         if ($abandonedCart) {
@@ -134,20 +136,22 @@ abstract class BaseItem extends Base
         $view->config->columns_to_display = $columnsOrdered;
     }
 
-    private function isAbandonedCart()
+    private function isAbandonedCart($fetchIfNotSet)
     {
         $abandonedCarts = Common::getRequestVar('abandonedCarts', '', 'string');
 
         if ($abandonedCarts === '') {
+            if ($fetchIfNotSet) {
+                $conversion = new Conversions();
+                $conversions = $conversion->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
+                $cartNbConversions = $conversion->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_CART);
+                $preloadAbandonedCart = $cartNbConversions !== false && $conversions == 0;
 
-            $pages = new Model();
-
-            $conversions = $pages->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
-            $cartNbConversions = $pages->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_CART);
-            $preloadAbandonedCart = $cartNbConversions !== false && $conversions == 0;
-
-            if ($preloadAbandonedCart) {
-                $abandonedCarts = '1';
+                if ($preloadAbandonedCart) {
+                    $abandonedCarts = '1';
+                } else {
+                    $abandonedCarts = '0';
+                }
             } else {
                 $abandonedCarts = '0';
             }

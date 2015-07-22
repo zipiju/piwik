@@ -26,13 +26,13 @@ class Pages
     private $orderId = 0;
     private $allReports = array();
     private $factory = array();
-    private $model;
+    private $conversions;
 
     public function __construct(ReportWidgetFactory $reportFactory, $reportsWithGoalMetrics)
     {
         $this->factory = $reportFactory;
         $this->allReports = $reportsWithGoalMetrics;
-        $this->model = new Model();
+        $this->conversions = new Conversions();
     }
 
     /**
@@ -76,7 +76,7 @@ class Pages
             $widgets[] = $config;
         }
 
-        if ($this->model->getConversionForGoal()) {
+        if ($this->conversions->getConversionForGoal()) {
             $config = $this->factory->createContainerWidget('Goals');
             $config->setSubcategoryId($subcategory);
             $config->setName('Goals_ConversionsOverviewBy');
@@ -122,7 +122,7 @@ class Pages
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
-        $conversions = $this->model->getConversionForGoal($idGoal);
+        $conversions = $this->conversions->getConversionForGoal($idGoal);
         if ($conversions > 0) {
             $config = $this->factory->createWidget();
             $config->setModule('Ecommerce');
@@ -190,7 +190,7 @@ class Pages
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
-        $conversions = $this->model->getConversionForGoal($idGoal);
+        $conversions = $this->conversions->getConversionForGoal($idGoal);
 
         if ($conversions > 0) {
             $config = $this->factory->createWidget();
@@ -244,26 +244,12 @@ class Pages
     private function buildGoalByDimensionView($idGoal, WidgetContainerConfig $container)
     {
         $container->setLayout('ByDimension');
-        $ecommerce = $idGoal == Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER;
+        $ecommerce = ($idGoal == Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
 
-        $conversions = $this->model->getConversionForGoal();
-        if ($ecommerce) {
-            $cartNbConversions = $this->model->getConversionForGoal($idGoal);
-        } else {
-            $cartNbConversions = false;
-        }
-
-        $preloadAbandonedCart = $cartNbConversions !== false && $conversions == 0;
+        $conversions = $this->conversions->getConversionForGoal();
 
         // add ecommerce reports
         $ecommerceCustomParams = array();
-        if ($ecommerce) {
-            if ($preloadAbandonedCart) {
-                $ecommerceCustomParams['abandonedCarts'] = '1';
-            } else {
-                $ecommerceCustomParams['abandonedCarts'] = '0';
-            }
-        }
 
         if (Common::getRequestVar('idGoal', '') === '') // if no idGoal, use 0 for overview
         {
