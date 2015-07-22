@@ -10,6 +10,7 @@ namespace Piwik\Plugins\Goals;
 
 
 use Piwik\API\Request;
+use Piwik\Cache;
 use Piwik\Common;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
@@ -351,6 +352,12 @@ class Pages
             return false;
         }
 
+        $cache = Cache::getTransientCache();
+        $key = 'getConversionForGoal_' . implode('_', array($idGoal, $period, $date, $idSite));
+        if (!$cache->contains($key)) {
+            return $cache->fetch($key);
+        }
+
         $datatable = Request::processRequest('Goals.get', array(
             'idGoal' => $idGoal,
             'period' => $period,
@@ -369,7 +376,10 @@ class Pages
             return false;
         }
 
-        return $dataRow->getColumn('nb_conversions');
+        $conversions = $dataRow->getColumn('nb_conversions');
+        $cache->save($key, $conversions);
+
+        return $conversions;
     }
 
 }
