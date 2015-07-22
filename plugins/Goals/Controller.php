@@ -11,6 +11,7 @@ namespace Piwik\Plugins\Goals;
 use Piwik\API\Request;
 use Piwik\Common;
 use Piwik\DataTable;
+use Piwik\DataTable\Renderer\Json;
 use Piwik\DataTable\Filter\AddColumnsProcessedMetricsGoal;
 use Piwik\FrontController;
 use Piwik\Piwik;
@@ -134,6 +135,22 @@ class Controller extends \Piwik\Plugin\Controller
         $this->setEditGoalsViewVariables($view);
         $view->userCanEditGoals = Piwik::isUserHasAdminAccess($this->idSite);
         return $view->render();
+    }
+
+    public function hasConversions()
+    {
+        $idGoal = Common::getRequestVar('idGoal', '', 'string');
+        $idSite = Common::getRequestVar('idSite', null, 'int');
+        $period = Common::getRequestVar('period', null, 'string');
+        $date   = Common::getRequestVar('date', null, 'string');
+
+        $conversions = new Conversions();
+
+        Json::sendHeaderJSON();
+
+        $numConversions = $conversions->getConversionForGoal($idGoal, $idSite, $period, $date);
+
+        return json_encode($numConversions > 0);
     }
 
     public function getEvolutionGraph(array $columns = array(), $idGoal = false, array $defaultColumns = array())

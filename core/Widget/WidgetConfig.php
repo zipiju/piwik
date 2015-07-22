@@ -24,6 +24,7 @@ class WidgetConfig
     protected $module = '';
     protected $action = '';
     protected $parameters = array();
+    protected $middlewareParameters = array();
     protected $name   = '';
     protected $order  = 99;
     protected $isEnabled = true;
@@ -234,6 +235,17 @@ class WidgetConfig
     {
         $this->isWidgetizable = false;
         return $this;
+    }
+
+    public function setMiddlewareParameters($parameters)
+    {
+        $this->middlewareParameters = $parameters;
+        return $this;
+    }
+
+    public function getMiddlewareParameters()
+    {
+        return $this->middlewareParameters;
     }
 
     public function setIsWidgetizable()

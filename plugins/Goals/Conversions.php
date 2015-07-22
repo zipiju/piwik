@@ -16,31 +16,12 @@ use Piwik\Db;
 class Conversions
 {
 
-    public function getConversionForGoal($idGoal = '')
+    public function getConversionForGoal($idGoal, $idSite, $period, $date)
     {
-        $period = Common::getRequestVar('period', '', 'string');
-        $date   = Common::getRequestVar('date', '', 'string');
-        $idSite = Common::getRequestVar('idSite', 0, 'int');
-
         if (!$period || !$date || !$idSite) {
             return false;
         }
 
-        $cache = Cache::getTransientCache();
-        $key   = 'Goals.getConversionForGoal_' . implode('_', array($idGoal, $period, $date, $idSite));
-
-        if ($cache->contains($key)) {
-            return $cache->fetch($key);
-        }
-
-        $conversions = $this->requestGoalConversions($idGoal, $idSite, $period, $date);
-        $cache->save($key, $conversions);
-
-        return $conversions;
-    }
-
-    private function requestGoalConversions($idGoal, $idSite, $period, $date)
-    {
         $datatable = Request::processRequest('Goals.get', array(
             'idGoal'    => $idGoal,
             'period'    => $period,

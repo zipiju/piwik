@@ -142,9 +142,14 @@ abstract class BaseItem extends Base
 
         if ($abandonedCarts === '') {
             if ($fetchIfNotSet) {
+
+                $idSite = Common::getRequestVar('idSite', 0, 'int');
+                $period = Common::getRequestVar('period', '', 'string');
+                $date   = Common::getRequestVar('date', '', 'string');
+
                 $conversion = new Conversions();
-                $conversions = $conversion->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
-                $cartNbConversions = $conversion->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_CART);
+                $conversions = $conversion->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER, $idSite, $period, $date);
+                $cartNbConversions = $conversion->getConversionForGoal(Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_CART, $idSite, $period, $date);
                 $preloadAbandonedCart = $cartNbConversions !== false && $conversions == 0;
 
                 if ($preloadAbandonedCart) {

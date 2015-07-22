@@ -76,15 +76,17 @@ class Pages
             $widgets[] = $config;
         }
 
-        if ($this->conversions->getConversionForGoal() > 0) {
-            $config = $this->factory->createContainerWidget('Goals');
-            $config->setSubcategoryId($subcategory);
-            $config->setName('Goals_ConversionsOverviewBy');
-            $config->setOrder(++$this->orderId);
-            $config->setIsNotWidgetizable();
-            $this->buildGoalByDimensionView('', $config);
-            $widgets[] = $config;
-        }
+        $config = $this->factory->createContainerWidget('Goals');
+        $config->setSubcategoryId($subcategory);
+        $config->setName('Goals_ConversionsOverviewBy');
+        $config->setOrder(++$this->orderId);
+        $config->setIsNotWidgetizable();
+        $this->buildGoalByDimensionView('', $config);
+        $config->setMiddlewareParameters(array(
+            'module' => 'Goals',
+            'action' => 'hasConversions'
+        ));
+        $widgets[] = $config;
 
         $container = $this->createWidgetizableWidgetContainer('GoalsOverview', $subcategory, $widgets);
         return array($container);
@@ -130,11 +132,13 @@ class Pages
         $config->setParameters(array('idGoal' => $idGoal));
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
+        $config->setMiddlewareParameters(array(
+            'module' => 'Goals',
+            'action' => 'hasConversions',
+            'idGoal' => $idGoal
+        ));
 
-        $conversions = $this->conversions->getConversionForGoal($idGoal);
-        if ($conversions > 0) {
-            $widgets[] = $config;
-        }
+        $widgets[] = $config;
 
         $container = $this->createWidgetizableWidgetContainer('EcommerceOverview', $subcategory, $widgets);
         return array($container);
@@ -189,36 +193,41 @@ class Pages
         $config->addParameters(array('allow_multiple' => (int) $goal['allow_multiple']));
         $config->setOrder(++$this->orderId);
         $config->setIsNotWidgetizable();
+        $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
-        $conversions = $this->conversions->getConversionForGoal($idGoal);
-
-        if ($conversions > 0) {
-            $config = $this->factory->createWidget();
-            $config->setAction('goalConversionsOverview');
-            $config->setSubcategoryId($idGoal);
-            $config->setName('Goals_ConversionsOverview');
-            $config->setParameters($params);
-            $config->setOrder(++$this->orderId);
-            $config->setIsNotWidgetizable();
-            $widgets[] = $config;
-        }
+        $config = $this->factory->createWidget();
+        $config->setAction('goalConversionsOverview');
+        $config->setSubcategoryId($idGoal);
+        $config->setName('Goals_ConversionsOverview');
+        $config->setParameters($params);
+        $config->setOrder(++$this->orderId);
+        $config->setIsNotWidgetizable();
+        $config->setMiddlewareParameters(array(
+            'module' => 'Goals',
+            'action' => 'hasConversions',
+            'idGoal' => $idGoal
+        ));
+        $widgets[] = $config;
 
         $container = $this->createWidgetizableWidgetContainer('Goal_' . $idGoal, $name, $widgets);
 
         $configs = array($container);
 
-        if ($conversions > 0) {
-            $config = $this->factory->createContainerWidget('Goals' . $idGoal);
-            $config->setName(Piwik::translate('Goals_GoalConversionsBy', array($name)));
-            $config->setSubcategoryId($idGoal);
-            $config->setParameters(array());
-            $config->setOrder(++$this->orderId);
-            $config->setIsNotWidgetizable();
-            $this->buildGoalByDimensionView($idGoal, $config);
+        $config = $this->factory->createContainerWidget('Goals' . $idGoal);
+        $config->setName(Piwik::translate('Goals_GoalConversionsBy', array($name)));
+        $config->setSubcategoryId($idGoal);
+        $config->setParameters(array());
+        $config->setOrder(++$this->orderId);
+        $config->setIsNotWidgetizable();
+        $config->setMiddlewareParameters(array(
+            'module' => 'Goals',
+            'action' => 'hasConversions',
+            'idGoal' => $idGoal
+        ));
+        $this->buildGoalByDimensionView($idGoal, $config);
 
-            $configs[] = $config;
-        }
+        $configs[] = $config;
 
         return $configs;
     }

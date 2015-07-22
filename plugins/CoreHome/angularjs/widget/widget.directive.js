@@ -12,9 +12,9 @@
 (function () {
     angular.module('piwikApp').directive('piwikWidget', piwikWidget);
 
-    piwikWidget.$inject = ['piwik'];
+    piwikWidget.$inject = ['piwik', 'piwikApi'];
 
-    function piwikWidget(piwik){
+    function piwikWidget(piwik, piwikApi){
         return {
             restrict: 'A',
             scope: {
@@ -26,6 +26,16 @@
 
                 return function (scope, element, attrs, ngModel) {
                     scope.showName = angular.isDefined(scope.showName) ? scope.showName : true;
+
+                    if (!scope.widget.middlewareParameters) {
+                        scope.widget.enabled = true;
+                    } else {
+
+                        piwikApi.fetch(scope.widget.middlewareParameters).then(function (response) {
+                            scope.widget.enabled = response;
+                        });
+
+                    }
                 }
             }
         };

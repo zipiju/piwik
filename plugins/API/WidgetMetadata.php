@@ -86,6 +86,12 @@ class WidgetMetadata
             'uniqueId'    => $widget->getUniqueId(),
         );
 
+        $middleware = $widget->getMiddlewareParameters();
+
+        if (!empty($middleware)) {
+            $item['middlewareParameters'] = $middleware;
+        }
+
         if ($widget instanceof ReportWidgetConfig) {
             $item['viewDataTable'] = $widget->getDefaultView();
             $item['isReport'] = true;
