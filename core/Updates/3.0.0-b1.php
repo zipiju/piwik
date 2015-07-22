@@ -304,24 +304,15 @@ class Updates_3_0_0_b1 extends Updates
             ),array (
                 'module' => 'Goals',
                 'action' => 'getItemsSku',
-                'params' =>
-                    array (
-                        'abandonedCarts' => '0',
-                    ),
+                'params' => array (),
             ),array (
                 'module' => 'Goals',
                 'action' => 'getItemsName',
-                'params' =>
-                    array (
-                        'abandonedCarts' => '0',
-                    ),
+                'params' => array (),
             ),array (
                 'module' => 'Goals',
                 'action' => 'getItemsCategory',
-                'params' =>
-                    array (
-                        'abandonedCarts' => '0',
-                    ),
+                'params' => array (),
             ),array (
                 'module' => 'CoreHome',
                 'action' => 'renderWidgetContainer',

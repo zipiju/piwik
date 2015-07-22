@@ -26,11 +26,13 @@ class Pages
     private $orderId = 0;
     private $allReports = array();
     private $factory = array();
+    private $model;
 
     public function __construct(ReportWidgetFactory $reportFactory, $reportsWithGoalMetrics)
     {
         $this->factory = $reportFactory;
         $this->allReports = $reportsWithGoalMetrics;
+        $this->model = new Model();
     }
 
     /**
@@ -74,7 +76,7 @@ class Pages
             $widgets[] = $config;
         }
 
-        if ($this->getConversionForGoal()) {
+        if ($this->model->getConversionForGoal()) {
             $config = $this->factory->createContainerWidget('Goals');
             $config->setSubcategoryId($subcategory);
             $config->setName('Goals_ConversionsOverviewBy');
@@ -120,7 +122,7 @@ class Pages
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
-        $conversions = $this->getConversionForGoal($idGoal);
+        $conversions = $this->model->getConversionForGoal($idGoal);
         if ($conversions > 0) {
             $config = $this->factory->createWidget();
             $config->setModule('Ecommerce');
@@ -188,7 +190,7 @@ class Pages
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
-        $conversions = $this->getConversionForGoal($idGoal);
+        $conversions = $this->model->getConversionForGoal($idGoal);
 
         if ($conversions > 0) {
             $config = $this->factory->createWidget();
@@ -244,9 +246,9 @@ class Pages
         $container->setLayout('ByDimension');
         $ecommerce = $idGoal == Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER;
 
-        $conversions = $this->getConversionForGoal();
+        $conversions = $this->model->getConversionForGoal();
         if ($ecommerce) {
-            $cartNbConversions = $this->getConversionForGoal($idGoal);
+            $cartNbConversions = $this->model->getConversionForGoal($idGoal);
         } else {
             $cartNbConversions = false;
         }
@@ -340,47 +342,6 @@ class Pages
     {
         $factory = new ReportWidgetFactory(Reports::factory($module, $action));
         return $factory->createWidget();
-    }
-
-    public function getConversionForGoal($idGoal = '')
-    {
-        $period = Common::getRequestVar('period', '', 'string');
-        $date   = Common::getRequestVar('date', '', 'string');
-        $idSite = Common::getRequestVar('idSite', 0, 'int');
-
-        if (!$period || !$date || !$idSite) {
-            return false;
-        }
-
-        $cache = Cache::getTransientCache();
-        $key   = 'Goals.getConversionForGoal_' . implode('_', array($idGoal, $period, $date, $idSite));
-
-        if ($cache->contains($key)) {
-            return $cache->fetch($key);
-        }
-
-        $datatable = Request::processRequest('Goals.get', array(
-            'idGoal' => $idGoal,
-            'period' => $period,
-            'date' => $date,
-            'idSite' => $idSite,
-            'serialize' => 0,
-            'segment' => false
-        ));
-
-        // we ignore the segment even if there is one set. We still want to show conversion overview if there are conversions
-        // in general but not for this segment
-
-        $dataRow = $datatable->getFirstRow();
-
-        if (!$dataRow) {
-            return false;
-        }
-
-        $conversions = $dataRow->getColumn('nb_conversions');
-        $cache->save($key, $conversions);
-
-        return $conversions;
     }
 
 }

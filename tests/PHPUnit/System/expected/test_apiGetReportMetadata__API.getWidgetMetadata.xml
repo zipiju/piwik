@@ -1599,9 +1599,8 @@
 		<parameters>
 			<module>Goals</module>
 			<action>getItemsSku</action>
-			<abandonedCarts>1</abandonedCarts>
 		</parameters>
-		<uniqueId>widgetGoalsgetItemsSkuabandonedCarts1</uniqueId>
+		<uniqueId>widgetGoalsgetItemsSku</uniqueId>
 		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>
@@ -1623,9 +1622,8 @@
 		<parameters>
 			<module>Goals</module>
 			<action>getItemsName</action>
-			<abandonedCarts>1</abandonedCarts>
 		</parameters>
-		<uniqueId>widgetGoalsgetItemsNameabandonedCarts1</uniqueId>
+		<uniqueId>widgetGoalsgetItemsName</uniqueId>
 		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>
@@ -1647,9 +1645,8 @@
 		<parameters>
 			<module>Goals</module>
 			<action>getItemsCategory</action>
-			<abandonedCarts>0</abandonedCarts>
 		</parameters>
-		<uniqueId>widgetGoalsgetItemsCategoryabandonedCarts0</uniqueId>
+		<uniqueId>widgetGoalsgetItemsCategory</uniqueId>
 		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>
@@ -1671,9 +1668,8 @@
 		<parameters>
 			<module>Goals</module>
 			<action>getItemsSku</action>
-			<abandonedCarts>0</abandonedCarts>
 		</parameters>
-		<uniqueId>widgetGoalsgetItemsSkuabandonedCarts0</uniqueId>
+		<uniqueId>widgetGoalsgetItemsSku</uniqueId>
 		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>
@@ -1695,9 +1691,8 @@
 		<parameters>
 			<module>Goals</module>
 			<action>getItemsName</action>
-			<abandonedCarts>0</abandonedCarts>
 		</parameters>
-		<uniqueId>widgetGoalsgetItemsNameabandonedCarts0</uniqueId>
+		<uniqueId>widgetGoalsgetItemsName</uniqueId>
 		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>
@@ -1719,9 +1714,8 @@
 		<parameters>
 			<module>Goals</module>
 			<action>getItemsCategory</action>
-			<abandonedCarts>1</abandonedCarts>
 		</parameters>
-		<uniqueId>widgetGoalsgetItemsCategoryabandonedCarts1</uniqueId>
+		<uniqueId>widgetGoalsgetItemsCategory</uniqueId>
 		<viewDataTable>table</viewDataTable>
 		<isReport>1</isReport>
 	</row>

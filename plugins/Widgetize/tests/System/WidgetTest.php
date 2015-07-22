@@ -981,113 +981,29 @@ class WidgetTest extends SystemTestCase
                     ),
             ), array (
                 'name' => 'Product SKU',
-                'uniqueId' => 'widgetGoalsgetItemsSkuabandonedCarts1',
+                'uniqueId' => 'widgetGoalsgetItemsSku',
                 'parameters' =>
                     array (
                         'module' => 'Goals',
                         'action' => 'getItemsSku',
-                        'abandonedCarts' => '1',
                     ),
             ), array (
                 'name' => 'Product SKU',
-                'uniqueId' => 'widgetGoalsgetItemsSkuabandonedCarts1',
+                'uniqueId' => 'widgetGoalsgetItemsSku',
                 'parameters' =>
                     array (
                         'module' => 'Goals',
                         'action' => 'getItemsSku',
-                        'abandonedCarts' => '1',
                     ),
             ), array (
                 'name' => 'Product Category',
-                'uniqueId' => 'widgetGoalsgetItemsCategoryabandonedCarts1',
+                'uniqueId' => 'widgetGoalsgetItemsCategory',
                 'parameters' =>
                     array (
                         'module' => 'Goals',
                         'action' => 'getItemsCategory',
-                        'abandonedCarts' => '1',
                     ),
-            ), array (
-                'name' => 'Product Category',
-                'uniqueId' => 'widgetGoalsgetItemsCategoryabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsCategory',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product Name',
-                'uniqueId' => 'widgetGoalsgetItemsNameabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsName',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product Name',
-                'uniqueId' => 'widgetGoalsgetItemsNameabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsName',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product Name',
-                'uniqueId' => 'widgetGoalsgetItemsNameabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsName',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product Name',
-                'uniqueId' => 'widgetGoalsgetItemsNameabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsName',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product SKU',
-                'uniqueId' => 'widgetGoalsgetItemsSkuabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsSku',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product SKU',
-                'uniqueId' => 'widgetGoalsgetItemsSkuabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsSku',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product Category',
-                'uniqueId' => 'widgetGoalsgetItemsCategoryabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsCategory',
-                        'abandonedCarts' => '1',
-                    ),
-            ), array (
-                'name' => 'Product Category',
-                'uniqueId' => 'widgetGoalsgetItemsCategoryabandonedCarts1',
-                'parameters' =>
-                    array (
-                        'module' => 'Goals',
-                        'action' => 'getItemsCategory',
-                        'abandonedCarts' => '1',
-                    ),
-            )
+            ),
         );
     }
 
