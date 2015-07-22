@@ -27,13 +27,16 @@
                 return function (scope, element, attrs, ngModel) {
                     scope.showName = angular.isDefined(scope.showName) ? scope.showName : true;
 
-                    if (!scope.widget.middlewareParameters) {
-                        scope.isEnabled = true;
+                    if (!scope.widget) {
+                        scope.$eval('view.enabled = false');
+                    } else if (!scope.widget.middlewareParameters) {
+                        scope.$eval('view.enabled = true');
                     } else {
 
                         var params = angular.copy(scope.widget.middlewareParameters);
                         piwikApi.fetch(params).then(function (response) {
-                            scope.isEnabled = response;
+                            var enabled = response ? 'true' : 'false';
+                            scope.$eval('view.enabled = ' + enabled);
                         });
 
                     }

@@ -124,6 +124,24 @@ class ReportWidgetConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(99, $this->config->getOrder());
     }
 
+    public function test_setMiddlewareParameters_set_get()
+    {
+        $this->config->setMiddlewareParameters(array(
+            'module' => 'Goals',
+            'action' => 'hasConversions'
+        ));
+
+        $this->assertSame(array(
+            'module' => 'Goals',
+            'action' => 'hasConversions'
+        ), $this->config->getMiddlewareParameters());
+    }
+
+    public function test_getMiddlewareParameters_shouldReturnADefaultValue()
+    {
+        $this->assertSame(array(), $this->config->getMiddlewareParameters());
+    }
+
     public function test_getParameters_ShouldAddModuleAndAction()
     {
         $this->setModuleAndAction();
