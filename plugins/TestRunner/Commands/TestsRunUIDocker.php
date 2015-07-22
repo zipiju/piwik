@@ -125,7 +125,7 @@ class TestsRunUIDocker extends ConsoleCommand
     private function getDockerCommand($number, $command)
     {
         return sprintf(
-            'docker-compose -project-name=piwik_%d %s',
+            'docker-compose -p piwik%d %s',
             $number + 1,
             $command
         );
