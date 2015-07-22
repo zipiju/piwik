@@ -20,4 +20,4 @@ COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
 WORKDIR /app
 
-CMD ["php5-fpm", "--allow-to-run-as-root"]
+CMD ["php5-fpm"]
