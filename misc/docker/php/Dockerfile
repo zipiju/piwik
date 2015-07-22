@@ -17,7 +17,4 @@ RUN echo "always_populate_raw_post_data = -1" >> /etc/php5/cli/conf.d/custom.ini
 # This locale is used in tests
 RUN locale-gen de_DE
 
-# Run as the same user as php-fpm (because of file permissions)
-USER www-data
-
 WORKDIR /app
