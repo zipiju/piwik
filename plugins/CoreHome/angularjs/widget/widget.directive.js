@@ -28,11 +28,11 @@
                     scope.showName = angular.isDefined(scope.showName) ? scope.showName : true;
 
                     if (!scope.widget.middlewareParameters) {
-                        scope.widget.enabled = true;
+                        scope.isEnabled = true;
                     } else {
 
                         piwikApi.fetch(scope.widget.middlewareParameters).then(function (response) {
-                            scope.widget.enabled = response;
+                            scope.isEnabled = response;
                         });
 
                     }

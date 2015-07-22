@@ -74,8 +74,8 @@ class Get extends \Piwik\Plugin\Report
     {
         $translations = array(
             'nb_visits_returning' => 'ReturnVisits',
-            'nb_actions_returning' => 'ReturnAvgActions',
-            'nb_actions_per_visit_returning' => 'ReturnActions',
+            'nb_actions_returning' => 'ReturnActions',
+            'nb_actions_per_visit_returning' => 'ReturnAvgActions',
             'avg_time_on_site_returning' => 'ReturnAverageVisitDuration',
             'bounce_rate_returning' => 'ReturnBounceRate',
         );
