@@ -76,7 +76,7 @@ class Pages
             $widgets[] = $config;
         }
 
-        if ($this->conversions->getConversionForGoal()) {
+        if ($this->conversions->getConversionForGoal() > 0) {
             $config = $this->factory->createContainerWidget('Goals');
             $config->setSubcategoryId($subcategory);
             $config->setName('Goals_ConversionsOverviewBy');
@@ -122,18 +122,21 @@ class Pages
         $config->setIsNotWidgetizable();
         $widgets[] = $config;
 
+        $config = $this->factory->createWidget();
+        $config->setModule('Ecommerce');
+        $config->setAction('getConversionsOverview');
+        $config->setSubcategoryId($idGoal);
+        $config->setName('Goals_ConversionsOverview');
+        $config->setParameters(array('idGoal' => $idGoal));
+        $config->setOrder(++$this->orderId);
+        $config->setIsNotWidgetizable();
+
         $conversions = $this->conversions->getConversionForGoal($idGoal);
-        if ($conversions > 0) {
-            $config = $this->factory->createWidget();
-            $config->setModule('Ecommerce');
-            $config->setAction('getConversionsOverview');
-            $config->setSubcategoryId($idGoal);
-            $config->setName('Goals_ConversionsOverview');
-            $config->setParameters(array('idGoal' => $idGoal));
-            $config->setOrder(++$this->orderId);
-            $config->setIsNotWidgetizable();
-            $widgets[] = $config;
+        if ($conversions <= 0) {
+            $config->disable();
         }
+
+        $widgets[] = $config;
 
         $container = $this->createWidgetizableWidgetContainer('EcommerceOverview', $subcategory, $widgets);
         return array($container);
@@ -205,15 +208,21 @@ class Pages
 
         $container = $this->createWidgetizableWidgetContainer('Goal_' . $idGoal, $name, $widgets);
 
-        $config = $this->factory->createContainerWidget('Goals' . $idGoal);
-        $config->setName(Piwik::translate('Goals_GoalConversionsBy', array($name)));
-        $config->setSubcategoryId($idGoal);
-        $config->setParameters(array());
-        $config->setOrder(++$this->orderId);
-        $config->setIsNotWidgetizable();
-        $this->buildGoalByDimensionView($idGoal, $config);
+        $configs = array($container);
 
-        return array($container, $config);
+        if ($conversions > 0) {
+            $config = $this->factory->createContainerWidget('Goals' . $idGoal);
+            $config->setName(Piwik::translate('Goals_GoalConversionsBy', array($name)));
+            $config->setSubcategoryId($idGoal);
+            $config->setParameters(array());
+            $config->setOrder(++$this->orderId);
+            $config->setIsNotWidgetizable();
+            $this->buildGoalByDimensionView($idGoal, $config);
+
+            $configs[] = $config;
+        }
+
+        return $configs;
     }
 
     private function createWidgetizableWidgetContainer($containerId, $pageName, $widgets)
@@ -246,52 +255,48 @@ class Pages
         $container->setLayout('ByDimension');
         $ecommerce = ($idGoal == Piwik::LABEL_ID_GOAL_IS_ECOMMERCE_ORDER);
 
-        $conversions = $this->conversions->getConversionForGoal();
+        // for non-Goals reports, we show the goals table
+        $customParams = array('documentationForGoalsPage' => '1');
 
-        if ($conversions > 0 || $ecommerce) {
-            // for non-Goals reports, we show the goals table
-            $customParams = array('documentationForGoalsPage' => '1');
+        if ($idGoal === '') {
+            // if no idGoal, use 0 for overview. Must be string! Otherwise Piwik_View_HtmlTable_Goals fails.
+            $customParams['idGoal'] = '0';
+        } else {
+            $customParams['idGoal'] = $idGoal;
+        }
 
-            if ($idGoal === '') // if no idGoal, use 0 for overview
-            {
-                $customParams['idGoal'] = '0'; // NOTE: Must be string! Otherwise Piwik_View_HtmlTable_Goals fails.
+        $translationHelper = new TranslationHelper();
+
+        foreach ($this->allReports as $category => $reports) {
+            $order = ($this->getSortOrderOfCategory($category) * 100);
+
+            if ($ecommerce) {
+                $categoryText = $translationHelper->translateEcommerceMetricCategory($category);
             } else {
-                $customParams['idGoal'] = $idGoal;
+                $categoryText = $translationHelper->translateGoalMetricCategory($category);
             }
 
-            $translationHelper = new TranslationHelper();
+            foreach ($reports as $report) {
+                $order++;
 
-            foreach ($this->allReports as $category => $reports) {
-                $order = ($this->getSortOrderOfCategory($category) * 100);
-
-                if ($ecommerce) {
-                    $categoryText = $translationHelper->translateEcommerceMetricCategory($category);
-                } else {
-                    $categoryText = $translationHelper->translateGoalMetricCategory($category);
+                if (empty($report['viewDataTable'])
+                    && empty($report['abandonedCarts'])
+                ) {
+                    $report['viewDataTable'] = 'tableGoals';
                 }
 
-                foreach ($reports as $report) {
-                    $order++;
+                $widget = $this->createWidgetForReport($report['module'], $report['action']);
+                $widget->setParameters($customParams);
+                $widget->setCategoryId($categoryText);
+                $widget->setSubcategoryId($categoryText);
+                $widget->setOrder($order);
+                $widget->setIsNotWidgetizable();
 
-                    if (empty($report['viewDataTable'])
-                        && empty($report['abandonedCarts'])
-                    ) {
-                        $report['viewDataTable'] = 'tableGoals';
-                    }
-
-                    $widget = $this->createWidgetForReport($report['module'], $report['action']);
-                    $widget->setParameters($customParams);
-                    $widget->setCategoryId($categoryText);
-                    $widget->setSubcategoryId($categoryText);
-                    $widget->setOrder($order);
-                    $widget->setIsNotWidgetizable();
-
-                    if (!empty($report['viewDataTable'])) {
-                        $widget->setDefaultView($report['viewDataTable']);
-                    }
-
-                    $container->addWidget($widget);
+                if (!empty($report['viewDataTable'])) {
+                    $widget->setDefaultView($report['viewDataTable']);
                 }
+
+                $container->addWidget($widget);
             }
         }
     }
