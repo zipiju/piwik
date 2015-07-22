@@ -46,7 +46,7 @@ class WidgetsList
     {
         if ($widget instanceof WidgetContainerConfig) {
             $this->addContainer($widget);
-        } else {
+        } elseif (Development::isEnabled()) {
             $this->checkIsValidWidget($widget);
         }
 
@@ -82,10 +82,6 @@ class WidgetsList
 
     private function checkIsValidWidget(WidgetConfig $widget)
     {
-        if (!Development::isEnabled()) {
-            return;
-        }
-
         if (!$widget->getModule()) {
             Development::error('No module is defined for added widget having name "' . $widget->getName());
         }
