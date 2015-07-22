@@ -53,16 +53,12 @@
                 $timeout.cancel(timeoutPromise);
             }
 
-            angular.forEach(menuModel.menu, function (cat) {
-                if (!cat.active) {
-                    cat.hover = false;
-                }
-            });
-
             timeoutPromise = $timeout(function () {
                 angular.forEach(menuModel.menu, function (cat) {
                     if (cat.active) {
                         cat.hover = true;
+                    } else {
+                        cat.hover = false;
                     }
                 });
             }, 2000);
