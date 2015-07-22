@@ -27,7 +27,7 @@ class Categories
 
         $instances = array();
         foreach ($categories as $category) {
-            $cat = StaticContainer::get($category);
+            $cat = StaticContainer::getContainer()->make($category);
             $instances[$cat->getId()] = $cat;
         }
 
@@ -44,7 +44,7 @@ class Categories
         $classes = $this->pluginManager->findMultipleComponents('Categories', '\\Piwik\\Category\\Subcategory');
 
         foreach ($classes as $subcategory) {
-            $subcategories[] = StaticContainer::get($subcategory);
+            $subcategories[] = StaticContainer::getContainer()->make($subcategory);
         }
 
         return $subcategories;

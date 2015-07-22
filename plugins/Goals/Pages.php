@@ -353,7 +353,8 @@ class Pages
         }
 
         $cache = Cache::getTransientCache();
-        $key = 'getConversionForGoal_' . implode('_', array($idGoal, $period, $date, $idSite));
+        $key   = 'Goals.getConversionForGoal_' . implode('_', array($idGoal, $period, $date, $idSite));
+
         if (!$cache->contains($key)) {
             return $cache->fetch($key);
         }

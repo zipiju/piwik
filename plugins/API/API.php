@@ -240,16 +240,6 @@ class API extends \Piwik\Plugin\API
         return $processed;
     }
 
-    public function getWidgetMetadata($idSite, $deep = false)
-    {
-        Piwik::checkUserHasViewAccess($idSite);
-
-        $widgetsList = WidgetsList::get();
-        $metadata    = $this->getWidgetMetadataInstance();
-
-        return $metadata->getWidgetMetadata($widgetsList, $deep);
-    }
-
     public function getReportPagesMetadata($idSite, $period, $date, $segment = false)
     {
         Piwik::checkUserHasViewAccess($idSite);
@@ -258,6 +248,16 @@ class API extends \Piwik\Plugin\API
         $metadata    = $this->getWidgetMetadataInstance();
 
         return $metadata->getPagesMetadata($widgetsList);
+    }
+
+    public function getWidgetMetadata($idSite, $deep = false)
+    {
+        Piwik::checkUserHasViewAccess($idSite);
+
+        $widgetsList = WidgetsList::get();
+        $metadata    = $this->getWidgetMetadataInstance();
+
+        return $metadata->getWidgetMetadata($widgetsList, $deep);
     }
 
     /** @return WidgetMetadata */

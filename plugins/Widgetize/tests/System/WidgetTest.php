@@ -36,7 +36,7 @@ class WidgetTest extends SystemTestCase
         $_GET = array();
         $_GET['idSite'] = self::$fixture->idSite;
         $_GET['period'] = 'year';
-        $_GET['date']   = 'today';
+        $_GET['date']   = '2013-01-23';
     }
 
     public function tearDown()
