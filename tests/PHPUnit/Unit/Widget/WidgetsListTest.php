@@ -49,16 +49,16 @@ class WidgetsListTest extends \PHPUnit_Framework_TestCase
 
     public function test_addWidget_shouldAddAnyWidgetConfigs()
     {
-        $this->list->addWidget($widget1 = $this->createWidget('widget1'));
-        $this->list->addWidget($widget2 = $this->createWidgetContainer('widget2'));
-        $this->list->addWidget($widget3 = $this->createWidget('widget3'));
+        $this->list->addWidgetConfig($widget1 = $this->createWidget('widget1'));
+        $this->list->addWidgetConfig($widget2 = $this->createWidgetContainer('widget2'));
+        $this->list->addWidgetConfig($widget3 = $this->createWidget('widget3'));
 
         $this->assertSame(array($widget1, $widget2, $widget3), $this->list->getWidgetConfigs());
     }
 
     public function test_addWidgets_shouldAddAnyWidgetConfigs()
     {
-        $this->list->addWidgets(array(
+        $this->list->addWidgetConfigs(array(
             $widget1 = $this->createWidget('widget1'),
             $widget2 = $this->createWidgetContainer('widget2'),
             $widget3 = $this->createWidget('widget3'),
@@ -69,7 +69,7 @@ class WidgetsListTest extends \PHPUnit_Framework_TestCase
 
     public function test_addToContainerWidget_shouldAddWidgetToContainerImmediately_IfContainerAlreadyExistsInList()
     {
-        $this->list->addWidgets(array(
+        $this->list->addWidgetConfigs(array(
             $widget1 = $this->createWidget('widget1'),
             $widget2 = $this->createWidgetContainer('widget2')->setId('testId'),
             $widget3 = $this->createWidget('widget3'),
@@ -87,7 +87,7 @@ class WidgetsListTest extends \PHPUnit_Framework_TestCase
     {
         $this->list->addToContainerWidget('testId', $widget4 = $this->createWidget('widget4'));
 
-        $this->list->addWidgets(array(
+        $this->list->addWidgetConfigs(array(
             $widget1 = $this->createWidget('widget1'),
             $widget2 = $this->createWidgetContainer('widget2')->setId('testId'),
             $widget3 = $this->createWidget('widget3'),
@@ -104,7 +104,7 @@ class WidgetsListTest extends \PHPUnit_Framework_TestCase
      */
     public function test_remove($categoryId, $name, $expectedWidgetNamesInList)
     {
-        $this->list->addWidgets(array(
+        $this->list->addWidgetConfigs(array(
             $widget1 = $this->createWidget('widget1')->setCategoryId('Visits'),
             $widget2 = $this->createWidgetContainer('widget2')->setCategoryId('Actions'),
             $widget3 = $this->createWidget('widget3')->setCategoryId('Visits'),
@@ -137,7 +137,7 @@ class WidgetsListTest extends \PHPUnit_Framework_TestCase
      */
     public function test_isDefined($module, $action, $exists)
     {
-        $this->list->addWidgets(array(
+        $this->list->addWidgetConfigs(array(
             $widget1 = $this->createWidget('widget1')->setModule('CoreHome')->setAction('renderMe'),
             $widget2 = $this->createWidgetContainer('widget2')->setModule('CoreHome')->setAction('renderContainer'),
             $widget3 = $this->createWidget('widget3')->setModule('Actions')->setAction('index'),

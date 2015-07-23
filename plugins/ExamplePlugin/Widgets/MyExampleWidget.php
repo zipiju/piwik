@@ -29,6 +29,11 @@ class MyExampleWidget extends Widget
         $config->setCategoryId('Example Widgets');
 
         /**
+         * Set the subcategory the widget belongs to. If a subcategory is set, the widget will be shown in the UI.
+         */
+        // $config->setSubcategoryId('General_Overview');
+
+        /**
          * Set the name of the widget belongs to.
          */
         $config->setName('Example Widget Name');

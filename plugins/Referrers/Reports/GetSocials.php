@@ -34,7 +34,7 @@ class GetSocials extends Base
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
         $widget = $factory->createWidget()->setName('Referrers_Socials');
-        $widgetsList->addWidget($widget);
+        $widgetsList->addWidgetConfig($widget);
     }
 
     public function getDefaultTypeViewDataTable()

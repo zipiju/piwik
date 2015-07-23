@@ -30,7 +30,7 @@ class GetSimpleLastVisitCount extends Base
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
         $widget = $factory->createWidget()->setName('Live_RealTimeVisitorCount')->setOrder(15);
-        $widgetsList->addWidget($widget);
+        $widgetsList->addWidgetConfig($widget);
     }
 
     public function render()

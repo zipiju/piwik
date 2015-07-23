@@ -42,7 +42,7 @@ class GetLastVisitsDetails extends Base
                           ->setName('Live_VisitorLog')
                           ->setOrder(10)
                           ->setParameters(array('small' => 1));
-        $widgetsList->addWidget($widget);
+        $widgetsList->addWidgetConfig($widget);
     }
 
 }

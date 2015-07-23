@@ -12,7 +12,6 @@ use DI\FactoryInterface;
 use Exception;
 use Piwik\Plugin;
 use Piwik\Plugin\Controller;
-use Piwik\Plugin\Report;
 use Piwik\Report\Reports;
 use Piwik\Session;
 use Piwik\Widget\Widgets;

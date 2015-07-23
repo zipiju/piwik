@@ -38,13 +38,13 @@ class GetTemperaturesEvolution extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                     ->setSubcategoryId('Sparklines')
                     ->forceViewDataTable(Sparklines::ID)
         );
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                     ->setName('ExampleUI_TemperaturesEvolution')
                     ->setSubcategoryId('Evolution Graph')

@@ -13,7 +13,6 @@ use Piwik\API\Request as ApiRequest;
 use Piwik\DataTable;
 use Piwik\DataTable\Filter\PivotByDimension;
 use Piwik\Metrics;
-use Piwik\Plugin\Report;
 use Piwik\Plugins\API\API;
 use Piwik\Report\Reports;
 

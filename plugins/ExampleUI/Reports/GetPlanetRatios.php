@@ -38,12 +38,12 @@ class GetPlanetRatios extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             // in this case it will render PIE as configured as default
             $factory->createWidget()
         );
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                 ->setName('Simple tag cloud')
                 ->setSubcategoryId('Tag clouds')

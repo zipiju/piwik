@@ -11,16 +11,13 @@ namespace Piwik\Plugin;
 use Piwik\API\Proxy;
 use Piwik\API\Request;
 use Piwik\Cache;
-use Piwik\CacheId;
 use Piwik\Columns\Dimension;
 use Piwik\Common;
-use Piwik\Container\StaticContainer;
 use Piwik\DataTable;
 use Piwik\DataTable\Filter\Sort;
 use Piwik\Metrics;
 use Piwik\Cache as PiwikCache;
 use Piwik\Piwik;
-use Piwik\Plugin\Manager as PluginManager;
 use Piwik\Plugins\CoreVisualizations\Visualizations\HtmlTable;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Report\Reports;
@@ -316,7 +313,7 @@ class Report
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
         if ($this->categoryId && $this->subcategoryId) {
-            $widgetsList->addWidget($factory->createWidget());
+            $widgetsList->addWidgetConfig($factory->createWidget());
         }
     }
 

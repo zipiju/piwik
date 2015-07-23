@@ -36,16 +36,16 @@ class GetTemperatures extends Base
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
         // this will render the default view, in this case an Html Table
-        $widgetsList->addWidget($factory->createWidget());
+        $widgetsList->addWidgetConfig($factory->createWidget());
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                     ->forceViewDataTable(Bar::ID)
                     ->setSubcategoryId('Bar graph')
         );
 
         if (PluginManager::getInstance()->isPluginActivated('TreemapVisualization')) {
-            $widgetsList->addWidget(
+            $widgetsList->addWidgetConfig(
                 $factory->createWidget()
                         ->setName('Treemap example')
                         ->setSubcategoryId('Treemap')

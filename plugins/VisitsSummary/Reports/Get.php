@@ -57,7 +57,7 @@ class Get extends \Piwik\Plugin\Report
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                 ->setName('VisitsSummary_WidgetLastVisits')
                 ->forceViewDataTable(Evolution::ID)
@@ -65,7 +65,7 @@ class Get extends \Piwik\Plugin\Report
                 ->setOrder(5)
         );
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                 ->setName('VisitsSummary_WidgetVisits')
                 ->forceViewDataTable(Sparklines::ID)

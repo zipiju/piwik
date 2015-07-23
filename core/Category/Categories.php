@@ -11,6 +11,9 @@ use Piwik\Container\StaticContainer;
 use Piwik\Piwik;
 use Piwik\Plugin;
 
+/**
+ * Get categories and subcategories that are defined by plugins.
+ */
 class Categories
 {
     private $pluginManager;
@@ -39,6 +42,22 @@ class Categories
     {
         $subcategories = array();
 
+        /**
+         * Triggered to add custom subcategories.
+         *
+         * **Example**
+         *
+         *     public function addSubcategories(&$subcategories)
+         *     {
+         *         $subcategory = new Subcategory();
+         *         $subcategory->setId('General_Overview');
+         *         $subcategory->setCategoryId('General_Visits');
+         *         $subcategory->setOrder(5);
+         *         $subcategories[] = $subcategory;
+         *     }
+         *
+         * @param array &subcategories An array containing a list of subcategories.
+         */
         Piwik::postEvent('Subcategory.addSubcategories', array(&$subcategories));
 
         $classes = $this->pluginManager->findMultipleComponents('Categories', '\\Piwik\\Category\\Subcategory');

@@ -13,12 +13,7 @@ use Piwik\Plugin;
 use Exception;
 
 /**
- * Defines a new widget. You can create a new widget using the console command `./console generate:widget`.
- * The generated widget will guide you through the creation of a widget.
- *
- * For an example, see {@link https://github.com/piwik/piwik/blob/master/plugins/ExamplePlugin/Widgets/MyExampleWidget.php}
- *
- * @api since Piwik 2.15
+ * Get widgets that are defined by plugins.
  */
 class Widgets
 {
@@ -33,6 +28,8 @@ class Widgets
     }
 
     /**
+     * Get all existing widget configs.
+     *
      * @return WidgetConfig[]
      */
     public function getWidgetConfigs()
@@ -48,6 +45,7 @@ class Widgets
     }
 
     /**
+     * Get all existing widget container configs.
      * @return WidgetContainerConfig[]
      */
     public function getWidgetContainerConfigs()
@@ -63,8 +61,12 @@ class Widgets
     }
 
     /**
+     * Get the widget defined by the given module and action.
+     *
+     * @param string $module Aka plugin name, eg 'CoreHome'
+     * @param string $action An action eg 'renderMe'
      * @return Widget|null
-     * @throws \Exception
+     * @throws \Exception Throws an exception if the widget is not enabled.
      */
     public function factory($module, $action)
     {

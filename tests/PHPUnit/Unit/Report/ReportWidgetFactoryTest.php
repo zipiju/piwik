@@ -75,7 +75,7 @@ class ReportWidgetFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Report_MyCustomReportName', $config->getName());
         $this->assertSame('Goals_Goals', $config->getCategoryId());
         $this->assertSame('General_Overview', $config->getSubcategoryId());
-        $this->assertSame('graph', $config->getDefaultView());
+        $this->assertSame('graph', $config->getViewDataTable());
         $this->assertSame(100 + 20, $config->getOrder());
         $this->assertSame('TestPlugin', $config->getModule());
         $this->assertSame('getBasicReport', $config->getAction());
@@ -96,7 +96,7 @@ class ReportWidgetFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Report_MyCustomReportName', $config->getName());
         $this->assertSame('Goals_Goals', $config->getCategoryId());
         $this->assertSame('General_Overview', $config->getSubcategoryId());
-        $this->assertNull($config->getDefaultView());
+        $this->assertNull($config->getViewDataTable());
         $this->assertSame(100 + 20, $config->getOrder());
         $this->assertSame('TestPlugin', $config->getModule());
         $this->assertSame('customAction', $config->getAction());

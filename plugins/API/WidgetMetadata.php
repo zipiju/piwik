@@ -93,7 +93,7 @@ class WidgetMetadata
         }
 
         if ($widget instanceof ReportWidgetConfig) {
-            $item['viewDataTable'] = $widget->getDefaultView();
+            $item['viewDataTable'] = $widget->getViewDataTable();
             $item['isReport'] = true;
         }
 
@@ -147,7 +147,7 @@ class WidgetMetadata
     private function buildCategoryMetadata(Category $category)
     {
         return array(
-            'name'  => Piwik::translate($category->getName()),
+            'name'  => Piwik::translate($category->getId()),
             'order' => $category->getOrder(),
             'id'    => (string) $category->getId()
         );
@@ -242,7 +242,7 @@ class WidgetMetadata
     private function buildPageMetadata(Category $category, Subcategory $subcategory)
     {
         $ca = array(
-            'uniqueId' => $category->getName() . '.' . $subcategory->getName(),
+            'uniqueId' => $category->getId() . '.' . $subcategory->getName(),
             'category' => $this->buildCategoryMetadata($category),
             'subcategory' => $this->buildSubcategoryMetadata($subcategory),
             'widgets' => array()

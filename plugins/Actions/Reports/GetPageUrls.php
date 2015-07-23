@@ -45,7 +45,7 @@ class GetPageUrls extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget($factory->createWidget()->setName($this->subcategoryId));
+        $widgetsList->addWidgetConfig($factory->createWidget()->setName($this->subcategoryId));
     }
 
     public function getMetrics()

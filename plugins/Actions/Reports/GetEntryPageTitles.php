@@ -42,7 +42,7 @@ class GetEntryPageTitles extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget($factory->createWidget()->setName('Actions_WidgetEntryPageTitles'));
+        $widgetsList->addWidgetConfig($factory->createWidget()->setName('Actions_WidgetEntryPageTitles'));
     }
 
     public function getProcessedMetrics()

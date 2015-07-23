@@ -35,7 +35,7 @@ class GetNumberOfVisitsPerPage extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()->setName('VisitorInterest_VisitsPerNbOfPages')
         );
     }

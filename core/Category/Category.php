@@ -7,37 +7,38 @@
  */
 namespace Piwik\Category;
 
-use Piwik\Container\StaticContainer;
-use Piwik\Plugin\Manager as PluginManager;
-
 /**
- * Base type for metric metadata classes that describe aggregated metrics. These metrics are
- * computed in the backend data store and are aggregated in PHP when Piwik archives period reports.
+ * Base type for category. Let's you change the name for a categoryId and specifiy a different order
+ * so the category appears eg at a different order in the reporting menu.
  *
- * Note: This class is a placeholder. It will be filled out at a later date. Right now, only
- * processed metrics can be defined this way.
+ * This class is for now not exposed as public API until needed. Categories of plugins will be automatically
+ * displayed in the menu at the very right after all core categories.
  */
 class Category
 {
-    // name and id are usually the same and just a translation key. The name is used in the menu, the id in the url
+    /**
+     * The id of the category as specified eg in {@link Piwik\Widget\WidgetConfig::setCategoryId()`} or
+     * {@link Piwik\Report\getCategoryId()}. The id is used as the name in the menu and will be visible in the
+     * URL.
+     *
+     * @var string Should be a translation key, eg 'General_Vists'
+     */
     protected $id = '';
-    protected $name = '';
 
     /**
      * @var Subcategory[]
      */
     protected $subcategories = array();
 
+    /**
+     * The order of the category. The lower the value the further left the category will appear in the menu.
+     * @var int
+     */
     protected $order = 99;
-
-    public function getOrder()
-    {
-        return $this->order;
-    }
 
     /**
      * @param int $order
-     * @return $this
+     * @return static
      */
     public function setOrder($order)
     {
@@ -45,34 +46,20 @@ class Category
         return $this;
     }
 
-    public function getName()
+    public function getOrder()
     {
-        if (!empty($this->name)) {
-            return $this->name;
-        }
-
-        return $this->id;
-    }
-
-    /**
-     * @param  string $name A translation key
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    public function getId()
-    {
-        return $this->id;
+        return $this->order;
     }
 
     public function setId($id)
     {
         $this->id = $id;
         return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function addSubcategory(Subcategory $subcategory)

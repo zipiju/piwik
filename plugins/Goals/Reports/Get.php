@@ -47,15 +47,15 @@ class Get extends Base
 
         $page = new Pages($factory, $reports);
 
-        $widgetsList->addWidgets($page->createGoalsOverviewPage($goals));
+        $widgetsList->addWidgetConfigs($page->createGoalsOverviewPage($goals));
 
         if ($this->isEcommerceEnabled($idSite)) {
-            $widgetsList->addWidgets($page->createEcommerceOverviewPage());
-            $widgetsList->addWidgets($page->createEcommerceSalesPage());
+            $widgetsList->addWidgetConfigs($page->createEcommerceOverviewPage());
+            $widgetsList->addWidgetConfigs($page->createEcommerceSalesPage());
         }
 
         foreach ($goals as $goal) {
-            $widgetsList->addWidgets($page->createGoalDetailPage($goal));
+            $widgetsList->addWidgetConfigs($page->createGoalDetailPage($goal));
         }
     }
 

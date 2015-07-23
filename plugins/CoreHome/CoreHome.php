@@ -13,6 +13,11 @@ namespace Piwik\Plugins\CoreHome;
  */
 class CoreHome extends \Piwik\Plugin
 {
+    /**
+     * Defines a widget container layout that will display all widgets within a container inside a "tab" menu
+     * where on the left side a link is shown for each widget and on the right side the selected widget.
+     * @api
+     */
     const WIDGET_CONTAINER_LAYOUT_BY_DIMENSION = 'ByDimension';
 
     /**

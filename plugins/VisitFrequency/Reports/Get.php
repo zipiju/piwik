@@ -45,7 +45,7 @@ class Get extends \Piwik\Plugin\Report
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                 ->setName('VisitFrequency_WidgetGraphReturning')
                 ->forceViewDataTable(Evolution::ID)
@@ -53,7 +53,7 @@ class Get extends \Piwik\Plugin\Report
                 ->setOrder(1)
         );
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                 ->forceViewDataTable(Sparklines::ID)
                 ->setName('VisitFrequency_WidgetOverview')

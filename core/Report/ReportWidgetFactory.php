@@ -12,64 +12,37 @@ use Piwik\Plugin\Report;
 use Piwik\Widget\WidgetContainerConfig;
 
 /**
- * Singleton that manages user access to Piwik resources.
+ * Report widget factory. This factory allows you to create widgets for a given report without having to re-specify
+ * redundant information like module, action, category, subcategory, order, ... When creating a widget from a report
+ * these values will be automatically specified so that ideally `$factory->createWidget()` is all one has to do in
+ * order to create a new widget.
  *
- * To check whether a user has access to a resource, use one of the {@link Piwik Piwik::checkUser...}
- * methods.
- *
- * In Piwik there are four different access levels:
- *
- * - **no access**: Users with this access level cannot view the resource.
- * - **view access**: Users with this access level can view the resource, but cannot modify it.
- * - **admin access**: Users with this access level can view and modify the resource.
- * - **Super User access**: Only the Super User has this access level. It means the user can do
- *                          whatever he/she wants.
- *
- *                          Super user access is required to set some configuration options.
- *                          All other options are specific to the user or to a website.
- *
- * Access is granted per website. Uses with access for a website can view all
- * data associated with that website.
- *
- * @api
+ * @api since Piwik 3.0.0
  */
 class ReportWidgetFactory
 {
     /**
      * @var Report
      */
-    private $report  = null;
+    private $report = null;
 
+    /**
+     * Generates a new report widget factory.
+     * @param Report $report  A report instance, widgets will be created based on the data provided by this report.
+     */
     public function __construct(Report $report)
-    {
-        $this->setReport($report);
-    }
-
-    private function setReport($report)
     {
         $this->report = $report;
     }
 
     /**
-     * @param string $containerId
-     * @return WidgetContainerConfig
+     * Creates a widget based on the specified report in {@link construct()}.
+     *
+     * It will automatically use the report's name, categoryId, subcategoryId (if specified),
+     * defaultViewDataTable, module, action, order and parameters in order to create the widget.
+     *
+     * @return ReportWidgetConfig
      */
-    public function createContainerWidget($containerId)
-    {
-        $widget = new WidgetContainerConfig();
-        $widget->setCategoryId($this->report->getCategoryId());
-        $widget->setId($containerId);
-
-        if ($this->report->getSubcategoryId()) {
-            $widget->setSubcategoryId($this->report->getSubcategoryId());
-        }
-
-        $orderThatListsReportsAtTheEndOfEachCategory = 100 + $this->report->getOrder();
-        $widget->setOrder($orderThatListsReportsAtTheEndOfEachCategory);
-
-        return $widget;
-    }
-
     public function createWidget()
     {
         $widget = new ReportWidgetConfig();
@@ -77,7 +50,7 @@ class ReportWidgetFactory
         $widget->setCategoryId($this->report->getCategoryId());
 
         if ($this->report->getDefaultTypeViewDataTable()) {
-            $widget->setDefaultView($this->report->getDefaultTypeViewDataTable());
+            $widget->setDefaultViewDataTable($this->report->getDefaultTypeViewDataTable());
         }
 
         if ($this->report->getSubcategoryId()) {
@@ -98,10 +71,47 @@ class ReportWidgetFactory
         return $widget;
     }
 
+    /**
+     * Creates a new container widget based on the specified report in {@link construct()}.
+     *
+     * It will automatically use the report's categoryId, subcategoryId (if specified) and order in order to
+     * create the container.
+     *
+     * @param string $containerId eg 'Products' or 'Contents' see {Piwik\Widget\WidgetContainerConfig::setId()}.
+     *                            Other reports or widgets will be able to add more widgets to this container.
+     *                            This is useful when you want to show for example multiple related widgets
+     *                            together.
+     * @return WidgetContainerConfig
+     */
+    public function createContainerWidget($containerId)
+    {
+        $widget = new WidgetContainerConfig();
+        $widget->setCategoryId($this->report->getCategoryId());
+        $widget->setId($containerId);
+
+        if ($this->report->getSubcategoryId()) {
+            $widget->setSubcategoryId($this->report->getSubcategoryId());
+        }
+
+        $orderThatListsReportsAtTheEndOfEachCategory = 100 + $this->report->getOrder();
+        $widget->setOrder($orderThatListsReportsAtTheEndOfEachCategory);
+
+        return $widget;
+    }
+
+    /**
+     * Creates a custom widget that doesn't use a viewDataTable to render the report but instead a custom
+     * controller action. Make sure the specified `$action` exists in the plugin's controller. Otherwise
+     * behaves as {@link createWidget()}.
+     *
+     * @param string $action  eg 'conversionReports' (requires a method `public function conversionReports()` in
+     *                        the plugin's controller).
+     * @return ReportWidgetConfig
+     */
     public function createCustomWidget($action)
     {
         $widget = $this->createWidget();
-        $widget->setDefaultView(null);
+        $widget->setDefaultViewDataTable(null);
         $widget->setAction($action);
 
         return $widget;

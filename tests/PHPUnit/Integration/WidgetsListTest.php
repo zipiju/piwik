@@ -164,7 +164,7 @@ class WidgetsListTest extends IntegrationTestCase
         $config->setModule('Actions');
         $config->setAction('getPageUrls');
         $list = WidgetsList::get();
-        $list->addWidget($config);
+        $list->addWidgetConfig($config);
 
         $this->assertTrue($list->isDefined('Actions', 'getPageUrls'));
         $this->assertFalse($list->isDefined('Actions', 'inValiD'));

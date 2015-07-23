@@ -46,7 +46,7 @@ class GetExitPageTitles extends Base
     {
         // we have to do it manually since it's only done automatically if a subcategoryId is specified,
         // we do not set a subcategoryId since this report is not supposed to be shown in the UI
-        $widgetsList->addWidget($factory->createWidget());
+        $widgetsList->addWidgetConfig($factory->createWidget());
     }
 
     public function getProcessedMetrics()

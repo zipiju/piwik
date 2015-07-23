@@ -46,7 +46,7 @@ class Dashboard extends \Piwik\Plugin
             $config->setCategoryId('Dashboard_Dashboard');
             $config->setSubcategoryId($dashboard['id']);
             $config->setParameters(array('idDashboard' => $dashboard['id']));
-            $widgetsList->addWidget($config);
+            $widgetsList->addWidgetConfig($config);
         }
     }
 

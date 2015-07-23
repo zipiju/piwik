@@ -46,13 +46,13 @@ class GetReferrerType extends Base
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                     ->setName('Referrers_ReferrerTypes')
                     ->setSubcategoryId('Referrers_WidgetGetAll')
         );
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createWidget()
                 ->setName('General_EvolutionOverPeriod')
                 ->setSubcategoryId('General_Overview')
@@ -64,7 +64,7 @@ class GetReferrerType extends Base
                 ))
         );
 
-        $widgetsList->addWidget(
+        $widgetsList->addWidgetConfig(
             $factory->createCustomWidget('getSparklines')
                 ->forceViewDataTable(Sparklines::ID)
                 ->setIsNotWidgetizable()

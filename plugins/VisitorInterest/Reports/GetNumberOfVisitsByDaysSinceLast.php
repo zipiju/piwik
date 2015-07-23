@@ -35,7 +35,7 @@ class GetNumberOfVisitsByDaysSinceLast extends Base
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
         $widget = $factory->createWidget()->setName('VisitorInterest_WidgetVisitsByDaysSinceLast');
-        $widgetsList->addWidget($widget);
+        $widgetsList->addWidgetConfig($widget);
     }
 
     public function configureView(ViewDataTable $view)

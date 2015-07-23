@@ -29,16 +29,16 @@ class ReportWidgetConfigTest extends \PHPUnit_Framework_TestCase
         $this->config = new ReportWidgetConfig();
     }
 
-    public function test_getDefaultView_ByDefaultThereShouldBeNoDefaultView()
+    public function test_getViewDataTable_ByDefaultThereShouldBeNoDefaultView()
     {
-        $this->assertNull($this->config->getDefaultView());
+        $this->assertNull($this->config->getViewDataTable());
     }
 
-    public function test_setDefaultView()
+    public function test_setDefaultViewDataTable()
     {
-        $this->config->setDefaultView('table');
+        $this->config->setDefaultViewDataTable('table');
 
-        $this->assertSame('table', $this->config->getDefaultView());
+        $this->assertSame('table', $this->config->getViewDataTable());
         $this->assertFalse($this->config->isViewDataTableForced());
     }
 
@@ -46,7 +46,7 @@ class ReportWidgetConfigTest extends \PHPUnit_Framework_TestCase
     {
         $this->config->forceViewDataTable('table');
 
-        $this->assertSame('table', $this->config->getDefaultView());
+        $this->assertSame('table', $this->config->getViewDataTable());
         $this->assertTrue($this->config->isViewDataTableForced());
     }
 
@@ -159,7 +159,7 @@ class ReportWidgetConfigTest extends \PHPUnit_Framework_TestCase
     public function test_getParameters_ShouldReturnViewDataTableIfSet()
     {
         $this->setModuleAndAction();
-        $this->config->setDefaultView('graph');
+        $this->config->setDefaultViewDataTable('graph');
 
         $this->assertSame(array('viewDataTable' => 'graph', 'module' => 'CoreHome', 'action' => 'renderMe'), $this->config->getParameters());
     }

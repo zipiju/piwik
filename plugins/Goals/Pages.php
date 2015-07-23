@@ -251,7 +251,7 @@ class Pages
         $config->setOrder($this->orderId++);
 
         foreach ($widgets as $widget) {
-            $config->addWidget($widget);
+            $config->addWidgetConfig($widget);
         }
 
         return $config;
@@ -300,10 +300,10 @@ class Pages
                 $widget->setIsNotWidgetizable();
 
                 if (!empty($report['viewDataTable'])) {
-                    $widget->setDefaultView($report['viewDataTable']);
+                    $widget->setDefaultViewDataTable($report['viewDataTable']);
                 }
 
-                $container->addWidget($widget);
+                $container->addWidgetConfig($widget);
             }
         }
     }

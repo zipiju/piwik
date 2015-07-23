@@ -12,16 +12,16 @@ use Piwik\Cache as PiwikCache;
 use Piwik\Container\StaticContainer;
 use Piwik\Development;
 use Piwik\Piwik;
-use Piwik\Report\Reports;
 use Piwik\Report\ReportWidgetFactory;
 
 /**
  * Manages the global list of reports that can be displayed as dashboard widgets.
  *
- * Reports are added as dashboard widgets through the {@hook WidgetsList.addWidgets}
- * event. Observers for this event should call the {@link add()} method to add reports.
+ * Widgets are added through the {@hook WidgetsList.addWidgets} and filtered through the {@hook Widgets.filterWidgets}
+ * event. Observers for this event should call the {@link addWidget()} method to add widgets or use any of the other
+ * methods to remove widgets.
  *
- * @api
+ * @api since Piwik 3.0.0
  */
 class WidgetsList
 {
@@ -42,7 +42,13 @@ class WidgetsList
      */
     private $containerWidgets;
 
-    public function addWidget(WidgetConfig $widget)
+    /**
+     * Adds a new widget to the widget config. Please make sure the widget is enabled before adding a widget as
+     * no such checks will be performed.
+     *
+     * @param WidgetConfig $widget
+     */
+    public function addWidgetConfig(WidgetConfig $widget)
     {
         if ($widget instanceof WidgetContainerConfig) {
             $this->addContainer($widget);
@@ -53,10 +59,15 @@ class WidgetsList
         $this->widgets[] = $widget;
     }
 
-    public function addWidgets($widgets)
+    /**
+     * Add multiple widget configs at once. See {@link addWidgetConfig()}.
+     *
+     * @param WidgetConfig[] $widgets
+     */
+    public function addWidgetConfigs($widgets)
     {
         foreach ($widgets as $widget) {
-            $this->addWidget($widget);
+            $this->addWidgetConfig($widget);
         }
     }
 
@@ -69,12 +80,17 @@ class WidgetsList
         // widgets were added to this container, but the container did not exist yet.
         if (isset($this->containerWidgets[$widgetId])) {
             foreach ($this->containerWidgets[$widgetId] as $widget) {
-                $containerWidget->addWidget($widget);
+                $containerWidget->addWidgetConfig($widget);
             }
             unset($this->containerWidgets[$widgetId]);
         }
     }
 
+    /**
+     * Get all added widget configs.
+     *
+     * @return WidgetConfig[]
+     */
     public function getWidgetConfigs()
     {
         return $this->widgets;
@@ -91,10 +107,19 @@ class WidgetsList
         }
     }
 
+    /**
+     * Add a widget to a widget container. It doesn't matter whether the container was added to this list already
+     * or whether the container is added later. As long as a container having the same containerId is added at
+     * some point the widget will be added to that container. If no container having this id is added the widget
+     * will not be recognized.
+     *
+     * @param string $containerId  eg 'Products' or 'Contents'. See {@link WidgetContainerConfig::setId}
+     * @param WidgetConfig $widget
+     */
     public function addToContainerWidget($containerId, WidgetConfig $widget)
     {
         if (isset($this->container[$containerId])) {
-            $this->container[$containerId]->addWidget($widget);
+            $this->container[$containerId]->addWidgetConfig($widget);
         } else {
             if (!isset($this->containerWidgets[$containerId])) {
                 $this->containerWidgets[$containerId] = array();
@@ -107,10 +132,10 @@ class WidgetsList
     /**
      * Removes one or more widgets from the widget list.
      *
-     * @param string $widgetCategoryId The widget category. Can be a translation token.
-     * @param string|false $widgetName The name of the widget to remove. Cannot be a
-     *                                 translation token. If not supplied, the entire category
-     *                                 will be removed.
+     * @param string $widgetCategoryId The widget category id. Can be a translation token eg 'General_Visits'
+     *                                 see {@link WidgetConfig::setCategoryId()}.
+     * @param string|false $widgetName The name of the widget to remove eg 'VisitTime_ByServerTimeWidgetName'.
+     *                                 If not supplied, all widgets within that category will be removed.
      */
     public function remove($widgetCategoryId, $widgetName = false)
     {
@@ -124,10 +149,10 @@ class WidgetsList
     }
 
     /**
-     * Returns `true` if a report exists in the widget list, `false` if otherwise.
+     * Returns `true` if a widget exists in the widget list, `false` if otherwise.
      *
-     * @param string $module The controller name of the report.
-     * @param string $action The controller action of the report.
+     * @param string $module The controller name of the widget.
+     * @param string $action The controller action of the widget.
      * @return bool
      */
     public function isDefined($module, $action)
@@ -141,10 +166,32 @@ class WidgetsList
         return false;
     }
 
+    /**
+     * Get all widgets defined in the Piwik platform.
+     * @ignore
+     * @return static
+     */
     public static function get()
     {
         $list = new static;
 
+        /**
+         * Triggered to add custom widget configs.
+         *
+         * **Example**
+         *
+         *     public function addWidgetConfigs(&$list)
+         *     {
+         *         $config = new WidgetConfig();
+         *         $config->setModule('PluginName');
+         *         $config->setAction('renderDashboard');
+         *         $config->setCategoryId('Dashboard_Dashboard');
+         *         $config->setSubcategoryId('dashboardId');
+         *         $list->addWidgetConfig($config);
+         *     }
+         *
+         * @param WidgetsList &list An instance of the WidgetsList. You can add widget configs to this list.
+         */
         Piwik::postEvent('Widgets.addWidgets', array($list));
 
         $widgets = StaticContainer::get('Piwik\Widget\Widgets');
@@ -152,14 +199,14 @@ class WidgetsList
         $widgetContainerConfigs = $widgets->getWidgetContainerConfigs();
         foreach ($widgetContainerConfigs as $config) {
             if ($config->isEnabled()) {
-                $list->addWidget($config);
+                $list->addWidgetConfig($config);
             }
         }
 
         $widgetConfigs = $widgets->getWidgetConfigs();
         foreach ($widgetConfigs as $widget) {
             if ($widget->isEnabled()) {
-                $list->addWidget($widget);
+                $list->addWidgetConfig($widget);
             }
         }
 
@@ -172,6 +219,18 @@ class WidgetsList
             }
         }
 
+        /**
+         * Triggered to filter widgets.
+         *
+         * **Example**
+         *
+         *     public function addWidgetConfigs(&$list)
+         *     {
+         *         $list->remove($category='General_Visits'); // remove all widgets having this category
+         *     }
+         *
+         * @param WidgetsList &list An instance of the WidgetsList. You can change the list of widgets this way.
+         */
         Piwik::postEvent('Widgets.filterWidgets', array($list));
 
         return $list;

@@ -60,7 +60,7 @@ class GetAdvancedReport extends GetBasicReport
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
         $widget = $factory->createWidget()->setName('Actions_WidgetPageTitlesFollowingSearch');
-        $widgetsList->addWidget($widget);
+        $widgetsList->addWidgetConfig($widget);
     }
 
     public function set($param, $value)

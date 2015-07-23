@@ -29,26 +29,6 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
         $this->category = new Category();
     }
 
-    public function test_name_set_get()
-    {
-        $this->category->setName('testName');
-
-        $this->assertSame('testName', $this->category->getName());
-    }
-
-    public function test_getName_shouldBeEmptyStringByDefault()
-    {
-        $this->assertSame('', $this->category->getName());
-    }
-
-    public function test_getName_ShouldDefaultToId_IfNoNameIsSet()
-    {
-        $this->category->setId('myTestId');
-
-        $this->assertSame('myTestId', $this->category->getName());
-        $this->assertSame('myTestId', $this->category->getId());
-    }
-
     public function test_order_set_get()
     {
         $this->category->setOrder(99);

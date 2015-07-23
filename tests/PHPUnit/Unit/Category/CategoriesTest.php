@@ -77,11 +77,10 @@ class CategoriesTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('General_AnyThingNotExist', $all['General_AnyThingNotExist']->getId());
     }
 
-    private function createCategory($categoryId, $categoryName = '')
+    private function createCategory($categoryId)
     {
         $config = new Category();
         $config->setId($categoryId);
-        $config->setName($categoryName);
 
         return $config;
     }

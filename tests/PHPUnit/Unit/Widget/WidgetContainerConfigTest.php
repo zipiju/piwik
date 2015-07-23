@@ -258,10 +258,10 @@ class WidgetContainerConfigTest extends \PHPUnit_Framework_TestCase
 
     public function test_widgetConfigs_shouldBeEmptyByDefault()
     {
-        $this->config->addWidget($widget1 = $this->createWidgetConfig('widget1'));
-        $this->config->addWidget($widget2 = $this->createWidgetConfig('widget2'));
-        $this->config->addWidget($widget3 = $this->createWidgetConfig('widget3'));
-        $this->config->addWidget($widget4 = new WidgetContainerConfig()); // should be possible to add container to a container
+        $this->config->addWidgetConfig($widget1 = $this->createWidgetConfig('widget1'));
+        $this->config->addWidgetConfig($widget2 = $this->createWidgetConfig('widget2'));
+        $this->config->addWidgetConfig($widget3 = $this->createWidgetConfig('widget3'));
+        $this->config->addWidgetConfig($widget4 = new WidgetContainerConfig()); // should be possible to add container to a container
         $this->assertSame(array(
             $widget1,
             $widget2,
