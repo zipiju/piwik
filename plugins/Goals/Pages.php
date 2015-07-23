@@ -76,6 +76,8 @@ class Pages
             $widgets[] = $config;
         }
 
+        $container = $this->createWidgetizableWidgetContainer('GoalsOverview', $subcategory, $widgets);
+
         $config = $this->factory->createContainerWidget('Goals');
         $config->setSubcategoryId($subcategory);
         $config->setName('Goals_ConversionsOverviewBy');
@@ -86,10 +88,8 @@ class Pages
             'module' => 'Goals',
             'action' => 'hasConversions'
         ));
-        $widgets[] = $config;
 
-        $container = $this->createWidgetizableWidgetContainer('GoalsOverview', $subcategory, $widgets);
-        return array($container);
+        return array($container, $config);
     }
 
     /**

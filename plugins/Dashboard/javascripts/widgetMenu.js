@@ -70,6 +70,7 @@ widgetsHelper.getAvailableWidgets = function (callback) {
             module: 'API',
             method: 'API.getWidgetMetadata',
             format: 'JSON',
+            deep: '1',
             idSite:  piwik.idSite || broadcast.getValueFromUrl('idSite')
         }, 'get');
         ajaxRequest.setCallback(

@@ -11,6 +11,7 @@ namespace Piwik\Plugins\CoreHome;
 use Exception;
 use Piwik\API\Request;
 use Piwik\Common;
+use Piwik\DataTable\Renderer\Json;
 use Piwik\Date;
 use Piwik\FrontController;
 use Piwik\Notification\Manager as NotificationManager;
@@ -63,49 +64,11 @@ class Controller extends \Piwik\Plugin\Controller
         Piwik::checkUserHasSomeViewAccess();
         $this->checkSitePermission();
 
-        $containerId  = Common::getRequestVar('containerId', null, 'string');
-        $isWidgetized = Common::getRequestVar('widget', 0, 'int');
-        $idSite       = Common::getRequestVar('idSite', null, 'int');
-        $date         = Common::getRequestVar('date', null, 'string');
-        $period       = Common::getRequestVar('period', null, 'string');
-        $segment      = Request::getRawSegmentFromRequest();
-
         $view = new View('@CoreHome/widgetContainer');
-        $view->showWidgetTitle = true;
+        $view->isWidgetized = (bool) Common::getRequestVar('widget', 0, 'int');
+        $view->containerId  = Common::getRequestVar('containerId', null, 'string');
 
-        if ($isWidgetized) {
-            $view->showWidgetTitle = false;
-        }
-
-        $widgets = Request::processRequest('API.getWidgetMetadata', array(
-            'idSite'  => $idSite,
-            'period'  => $period,
-            'date'    => $date,
-            'segment' => $segment,
-            'deep'    => '1',
-            'filter_limit' => -1
-        ));
-
-        foreach ($widgets as $widget) {
-            if (!empty($widget['isContainer'])
-                && !empty($widget['parameters']['containerId'])
-                && $widget['parameters']['containerId'] === $containerId) {
-
-                if (!empty($isWidgetized)) {
-                    $widget['isFirstInPage'] = '1';
-                    $widget['parameters']['widget'] = '1';
-                    foreach ($widget['widgets'] as &$subwidget) {
-                        $subwidget['parameters']['widget'] = '1';
-                    }
-                }
-
-                $view->widget = $widget;
-
-                return $view->render();
-            }
-        }
-
-        throw new Exception(Piwik::translate('Dashboard_WidgetNotFound'));
+        return $view->render();
     }
 
     /**

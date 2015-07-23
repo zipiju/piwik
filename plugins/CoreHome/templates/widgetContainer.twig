@@ -1,8 +1,18 @@
 <div>
-    <div piwik-widget widget="{{ widget|json_encode }}" show-name="{% if showWidgetTitle %}true{% else %}false{% endif %}"></div>
+    <div piwik-widget
+         containerid="{{ containerId }}"
+         widgetized="{% if isWidgetized %}true{% else %}false{% endif %}"></div>
+
     <script type="text/javascript">
         $(function () {
-            piwikHelper.compileAngularComponents('[id="{{ widget.uniqueId }}"]');
+
+            var piwikWidget = $('[piwik-widget][containerid={{ containerId }}]');
+
+            angular.element(document).injector().invoke(function($compile) {
+                var scope = angular.element(piwikWidget).scope();
+                $compile(piwikWidget)(scope.$new());
+            });
+
         });
     </script>
 </div>
