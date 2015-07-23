@@ -9,6 +9,7 @@
  * Example:
  * <div piwik-widget widget="widget"></div>
  * <div piwik-widget containerid="widgetGoalsOverview"></div> // in this case we will find the correct widget automatically
+ * <div piwik-widget widget="widget" widetized="true"></div> // disables rating feature, no initial headline
  */
 (function () {
     angular.module('piwikApp').directive('piwikWidget', piwikWidget);
@@ -65,12 +66,6 @@
             compile: function (element, attrs) {
 
                 return function (scope, element, attrs, ngModel) {
-                    if (angular.isDefined(scope.widgetized)) {
-                        scope.showName = !scope.widgetized;
-                    } else {
-                        scope.showName = true;
-                    }
-
                     if (scope.widget) {
                         applyMiddleware(scope);
                     } else if (attrs.containerid) {
