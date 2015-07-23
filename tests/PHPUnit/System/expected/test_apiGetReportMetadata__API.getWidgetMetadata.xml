@@ -1733,7 +1733,7 @@
 		</subcategory>
 		<module>CoreHome</module>
 		<action>renderWidgetContainer</action>
-		<order>6</order>
+		<order>5</order>
 		<parameters>
 			<module>CoreHome</module>
 			<action>renderWidgetContainer</action>
