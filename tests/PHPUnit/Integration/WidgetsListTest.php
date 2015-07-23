@@ -46,7 +46,7 @@ class WidgetsListTest extends IntegrationTestCase
             'General_Visitors' => 35,
             'Example Widgets' => 5,
             'SEO' => 2,
-            'Goals_Goals' => 2,
+            'Goals_Goals' => 3,
             'Live!' => 2,
             'Insights_WidgetCategory' => 2,
             'ExampleUI_UiFramework' => 8,
@@ -80,7 +80,7 @@ class WidgetsListTest extends IntegrationTestCase
     {
         Fixture::createWebsite('2009-01-04 00:11:42');
 
-        $initialGoalsWidgets = 2;
+        $initialGoalsWidgets = 3;
 
         $_GET['idSite'] = 1;
 
@@ -111,7 +111,7 @@ class WidgetsListTest extends IntegrationTestCase
 
         // check if each category has the right number of widgets
         $numberOfWidgets = array(
-            'Goals_Goals'     => 4,
+            'Goals_Goals'     => 5,
             'Goals_Ecommerce' => 4,
         );
 
