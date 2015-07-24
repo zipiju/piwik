@@ -144,6 +144,8 @@ class Controller extends \Piwik\Plugin\Controller
         $period = Common::getRequestVar('period', null, 'string');
         $date   = Common::getRequestVar('date', null, 'string');
 
+        Piwik::checkUserHasViewAccess($idSite);
+
         $conversions = new Conversions();
 
         Json::sendHeaderJSON();
