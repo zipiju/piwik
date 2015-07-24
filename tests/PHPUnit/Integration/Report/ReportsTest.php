@@ -16,7 +16,7 @@ use Piwik\Piwik;
 use Piwik\Metrics;
 use Piwik\Plugins\ExampleTracker\Columns\ExampleDimension;
 use Piwik\Plugins\Referrers\Columns\Keyword;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Report\ReportWidgetFactory;
 use Piwik\Translate;
 use Piwik\Plugin\Manager as PluginManager;

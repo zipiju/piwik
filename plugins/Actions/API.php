@@ -22,7 +22,7 @@ use Piwik\Plugins\Actions\Columns\Metrics\BounceRate;
 use Piwik\Plugins\Actions\Columns\Metrics\ExitRate;
 use Piwik\Plugins\CustomVariables\API as APICustomVariables;
 use Piwik\Plugins\Actions\Actions\ActionSiteSearch;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Tracker\Action;
 use Piwik\Tracker\PageUrl;
 

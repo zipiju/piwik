@@ -175,26 +175,7 @@ class WidgetsList
     {
         $list = new static;
 
-        /**
-         * Triggered to add custom widget configs.
-         *
-         * **Example**
-         *
-         *     public function addWidgetConfigs(&$list)
-         *     {
-         *         $config = new WidgetConfig();
-         *         $config->setModule('PluginName');
-         *         $config->setAction('renderDashboard');
-         *         $config->setCategoryId('Dashboard_Dashboard');
-         *         $config->setSubcategoryId('dashboardId');
-         *         $list->addWidgetConfig($config);
-         *     }
-         *
-         * @param WidgetsList &list An instance of the WidgetsList. You can add widget configs to this list.
-         */
-        Piwik::postEvent('Widgets.addWidgets', array($list));
-
-        $widgets = StaticContainer::get('Piwik\Widget\Widgets');
+        $widgets = StaticContainer::get('Piwik\Plugin\Widgets');
 
         $widgetContainerConfigs = $widgets->getWidgetContainerConfigs();
         foreach ($widgetContainerConfigs as $config) {
@@ -210,7 +191,7 @@ class WidgetsList
             }
         }
 
-        $reports = StaticContainer::get('Piwik\Report\Reports');
+        $reports = StaticContainer::get('Piwik\Plugin\Reports');
         $reports = $reports->getAllReports();
         foreach ($reports as $report) {
             if ($report->isEnabled()) {
@@ -224,14 +205,14 @@ class WidgetsList
          *
          * **Example**
          *
-         *     public function addWidgetConfigs(&$list)
+         *     public function addWidgetConfigs(Piwik\Widget\WidgetsList $list)
          *     {
          *         $list->remove($category='General_Visits'); // remove all widgets having this category
          *     }
          *
-         * @param WidgetsList &list An instance of the WidgetsList. You can change the list of widgets this way.
+         * @param WidgetsList $list An instance of the WidgetsList. You can change the list of widgets this way.
          */
-        Piwik::postEvent('Widgets.filterWidgets', array($list));
+        Piwik::postEvent('Widget.filterWidgets', array($list));
 
         return $list;
     }

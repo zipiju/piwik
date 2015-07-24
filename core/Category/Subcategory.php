@@ -38,9 +38,8 @@ class Subcategory
     protected $id = '';
 
     /**
-     * The id of the category the subcategory belongs to, must be specified. If not specified, the subcategory won't
-     * have any effect. See {@link Piwik\Widget\WidgetConfig::setCategoryId()`} or
-     * {@link Piwik\Report\getCategoryId()}.
+     * The id of the category the subcategory belongs to, must be specified.
+     * See {@link Piwik\Widget\WidgetConfig::setCategoryId()`} or {@link Piwik\Report\getCategoryId()}.
      *
      * @var string A translation key eg 'General_Visits' or 'Goals_Goals'
      */

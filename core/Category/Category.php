@@ -64,7 +64,13 @@ class Category
 
     public function addSubcategory(Subcategory $subcategory)
     {
-        $this->subcategories[$subcategory->getId()] = $subcategory;
+        $subcategoryId = $subcategory->getId();
+
+        if ($this->hasSubcategory($subcategoryId)) {
+            throw new \Exception(sprintf('Subcategory %s already exists', $subcategoryId));
+        }
+
+        $this->subcategories[$subcategoryId] = $subcategory;
     }
 
     public function hasSubcategory($subcategoryId)

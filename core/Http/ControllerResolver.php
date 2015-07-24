@@ -12,9 +12,9 @@ use DI\FactoryInterface;
 use Exception;
 use Piwik\Plugin;
 use Piwik\Plugin\Controller;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Session;
-use Piwik\Widget\Widgets;
+use Piwik\Plugin\Widgets;
 
 /**
  * Resolves the controller that will handle the request.

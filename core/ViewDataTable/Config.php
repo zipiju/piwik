@@ -14,7 +14,7 @@ use Piwik\DataTable;
 use Piwik\DataTable\Filter\PivotByDimension;
 use Piwik\Metrics;
 use Piwik\Plugins\API\API;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 /**
  * Contains base display properties for {@link Piwik\Plugin\ViewDataTable}s. Manipulating these

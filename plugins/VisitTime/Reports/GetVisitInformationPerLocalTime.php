@@ -13,7 +13,7 @@ use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\CoreVisualizations\Visualizations\Graph;
 use Piwik\Plugins\VisitTime\Columns\LocalTime;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class GetVisitInformationPerLocalTime extends Base
 {

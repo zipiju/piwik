@@ -12,7 +12,7 @@ use Piwik\Archive;
 use Piwik\Metrics\Formatter;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\SettingsPiwik;
 
 /**

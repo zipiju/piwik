@@ -13,7 +13,7 @@ use Piwik\Common;
 use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Tracker\GoalManager;
 use Piwik\Category\Subcategory;
 
@@ -81,7 +81,7 @@ class Goals extends \Piwik\Plugin
             'Goals.getReportsWithGoalMetrics'        => 'getActualReportsWithGoalMetrics',
             'Translate.getClientSideTranslationKeys' => 'getClientSideTranslationKeys',
             'Metrics.getDefaultMetricTranslations'   => 'addMetricTranslations',
-            'Subcategory.addSubcategories' => 'addSubcategories'
+            'Category.addSubcategories' => 'addSubcategories'
         );
         return $hooks;
     }
@@ -98,12 +98,12 @@ class Goals extends \Piwik\Plugin
 
         $order = 900;
         foreach ($goals as $goal) {
-            $config = new Subcategory();
-            $config->setName($goal['name']);
-            $config->setCategoryId('Goals_Goals');
-            $config->setId($goal['idgoal']);
-            $config->setOrder($order++);
-            $subcategories[] = $config;
+            $category = new Subcategory();
+            $category->setName($goal['name']);
+            $category->setCategoryId('Goals_Goals');
+            $category->setId($goal['idgoal']);
+            $category->setOrder($order++);
+            $subcategories[] = $category;
         }
     }
 

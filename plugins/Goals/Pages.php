@@ -16,7 +16,7 @@ use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Plugins\CoreVisualizations\Visualizations\Sparklines;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Widget\WidgetContainerConfig;
 use Piwik\Widget\WidgetConfig;
 use Piwik\Report\ReportWidgetFactory;

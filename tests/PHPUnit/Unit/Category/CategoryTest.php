@@ -70,6 +70,19 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array($subcategory1, $subcategory2), $this->category->getSubcategories());
     }
 
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Subcategory id1 already exists
+     */
+    public function test_addSubcategory_ShouldThrowException_WhenAddingSubcategoryWithSameIdTwice()
+    {
+        $subcategory1 = $this->createSubcategory('id1', 'name1');
+        $subcategory2 = $this->createSubcategory('id1', 'name2');
+
+        $this->category->addSubcategory($subcategory1);
+        $this->category->addSubcategory($subcategory2);
+    }
+
     public function test_hasSubcategories_ShouldDetectIfSubcategoriesArePresent()
     {
         $this->assertFalse($this->category->hasSubCategories());

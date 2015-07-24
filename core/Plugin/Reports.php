@@ -6,12 +6,11 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Report;
+namespace Piwik\Plugin;
 
 use Piwik\CacheId;
-use Piwik\Container\StaticContainer;
+use Piwik\Category\CategoryList;
 use Piwik\Plugin;
-use Piwik\Plugin\Report;
 use Piwik\Cache as PiwikCache;
 
 /**
@@ -111,25 +110,24 @@ class Reports
         return $this->compareCategories($a->getCategoryId(), $a->getSubcategoryId(), $a->getOrder(), $b->getCategoryId(), $b->getSubcategoryId(), $b->getOrder());
     }
 
-    public function compareCategories($catA, $subcatA, $orderA, $catB, $subcatB, $orderB)
+    public function compareCategories($catIdA, $subcatIdA, $orderA, $catIdB, $subcatIdB, $orderB)
     {
-        static $categories;
+        static $categoryList;
 
-        if (!isset($categories)) {
-            /** @var \Piwik\Category\Categories $categories */
-            $categories = StaticContainer::get('Piwik\Category\Categories');
-            $categories = $categories->getAllCategoriesWithSubcategories();
+        if (!isset($categoryList)) {
+            $categoryList = CategoryList::get();
         }
 
+        $catA = $categoryList->getCategory($catIdA);
+        $catB = $categoryList->getCategory($catIdB);
+
         // in case there is a category class for both reports
-        if (!empty($categories[$catA]) && !empty($categories[$catB])) {
-            $catA = $categories[$catA];
-            $catB = $categories[$catB];
+        if (isset($catA) && isset($catB)) {
 
             if ($catA->getOrder() == $catB->getOrder()) {
                 // same category order, compare subcategory order
-                $subcatA = $catA->getSubcategory($subcatA);
-                $subcatB = $catB->getSubcategory($subcatB);
+                $subcatA = $catA->getSubcategory($subcatIdA);
+                $subcatB = $catB->getSubcategory($subcatIdB);
 
                 // both reports have a subcategory with custom subcategory class
                 if ($subcatA && $subcatB) {
@@ -160,13 +158,13 @@ class Reports
 
             return $catA->getOrder() < $catB->getOrder() ? -1 : 1;
 
-        } elseif (!empty($categories[$catA])) {
+        } elseif (isset($catA)) {
             return -1;
-        } elseif (!empty($categories[$catB])) {
+        } elseif (isset($catB)) {
             return 1;
         }
 
-        if ($catA === $catB) {
+        if ($catIdA === $catIdB) {
             // both have same category, compare order
             if ($orderA == $orderB) {
                 return 0;
@@ -175,7 +173,7 @@ class Reports
             return $orderA < $orderB ? -1 : 1;
         }
 
-        return strnatcasecmp($catA, $catB);
+        return strnatcasecmp($catIdA, $catIdB);
     }
 
     /**

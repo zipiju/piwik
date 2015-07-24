@@ -13,7 +13,7 @@ use Piwik\Columns\Dimension;
 use Piwik\Piwik;
 use Piwik\Plugin\Manager;
 use Piwik\Plugin\Report;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Translate;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

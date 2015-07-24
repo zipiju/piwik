@@ -13,7 +13,7 @@ use Piwik\DataTable;
 use Piwik\Metrics;
 use Piwik\Period;
 use Piwik\Plugin\Report;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 /**
  * This class is responsible for setting the metadata property 'totals' on each dataTable if the report

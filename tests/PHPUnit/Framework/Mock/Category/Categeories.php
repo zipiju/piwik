@@ -7,17 +7,22 @@
  */
 namespace Piwik\Tests\Framework\Mock\Category;
 
-use Piwik\Category;
+use Piwik\Category\Category;
+use Piwik\Category\Subcategory;
+use Piwik\Plugin;
 
 /**
  * FakeCategories for UnitTests
  * @since 3.0.0
  */
-class Categories extends Category\Categories
+class Categories extends Plugin\Categories
 {
     private $categories;
     private $subcategories;
 
+    /**
+     * @param Category[] $categories
+     */
     public function setCategories($categories)
     {
         $cats = array();
@@ -26,15 +31,18 @@ class Categories extends Category\Categories
             $cats[$category->getId()] = $category;
         }
 
-        $this->categories = $cats;;
+        $this->categories = $cats;
     }
 
+    /**
+     * @param Subcategory[] $subcategories
+     */
     public function setSubcategories($subcategories)
     {
         $this->subcategories = $subcategories;
     }
 
-    protected function getAllCategories()
+    public function getAllCategories()
     {
         if ($this->categories) {
             return $this->categories;
@@ -43,7 +51,7 @@ class Categories extends Category\Categories
         return parent::getAllCategories();
     }
 
-    protected function getAllSubcategories()
+    public function getAllSubcategories()
     {
         if ($this->subcategories) {
             return $this->subcategories;

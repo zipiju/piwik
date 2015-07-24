@@ -13,7 +13,6 @@ use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Category\Subcategory;
 use Piwik\Widget\WidgetConfig;
-use Piwik\Widget\WidgetsList;
 
 /**
  */
@@ -29,12 +28,12 @@ class Dashboard extends \Piwik\Plugin
             'AssetManager.getStylesheetFiles'        => 'getStylesheetFiles',
             'UsersManager.deleteUser'                => 'deleteDashboardLayout',
             'Translate.getClientSideTranslationKeys' => 'getClientSideTranslationKeys',
-            'Widgets.addWidgets' => 'addWidgets',
-            'Subcategory.addSubcategories' => 'addSubcategories'
+            'Widget.addWidgetConfigs'                => 'addWidgetConfigs',
+            'Category.addSubcategories'              => 'addSubcategories'
         );
     }
 
-    public function addWidgets(WidgetsList $widgetsList)
+    public function addWidgetConfigs(&$widgets)
     {
         $dashboards = API::getInstance()->getDashboards();
 
@@ -46,7 +45,7 @@ class Dashboard extends \Piwik\Plugin
             $config->setCategoryId('Dashboard_Dashboard');
             $config->setSubcategoryId($dashboard['id']);
             $config->setParameters(array('idDashboard' => $dashboard['id']));
-            $widgetsList->addWidgetConfig($config);
+            $widgets[] = $config;
         }
     }
 
@@ -56,12 +55,12 @@ class Dashboard extends \Piwik\Plugin
 
         $order = 0;
         foreach ($dashboards as $dashboard) {
-            $config = new Subcategory();
-            $config->setName($dashboard['name']);
-            $config->setCategoryId('Dashboard_Dashboard');
-            $config->setId($dashboard['id']);
-            $config->setOrder($order++);
-            $subcategories[] = $config;
+            $subcategory = new Subcategory();
+            $subcategory->setName($dashboard['name']);
+            $subcategory->setCategoryId('Dashboard_Dashboard');
+            $subcategory->setId($dashboard['id']);
+            $subcategory->setOrder($order++);
+            $subcategories[] = $subcategory;
         }
     }
 

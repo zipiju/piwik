@@ -11,7 +11,7 @@ namespace Piwik\Plugins\DevicesDetection\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\DevicesDetection\Columns\Os;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class GetOsFamilies extends Base
 {

@@ -12,6 +12,7 @@ use Piwik\API\Proxy;
 use Piwik\API\Request;
 use Piwik\Cache;
 use Piwik\CacheId;
+use Piwik\Category\CategoryList;
 use Piwik\Common;
 use Piwik\Config;
 use Piwik\Container\StaticContainer;
@@ -240,30 +241,39 @@ class API extends \Piwik\Plugin\API
         return $processed;
     }
 
+    /**
+     * Get a list of all pages that shall be shown in a Piwik UI including a list of all widgets that shall
+     * be shown within each page.
+     *
+     * @param int $idSite
+     * @return array
+     */
     public function getReportPagesMetadata($idSite)
     {
         Piwik::checkUserHasViewAccess($idSite);
 
-        $widgetsList = WidgetsList::get();
-        $metadata    = $this->getWidgetMetadataInstance();
+        $widgetsList  = WidgetsList::get();
+        $categoryList = CategoryList::get();
+        $metadata     = new WidgetMetadata();
 
-        return $metadata->getPagesMetadata($widgetsList);
+        return $metadata->getPagesMetadata($categoryList, $widgetsList);
     }
 
-    public function getWidgetMetadata($idSite, $deep = false)
+    /**
+     * Get a list of all widgetizable widgets.
+     *
+     * @param int $idSite
+     * @return array
+     */
+    public function getWidgetMetadata($idSite)
     {
         Piwik::checkUserHasViewAccess($idSite);
 
-        $widgetsList = WidgetsList::get();
-        $metadata    = $this->getWidgetMetadataInstance();
+        $widgetsList  = WidgetsList::get();
+        $categoryList = CategoryList::get();
+        $metadata     = new WidgetMetadata();
 
-        return $metadata->getWidgetMetadata($widgetsList, $deep);
-    }
-
-    /** @return WidgetMetadata */
-    private function getWidgetMetadataInstance()
-    {
-        return StaticContainer::get(__NAMESPACE__ . '\WidgetMetadata');
+        return $metadata->getWidgetMetadata($categoryList, $widgetsList);
     }
 
     /**

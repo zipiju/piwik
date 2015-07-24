@@ -11,7 +11,7 @@ namespace Piwik\Plugins\Resolution\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\Resolution\Columns\Resolution;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class GetResolution extends Base
 {

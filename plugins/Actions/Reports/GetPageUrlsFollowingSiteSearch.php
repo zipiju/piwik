@@ -11,7 +11,7 @@ namespace Piwik\Plugins\Actions\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\Actions\Columns\DestinationPage;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class GetPageUrlsFollowingSiteSearch extends GetPageTitlesFollowingSiteSearch
 {

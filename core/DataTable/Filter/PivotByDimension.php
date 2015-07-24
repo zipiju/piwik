@@ -21,7 +21,7 @@ use Piwik\Period;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Plugin\Segment;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\Site;
 
 /**

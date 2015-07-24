@@ -11,7 +11,7 @@ namespace Piwik\Plugins\UserLanguage\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\UserLanguage\Columns\Language;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class GetLanguage extends Base
 {

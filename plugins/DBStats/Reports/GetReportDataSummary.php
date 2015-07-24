@@ -11,7 +11,7 @@ namespace Piwik\Plugins\DBStats\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\CoreVisualizations\Visualizations\Graph;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 /**
  * Shows a datatable that displays the amount of space each blob archive table

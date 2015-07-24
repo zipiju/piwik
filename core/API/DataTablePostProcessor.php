@@ -19,7 +19,7 @@ use Piwik\DataTable\Filter\PivotByDimension;
 use Piwik\Metrics\Formatter;
 use Piwik\Plugin\ProcessedMetric;
 use Piwik\Plugin\Report;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 /**
  * Processes DataTables that should be served through Piwik's APIs. This processing handles

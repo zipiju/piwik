@@ -12,7 +12,7 @@ use Piwik\Common;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Plugins\CoreVisualizations\Visualizations\HtmlTable;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 /**
  * Provides a means of creating {@link Piwik\Plugin\ViewDataTable} instances by ID.

@@ -12,7 +12,7 @@ use Piwik\Common;
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
 use Piwik\Plugin\ViewDataTable;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class Events extends \Piwik\Plugin
 {

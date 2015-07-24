@@ -33,7 +33,7 @@ use Piwik\Piwik;
 use Piwik\Plugins\CoreAdminHome\CustomLogo;
 use Piwik\Plugins\CoreVisualizations\Visualizations\JqplotGraph\Evolution;
 use Piwik\Plugins\LanguagesManager\LanguagesManager;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 use Piwik\SettingsPiwik;
 use Piwik\Site;
 use Piwik\Url;

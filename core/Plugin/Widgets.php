@@ -6,11 +6,15 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Widget;
+namespace Piwik\Plugin;
 
 use Piwik\Container\StaticContainer;
+use Piwik\Piwik;
 use Piwik\Plugin;
 use Exception;
+use Piwik\Widget\Widget;
+use Piwik\Widget\WidgetConfig;
+use Piwik\Widget\WidgetContainerConfig;
 
 /**
  * Get widgets that are defined by plugins.
@@ -37,6 +41,27 @@ class Widgets
         $widgetClasses = $this->getAllWidgetClassNames();
 
         $configs = array();
+
+        /**
+         * Triggered to add custom widget configs. To filder widgets have a look at the {@hook Widget.filterWidgets}
+         * event.
+         *
+         * **Example**
+         *
+         *     public function addWidgetConfigs(&$configs)
+         *     {
+         *         $config = new WidgetConfig();
+         *         $config->setModule('PluginName');
+         *         $config->setAction('renderDashboard');
+         *         $config->setCategoryId('Dashboard_Dashboard');
+         *         $config->setSubcategoryId('dashboardId');
+         *         $configs[] = $config;
+         *     }
+         *
+         * @param array &$configs An array containing a list of widget config entries.
+         */
+        Piwik::postEvent('Widget.addWidgetConfigs', array(&$configs));
+
         foreach ($widgetClasses as $widgetClass) {
             $configs[] = $this->getWidgetConfigForClassName($widgetClass);
         }
@@ -96,7 +121,6 @@ class Widgets
             }
         }
     }
-
 
     private function getWidgetConfigForClassName($widgetClass)
     {

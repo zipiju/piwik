@@ -11,7 +11,7 @@ namespace Piwik\Plugins\DevicesDetection\Reports;
 use Piwik\Piwik;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\DevicesDetection\Columns\BrowserVersion;
-use Piwik\Report\Reports;
+use Piwik\Plugin\Reports;
 
 class GetBrowserVersions extends Base
 {

@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\API;
 
-use Piwik\Category\Categories;
+use Piwik\Category\CategoryList;
 use Piwik\Piwik;
 use Piwik\Report\ReportWidgetConfig;
 use Piwik\Category\Category;
@@ -19,49 +19,42 @@ use Piwik\Widget\WidgetsList;
 
 class WidgetMetadata
 {
-    private $categories;
-
-    public function __construct(Categories $categories)
+    public function getPagesMetadata(CategoryList $categoryList, WidgetsList $widgetsList)
     {
-        $this->categories = $categories;
+        $this->moveWidgetsIntoCategories($categoryList, $widgetsList->getWidgetConfigs());
+
+        return $this->buildPagesMetadata($categoryList);
     }
 
-    public function getPagesMetadata(WidgetsList $widgetsList)
+    public function getWidgetMetadata(CategoryList $categoryList, WidgetsList $widgetsList)
     {
-        $categories  = $this->moveWidgetsIntoCategories($widgetsList->getWidgetConfigs());
-        $categories  = $this->buildPagesMetadata($categories);
+        $this->moveWidgetsIntoCategories($categoryList, $widgetsList->getWidgetConfigs());
 
-        return $categories;
-    }
-
-    public function getWidgetMetadata(WidgetsList $widgetsList, $deep)
-    {
         $flat = array();
-
-        $categories = $this->moveWidgetsIntoCategories($widgetsList->getWidgetConfigs());
 
         foreach ($widgetsList->getWidgetConfigs() as $widgetConfig) {
 
             /** @var WidgetConfig[] $widgets */
             $widgets = array($widgetConfig);
             if ($widgetConfig instanceof WidgetContainerConfig) {
+                // so far we go only one level down, in theory these widgetConfigs could have again containers containing configs
                 $widgets = array_merge($widgets, $widgetConfig->getWidgetConfigs());
             }
 
             foreach ($widgets as $widget) {
+                // make sure to include only widgetizable widgets
                 if (!$widget->isWidgetizeable() || !$widget->getName()) {
                     continue;
                 }
 
-                $category    = null;
+                $category    = $categoryList->getCategory($widget->getCategoryId());
                 $subcategory = null;
 
-                if (isset($categories[$widget->getCategoryId()])) {
-                    $category    = $categories[$widget->getCategoryId()];
+                if (isset($category)) {
                     $subcategory = $category->getSubcategory($widget->getSubcategoryId());
                 }
 
-                $flat[] = $this->buildWidgetMetadata($widget, $category, $subcategory, $deep);
+                $flat[] = $this->buildWidgetMetadata($widget, $category, $subcategory);
             }
         }
 
@@ -70,7 +63,7 @@ class WidgetMetadata
         return $flat;
     }
 
-    public function buildWidgetMetadata(WidgetConfig $widget, $category, $subcategory, $addNestedWidgets = true)
+    public function buildWidgetMetadata(WidgetConfig $widget, $category, $subcategory)
     {
         $category = $category ? $this->buildCategoryMetadata($category) : null;
         $subcategory = $subcategory ? $this->buildSubcategoryMetadata($subcategory) : null;
@@ -101,17 +94,15 @@ class WidgetMetadata
             $item['layout'] = $widget->getLayout();
             $item['isContainer'] = true;
 
-            if ($addNestedWidgets) {
-                $children = array();
-                foreach ($widget->getWidgetConfigs() as $widgetConfig) {
-                    $cat = $this->createCategory($widgetConfig->getCategoryId());
-                    $subcat = $this->createSubcategory($widgetConfig->getCategoryId(), $widgetConfig->getSubcategoryId());
+            $children = array();
+            foreach ($widget->getWidgetConfigs() as $widgetConfig) {
+                $cat = $this->createCategory($widgetConfig->getCategoryId());
+                $subcat = $this->createSubcategory($widgetConfig->getCategoryId(), $widgetConfig->getSubcategoryId());
 
-                    $child = $this->buildWidgetMetadata($widgetConfig, $cat, $subcat, $addNestedWidgets);
-                    $children[] = $child;
-                }
-                $item['widgets'] = $children;
+                $child = $this->buildWidgetMetadata($widgetConfig, $cat, $subcat);
+                $children[] = $child;
             }
+            $item['widgets'] = $children;
         }
 
         return $item;
@@ -163,19 +154,17 @@ class WidgetMetadata
     }
 
     /**
+     * @param CategoryList $categoryList
      * @param WidgetConfig[] $widgetConfigs
-     * @return Category[]
      */
-    private function moveWidgetsIntoCategories($widgetConfigs)
+    private function moveWidgetsIntoCategories($categoryList, $widgetConfigs)
     {
-        $all = $this->categories->getAllCategoriesWithSubcategories();
-
         // move reports into categories/subcategories and create missing ones if needed
         foreach ($widgetConfigs as $widgetConfig) {
-            $category    = $widgetConfig->getCategoryId();
-            $subcategory = $widgetConfig->getSubcategoryId();
+            $categoryId    = $widgetConfig->getCategoryId();
+            $subcategoryId = $widgetConfig->getSubcategoryId();
 
-            if (!$category) {
+            if (!$categoryId) {
                 continue;
             }
 
@@ -184,22 +173,26 @@ class WidgetMetadata
                 continue;
             }
 
-            if (!isset($all[$category])) {
-                $all[$category] = $this->createCategory($category);
+            if ($categoryList->hasCategory($categoryId)) {
+                $category = $categoryList->getCategory($categoryId);
+            } else {
+                $category = $this->createCategory($categoryId);
+                $categoryList->addCategory($category);
             }
 
-            if (!$subcategory) {
+            if (!$subcategoryId) {
                 continue;
             }
 
-            if (!$all[$category]->hasSubcategory($subcategory)) {
-                $all[$category]->addSubcategory($this->createSubcategory($category, $subcategory));
+            if ($category->hasSubcategory($subcategoryId)) {
+                $subcategory = $category->getSubcategory($subcategoryId);
+            } else {
+                $subcategory = $this->createSubcategory($categoryId, $subcategoryId);
+                $category->addSubcategory($subcategory);
             }
 
-            $all[$category]->getSubcategory($subcategory)->addWidgetConfig($widgetConfig);
+            $subcategory->addWidgetConfig($widgetConfig);
         }
-
-        return $all;
     }
 
     private function createCategory($categoryId)
@@ -218,15 +211,15 @@ class WidgetMetadata
     }
 
     /**
-     * @param Category[] $categories
+     * @param CategoryList $categoryList
      * @return array
      */
-    private function buildPagesMetadata($categories)
+    private function buildPagesMetadata($categoryList)
     {
         // todo should be sorted by order
         $pages = array();
 
-        foreach ($categories as $category) {
+        foreach ($categoryList->getCategories() as $category) {
             foreach ($category->getSubcategories() as $subcategory) {
                 $page = $this->buildPageMetadata($category, $subcategory);
 
