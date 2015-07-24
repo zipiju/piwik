@@ -6,6 +6,10 @@
  */
 
 /**
+ * Shows the Piwik reporting menu.
+ *
+ * It automatically calls the API to fetch all data.
+ *
  * Example:
  * <div piwik-reporting-menu></div>
  */

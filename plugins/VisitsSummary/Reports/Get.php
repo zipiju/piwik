@@ -147,7 +147,6 @@ class Get extends \Piwik\Plugin\Report
         $currentDate   = Common::getRequestVar('date');
         $displayUniqueVisitors = SettingsPiwik::isUniqueVisitorsEnabled($currentPeriod);
 
-        // todo in theory this should be done in Actions Plugin, but then it'll be hard to change the "order"
         $isActionPluginEnabled = Common::isActionsPluginEnabled();
 
         $columns = array(

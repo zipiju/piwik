@@ -6,6 +6,11 @@
  */
 
 /**
+ * When present in the page it listens to a popover URL parameter.
+ *
+ * If present it will try to load the related content in a popover or if the URL is empty it will close an
+ * opened popover.
+ *
  * Example:
  * <div piwik-popover-handler></div>
  */

@@ -6,8 +6,15 @@
  */
 
 /**
+ * Renders a widget that is a container widget having the layout "ByDimension".
+ *
+ * The "ByDimension" layout shows a menu on the left letting you choose any widgets within this container. The
+ * currently selected widget is shown on the right.
+ *
+ * @param {Object} containerWidget a widget object as returned by the WidgetMetadata API.
+ *
  * Example:
- * <div piwik-widget-by-dimension-container container="widget"></div>
+ * <div piwik-widget-by-dimension-container container="containerWidget"></div>
  */
 (function () {
     angular.module('piwikApp').directive('piwikWidgetByDimensionContainer', piwikWidgetContainer);

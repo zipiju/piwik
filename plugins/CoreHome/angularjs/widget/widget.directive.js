@@ -6,6 +6,21 @@
  */
 
 /**
+ * Renders any kind of widget. If you have a widget and you want to have it rendered, use this directive. It will
+ * display a name on top and the actual widget below. It can handle any kind of widget, no matter whether it is a
+ * regular widget or a container.
+ *
+ * @param {Object} widget       a widget object as returned by the WidgetMetadata API.
+ * @param {Object} widget.middlewareParameters If present, we will request a URL using the given parameters and only
+ *                                             if this URL returns a JSON `true` the widget will be shown. Otherwise
+ *                                             The widget won't be shown.
+ * @param {String} containerId  If you do not have a widget object but a containerId we will find the correct widget
+ *                              object based on the given containerId. Be aware that we might not find the widget if
+ *                              it is for example not available for the current user or period/date.
+ * @param {Boolean} widgetized  true if the widget is widgetized (eg in Dashboard or exported). In this case we will add
+ *                              a URL parameter widget=1 to all widgets. Eg sparklines will be then displayed one after
+ *                              another (vertically aligned) instead of two next to each other.
+ *
  * Example:
  * <div piwik-widget widget="widget"></div>
  * <div piwik-widget containerid="widgetGoalsOverview"></div> // in this case we will find the correct widget automatically

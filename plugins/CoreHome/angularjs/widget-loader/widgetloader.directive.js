@@ -6,6 +6,13 @@
  */
 
 /**
+ * Loads any custom widget or URL based on the given parameters.
+ *
+ * The currently active idSite, period, date and segment (if needed) is automatically appended to the parameters. If
+ * this widget is removed from the DOM and requests are in progress, these requests will be aborted. A loading message
+ * or an error message on failure is shown as well. It's kinda similar to ng-include but there it is not possible to
+ * listen to HTTP errors etc.
+ *
  * Example:
  * <div piwik-widget-loader="{module: '', action: '', ...}"></div>
  */

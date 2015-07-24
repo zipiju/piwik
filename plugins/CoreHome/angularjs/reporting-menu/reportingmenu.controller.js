@@ -9,7 +9,8 @@
 
     ReportingMenuController.$inject = ['$scope', 'piwik', '$location', '$timeout', 'reportingMenuModel', '$rootScope'];
 
-    function ReportingMenuController($scope, piwik, $location, $timeout, menuModel, $rootScope){
+    function ReportingMenuController($scope, piwik, $location, $timeout, menuModel, $rootScope) {
+
         function markAllCategoriesAsInactive()
         {
             angular.forEach(menuModel.menu, function (cat) {
@@ -34,6 +35,7 @@
 
         var timeoutPromise = null;
 
+        // show subcategories of the currently hovered category
         $scope.enterCategory = function (category) {
 
             if (timeoutPromise) {
@@ -47,6 +49,7 @@
             category.hover = true;
         };
 
+        // show subcategories of the current active category again (after 2 sec max)
         $scope.leaveCategory = function (category) {
 
             if (timeoutPromise) {
@@ -64,6 +67,7 @@
             }, 2000);
         };
 
+        // highlight the currently hovered subcategory (and category)
         $scope.enterSubcategory = function (category, subcategory) {
             if (!category || !subcategory) {
                 return;
@@ -99,6 +103,7 @@
 
         menuModel.fetchMenuItems().then(function (menu) {
             if (!$location.search().subcategory) {
+                // load first, initial page if no subcategory is present
                 $scope.enterSubcategory(menu[0], menu[0].subcategories[0]);
                 $location.search($scope.makeUrl(menu[0], menu[0].subcategories[0]));
             }

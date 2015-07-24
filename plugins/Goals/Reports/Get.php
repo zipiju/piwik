@@ -114,7 +114,7 @@ class Get extends Base
                 // goals overview sparklines below evolution graph
 
                 if ($isEcommerceEnabled) {
-                    // TODO this should be done in Ecommerce plugin
+                    // this would be ideally done in Ecommerce plugin but then it is hard to keep same order
                     $view->config->addSparklineMetricsToDisplay(array('revenue'));
                 }
 
@@ -127,7 +127,6 @@ class Get extends Base
 
                 } elseif ($isEcommerceEnabled) {
                     // in Goals detail page...
-                    // TODO this should be done in Ecommerce plugin
                     $view->config->addSparklineMetricsToDisplay(array('revenue'));
                 }
             }

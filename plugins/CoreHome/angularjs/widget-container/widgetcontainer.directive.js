@@ -6,8 +6,14 @@
  */
 
 /**
+ * Renders a widget that is a container widget having no specific layout (which is the default).
+ *
+ * It shows all widgets vertically aligned one widget after another.
+ *
+ * @param {Object} containerWidget a widget object as returned by the WidgetMetadata API.
+ *
  * Example:
- * <div piwik-widget-container container="widget"></div>
+ * <div piwik-widget-container container="containerWidget"></div>
  */
 (function () {
     angular.module('piwikApp').directive('piwikWidgetContainer', piwikWidgetContainer);

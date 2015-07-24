@@ -10,9 +10,6 @@ namespace Piwik\Plugins\Ecommerce\Categories;
 
 use Piwik\Category\Category;
 
-/**
- * TODO define this in ecommerce plugin
- */
 class EcommerceCategory extends Category
 {
     protected $id = 'Goals_Ecommerce';

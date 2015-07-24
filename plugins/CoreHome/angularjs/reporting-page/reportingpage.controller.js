@@ -42,6 +42,7 @@
             var subcategory = $location.search().subcategory;
 
             if (category === currentCategory && subcategory === currentSubcategory) {
+                // this page is already loaded
                 return;
             }
 

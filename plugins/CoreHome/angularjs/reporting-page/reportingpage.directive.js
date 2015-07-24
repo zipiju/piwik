@@ -6,8 +6,13 @@
  */
 
 /**
+ * Shows a piwik reporting page.
+ *
+ * The content to be displayed is automatically loaded via API based on the current URL. The URL parameters
+ * 'category' and 'subcategory' need to be present in the URL in order to see something in the reporting page.
+ *
  * Example:
- * <div piwik-reporting-menu></div>
+ * <div piwik-reporting-page></div>
  */
 (function () {
     angular.module('piwikApp').directive('piwikReportingPage', piwikReportingPage);
