@@ -3,14 +3,14 @@
 	<row>
 		<uniqueId>General_Actions.General_Downloads</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>General_Downloads</id>
 			<name>Downloads</name>
 			<order>35</order>
-			<id>General_Downloads</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -31,14 +31,14 @@
 	<row>
 		<uniqueId>General_Actions.Actions_SubmenuPagesEntry</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>Actions_SubmenuPagesEntry</id>
 			<name>Entry pages</name>
 			<order>10</order>
-			<id>Actions_SubmenuPagesEntry</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -59,14 +59,14 @@
 	<row>
 		<uniqueId>General_Actions.Actions_SubmenuPagesExit</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>Actions_SubmenuPagesExit</id>
 			<name>Exit pages</name>
 			<order>15</order>
-			<id>Actions_SubmenuPagesExit</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -87,14 +87,14 @@
 	<row>
 		<uniqueId>General_Actions.General_Outlinks</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>General_Outlinks</id>
 			<name>Outlinks</name>
 			<order>30</order>
-			<id>General_Outlinks</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -115,14 +115,14 @@
 	<row>
 		<uniqueId>General_Actions.General_Pages</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>General_Pages</id>
 			<name>Pages</name>
 			<order>5</order>
-			<id>General_Pages</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -143,14 +143,14 @@
 	<row>
 		<uniqueId>General_Actions.Actions_SubmenuPageTitles</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>Actions_SubmenuPageTitles</id>
 			<name>Page titles</name>
 			<order>20</order>
-			<id>Actions_SubmenuPageTitles</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -171,14 +171,14 @@
 	<row>
 		<uniqueId>General_Actions.Actions_SubmenuSitesearch</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>Actions_SubmenuSitesearch</id>
 			<name>Site Search</name>
 			<order>25</order>
-			<id>Actions_SubmenuSitesearch</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -251,14 +251,14 @@
 	<row>
 		<uniqueId>General_Actions.Events_Events</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>Events_Events</id>
 			<name>Events</name>
 			<order>40</order>
-			<id>Events_Events</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -278,14 +278,14 @@
 					<row>
 						<name>Event Categories</name>
 						<category>
+							<id>General_Actions</id>
 							<name>Actions</name>
 							<order>99</order>
-							<id>General_Actions</id>
 						</category>
 						<subcategory>
+							<id>Events_Events</id>
 							<name>Events</name>
 							<order>99</order>
-							<id>Events_Events</id>
 						</subcategory>
 						<module>Events</module>
 						<action>getCategory</action>
@@ -302,14 +302,14 @@
 					<row>
 						<name>Event Actions</name>
 						<category>
+							<id>General_Actions</id>
 							<name>Actions</name>
 							<order>99</order>
-							<id>General_Actions</id>
 						</category>
 						<subcategory>
+							<id>Events_Events</id>
 							<name>Events</name>
 							<order>99</order>
-							<id>Events_Events</id>
 						</subcategory>
 						<module>Events</module>
 						<action>getAction</action>
@@ -326,14 +326,14 @@
 					<row>
 						<name>Event Names</name>
 						<category>
+							<id>General_Actions</id>
 							<name>Actions</name>
 							<order>99</order>
-							<id>General_Actions</id>
 						</category>
 						<subcategory>
+							<id>Events_Events</id>
 							<name>Events</name>
 							<order>99</order>
-							<id>Events_Events</id>
 						</subcategory>
 						<module>Events</module>
 						<action>getName</action>
@@ -354,14 +354,14 @@
 	<row>
 		<uniqueId>General_Actions.Contents_Contents</uniqueId>
 		<category>
+			<id>General_Actions</id>
 			<name>Actions</name>
 			<order>10</order>
-			<id>General_Actions</id>
 		</category>
 		<subcategory>
+			<id>Contents_Contents</id>
 			<name>Contents</name>
 			<order>45</order>
-			<id>Contents_Contents</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -381,14 +381,14 @@
 					<row>
 						<name>Content Name</name>
 						<category>
+							<id>General_Actions</id>
 							<name>Actions</name>
 							<order>99</order>
-							<id>General_Actions</id>
 						</category>
 						<subcategory>
+							<id>Contents_Contents</id>
 							<name>Contents</name>
 							<order>99</order>
-							<id>Contents_Contents</id>
 						</subcategory>
 						<module>Contents</module>
 						<action>getContentNames</action>
@@ -404,14 +404,14 @@
 					<row>
 						<name>Content Piece</name>
 						<category>
+							<id>General_Actions</id>
 							<name>Actions</name>
 							<order>99</order>
-							<id>General_Actions</id>
 						</category>
 						<subcategory>
+							<id>Contents_Contents</id>
 							<name>Contents</name>
 							<order>99</order>
-							<id>Contents_Contents</id>
 						</subcategory>
 						<module>Contents</module>
 						<action>getContentPieces</action>
@@ -431,14 +431,14 @@
 	<row>
 		<uniqueId>General_Visitors.DevicesDetection_Devices</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>DevicesDetection_Devices</id>
 			<name>Devices</name>
 			<order>15</order>
-			<id>DevicesDetection_Devices</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -498,14 +498,14 @@
 	<row>
 		<uniqueId>General_Visitors.VisitorInterest_Engagement</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>VisitorInterest_Engagement</id>
 			<name>Engagement</name>
 			<order>30</order>
-			<id>VisitorInterest_Engagement</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -597,14 +597,14 @@
 	<row>
 		<uniqueId>General_Visitors.DevicesDetection_Software</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>DevicesDetection_Software</id>
 			<name>Software</name>
 			<order>20</order>
-			<id>DevicesDetection_Software</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -704,14 +704,14 @@
 	<row>
 		<uniqueId>General_Visitors.General_Overview</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>General_Overview</id>
 			<name>Overview</name>
 			<order>2</order>
-			<id>General_Overview</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -749,14 +749,14 @@
 	<row>
 		<uniqueId>General_Visitors.UserCountry_SubmenuLocations</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>UserCountry_SubmenuLocations</id>
 			<name>Locations</name>
 			<order>25</order>
-			<id>UserCountry_SubmenuLocations</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -800,14 +800,14 @@
 					<row>
 						<name>Continent</name>
 						<category>
+							<id>General_Visitors</id>
 							<name>Visitors</name>
 							<order>99</order>
-							<id>General_Visitors</id>
 						</category>
 						<subcategory>
+							<id>UserCountry_SubmenuLocations</id>
 							<name>Locations</name>
 							<order>99</order>
-							<id>UserCountry_SubmenuLocations</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
@@ -823,14 +823,14 @@
 					<row>
 						<name />
 						<category>
+							<id>General_Visitors</id>
 							<name>Visitors</name>
 							<order>99</order>
-							<id>General_Visitors</id>
 						</category>
 						<subcategory>
+							<id>UserCountry_SubmenuLocations</id>
 							<name>Locations</name>
 							<order>99</order>
-							<id>UserCountry_SubmenuLocations</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getDistinctCountries</action>
@@ -915,14 +915,14 @@
 	<row>
 		<uniqueId>General_Visitors.VisitTime_SubmenuTimes</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>VisitTime_SubmenuTimes</id>
 			<name>Times</name>
 			<order>35</order>
-			<id>VisitTime_SubmenuTimes</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -972,14 +972,14 @@
 	<row>
 		<uniqueId>General_Visitors.UserCountryMap_RealTimeMap</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>UserCountryMap_RealTimeMap</id>
 			<name>Real-time Map</name>
 			<order>40</order>
-			<id>UserCountryMap_RealTimeMap</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -998,14 +998,14 @@
 	<row>
 		<uniqueId>General_Visitors.Live_VisitorLog</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>Live_VisitorLog</id>
 			<name>Visitor Log</name>
 			<order>5</order>
-			<id>Live_VisitorLog</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1029,14 +1029,14 @@
 	<row>
 		<uniqueId>General_Visitors.CustomVariables_CustomVariables</uniqueId>
 		<category>
+			<id>General_Visitors</id>
 			<name>Visitors</name>
 			<order>5</order>
-			<id>General_Visitors</id>
 		</category>
 		<subcategory>
+			<id>CustomVariables_CustomVariables</id>
 			<name>Custom Variables</name>
 			<order>10</order>
-			<id>CustomVariables_CustomVariables</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1055,16 +1055,16 @@
 		</widgets>
 	</row>
 	<row>
-		<uniqueId>Dashboard_Dashboard.Dashboard</uniqueId>
+		<uniqueId>Dashboard_Dashboard.1</uniqueId>
 		<category>
+			<id>Dashboard_Dashboard</id>
 			<name>Dashboard</name>
 			<order>0</order>
-			<id>Dashboard_Dashboard</id>
 		</category>
 		<subcategory>
+			<id>1</id>
 			<name>Dashboard</name>
 			<order>0</order>
-			<id>1</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1084,14 +1084,14 @@
 	<row>
 		<uniqueId>Referrers_Referrers.Referrers_WidgetGetAll</uniqueId>
 		<category>
+			<id>Referrers_Referrers</id>
 			<name>Referrers</name>
 			<order>15</order>
-			<id>Referrers_Referrers</id>
 		</category>
 		<subcategory>
+			<id>Referrers_WidgetGetAll</id>
 			<name>All Referrers</name>
 			<order>5</order>
-			<id>Referrers_WidgetGetAll</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1127,14 +1127,14 @@
 	<row>
 		<uniqueId>Referrers_Referrers.Referrers_Campaigns</uniqueId>
 		<category>
+			<id>Referrers_Referrers</id>
 			<name>Referrers</name>
 			<order>15</order>
-			<id>Referrers_Referrers</id>
 		</category>
 		<subcategory>
+			<id>Referrers_Campaigns</id>
 			<name>Campaigns</name>
 			<order>20</order>
-			<id>Referrers_Campaigns</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1155,14 +1155,14 @@
 	<row>
 		<uniqueId>Referrers_Referrers.General_Overview</uniqueId>
 		<category>
+			<id>Referrers_Referrers</id>
 			<name>Referrers</name>
 			<order>15</order>
-			<id>Referrers_Referrers</id>
 		</category>
 		<subcategory>
+			<id>General_Overview</id>
 			<name>Overview</name>
 			<order>2</order>
-			<id>General_Overview</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1203,14 +1203,14 @@
 	<row>
 		<uniqueId>Referrers_Referrers.Referrers_SubmenuSearchEngines</uniqueId>
 		<category>
+			<id>Referrers_Referrers</id>
 			<name>Referrers</name>
 			<order>15</order>
-			<id>Referrers_Referrers</id>
 		</category>
 		<subcategory>
+			<id>Referrers_SubmenuSearchEngines</id>
 			<name>Search Engines &amp; Keywords</name>
 			<order>10</order>
-			<id>Referrers_SubmenuSearchEngines</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1244,14 +1244,14 @@
 	<row>
 		<uniqueId>Referrers_Referrers.Referrers_SubmenuWebsites</uniqueId>
 		<category>
+			<id>Referrers_Referrers</id>
 			<name>Referrers</name>
 			<order>15</order>
-			<id>Referrers_Referrers</id>
 		</category>
 		<subcategory>
+			<id>Referrers_SubmenuWebsites</id>
 			<name>Websites &amp; Social</name>
 			<order>15</order>
-			<id>Referrers_SubmenuWebsites</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1284,16 +1284,16 @@
 		</widgets>
 	</row>
 	<row>
-		<uniqueId>Goals_Goals.Goal 1 - Thank you</uniqueId>
+		<uniqueId>Goals_Goals.1</uniqueId>
 		<category>
+			<id>Goals_Goals</id>
 			<name>Goals</name>
 			<order>25</order>
-			<id>Goals_Goals</id>
 		</category>
 		<subcategory>
+			<id>1</id>
 			<name>Goal 1 - Thank you</name>
 			<order>900</order>
-			<id>1</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1313,14 +1313,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>1</id>
 							<name>1</name>
 							<order>99</order>
-							<id>1</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getEvolutionGraph</action>
@@ -1339,14 +1339,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>1</id>
 							<name>1</name>
 							<order>99</order>
-							<id>1</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -1366,14 +1366,14 @@
 					<row>
 						<name>Conversions Overview</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>1</id>
 							<name>1</name>
 							<order>99</order>
-							<id>1</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>goalConversionsOverview</action>
@@ -1416,14 +1416,14 @@
 					<row>
 						<name>Custom Variables</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>CustomVariables</module>
 						<action>getCustomVariables</action>
@@ -1442,14 +1442,14 @@
 					<row>
 						<name>Visits per server time</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>VisitTime</module>
 						<action>getVisitInformationPerServerTime</action>
@@ -1468,14 +1468,14 @@
 					<row>
 						<name>Country</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
@@ -1494,14 +1494,14 @@
 					<row>
 						<name>Continent</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
@@ -1520,14 +1520,14 @@
 					<row>
 						<name>Region</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
@@ -1546,14 +1546,14 @@
 					<row>
 						<name>City</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
@@ -1572,14 +1572,14 @@
 					<row>
 						<name>Referrer Type</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getReferrerType</action>
@@ -1598,14 +1598,14 @@
 					<row>
 						<name>Keywords</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getKeywords</action>
@@ -1624,14 +1624,14 @@
 					<row>
 						<name>Search Engines</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getSearchEngines</action>
@@ -1650,14 +1650,14 @@
 					<row>
 						<name>Websites</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getWebsites</action>
@@ -1676,14 +1676,14 @@
 					<row>
 						<name>Campaigns</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getCampaigns</action>
@@ -1702,14 +1702,14 @@
 					<row>
 						<name>Visits to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getVisitsUntilConversion</action>
@@ -1727,14 +1727,14 @@
 					<row>
 						<name>Days to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getDaysToConversion</action>
@@ -1754,16 +1754,16 @@
 		</widgets>
 	</row>
 	<row>
-		<uniqueId>Goals_Goals.Goal 2 - Hello</uniqueId>
+		<uniqueId>Goals_Goals.2</uniqueId>
 		<category>
+			<id>Goals_Goals</id>
 			<name>Goals</name>
 			<order>25</order>
-			<id>Goals_Goals</id>
 		</category>
 		<subcategory>
+			<id>2</id>
 			<name>Goal 2 - Hello</name>
 			<order>901</order>
-			<id>2</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -1783,14 +1783,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>2</id>
 							<name>2</name>
 							<order>99</order>
-							<id>2</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getEvolutionGraph</action>
@@ -1809,14 +1809,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>2</id>
 							<name>2</name>
 							<order>99</order>
-							<id>2</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -1836,14 +1836,14 @@
 					<row>
 						<name>Conversions Overview</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>2</id>
 							<name>2</name>
 							<order>99</order>
-							<id>2</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>goalConversionsOverview</action>
@@ -1886,14 +1886,14 @@
 					<row>
 						<name>Custom Variables</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>CustomVariables</module>
 						<action>getCustomVariables</action>
@@ -1912,14 +1912,14 @@
 					<row>
 						<name>Visits per server time</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>VisitTime</module>
 						<action>getVisitInformationPerServerTime</action>
@@ -1938,14 +1938,14 @@
 					<row>
 						<name>Country</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
@@ -1964,14 +1964,14 @@
 					<row>
 						<name>Continent</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
@@ -1990,14 +1990,14 @@
 					<row>
 						<name>Region</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
@@ -2016,14 +2016,14 @@
 					<row>
 						<name>City</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
@@ -2042,14 +2042,14 @@
 					<row>
 						<name>Referrer Type</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getReferrerType</action>
@@ -2068,14 +2068,14 @@
 					<row>
 						<name>Keywords</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getKeywords</action>
@@ -2094,14 +2094,14 @@
 					<row>
 						<name>Search Engines</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getSearchEngines</action>
@@ -2120,14 +2120,14 @@
 					<row>
 						<name>Websites</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getWebsites</action>
@@ -2146,14 +2146,14 @@
 					<row>
 						<name>Campaigns</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getCampaigns</action>
@@ -2172,14 +2172,14 @@
 					<row>
 						<name>Visits to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getVisitsUntilConversion</action>
@@ -2197,14 +2197,14 @@
 					<row>
 						<name>Days to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getDaysToConversion</action>
@@ -2224,16 +2224,16 @@
 		</widgets>
 	</row>
 	<row>
-		<uniqueId>Goals_Goals.triggered js</uniqueId>
+		<uniqueId>Goals_Goals.3</uniqueId>
 		<category>
+			<id>Goals_Goals</id>
 			<name>Goals</name>
 			<order>25</order>
-			<id>Goals_Goals</id>
 		</category>
 		<subcategory>
+			<id>3</id>
 			<name>triggered js</name>
 			<order>902</order>
-			<id>3</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -2253,14 +2253,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>3</id>
 							<name>3</name>
 							<order>99</order>
-							<id>3</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getEvolutionGraph</action>
@@ -2279,14 +2279,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>3</id>
 							<name>3</name>
 							<order>99</order>
-							<id>3</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -2306,14 +2306,14 @@
 					<row>
 						<name>Conversions Overview</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>3</id>
 							<name>3</name>
 							<order>99</order>
-							<id>3</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>goalConversionsOverview</action>
@@ -2356,14 +2356,14 @@
 					<row>
 						<name>Custom Variables</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>CustomVariables</module>
 						<action>getCustomVariables</action>
@@ -2382,14 +2382,14 @@
 					<row>
 						<name>Visits per server time</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>VisitTime</module>
 						<action>getVisitInformationPerServerTime</action>
@@ -2408,14 +2408,14 @@
 					<row>
 						<name>Country</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
@@ -2434,14 +2434,14 @@
 					<row>
 						<name>Continent</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
@@ -2460,14 +2460,14 @@
 					<row>
 						<name>Region</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
@@ -2486,14 +2486,14 @@
 					<row>
 						<name>City</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
@@ -2512,14 +2512,14 @@
 					<row>
 						<name>Referrer Type</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getReferrerType</action>
@@ -2538,14 +2538,14 @@
 					<row>
 						<name>Keywords</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getKeywords</action>
@@ -2564,14 +2564,14 @@
 					<row>
 						<name>Search Engines</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getSearchEngines</action>
@@ -2590,14 +2590,14 @@
 					<row>
 						<name>Websites</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getWebsites</action>
@@ -2616,14 +2616,14 @@
 					<row>
 						<name>Campaigns</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getCampaigns</action>
@@ -2642,14 +2642,14 @@
 					<row>
 						<name>Visits to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getVisitsUntilConversion</action>
@@ -2667,14 +2667,14 @@
 					<row>
 						<name>Days to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getDaysToConversion</action>
@@ -2696,14 +2696,14 @@
 	<row>
 		<uniqueId>Goals_Goals.General_Overview</uniqueId>
 		<category>
+			<id>Goals_Goals</id>
 			<name>Goals</name>
 			<order>25</order>
-			<id>Goals_Goals</id>
 		</category>
 		<subcategory>
+			<id>General_Overview</id>
 			<name>Overview</name>
 			<order>2</order>
-			<id>General_Overview</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -2723,14 +2723,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getEvolutionGraph</action>
@@ -2748,14 +2748,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -2773,14 +2773,14 @@
 					<row>
 						<name>Goal Goal 1 - Thank you</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -2801,14 +2801,14 @@
 					<row>
 						<name>Goal Goal 2 - Hello</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -2829,14 +2829,14 @@
 					<row>
 						<name>Goal triggered js</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>get</action>
@@ -2877,14 +2877,14 @@
 					<row>
 						<name>Custom Variables</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>CustomVariables</module>
 						<action>getCustomVariables</action>
@@ -2903,14 +2903,14 @@
 					<row>
 						<name>Visits per server time</name>
 						<category>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Goals by User attribute</id>
 							<name>Goals by User attribute</name>
 							<order>99</order>
-							<id>Goals by User attribute</id>
 						</subcategory>
 						<module>VisitTime</module>
 						<action>getVisitInformationPerServerTime</action>
@@ -2929,14 +2929,14 @@
 					<row>
 						<name>Country</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
@@ -2955,14 +2955,14 @@
 					<row>
 						<name>Continent</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
@@ -2981,14 +2981,14 @@
 					<row>
 						<name>Region</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
@@ -3007,14 +3007,14 @@
 					<row>
 						<name>City</name>
 						<category>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</category>
 						<subcategory>
+							<id>Goals by User location</id>
 							<name>Goals by User location</name>
 							<order>99</order>
-							<id>Goals by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
@@ -3033,14 +3033,14 @@
 					<row>
 						<name>Referrer Type</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getReferrerType</action>
@@ -3059,14 +3059,14 @@
 					<row>
 						<name>Keywords</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getKeywords</action>
@@ -3085,14 +3085,14 @@
 					<row>
 						<name>Search Engines</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getSearchEngines</action>
@@ -3111,14 +3111,14 @@
 					<row>
 						<name>Websites</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getWebsites</action>
@@ -3137,14 +3137,14 @@
 					<row>
 						<name>Campaigns</name>
 						<category>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Goals by Referrers</id>
 							<name>Goals by Referrers</name>
 							<order>99</order>
-							<id>Goals by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getCampaigns</action>
@@ -3163,14 +3163,14 @@
 					<row>
 						<name>Visits to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getVisitsUntilConversion</action>
@@ -3188,14 +3188,14 @@
 					<row>
 						<name>Days to Conversion</name>
 						<category>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</category>
 						<subcategory>
+							<id>Goals engagement</id>
 							<name>Goals engagement</name>
 							<order>99</order>
-							<id>Goals engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getDaysToConversion</action>
@@ -3217,14 +3217,14 @@
 	<row>
 		<uniqueId>Goals_Goals.Goals_ManageGoals</uniqueId>
 		<category>
+			<id>Goals_Goals</id>
 			<name>Goals</name>
 			<order>25</order>
-			<id>Goals_Goals</id>
 		</category>
 		<subcategory>
+			<id>Goals_ManageGoals</id>
 			<name>Manage Goals</name>
 			<order>9999</order>
-			<id>Goals_ManageGoals</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3243,14 +3243,14 @@
 	<row>
 		<uniqueId>Goals_Ecommerce.Goals_EcommerceLog</uniqueId>
 		<category>
+			<id>Goals_Ecommerce</id>
 			<name>Ecommerce</name>
 			<order>20</order>
-			<id>Goals_Ecommerce</id>
 		</category>
 		<subcategory>
+			<id>Goals_EcommerceLog</id>
 			<name>Ecommerce Log</name>
 			<order>5</order>
-			<id>Goals_EcommerceLog</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3269,14 +3269,14 @@
 	<row>
 		<uniqueId>Goals_Ecommerce.General_Overview</uniqueId>
 		<category>
+			<id>Goals_Ecommerce</id>
 			<name>Ecommerce</name>
 			<order>20</order>
-			<id>Goals_Ecommerce</id>
 		</category>
 		<subcategory>
+			<id>General_Overview</id>
 			<name>Overview</name>
 			<order>2</order>
-			<id>General_Overview</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3296,14 +3296,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Ecommerce</id>
 							<name>Ecommerce</name>
 							<order>99</order>
-							<id>Goals_Ecommerce</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getEvolutionGraph</action>
@@ -3322,14 +3322,14 @@
 					<row>
 						<name />
 						<category>
+							<id>Goals_Ecommerce</id>
 							<name>Ecommerce</name>
 							<order>99</order>
-							<id>Goals_Ecommerce</id>
 						</category>
 						<subcategory>
+							<id>General_Overview</id>
 							<name>Overview</name>
 							<order>99</order>
-							<id>General_Overview</id>
 						</subcategory>
 						<module>Ecommerce</module>
 						<action>getSparklines</action>
@@ -3348,14 +3348,14 @@
 					<row>
 						<name>Conversions Overview</name>
 						<category>
+							<id>Goals_Goals</id>
 							<name>Goals</name>
 							<order>99</order>
-							<id>Goals_Goals</id>
 						</category>
 						<subcategory>
+							<id>ecommerceOrder</id>
 							<name>ecommerceOrder</name>
 							<order>99</order>
-							<id>ecommerceOrder</id>
 						</subcategory>
 						<module>Ecommerce</module>
 						<action>getConversionsOverview</action>
@@ -3381,14 +3381,14 @@
 	<row>
 		<uniqueId>Goals_Ecommerce.Goals_Products</uniqueId>
 		<category>
+			<id>Goals_Ecommerce</id>
 			<name>Ecommerce</name>
 			<order>20</order>
-			<id>Goals_Ecommerce</id>
 		</category>
 		<subcategory>
+			<id>Goals_Products</id>
 			<name>Products</name>
 			<order>10</order>
-			<id>Goals_Products</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3408,14 +3408,14 @@
 					<row>
 						<name>Product SKU</name>
 						<category>
+							<id>Goals_Ecommerce</id>
 							<name>Ecommerce</name>
 							<order>99</order>
-							<id>Goals_Ecommerce</id>
 						</category>
 						<subcategory>
+							<id>Goals_Products</id>
 							<name>Products</name>
 							<order>99</order>
-							<id>Goals_Products</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getItemsSku</action>
@@ -3431,14 +3431,14 @@
 					<row>
 						<name>Product Name</name>
 						<category>
+							<id>Goals_Ecommerce</id>
 							<name>Ecommerce</name>
 							<order>99</order>
-							<id>Goals_Ecommerce</id>
 						</category>
 						<subcategory>
+							<id>Goals_Products</id>
 							<name>Products</name>
 							<order>99</order>
-							<id>Goals_Products</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getItemsName</action>
@@ -3454,14 +3454,14 @@
 					<row>
 						<name>Product Category</name>
 						<category>
+							<id>Goals_Ecommerce</id>
 							<name>Ecommerce</name>
 							<order>99</order>
-							<id>Goals_Ecommerce</id>
 						</category>
 						<subcategory>
+							<id>Goals_Products</id>
 							<name>Products</name>
 							<order>99</order>
-							<id>Goals_Products</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getItemsCategory</action>
@@ -3481,14 +3481,14 @@
 	<row>
 		<uniqueId>Goals_Ecommerce.Ecommerce_Sales</uniqueId>
 		<category>
+			<id>Goals_Ecommerce</id>
 			<name>Ecommerce</name>
 			<order>20</order>
-			<id>Goals_Ecommerce</id>
 		</category>
 		<subcategory>
+			<id>Ecommerce_Sales</id>
 			<name>Sales</name>
 			<order>15</order>
-			<id>Ecommerce_Sales</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3509,14 +3509,14 @@
 					<row>
 						<name>Custom Variables</name>
 						<category>
+							<id>Sales by User attribute</id>
 							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Sales by User attribute</id>
 							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
 						</subcategory>
 						<module>CustomVariables</module>
 						<action>getCustomVariables</action>
@@ -3535,14 +3535,14 @@
 					<row>
 						<name>Visits per server time</name>
 						<category>
+							<id>Sales by User attribute</id>
 							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
 						</category>
 						<subcategory>
+							<id>Sales by User attribute</id>
 							<name>Sales by User attribute</name>
 							<order>99</order>
-							<id>Sales by User attribute</id>
 						</subcategory>
 						<module>VisitTime</module>
 						<action>getVisitInformationPerServerTime</action>
@@ -3561,14 +3561,14 @@
 					<row>
 						<name>Country</name>
 						<category>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</category>
 						<subcategory>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCountry</action>
@@ -3587,14 +3587,14 @@
 					<row>
 						<name>Continent</name>
 						<category>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</category>
 						<subcategory>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getContinent</action>
@@ -3613,14 +3613,14 @@
 					<row>
 						<name>Region</name>
 						<category>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</category>
 						<subcategory>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getRegion</action>
@@ -3639,14 +3639,14 @@
 					<row>
 						<name>City</name>
 						<category>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</category>
 						<subcategory>
+							<id>Sales by User location</id>
 							<name>Sales by User location</name>
 							<order>99</order>
-							<id>Sales by User location</id>
 						</subcategory>
 						<module>UserCountry</module>
 						<action>getCity</action>
@@ -3665,14 +3665,14 @@
 					<row>
 						<name>Referrer Type</name>
 						<category>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getReferrerType</action>
@@ -3691,14 +3691,14 @@
 					<row>
 						<name>Keywords</name>
 						<category>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getKeywords</action>
@@ -3717,14 +3717,14 @@
 					<row>
 						<name>Search Engines</name>
 						<category>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getSearchEngines</action>
@@ -3743,14 +3743,14 @@
 					<row>
 						<name>Websites</name>
 						<category>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getWebsites</action>
@@ -3769,14 +3769,14 @@
 					<row>
 						<name>Campaigns</name>
 						<category>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</category>
 						<subcategory>
+							<id>Sales by Referrers</id>
 							<name>Sales by Referrers</name>
 							<order>99</order>
-							<id>Sales by Referrers</id>
 						</subcategory>
 						<module>Referrers</module>
 						<action>getCampaigns</action>
@@ -3795,14 +3795,14 @@
 					<row>
 						<name>Visits to Conversion</name>
 						<category>
+							<id>Sales engagement</id>
 							<name>Sales engagement</name>
 							<order>99</order>
-							<id>Sales engagement</id>
 						</category>
 						<subcategory>
+							<id>Sales engagement</id>
 							<name>Sales engagement</name>
 							<order>99</order>
-							<id>Sales engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getVisitsUntilConversion</action>
@@ -3820,14 +3820,14 @@
 					<row>
 						<name>Days to Conversion</name>
 						<category>
+							<id>Sales engagement</id>
 							<name>Sales engagement</name>
 							<order>99</order>
-							<id>Sales engagement</id>
 						</category>
 						<subcategory>
+							<id>Sales engagement</id>
 							<name>Sales engagement</name>
 							<order>99</order>
-							<id>Sales engagement</id>
 						</subcategory>
 						<module>Goals</module>
 						<action>getDaysToConversion</action>
@@ -3849,14 +3849,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.ExampleUI_GetTemperaturesDataTable</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>ExampleUI_GetTemperaturesDataTable</id>
 			<name>Data tables</name>
 			<order>99</order>
-			<id>ExampleUI_GetTemperaturesDataTable</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3877,14 +3877,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.Bar graph</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>Bar graph</id>
 			<name>Bar graph</name>
 			<order>99</order>
-			<id>Bar graph</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3907,14 +3907,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.Treemap</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>Treemap</id>
 			<name>Treemap</name>
 			<order>99</order>
-			<id>Treemap</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3937,14 +3937,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.Sparklines</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>Sparklines</id>
 			<name>Sparklines</name>
 			<order>99</order>
-			<id>Sparklines</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -3967,14 +3967,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.Evolution Graph</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>Evolution Graph</id>
 			<name>Evolution Graph</name>
 			<order>99</order>
-			<id>Evolution Graph</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -4001,14 +4001,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.Pie graph</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>Pie graph</id>
 			<name>Pie graph</name>
 			<order>99</order>
-			<id>Pie graph</id>
 		</subcategory>
 		<widgets>
 			<row>
@@ -4030,14 +4030,14 @@
 	<row>
 		<uniqueId>ExampleUI_UiFramework.Tag clouds</uniqueId>
 		<category>
+			<id>ExampleUI_UiFramework</id>
 			<name>UI Framework</name>
 			<order>90</order>
-			<id>ExampleUI_UiFramework</id>
 		</category>
 		<subcategory>
+			<id>Tag clouds</id>
 			<name>Tag clouds</name>
 			<order>99</order>
-			<id>Tag clouds</id>
 		</subcategory>
 		<widgets>
 			<row>
