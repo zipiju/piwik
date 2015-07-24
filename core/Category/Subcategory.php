@@ -7,8 +7,6 @@
  */
 namespace Piwik\Category;
 
-use Piwik\Widget\WidgetConfig;
-
 /**
  * Base type for subcategories.
  *
@@ -58,12 +56,25 @@ class Subcategory
     protected $order = 99;
 
     /**
-     * All widgets that belong to this subcategory.
+     * Sets (overwrites) the id of the subcategory see {@link $id}.
      *
-     * @var WidgetConfig[]
-     * @ignore
+     * @param string $id A translation key eg 'General_Overview'.
+     * @return static
      */
-    protected $widgets = array();
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Get the id of the subcategory.
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Get the specifed categoryId see {@link $categoryId}.
@@ -85,27 +96,6 @@ class Subcategory
     {
         $this->categoryId = $categoryId;
         return $this;
-    }
-
-    /**
-     * Sets (overwrites) the id of the subcategory see {@link $id}.
-     *
-     * @param string $id A translation key eg 'General_Overview'.
-     * @return static
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * Get the id of the subcategory.
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -152,23 +142,5 @@ class Subcategory
     public function getOrder()
     {
         return $this->order;
-    }
-
-    /**
-     * @return \Piwik\Widget\WidgetConfig[]
-     * @ignore
-     */
-    public function getWidgetConfigs()
-    {
-        return $this->widgets;
-    }
-
-    /**
-     * @param WidgetConfig $widget
-     * @ignore
-     */
-    public function addWidgetConfig(WidgetConfig $widget)
-    {
-        $this->widgets[] = $widget;
     }
 }

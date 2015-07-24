@@ -10,7 +10,6 @@ namespace Piwik\Tests\Unit\Category;
 
 use Piwik\Cache;
 use Piwik\Category\Subcategory;
-use Piwik\Widget\WidgetConfig;
 
 /**
  * @group Category
@@ -87,27 +86,4 @@ class SubcategoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('', $this->subcategory->getId());
     }
 
-    public function test_getWidgetConfigs_ShouldReturnAnEmptyArray_ByDefault()
-    {
-        $this->assertSame(array(), $this->subcategory->getWidgetConfigs());
-    }
-
-    public function test_addWidgetConfig_ShouldActuallyAddTheConfig()
-    {
-        $config1 = $this->createWidgetConfig('widgetName1');
-        $config2 = $this->createWidgetConfig('widgetName2');
-
-        $this->subcategory->addWidgetConfig($config1);
-        $this->subcategory->addWidgetConfig($config2);
-
-        $this->assertSame(array($config1, $config2), $this->subcategory->getWidgetConfigs());
-    }
-
-    private function createWidgetConfig($widgetName)
-    {
-        $config = new WidgetConfig();
-        $config->setName($widgetName);
-
-        return $config;
-    }
 }

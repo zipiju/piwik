@@ -85,6 +85,9 @@ class Category
         }
     }
 
+    /**
+     * @return Subcategory[]
+     */
     public function getSubcategories()
     {
         return array_values($this->subcategories);
